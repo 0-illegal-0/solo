@@ -13,39 +13,36 @@ class Head extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Stack(children: [
-      Container(
+      SizedBox(
         height: 100,
         width: double.infinity,
-        decoration: BoxDecoration(),
         child: Container(
-          margin: EdgeInsets.only(top: 0),
+          margin: const EdgeInsets.only(top: 0),
           child: CustomPaint(
             painter: CurvePainter(),
           ),
         ),
       ),
       Container(
-        margin: EdgeInsets.only(top: 7),
+        margin: const EdgeInsets.only(top: 7),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context,
+                      delegate: SearchApp(),
+                      useRootNavigator: true);
+                },
+                icon: const Icon(Icons.search_outlined)),
             Container(
-              child: IconButton(
-                  onPressed: () {
-                    showSearch(
-                        context: context,
-                        delegate: SearchApp(),
-                        useRootNavigator: true);
-                  },
-                  icon: Icon(Icons.search_outlined)),
-            ),
-            Container(
-                margin: EdgeInsets.only(left: 0, right: 10),
+                margin: const EdgeInsets.only(left: 0, right: 10),
                 child: IconButton(
                   onPressed: () {
                     bottomSheet(context);
                   },
-                  icon: Icon(Icons.more_horiz_outlined),
+                  icon: const Icon(Icons.more_horiz_outlined),
                 )),
           ],
         ),
@@ -57,7 +54,7 @@ class Head extends StatelessWidget {
           height: 60,
           alignment: Alignment.center,
           //color: Colors.white,
-          child: Text(
+          child: const Text(
             "Solo",
             style: TextStyle(
                 fontFamily: "Lobster", fontSize: 40, color: Colors.white),
@@ -73,7 +70,7 @@ class Head extends StatelessWidget {
         builder: (context) => Container(
               height: 100,
               color: Colors.white,
-              child: Text("empety"),
+              child: const Text("empety"),
             ));
   }
 }
