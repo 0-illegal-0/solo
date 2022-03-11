@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solo/view/screens/home/components/advertisement.dart';
+import 'package:solo/view/screens/home/components/advertisement/advertisement.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:get/get.dart';
 
