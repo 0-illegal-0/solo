@@ -15,8 +15,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.green,
+          textTheme: const TextTheme(
+            bodyText2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+          )),
       home: const HomePage(title: 'Flutter Demo Home Page'),
     );
   }

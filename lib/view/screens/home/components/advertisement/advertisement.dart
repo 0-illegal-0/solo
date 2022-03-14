@@ -21,7 +21,7 @@ class Advertisement extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 0)),
         Container(
             decoration: const BoxDecoration(
               color: Colors.amber,
