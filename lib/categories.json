@@ -1,0 +1,119 @@
+{
+    "project name": "solo",
+    "products": [
+        {
+            "products_name": {
+                "mobiles": [
+                    {
+                        "brand": "Samsung",
+                        "price": "8,199.00",
+                        "model": "Galaxy A72",
+                        "internal memory": "256 GB",
+                        "ram": "8 GB",
+                        "Selfie camera": "32 MP",
+                        "color": "Blue",
+                        "screen": "6.7 inches 1080 x 2400 pixels",
+                        "os": "Android 11",
+                        "image": ""
+                    }
+                ]
+            }
+        },
+        {
+            "products_name": {
+                "photography camera": [
+                    {
+                        "brand": "Nikon",
+                        "price": "4,400.00",
+                        "model": "Galaxy A72",
+                        "color": "black",
+                        "resolution": "33MP",
+                        "Item weight": "542 Grams",
+                        "zoom": "40",
+                        "screen size": "3 Inches",
+                        "model year": "2021"
+                    }
+                ]
+            }
+        },
+        {
+            "products_name": {
+                "security camera": [
+                    {
+                        "brand": "EZVIZ",
+                        "price": "7,199.00",
+                        "model": "Galaxy A72",
+                        "color": "Black",
+                        "model year": "2021",
+                        "indoor": "Outdoor Usage",
+                        "resolution": "1920 × 1080",
+                        "lens mount": "M12",
+                        "ir range": "Up to 20 m",
+                        "dimensions": "Φ354mm x 104mm x 116mm(Φ13.9” x 4.1” x 4.6”)"
+                    }
+                ]
+            }
+        },
+        {
+            "products_name": {
+                "television": [
+                    {
+                        "brand": "Samsung",
+                        "price": "5,199.00",
+                        "model": "UA40T5300AUXEG",
+                        "color": "Black",
+                        "screen": "40 Inches",
+                        "connectivity": "Wi-Fi",
+                        "resolution": "720p",
+                        "display technology": "LED",
+                        "refresh rate": "240",
+                        "Model year": "2021",
+                        "item weight": "10 Kilograms"
+                    }
+                ]
+            }
+        },
+        {
+            "products_name": {
+                "scanners": [
+                    {
+                        "brand": "Epson",
+                        "price": "1,999",
+                        "model": "UA40T5300AUXEG",
+                        "color": "Black",
+                        "media type": "USB",
+                        "scanner type": "Flatbed Scanners",
+                        "connectivity technology": "USB",
+                        "dimensions": "25 x 37 x 3.8 centimeters",
+                        "item weight": "10 Kilograms"
+                    }
+                ]
+            }
+        },
+        {
+            "products_name": {
+                "laptops": [
+                    {
+                        "brand": "Dell",
+                        "price": "4,975",
+                        "model": "82C7007YED",
+                        "color": "Grey",
+                        "processor brand": "AMD",
+                        "resolution": "1366 x 768 Pixels",
+                        "processor speed": "1200 MHz",
+                        "processor count": 2,
+                        "operating system": "DOS",
+                        "weight": "1.5KG",
+                        "display size": "15 Inches",
+                        "memory": "4 GB DDR4-2666 SDRAM (1 x 4 GB)",
+                        "maximum memory supported": "4GB",
+                        "hard drive size": "1 TB",
+                        "hard disk description": "HDD",
+                        "graphics brand": "NVIDIA",
+                        "number of usb": 3
+                    }
+                ]
+            }
+        }
+    ]
+}

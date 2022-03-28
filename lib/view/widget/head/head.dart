@@ -16,11 +16,8 @@ class Head extends StatelessWidget {
       SizedBox(
         height: 100,
         width: double.infinity,
-        child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          child: CustomPaint(
-            painter: CurvePainter(),
-          ),
+        child: CustomPaint(
+          painter: CurvePainter(),
         ),
       ),
       Container(

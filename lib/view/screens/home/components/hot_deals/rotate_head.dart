@@ -3,14 +3,18 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/rotate_head_controller.dart';
 
 class RotateHead extends StatelessWidget {
-  const RotateHead({Key? key}) : super(key: key);
+  const RotateHead({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
-    RotateHeadController controller =
-        Get.put(RotateHeadController(), permanent: false);
-    //controller.slideUpdate();
-    controller.call();
+    RotateHeadController controller = Get.put(
+        RotateHeadController(
+            targetTimeDayes: 17,
+            targetTimeHours: 5,
+            targetTimeMonth: 4,
+            targetTimeYear: 2022),
+        permanent: false);
     return GetBuilder<RotateHeadController>(builder: (context) {
       return AnimatedContainer(
         duration: const Duration(seconds: 1),
@@ -19,9 +23,9 @@ class RotateHead extends StatelessWidget {
           gradient: controller.grade,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AnimatedRotation(
+            /* AnimatedRotation(
               turns: controller.val,
               duration: const Duration(seconds: 4),
               onEnd: () {
@@ -32,11 +36,12 @@ class RotateHead extends StatelessWidget {
                 height: 20,
                 color: const Color(0xFFbd0845),
               ),
+            ),*/
+            Text(
+              title!,
+              style: const TextStyle(color: Color(0xFFffffff), fontSize: 22),
             ),
-            const Text(
-              "Hot Deals",
-              style: TextStyle(color: Color(0xFFffffff), fontSize: 22),
-            ),
+            Text(controller.stopWatch),
             AnimatedRotation(
               turns: -controller.val,
               duration: const Duration(seconds: 4),

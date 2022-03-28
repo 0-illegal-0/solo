@@ -3,18 +3,17 @@ import 'package:get/get.dart';
 import 'package:solo/models/advertisement_models.dart';
 
 class Sliders extends GetxController {
-  static late ScrollController move = ScrollController();
+  static late PageController move = PageController();
   double offset;
   static String text = "Text";
   static double? moveTo;
-  double? max;
   static double? height;
   final int contentCount;
   final width;
   final int movementDurationPerMilliseconds;
   final int repetitionDurationPerSecond;
   Color? stage;
-  static dynamic foo;
+  static dynamic stageIcon;
 
   Sliders(
       {this.width,
@@ -29,24 +28,25 @@ class Sliders extends GetxController {
 
   List<Widget> initValue() {
     return List.generate(advertisements.length, (index) {
-      print(offset);
       return Container(
-        color: index == (offset / moveTo!) ? Colors.green : Colors.amber,
+        color: index == (offset) ? Colors.green : Colors.amber,
         width: 25,
         height: 13,
       );
     });
   }
 
+  bool direction = true;
+  int pageOffset = 0;
   List<Widget> stages() {
-    foo = List.generate(advertisements.length, (index) {
+    stageIcon = List.generate(advertisements.length, (index) {
       return Container(
-        color: index == (offset / moveTo!) ? Colors.green : Colors.amber,
+        color: index == (move.page!.toInt()) ? Colors.green : Colors.amber,
         width: 25,
         height: 13,
       );
     });
-    return foo;
+    return stageIcon;
   }
 
   sizes() {
@@ -54,30 +54,43 @@ class Sliders extends GetxController {
       moveTo = 1100;
       height = 150;
     } else {
-      moveTo = width;
-      moveTo = moveTo! - 20;
+      moveTo = width - 30;
       height = 110;
-      max = moveTo! * contentCount;
     }
+  }
+
+  bool moveState = true;
+  bool moveStateVal() {
+    if (move.page!.toInt() == contentCount) {
+      moveState = false;
+      return moveState;
+    } else if (move.page!.toInt() == 0) {
+      moveState = true;
+      return moveState;
+    }
+    return moveState;
   }
 
   double moving() {
-    if (offset == max && offset != 0) {
-      max = max! - moveTo!;
+    moveStateVal();
+    if (moveState == false && offset != 0.0 && moveState == false) {
       return previous();
-    } else {
-      max = moveTo! * contentCount;
+    } else if (moveState == true && moveState == true) {
+      return next();
     }
-    return next();
+    return move.page!;
   }
 
+  int? count;
   double previous() {
-    offset = offset - moveTo!;
+    count = move.page!.toInt() - 1;
+    offset = count! * moveTo!;
     return offset;
   }
 
   double next() {
-    offset = offset + moveTo!;
+    count = move.page!.toInt() + 1;
+    offset = count! * moveTo!;
     return offset;
   }
 
@@ -90,16 +103,26 @@ class Sliders extends GetxController {
   }
 
   Future call() async {
-    await Future.delayed(Duration(seconds: repetitionDurationPerSecond), () {
-      moveSlide();
-      stages();
+    await Future.delayed(Duration(seconds: repetitionDurationPerSecond),
+        () async {
+      await moveSlide();
+      // stages();
     });
     call();
+    update();
+  }
+
+  Future stageListen() async {
+    await Future.delayed(const Duration(milliseconds: 50), () {
+      stages();
+    });
+    stageListen();
     update();
   }
 
   execute() {
     sizes();
     call();
+    stageListen();
   }
 }

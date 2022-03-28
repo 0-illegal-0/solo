@@ -36,7 +36,8 @@ class Advertisement extends StatelessWidget {
             width: Sliders.moveTo!,
             constraints: const BoxConstraints(
                 maxWidth: 1100, maxHeight: 150, minHeight: 110),
-            child: ListView.builder(
+            child: PageView.builder(
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 controller: Sliders.move,
                 itemCount: advertisements.length,
@@ -45,16 +46,15 @@ class Advertisement extends StatelessWidget {
                     i: i,
                   );
                 })),
-        const SizedBox(
-          height: 10,
-        ),
+        const SizedBox(height: 10),
         SizedBox(
           width: 180,
           child: GetBuilder<Sliders>(builder: (controller) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:
-                  Sliders.foo == null ? controller.initValue() : Sliders.foo,
+              children: Sliders.stageIcon == null
+                  ? controller.initValue()
+                  : Sliders.stageIcon,
             );
           }),
         )

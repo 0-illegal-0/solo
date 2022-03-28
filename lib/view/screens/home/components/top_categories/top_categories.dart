@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:solo/constants/constants.dart';
 import 'package:solo/models/top_categories_models.dart';
@@ -18,16 +20,20 @@ class TopCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.headline6),
-            TextButton(
-                onPressed: () {},
-                child: const Text(
+        Padding(
+          padding: const EdgeInsets.only(bottom: 5.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title, style: Theme.of(context).textTheme.headline6),
+              const TextButtonTheme(
+                child: Text(
                   "See All",
-                ))
-          ],
+                ),
+                data: TextButtonThemeData(style: ButtonStyle()),
+              )
+            ],
+          ),
         ),
         Wrap(
             spacing: mainPadding,
@@ -37,6 +43,8 @@ class TopCategories extends StatelessWidget {
                 (index) => TopCategoriesItems(
                       gridWidth: gridWidth,
                       index: index,
+                      image: topCategories[index].image!,
+                      title: topCategories[index].title,
                     ))),
       ],
     );
@@ -44,10 +52,13 @@ class TopCategories extends StatelessWidget {
 }
 
 class TopCategoriesItems extends StatelessWidget {
-  const TopCategoriesItems({Key? key, this.gridWidth, this.index})
+  const TopCategoriesItems(
+      {Key? key, this.gridWidth, this.index, this.image, this.title})
       : super(key: key);
   final gridWidth;
   final index;
+  final String? image;
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -65,11 +76,11 @@ class TopCategoriesItems extends StatelessWidget {
             ]),
             width: gridWidth,
             height: gridWidth,
-            child: Image.asset(topCategories[index].image!)),
+            child: Image.asset(image!)), //topCategories[index].image!
         Padding(
           padding: const EdgeInsets.only(top: 5.0),
           child: Text(
-            topCategories[index].title!,
+            title!,
             style: Theme.of(context).textTheme.subtitle2,
           ),
         )
