@@ -65,7 +65,12 @@ flutter:
     - assets/
     - assets/images/mobiles/
     - assets/images/laptops/
-    - assets//images/brands/
+    - assets/images/brands/
+    - assets/images/weekly_gifts/
+    - assets/images/tv/
+    - assets/images/cameras/
+    - assets/images/ipad/
+    - assets/images/pc/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

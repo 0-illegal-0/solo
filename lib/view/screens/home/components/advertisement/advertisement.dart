@@ -5,11 +5,12 @@ import 'package:solo/models/advertisement_models.dart';
 import 'package:solo/view/screens/home/components/advertisement/advertisement_content.dart';
 
 class Advertisement extends StatelessWidget {
-  const Advertisement({Key? key, this.width, this.title}) : super(key: key);
+  Advertisement({Key? key, this.width, this.title}) : super(key: key);
 
   final width;
   final title;
   @override
+  int foo = 3;
   Widget build(BuildContext context) {
     Sliders controller = Get.put(Sliders(
         width: width,

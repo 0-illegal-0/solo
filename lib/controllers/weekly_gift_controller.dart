@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/models/advertisement_models.dart';
 
-class Sliders extends GetxController {
+class SlidersPage extends GetxController {
   static late PageController move = PageController();
   double offset;
   static String text = "Text";
@@ -15,23 +14,26 @@ class Sliders extends GetxController {
   Color? stage;
   static dynamic stageIcon;
 
-  Sliders(
+  SlidersPage(
       {this.width,
       required this.offset,
       required this.movementDurationPerMilliseconds,
       required this.repetitionDurationPerSecond,
       required this.contentCount});
 
-  onInit() {
+  @override
+  void onInit() {
     execute();
   }
 
   List<Widget> initValue() {
-    return List.generate(advertisements.length, (index) {
+    return List.generate(contentCount, (index) {
       return Container(
-        color: index == (offset) ? Colors.green : Colors.amber,
-        width: 25,
-        height: 13,
+        color: index == (offset)
+            ? const Color(0xFFc7143e)
+            : const Color(0xFF999495),
+        width: 15,
+        height: 7,
       );
     });
   }
@@ -39,11 +41,13 @@ class Sliders extends GetxController {
   bool direction = true;
   int pageOffset = 0;
   List<Widget> stages() {
-    stageIcon = List.generate(advertisements.length, (index) {
+    stageIcon = List.generate(contentCount, (index) {
       return Container(
-        color: index == (move.page!.toInt()) ? Colors.green : Colors.amber,
-        width: 25,
-        height: 13,
+        color: index == (move.page!.toInt())
+            ? const Color(0xFFc7143e)
+            : const Color(0xFF999495),
+        width: 15,
+        height: 7,
       );
     });
     return stageIcon;
@@ -61,7 +65,7 @@ class Sliders extends GetxController {
 
   bool moveState = true;
   bool moveStateVal() {
-    if (move.page!.toInt() == contentCount) {
+    if (move.page!.toInt() == contentCount - 1) {
       moveState = false;
       return moveState;
     } else if (move.page!.toInt() == 0) {
@@ -111,17 +115,17 @@ class Sliders extends GetxController {
     update();
   }
 
-  Future stageListen() async {
+  Future stageListen2() async {
     await Future.delayed(const Duration(milliseconds: 50), () {
       stages();
     });
-    stageListen();
+    stageListen2();
     update();
   }
 
   execute() {
     sizes();
     call();
-    stageListen();
+    stageListen2();
   }
 }

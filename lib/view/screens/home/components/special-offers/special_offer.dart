@@ -92,7 +92,7 @@ class SpecialOffer extends StatelessWidget {
                 beforeDiscount: "25.330 ",
                 afterDicount: "21.530 EGP",
                 discount: "15 ",
-                specialOfferImage: "assets/images/laptops/lg32LM570BPUA.jpg",
+                specialOfferImage: "assets/images/tv/led-lg-1.jpg",
                 specialOfferTitle: "LG 32LM570BPUA ...",
                 imagePadding: 5),
             SizedBox(
@@ -109,8 +109,8 @@ class SpecialOffer extends StatelessWidget {
                       beforeDiscount: "25.330 ",
                       afterDicount: "21.530 EGP",
                       discount: "15 ",
-                      specialOfferImage: "assets/images/laptops/nikon.jpg",
-                      specialOfferTitle: "Sony Alpha 7 IV",
+                      specialOfferImage: "assets/images/cameras/nikon.jpg",
+                      specialOfferTitle: "Sigma Alpha",
                       imagePadding: 0),
                 ),
                 const SizedBox(height: 5),
@@ -125,7 +125,7 @@ class SpecialOffer extends StatelessWidget {
                       afterDicount: "21.530 EGP",
                       discount: "15 ",
                       specialOfferImage:
-                          "assets/images/laptops/Sigma Alpha.jpg",
+                          "assets/images/cameras/Sigma Alpha.jpg",
                       specialOfferTitle: "Sony Alpha 7 IV",
                       imagePadding: 0),
                 )

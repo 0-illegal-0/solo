@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 
-class Mobiles extends StatelessWidget {
-  const Mobiles({Key? key, this.width}) : super(key: key);
+class ViewItem extends StatelessWidget {
+  const ViewItem(
+      {Key? key,
+      this.width,
+      this.height,
+      this.itemCount,
+      this.aspectRatio,
+      this.title,
+      required this.itemList})
+      : super(key: key);
   final double? width;
+  final double? height;
+  final int? itemCount;
+  final double? aspectRatio;
+  final String? title;
+  final List itemList;
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +24,17 @@ class Mobiles extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text("Mobiles", style: Theme.of(context).textTheme.headline6),
+          child: Text(title!, style: Theme.of(context).textTheme.headline6),
         ),
         SizedBox(
-            height: width! * 0.69,
+            height: height,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 7,
+                itemCount: itemCount,
                 itemBuilder: (context, index) {
                   return Card(
                     child: AspectRatio(
-                      aspectRatio: 0.6,
+                      aspectRatio: aspectRatio!,
                       child: InkWell(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,14 +43,18 @@ class Mobiles extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8),
                                   child: Image.asset(
-                                    "assets/images/mobiles/oppo2.png",
+                                    itemList[index].image!,
                                   ),
                                 ),
                               ),
-                              const Text(
-                                "Samsung Galaxy A72, 6.5 inches 32GB/2GB Dual SIM 4G",
-                                maxLines: 2,
-                                textAlign: TextAlign.center,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child: Text(
+                                  itemList[index].desciption!,
+                                  maxLines: 2,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                               const SizedBox(
                                 height: 8,
@@ -59,9 +76,14 @@ class Mobiles extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 5),
-                                    child: Text("23.700 EGP"),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Text(
+                                        itemList[index].price!,
+                                        maxLines: 1,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 25,
