@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/controllers/advertisement_controller.dart';
 import 'package:solo/controllers/weekly_gift_controller.dart';
 
 import 'slider_style1.dart';
@@ -14,7 +13,7 @@ class WeeklyGift extends StatelessWidget {
     return [
       SlidersStyle1(width: width),
       SlidersStyle2(width: width),
-      SlidersStyle3(width: width)
+      SlidersStyle3(width: width),
     ];
   }
 
@@ -43,7 +42,8 @@ class WeeklyGift extends StatelessWidget {
               ],
             ),
             width: SlidersPage.moveTo!,
-            height: width / 2.4,
+            height: width * 0.22,
+            constraints: const BoxConstraints(minHeight: 140),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
@@ -65,7 +65,7 @@ class WeeklyGift extends StatelessWidget {
               );
             }),
           ),
-        )
+        ),
       ],
     );
   }

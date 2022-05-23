@@ -16,4 +16,254 @@ List<Mobile> mobiles = [
     image: "assets/images/mobiles/oppo2.png",
     price: "36,500.00 EGP",
   ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
+  Mobile(
+    desciption: "kol G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/mobiles/oppo2.png",
+    price: "36,500.00 EGP",
+  ),
 ];

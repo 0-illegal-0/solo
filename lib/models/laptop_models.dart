@@ -16,4 +16,89 @@ List<Laptop> laptops = [
     image: "assets/images/laptops/dell-g15.jpg",
     price: "36,500.00 EGP",
   ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
+  Laptop(
+    desciption: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
+    image: "assets/images/laptops/dell-g15.jpg",
+    price: "36,500.00 EGP",
+  ),
 ];

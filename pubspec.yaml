@@ -69,8 +69,13 @@ flutter:
     - assets/images/weekly_gifts/
     - assets/images/tv/
     - assets/images/cameras/
-    - assets/images/ipad/
+    - assets/images/tablet/
     - assets/images/pc/
+    - assets/images/bar_icon/
+    - assets/images/avatar/
+    - assets/images/social-media-icon/
+    - assets/images/app-store-icons/
+    - assets/images/payment-icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

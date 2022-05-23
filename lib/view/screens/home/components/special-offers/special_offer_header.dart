@@ -22,11 +22,22 @@ class SpecialOfferHeader extends StatelessWidget {
   final double shadowHeight;
   final String? title;
 
+  double get titleFontSize {
+    if (width! / 20 > 50) {
+      return 50;
+    } else if (width! / 20 < 22) {
+      return 22;
+    } else {
+      return width! / 20;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(width);
     return SizedBox(
       width: double.infinity,
-      height: width! / 4.5,
+      height: width! / 6.6,
       child: Stack(
         children: [
           Positioned(
@@ -63,8 +74,8 @@ class SpecialOfferHeader extends StatelessWidget {
               color: const Color(0xFFf22e36), //Color(0xFFfcba03)
               child: Center(
                   child: Text(title!,
-                      style: const TextStyle(
-                          shadows: [
+                      style: TextStyle(
+                          shadows: const [
                             BoxShadow(
                                 color: Color(0xFFf0faf5),
                                 blurRadius: 4,
@@ -72,8 +83,8 @@ class SpecialOfferHeader extends StatelessWidget {
                                 offset: Offset(0, 0))
                           ],
                           letterSpacing: 1,
-                          fontSize: 24,
-                          color: Color(0xFFfcba03)))),
+                          fontSize: titleFontSize,
+                          color: const Color(0xFFfcba03)))),
             ),
           ),
           Positioned(

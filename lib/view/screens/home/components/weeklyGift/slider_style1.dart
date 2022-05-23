@@ -1,15 +1,19 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:solo/view/responsive.dart';
 
 class SlidersStyle1 extends StatelessWidget {
   const SlidersStyle1({
     Key? key,
     required this.width,
-    /*this.i*/
   }) : super(key: key);
   final double width;
-  //final int? i;
+
+  double get positionedItem {
+    return width / 50;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,8 +23,8 @@ class SlidersStyle1 extends StatelessWidget {
           Transform.translate(
             offset: Offset(width / 5.53, 0),
             child: SizedBox(
-              width: 200,
-              height: 200,
+              width: width / 1.8,
+              height: width / 1.8,
               child: CustomPaint(
                 painter: SlidersStyle1CircleGradian(
                     color: Colors.white,
@@ -33,91 +37,100 @@ class SlidersStyle1 extends StatelessWidget {
             height: width / 2.4,
             child: CustomPaint(painter: SlidersStyle1Painter()),
           ),
-          Positioned(
-            right: 120,
-            top: width / 13,
-            child: Transform.rotate(
-              angle: pi / 6,
-              child: Image.asset(
-                "assets/images/weekly_gifts/mobile2.jpg",
-                height: 70,
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: width / 4 < 120 ? 120 : width / 4,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(
+                      "assets/images/weekly_gifts/mobile2.jpg",
+                      // height: width / 5.1,
+                    ),
+                  ),
+                  SizedBox(
+                    width: width / 48,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Image.asset(
+                      "assets/images/weekly_gifts/tablet1.jpg",
+                    ),
+                  ),
+                  SizedBox(
+                    width: width / 48,
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(
+                      "assets/images/weekly_gifts/mobile2.jpg",
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
           Positioned(
-            left: 120,
-            top: width / 13,
-            child: Transform.rotate(
-              angle: -pi / 6,
-              child: Image.asset(
-                "assets/images/weekly_gifts/mobile2.jpg",
-                height: 70,
-              ),
-            ),
-          ),
-          Positioned(
-            right: 115,
-            top: width / 6,
-            child: Image.asset(
-              "assets/images/weekly_gifts/tablet1.jpg",
-              height: 50,
-              width: 100,
-            ),
-          ),
-          const Positioned(
-            top: 13,
-            left: 15,
+            top: positionedItem / 2,
+            left: positionedItem,
             child: Text(
               "Exclusive\nOffers",
-              style: TextStyle(shadows: [
-                Shadow(color: Colors.black, blurRadius: 5),
-              ], color: Color(0xFF339cd4), fontSize: 21), //Color(0xFFa6330d)
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  shadows: const [
+                    Shadow(color: Colors.black, blurRadius: 5),
+                  ],
+                  color: const Color(0xFF339cd4),
+                  fontSize: doubleResponsiveSize(14, 25, 35, width)),
             ),
           ),
           Positioned(
-            right: 10,
-            bottom: 10,
+            right: positionedItem,
+            bottom: positionedItem,
             child: RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(children: [
+                text: TextSpan(children: [
                   TextSpan(
                       text: "5G Mobiles\n",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFfcba03),
-                        fontSize: 18,
-                      )),
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFFfcba03),
+                          fontSize: doubleResponsiveSize(14, 25, 37, width))),
                   TextSpan(
                       text: "AND",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: doubleResponsiveSize(14, 25, 37, width),
                       )),
                   TextSpan(
                       text: "\nTeblets",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFFfcba03),
-                        fontSize: 18,
+                        color: const Color(0xFFfcba03),
+                        fontSize: doubleResponsiveSize(14, 25, 37, width),
                       ))
                 ])),
           ),
-          const Positioned(
-            bottom: 7,
-            left: 7,
+          Positioned(
+            bottom: positionedItem,
+            left: positionedItem,
             child: Text(
               "35% Off",
               style: TextStyle(
-                  color: Colors.white, fontSize: 17), //Color(0xFFa6330d)
+                  color: Colors.white,
+                  fontSize: doubleResponsiveSize(14, 23, 40, width)),
             ),
           ),
-          const Positioned(
-            right: 3,
-            top: 3,
+          Positioned(
+            right: positionedItem,
+            top: positionedItem,
             child: Text(
               "Only Today",
               style: TextStyle(
-                  color: Colors.white, fontSize: 17), //Color(0xFF339cd4)
+                  color: Colors.white,
+                  fontSize: doubleResponsiveSize(14, 23, 40, width)),
             ),
           ),
         ],

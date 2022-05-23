@@ -5,8 +5,7 @@ class SlidersPage extends GetxController {
   static late PageController move = PageController();
   double offset;
   static String text = "Text";
-  static double? moveTo;
-  static double? height;
+  static double? height, moveTo;
   final int contentCount;
   final width;
   final int movementDurationPerMilliseconds;
@@ -40,6 +39,9 @@ class SlidersPage extends GetxController {
 
   bool direction = true;
   int pageOffset = 0;
+  int trickt = 0;
+  bool tricktBool = true;
+
   List<Widget> stages() {
     stageIcon = List.generate(contentCount, (index) {
       return Container(
@@ -53,12 +55,17 @@ class SlidersPage extends GetxController {
     return stageIcon;
   }
 
+  double get mainPadding {
+    return width / 24;
+  }
+
   sizes() {
     if (width >= 1100) {
-      moveTo = 1100;
+      moveTo = width - (mainPadding * 2);
+      ;
       height = 150;
     } else {
-      moveTo = width - 30;
+      moveTo = width - (mainPadding * 2);
       height = 110;
     }
   }
@@ -123,9 +130,9 @@ class SlidersPage extends GetxController {
     update();
   }
 
-  execute() {
-    sizes();
-    call();
+  execute() async {
+    await sizes();
+    await call();
     stageListen2();
   }
 }

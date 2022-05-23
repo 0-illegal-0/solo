@@ -16,4 +16,34 @@ List<RecommendedItem> recomendedList = [
           "Laptop - Intel Celeron N4020 - 4GB RAM - 1TB HDD - Intel UHD Graphics 600 - 15.6-inch HD - DOS - Iron Grey",
       title: "Lenovo V15-IGL",
       price: "4.650.00 EGP"),
+  RecommendedItem(
+      image: "assets/images/laptops/Lenovo-V15-igl.jpg",
+      description:
+          "Laptop - Intel Celeron N4020 - 4GB RAM - 1TB HDD - Intel UHD Graphics 600 - 15.6-inch HD - DOS - Iron Grey",
+      title: "Lenovo V15-IGL",
+      price: "4.650.00 EGP"),
+  RecommendedItem(
+      image: "assets/images/laptops/Lenovo-V15-igl.jpg",
+      description:
+          "Laptop - Intel Celeron N4020 - 4GB RAM - 1TB HDD - Intel UHD Graphics 600 - 15.6-inch HD - DOS - Iron Grey",
+      title: "Lenovo V15-IGL",
+      price: "4.650.00 EGP"),
+  RecommendedItem(
+      image: "assets/images/laptops/Lenovo-V15-igl.jpg",
+      description:
+          "Laptop - Intel Celeron N4020 - 4GB RAM - 1TB HDD - Intel UHD Graphics 600 - 15.6-inch HD - DOS - Iron Grey",
+      title: "Lenovo V15-IGL",
+      price: "4.650.00 EGP"),
+  RecommendedItem(
+      image: "assets/images/laptops/Lenovo-V15-igl.jpg",
+      description:
+          "Laptop - Intel Celeron N4020 - 4GB RAM - 1TB HDD - Intel UHD Graphics 600 - 15.6-inch HD - DOS - Iron Grey",
+      title: "Lenovo V15-IGL",
+      price: "4.650.00 EGP"),
+  RecommendedItem(
+      image: "assets/images/laptops/Lenovo-V15-igl.jpg",
+      description:
+          "Laptop - Intel Celeron N4020 - 4GB RAM - 1TB HDD - Intel UHD Graphics 600 - 15.6-inch HD - DOS - Iron Grey",
+      title: "Lenovo V15-IGL",
+      price: "4.650.00 EGP"),
 ];

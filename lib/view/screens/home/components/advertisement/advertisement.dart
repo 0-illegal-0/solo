@@ -5,15 +5,18 @@ import 'package:solo/models/advertisement_models.dart';
 import 'package:solo/view/screens/home/components/advertisement/advertisement_content.dart';
 
 class Advertisement extends StatelessWidget {
-  Advertisement({Key? key, this.width, this.title}) : super(key: key);
+  Advertisement({Key? key, this.width, this.title, this.mainPadding})
+      : super(key: key);
 
   final width;
   final title;
+  final mainPadding;
   @override
   int foo = 3;
   Widget build(BuildContext context) {
     Sliders controller = Get.put(Sliders(
         width: width,
+        mainPadding: mainPadding,
         offset: 0,
         movementDurationPerMilliseconds: 300,
         repetitionDurationPerSecond: 3,
@@ -35,8 +38,9 @@ class Advertisement extends StatelessWidget {
               ],
             ),
             width: Sliders.moveTo!,
+            height: width * 0.22,
             constraints: const BoxConstraints(
-                maxWidth: 1100, maxHeight: 150, minHeight: 110),
+                /*  maxWidth: 1100, maxHeight: 180,*/ minHeight: 130),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
@@ -49,7 +53,7 @@ class Advertisement extends StatelessWidget {
                 })),
         const SizedBox(height: 10),
         SizedBox(
-          width: 180,
+          width: width / 3.3,
           child: GetBuilder<Sliders>(builder: (controller) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

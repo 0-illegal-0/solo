@@ -16,32 +16,36 @@ class RotateHead extends StatelessWidget {
             targetTimeYear: 2022),
         permanent: false);
     return GetBuilder<RotateHeadController>(builder: (context) {
-      return AnimatedContainer(
-        duration: const Duration(seconds: 1),
-        height: 35,
+      return Container(
+        width: double.infinity,
+        alignment: Alignment.center,
+        //height: 35,
         decoration: BoxDecoration(
-          gradient: controller.grade,
+          color: controller.backgroundColor,
+          //gradient: controller.grade,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            /* AnimatedRotation(
+            AnimatedRotation(
               turns: controller.val,
               duration: const Duration(seconds: 4),
               onEnd: () {
                 controller.val = 0;
               },
               child: Container(
-                width: 20,
-                height: 20,
+                width: 13,
+                height: 13,
                 color: const Color(0xFFbd0845),
               ),
-            ),*/
+            ),
             Text(
               title!,
-              style: const TextStyle(color: Color(0xFFffffff), fontSize: 22),
+              style: const TextStyle(
+                  color: Color(0xFF000000),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
             ),
-            Text(controller.stopWatch),
             AnimatedRotation(
               turns: -controller.val,
               duration: const Duration(seconds: 4),
@@ -49,8 +53,8 @@ class RotateHead extends StatelessWidget {
                 controller.val = 0;
               },
               child: Container(
-                width: 20,
-                height: 20,
+                width: 13,
+                height: 13,
                 color: const Color(0xFFbd0845),
               ),
             ),

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:solo/view/responsive.dart';
 
 class SlidersStyle3 extends StatelessWidget {
   const SlidersStyle3({Key? key, required this.width}) : super(key: key);
@@ -11,7 +12,7 @@ class SlidersStyle3 extends StatelessWidget {
       children: [
         Container(
           width: width,
-          height: 150,
+          height: width * 0.28 < 140 ? 140 : width * 0.28,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
             colors: [Color(0xFF6e18a3), Color(0xFFdf5afa)],
@@ -20,72 +21,79 @@ class SlidersStyle3 extends StatelessWidget {
             painter: SlidersStyle3Painter(color: const Color(0xFF319bcc)),
           ),
         ),
-        const Positioned(
-            top: 15,
-            left: 70,
+        Positioned(
+            top: width * 0.28 < 140 ? 15 : width / 24,
+            left: width / 5.1,
             child: Text(
               "Best Cameras Deals",
               style: TextStyle(
-                fontSize: 20,
-                color: Color(0xFFffffff),
+                fontSize:
+                    doubleResponsiveSize(18, 200, 55, width, forMobile: 15),
+                color: const Color(0xFFffffff),
+                fontWeight: FontWeight.bold,
                 height: 1,
               ),
             )),
-        const Positioned(
-          top: 65,
-          left: 80,
+        Positioned(
+          top: width * 0.28 < 140 ? 65 : width / 8.53,
+          left: width / 4.5,
           child: Text("Buy This Deal\nFast",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xFFf2bd55),
-                fontSize: 18,
+                color: const Color(0xFFf2bd55),
+                fontSize:
+                    doubleResponsiveSize(14, 23, 24, width, forMobile: 14.0),
               )),
         ),
         Transform.translate(
-          offset: Offset(-width / 6.62, width / 6.61), //-width / 6.62 //55
+          offset: Offset(-width / 6.62, 0),
           child: Transform.rotate(
             angle: pi / -2,
             child: Container(
               alignment: Alignment.center,
               width: width / 2.4,
-              height: width / 8.72,
               child: RichText(
                   textAlign: TextAlign.center,
-                  text: const TextSpan(children: [
+                  text: TextSpan(children: [
                     TextSpan(
                         text: "Up to ",
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 19,
+                            fontSize: width * 0.28 < 140 ? 19 : width / 35,
                             fontWeight: FontWeight.bold)),
                     TextSpan(
                         text: " 40%",
                         style: TextStyle(
-                            color: Colors.white, fontSize: 22, shadows: [])),
+                          color: Colors.white,
+                          fontSize: width * 0.28 < 140 ? 19 : width / 35,
+                        )),
                     TextSpan(
                         text: " off",
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 19,
+                            fontSize: width * 0.28 < 140 ? 19 : width / 35,
                             fontWeight: FontWeight.bold))
                   ])),
             ),
           ),
         ),
-        Positioned(
-            right: 50,
-            top: 35,
-            child: Image.asset(
-              "assets/images/cameras/camera1.png",
-              width: 80,
-            )),
-        Positioned(
-            right: 0,
-            top: 50,
-            child: Image.asset(
-              "assets/images/cameras/camera2.png",
-              width: 80,
-            )),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                "assets/images/cameras/camera1.png",
+                width: doubleResponsiveSize(50, 150, 7.2, width),
+              ),
+              Image.asset(
+                "assets/images/cameras/camera2.png",
+                width: doubleResponsiveSize(67, 150, 5.3, width),
+              )
+            ],
+          ),
+        )
       ],
     );
   }

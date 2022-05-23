@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class RotateHeadController extends GetxController {
   double val = 0;
+  Color style = Colors.black;
   RotateHeadController(
       {required this.targetTimeYear,
       required this.targetTimeDayes,
@@ -11,15 +12,7 @@ class RotateHeadController extends GetxController {
       required this.targetTimeMonth});
   //  final targetTimeYear, targetTimeDayes, targetTimeMinutes,targetTimeSeconds;
 
-  LinearGradient grade = const LinearGradient(
-    begin: Alignment.centerRight,
-    end: Alignment.centerLeft,
-    colors: [
-      Color(0xFFffffff),
-      Color(0xFF9675c9),
-      Color(0xFFffffff),
-    ],
-  );
+  Color backgroundColor = Colors.grey;
 
   rotateBox() {
     val = pi;
@@ -31,44 +24,31 @@ class RotateHeadController extends GetxController {
     update();
   }
 
-  gradiant() {
-    grade = const LinearGradient(
-      begin: Alignment.centerRight,
-      end: Alignment.centerLeft,
-      colors: [
-        Color(0xFFffffff),
-        Color(0xFF19bf19),
-        Color(0xFFffffff),
-      ],
-    );
-    update();
-  }
-
-  resetGradiant() {
-    grade = const LinearGradient(
-      begin: Alignment.centerRight,
-      end: Alignment.centerLeft,
-      colors: [
-        Color(0xFFffffff),
-        Color(0xFF9675c9),
-        Color(0xFFffffff),
-      ],
-    );
-    update();
-  }
-
   Future call() async {
     await Future.delayed(const Duration(seconds: 2), () async {
       if (val == 0) {
         rotateBox();
-        gradiant();
       } else {
         resetRotateBox();
-        resetGradiant();
       }
     });
     call();
     update();
+  }
+
+  int x = 0;
+
+  changeColor() async {
+    await Future.delayed(const Duration(seconds: 1), () async {
+      if (x == 0) {
+        backgroundColor = Colors.blue;
+        x = 1;
+      } else {
+        backgroundColor = Colors.grey;
+        x = 0;
+      }
+    });
+    changeColor();
   }
 
   final int targetTimeYear, targetTimeDayes, targetTimeMonth, targetTimeHours;
@@ -136,5 +116,6 @@ class RotateHeadController extends GetxController {
   onReady() {
     call();
     fun();
+    changeColor();
   }
 }

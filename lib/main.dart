@@ -18,12 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.green,
           textTheme: const TextTheme(
-            /*  bodyText2: TextStyle(
-              fontSize: 14.0,
-            ),*/
             headline6: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
           )),
       home: const HomePage(title: 'Flutter Demo Home Page'),

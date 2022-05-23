@@ -8,6 +8,7 @@ class Sliders extends GetxController {
   static String text = "Text";
   static double? moveTo;
   static double? height;
+  final double? mainPadding;
   final int contentCount;
   final width;
   final int movementDurationPerMilliseconds;
@@ -17,6 +18,7 @@ class Sliders extends GetxController {
 
   Sliders(
       {this.width,
+      this.mainPadding,
       required this.offset,
       required this.movementDurationPerMilliseconds,
       required this.repetitionDurationPerSecond,
@@ -29,9 +31,11 @@ class Sliders extends GetxController {
   List<Widget> initValue() {
     return List.generate(advertisements.length, (index) {
       return Container(
-        color: index == (offset) ? Colors.green : Colors.amber,
-        width: 25,
-        height: 13,
+        color: index == (offset)
+            ? const Color(0xFF049cc2)
+            : const Color(0xFF02132b),
+        width: 15,
+        height: 7,
       );
     });
   }
@@ -41,9 +45,11 @@ class Sliders extends GetxController {
   List<Widget> stages() {
     stageIcon = List.generate(advertisements.length, (index) {
       return Container(
-        color: index == (move.page!.toInt()) ? Colors.green : Colors.amber,
-        width: 25,
-        height: 13,
+        color: index == (move.page!.toInt())
+            ? const Color(0xFF049cc2)
+            : const Color(0xFF02132b),
+        width: 15,
+        height: 7,
       );
     });
     return stageIcon;
@@ -51,10 +57,10 @@ class Sliders extends GetxController {
 
   sizes() {
     if (width >= 1100) {
-      moveTo = 1100;
+      moveTo = width - (mainPadding! * 2);
       height = 150;
     } else {
-      moveTo = width - 30;
+      moveTo = width - (mainPadding! * 2);
       height = 110;
     }
   }

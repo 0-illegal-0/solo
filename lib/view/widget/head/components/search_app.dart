@@ -18,8 +18,8 @@ class SearchApp extends SearchDelegate {
           onPressed: () {
             query;
           },
-          icon: Icon(Icons.search))
-    ]; //[];
+          icon: const Icon(Icons.search))
+    ];
   }
 
   @override
@@ -28,7 +28,7 @@ class SearchApp extends SearchDelegate {
         onPressed: () {
           close(context, null);
         },
-        icon: Icon(Icons.close));
+        icon: const Icon(Icons.close));
   }
 
   @override
@@ -38,7 +38,7 @@ class SearchApp extends SearchDelegate {
         color: Colors.green,
         child: Text(
           query,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 30,
           ),
         ),
@@ -57,15 +57,16 @@ class SearchApp extends SearchDelegate {
           itemBuilder: (context, i) {
             print(filter.length);
             return Container(
+                alignment: Alignment.center,
                 child: query == ""
-                    ? Text("")
+                    ? const Text("")
                     : Container(
                         color: Colors.amber,
                         child: InkWell(
                           splashColor: Colors.red,
                           child: Text(
                             '${filter[i]}',
-                            style: TextStyle(fontSize: 25),
+                            style: const TextStyle(fontSize: 25),
                           ),
                           onTap: () {
                             query = filter[i];

@@ -34,7 +34,8 @@ class BrandItems extends StatelessWidget {
                       offset: Offset(0, 5))
                 ]),
             width: gridWidth,
-            height: width / 9,
+            height: gridWidth / 1.68,
+            constraints: BoxConstraints(/*maxWidth: 100, maxHeight: 69.5*/),
             child: Image.asset(
               image!,
             )),

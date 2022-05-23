@@ -32,7 +32,9 @@ class SpecialOfferItem extends StatelessWidget {
   }
 
   double brandGrid(int? countItem, double? boxWidth) {
-    return (width - (mainPadding * 2) - (space * (countItem! - 1))) * boxWidth!;
+    return ((width - (mainPadding * 2) - (space * (countItem! - 1))) *
+            boxWidth!) -
+        0.05;
   }
 
   static const BoxDecoration specialOfferDecoration = BoxDecoration(boxShadow: [
@@ -53,16 +55,20 @@ class SpecialOfferItem extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: SizedBox(
-                width: width / 9,
-                height: width / 20,
-                child: CustomPaint(
-                  painter: const DiscountChip(
-                      DiscountChipColor: Color.fromRGBO(222, 53, 59, 0.7)),
-                  child: Center(
-                    child: Text(
-                      discount!,
-                      style: const TextStyle(color: Color(0xFFffffff)),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxHeight: 18, maxWidth: 40), //2.222222222222222
+                child: SizedBox(
+                  width: width / 9,
+                  height: width / 20,
+                  child: CustomPaint(
+                    painter: const DiscountChip(
+                        DiscountChipColor: Color.fromRGBO(222, 53, 59, 0.7)),
+                    child: Center(
+                      child: Text(
+                        discount!,
+                        style: const TextStyle(color: Color(0xFFffffff)),
+                      ),
                     ),
                   ),
                 ),
