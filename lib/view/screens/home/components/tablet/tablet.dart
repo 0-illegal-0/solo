@@ -90,7 +90,7 @@ class TabletItems extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(title!,
               style:
-                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: instanceSizes.stackHeight,

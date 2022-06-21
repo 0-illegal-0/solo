@@ -29,8 +29,13 @@ class WeeklyGift extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 5),
+          child: Text(title,
+              style: TextStyle(
+                  fontSize: width! > 1099 ? 22 : 16,
+                  fontWeight: FontWeight.bold)),
+        ),
         Container(
             decoration: const BoxDecoration(
               boxShadow: [
@@ -47,7 +52,7 @@ class WeeklyGift extends StatelessWidget {
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                controller: SlidersPage.move,
+                controller: SlidersPage.move2,
                 itemCount: styleWidget(width: width).length,
                 itemBuilder: (context, i) {
                   return styleWidget(width: width)[i];

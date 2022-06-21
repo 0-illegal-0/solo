@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SlidersPage extends GetxController {
-  static late PageController move = PageController();
+  static late PageController move2;
   double offset;
   static String text = "Text";
   static double? height, moveTo;
@@ -22,6 +22,7 @@ class SlidersPage extends GetxController {
 
   @override
   void onInit() {
+    move2 = PageController();
     execute();
   }
 
@@ -45,7 +46,7 @@ class SlidersPage extends GetxController {
   List<Widget> stages() {
     stageIcon = List.generate(contentCount, (index) {
       return Container(
-        color: index == (move.page!.toInt())
+        color: index == (move2.page!.toInt())
             ? const Color(0xFFc7143e)
             : const Color(0xFF999495),
         width: 15,
@@ -62,7 +63,7 @@ class SlidersPage extends GetxController {
   sizes() {
     if (width >= 1100) {
       moveTo = width - (mainPadding * 2);
-      ;
+
       height = 150;
     } else {
       moveTo = width - (mainPadding * 2);
@@ -72,10 +73,10 @@ class SlidersPage extends GetxController {
 
   bool moveState = true;
   bool moveStateVal() {
-    if (move.page!.toInt() == contentCount - 1) {
+    if (move2.page!.toInt() == contentCount - 1) {
       moveState = false;
       return moveState;
-    } else if (move.page!.toInt() == 0) {
+    } else if (move2.page!.toInt() == 0) {
       moveState = true;
       return moveState;
     }
@@ -89,25 +90,25 @@ class SlidersPage extends GetxController {
     } else if (moveState == true && moveState == true) {
       return next();
     }
-    return move.page!;
+    return move2.page!;
   }
 
   int? count;
   double previous() {
-    count = move.page!.toInt() - 1;
+    count = move2.page!.toInt() - 1;
     offset = count! * moveTo!;
     return offset;
   }
 
   double next() {
-    count = move.page!.toInt() + 1;
+    count = move2.page!.toInt() + 1;
     offset = count! * moveTo!;
     return offset;
   }
 
   moveSlide() {
-    if (move.hasClients) {
-      move.animateTo(moving(),
+    if (move2.hasClients) {
+      move2.animateTo(moving(),
           duration: Duration(milliseconds: movementDurationPerMilliseconds),
           curve: Curves.easeIn);
     }
@@ -127,6 +128,7 @@ class SlidersPage extends GetxController {
       stages();
     });
     stageListen2();
+
     update();
   }
 

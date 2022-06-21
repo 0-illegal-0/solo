@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:solo/models/most_liked_items_models.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/screens/view-details/view_details.dart';
+import 'package:solo/view/widget/note.dart';
 
 class MostLiked extends StatelessWidget {
   const MostLiked({
@@ -37,14 +40,15 @@ class MostLiked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getDevice(width);
-    print(width);
+    getDataToMostLikedItems();
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title!,
-            style: Theme.of(context).textTheme.headline6,
+            style: TextStyle(
+                fontSize: width > 1099 ? 22 : 16, fontWeight: FontWeight.bold),
           ),
         ),
         Container(
@@ -70,44 +74,76 @@ class MostLiked extends StatelessWidget {
                     width: brandGrid,
                     child: CustomPaint(
                       painter: MostLikedPainter(),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: width / 25),
-                          Image.asset(
-                            mostLikedItems[index].image!,
-                            width: brandGrid * 0.60,
-                            height: device == DeviceType.Desktop ||
-                                    device == DeviceType.Tablet
-                                ? 100
-                                : 70,
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            mostLikedItems[index].title!,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 9, bottom: 5),
-                            child: Text(
-                              mostLikedItems[index].price!,
-                              maxLines: 1,
-                              style: const TextStyle(shadows: [
-                                BoxShadow(
-                                    color: Colors.red,
-                                    spreadRadius: 10,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 10)
-                              ]),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(
+                              () => ViewDetails(
+                                    width: width,
+                                    aspectRatio: mostLikedItems[index]
+                                        ["aspectRatio"],
+                                    height: mostLikedItems[index]["height"],
+                                    itemList: mostLikedItems[index]
+                                        ["item-list"],
+                                    index: mostLikedItems[index]["index"],
+                                    numberOfRows: 1,
+                                    title: "Customer  Viewed",
+                                  ),
+                              preventDuplicates: false);
+                          Get.deleteAll();
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: width / 25),
+                            Image.asset(
+                              mostLikedItems[index]["item"].image!,
+                              width: brandGrid * 0.60,
+                              height: device == DeviceType.Desktop ||
+                                      device == DeviceType.Tablet
+                                  ? 100
+                                  : 70,
                             ),
-                          ),
-                        ],
+                            const SizedBox(height: 5),
+                            Text(
+                              mostLikedItems[index]["item"].title!,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 9, bottom: 5),
+                              child: Text(
+                                mostLikedItems[index]["item"].price!,
+                                maxLines: 1,
+                                style: const TextStyle(shadows: [
+                                  BoxShadow(
+                                      color: Colors.red,
+                                      spreadRadius: 10,
+                                      offset: Offset(0, 0),
+                                      blurRadius: 10)
+                                ]),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ))),
           ),
         ),
         mostLikedItems.length > 6
-            ? const TextButton(onPressed: null, child: Text("Show all items"))
+            ? Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: TextButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(186, 186, 184, 0.5))),
+                    onPressed: () {
+                      note(context);
+                    },
+                    child: const Text(
+                      "Show all items",
+                      style: TextStyle(fontSize: 17),
+                    )),
+              )
             : const SizedBox()
       ],
     );

@@ -26,9 +26,7 @@ class HotDeals extends StatelessWidget {
         targetTimeYear: 2022));
     return Column(
       children: [
-        RotateHead(
-          title: title!,
-        ),
+        RotateHead(title: title!),
         GetBuilder<RotateHeadController>(builder: (context) {
           return AnimatedDefaultTextStyle(
               child: Padding(

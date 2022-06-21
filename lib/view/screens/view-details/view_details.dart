@@ -5,12 +5,14 @@ import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/view_details_controller.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/screens/fotter/fotter.dart';
+import 'package:solo/view/screens/view-details/bottom_sheet.dart';
+import 'package:solo/view/screens/view-details/cient_review.dart';
+import 'package:solo/view/screens/view-details/details.dart';
+import 'package:solo/view/screens/view-details/information_design.dart';
+import 'package:solo/view/screens/view-details/view_all_rieviw.dart';
 import 'package:solo/view/widget/head/head.dart';
-import 'package:solo/view/widget/view-details/bottom_sheet.dart';
-import 'package:solo/view/widget/view-details/cient_review.dart';
-import 'package:solo/view/widget/view-details/details.dart';
-import 'package:solo/view/widget/view-details/information_design.dart';
-import 'package:solo/view/widget/view-details/view_all_rieviw.dart';
+import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
 
 class ViewDetails extends StatefulWidget {
@@ -45,22 +47,28 @@ class _ViewDetailsState extends State<ViewDetails>
   @override
   Widget build(BuildContext context) {
     print(widget.width);
-    print(device);
+    print("ratio ----- ${widget.height}");
     ImageSlider controller =
         Get.put(ImageSlider(imagesTab: product.images, product: product));
     controller.initStates(this);
     return Scaffold(
       backgroundColor: const Color(0xFFe1e1e3),
+      bottomNavigationBar:
+          device == DeviceType.Desktop ? const SizedBox() : NavigationBar(),
       body: SafeArea(
         bottom: false,
         child: Stack(
           children: [
-            //  Head(),
+            Head(width: widget.width),
             Padding(
               padding: EdgeInsets.only(
                   left: widget.width! / 24,
                   right: widget.width! / 24,
-                  top: 120),
+                  top: device == DeviceType.Mobile
+                      ? 115
+                      : device == DeviceType.Tablet
+                          ? 160
+                          : 150),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -152,7 +160,7 @@ class _ViewDetailsState extends State<ViewDetails>
                             ),
                           )
                         : const SizedBox(),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
                     product.reviews.length > 3
                         ? TextButton(
                             onPressed: () {
@@ -176,6 +184,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               ),
                             ))
                         : const SizedBox(),
+                    const SizedBox(height: 15),
                     device == DeviceType.Desktop
                         ? ViewAlso(
                             title: "Customer Also Viewed",
@@ -188,12 +197,19 @@ class _ViewDetailsState extends State<ViewDetails>
                           )
                         : MobileDesign(
                             aspectRatio: widget.aspectRatio,
-                            height: widget.height,
+                            height: widget.width! * widget.height!,
                             itemCount: widget.itemList!.length,
                             itemList: widget.itemList,
                             title: widget.title,
                             width: widget.width,
-                          )
+                          ),
+                    const SizedBox(height: 15),
+                    Container(
+                      color: const Color(0xFFffffff),
+                      padding: const EdgeInsets.all(10),
+                      child: Fotter(width: widget.width),
+                    ),
+                    const SizedBox(height: 20)
                   ],
                 ),
               ),
@@ -207,7 +223,7 @@ class _ViewDetailsState extends State<ViewDetails>
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
                       decoration: const BoxDecoration(
-                        color: Color.fromRGBO(245, 176, 66, 1),
+                        color: Color.fromRGBO(220, 222, 221, 1),
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                       ),
                       child: Column(
@@ -227,7 +243,7 @@ class _ViewDetailsState extends State<ViewDetails>
                                 ),
                               )
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -275,7 +291,7 @@ class ProductImagesDesktop extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: Text(
-                      product.desciption,
+                      product.description,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
@@ -345,7 +361,7 @@ class ProductImages extends StatelessWidget {
               child: device == DeviceType.Desktop
                   ? const SizedBox()
                   : Text(
-                      product.desciption,
+                      product.description,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: fontTitle,
@@ -392,7 +408,7 @@ class ProductImages extends StatelessWidget {
 }
 
 class ViewAlso extends StatelessWidget {
-  ViewAlso(
+  const ViewAlso(
       {Key? key,
       this.itemList,
       this.width,

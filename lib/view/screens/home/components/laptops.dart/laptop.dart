@@ -92,7 +92,10 @@ class LaptopItems extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title!, style: Theme.of(context).textTheme.headline6),
+          child: Text(title!,
+              style: TextStyle(
+                  fontSize: width! > 1099 ? 22 : 16,
+                  fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: instanceSizes.stackHeight,

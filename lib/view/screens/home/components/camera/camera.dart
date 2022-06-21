@@ -21,13 +21,6 @@ class CameraeView extends StatelessWidget {
   final int? itemCount, numberOfRows;
   final String? title;
   final List? itemList;
-  int get crossAxisCount {
-    if (device == DeviceType.Tablet) {
-      return 4;
-    } else {
-      return 6;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +82,9 @@ class CameraItems extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title!, style: Theme.of(context).textTheme.headline6),
+          child: Text(title!,
+              style:
+                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: instanceSizes.stackHeight,

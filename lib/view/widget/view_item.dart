@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/view/responsive.dart';
-import 'package:solo/view/widget/view-details/view_details.dart';
+import 'package:solo/view/screens/view-details/view_details.dart';
+import 'package:solo/view/widget/note.dart';
 
 class ArrowWidget extends StatelessWidget {
   ArrowWidget({Key? key, this.controller, this.itemLength}) : super(key: key);
@@ -187,7 +188,7 @@ class ViewItemContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Text(
-                itemList![index!].desciption!,
+                itemList![index!].description!,
                 maxLines: 2,
                 textAlign: TextAlign.center,
               ),
@@ -195,14 +196,12 @@ class ViewItemContent extends StatelessWidget {
             const SizedBox(height: 8),
             Padding(
                 padding: const EdgeInsets.only(left: 3),
-                child: Container(
-                  child: Row(
-                      children: List.generate(
-                          5,
-                          (index) => Icon(Icons.star_rate,
-                              size: 17,
-                              color: index > 2 ? Colors.grey : Colors.cyan))),
-                )),
+                child: Row(
+                    children: List.generate(
+                        5,
+                        (index) => Icon(Icons.star_rate,
+                            size: 17,
+                            color: index > 2 ? Colors.grey : Colors.cyan)))),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -223,7 +222,9 @@ class ViewItemContent extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 3, bottom: 3),
                     color: Colors.green,
                     icon: const Icon(Icons.shopping_cart_outlined),
-                    onPressed: () {},
+                    onPressed: () {
+                      note(context);
+                    },
                   ),
                 )
               ],
@@ -239,7 +240,7 @@ class ViewItemContent extends StatelessWidget {
                     itemList: itemList,
                     index: index,
                     numberOfRows: 1,
-                    title: "Customer Also Viewed",
+                    title: "Customer  Viewed",
                   ),
               preventDuplicates: false);
           Get.deleteAll();

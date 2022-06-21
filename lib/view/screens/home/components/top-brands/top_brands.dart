@@ -42,7 +42,10 @@ class TopBrand extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5.0),
-          child: Text(title, style: Theme.of(context).textTheme.headline6),
+          child: Text(title,
+              style: TextStyle(
+                  fontSize: width! > 1099 ? 22 : 16,
+                  fontWeight: FontWeight.bold)),
         ),
         Wrap(
             spacing: spacing!,

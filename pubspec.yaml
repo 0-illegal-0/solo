@@ -76,6 +76,9 @@ flutter:
     - assets/images/social-media-icon/
     - assets/images/app-store-icons/
     - assets/images/payment-icons/
+    - assets/images/login_icons/
+    - assets/images/categories_icons/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

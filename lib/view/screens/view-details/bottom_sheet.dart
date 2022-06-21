@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solo/view/widget/note.dart';
 
 bottomSheet(context, {dynamic sheetWidget, dynamic title}) {
   return showModalBottomSheet(
@@ -63,7 +64,9 @@ class ChargeButton extends StatelessWidget {
       ),
       width: 170,
       child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            note(context);
+          },
           child: Text(title!,
               textAlign: TextAlign.center,
               style: const TextStyle(

@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/advertisement_controller.dart';
 import 'package:solo/models/advertisement_models.dart';
-import 'package:solo/view/screens/home/components/advertisement/advertisement_content.dart';
+import 'package:solo/view/screens/home/components/weeklyGift/slider_style1.dart';
 
 class Advertisement extends StatelessWidget {
   Advertisement({Key? key, this.width, this.title, this.mainPadding})
       : super(key: key);
 
-  final width;
-  final title;
-  final mainPadding;
+  final double? width, mainPadding;
+  final String? title;
   @override
   int foo = 3;
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class Advertisement extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(title,
+        Text(title!,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 0)),
         Container(
             decoration: const BoxDecoration(
@@ -38,28 +37,27 @@ class Advertisement extends StatelessWidget {
               ],
             ),
             width: Sliders.moveTo!,
-            height: width * 0.22,
-            constraints: const BoxConstraints(
-                /*  maxWidth: 1100, maxHeight: 180,*/ minHeight: 130),
+            height: width! * 0.22,
+            constraints: const BoxConstraints(minHeight: 130),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 controller: Sliders.move,
                 itemCount: advertisements.length,
                 itemBuilder: (context, i) {
-                  return AdvertisementContent(
+                  return SlidersStyle1(
+                      width:
+                          width!); /*AdvertisementContent(
                     i: i,
-                  );
+                  );*/
                 })),
         const SizedBox(height: 10),
         SizedBox(
-          width: width / 3.3,
+          width: width! / 3.3,
           child: GetBuilder<Sliders>(builder: (controller) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: Sliders.stageIcon == null
-                  ? controller.initValue()
-                  : Sliders.stageIcon,
+              children: Sliders.stageIcon ?? controller.initValue(),
             );
           }),
         )

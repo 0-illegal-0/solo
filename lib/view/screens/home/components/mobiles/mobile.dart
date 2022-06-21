@@ -92,9 +92,8 @@ class MobileItems extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(title!,
-              style: TextStyle(
-                  fontSize: width! / 22.5 > 25 ? 25 : width! / 22.5,
-                  fontWeight: FontWeight.bold)),
+              style:
+                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: instanceSizes.stackHeight,

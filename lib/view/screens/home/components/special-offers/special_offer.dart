@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:solo/models/cameras_models.dart';
+import 'package:solo/models/categories_models.dart';
+import 'package:solo/models/laptop_models.dart';
+import 'package:solo/models/speacial_offer.dart';
+import 'package:solo/models/television_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_header.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_item.dart';
@@ -52,8 +57,8 @@ class SpecialOffer extends StatelessWidget {
   double? heightValue;
   double? widthValue;
   Widget widget() {
-    for (var i = 0; i < SpecialOfferItemDatas.length - 2; i++) {
-      if (SpecialOfferItemDatas[i].imageSize == "large") {
+    for (var i = 0; i < specialOfferItemDatas.length - 2; i++) {
+      if (specialOfferItemDatas[i]["imageSize"] == "large") {
         heightValue = 0.60;
         widthValue = 0.60;
       } else {
@@ -67,11 +72,11 @@ class SpecialOffer extends StatelessWidget {
           widthValue: widthValue!,
           mainPadding: mainPadding!,
           width: width!,
-          beforeDiscount: SpecialOfferItemDatas[i].beforeDiscount,
-          afterDicount: SpecialOfferItemDatas[i].afterDicount,
-          discount: SpecialOfferItemDatas[i].discount,
-          specialOfferImage: SpecialOfferItemDatas[i].specialOfferImage,
-          specialOfferTitle: SpecialOfferItemDatas[i].specialOfferTitle,
+          beforeDiscount: specialOfferItemDatas[i]["item"].oldPrice,
+          afterDicount: specialOfferItemDatas[i]["item"].price,
+          discount: specialOfferItemDatas[i]["item"].discount,
+          specialOfferImage: specialOfferItemDatas[i]["item"].image,
+          specialOfferTitle: specialOfferItemDatas[i]["item"].title,
           imagePadding: 5);
     }
     return Text("Empety");
@@ -80,6 +85,7 @@ class SpecialOffer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getDevice(width);
+    getData();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -101,39 +107,55 @@ class SpecialOffer extends StatelessWidget {
                       gridCount: 2,
                       heightValue: 0.40,
                       widthValue: 0.5,
+                      index: specialOfferItemDatas[0]["index"],
+                      aspectRatio: specialOfferItemDatas[0]["aspectRatio"],
+                      height: specialOfferItemDatas[0]["height"],
+                      itemList: specialOfferItemDatas[0]["item-list"],
                       mainPadding: mainPadding!,
                       width: width!,
-                      beforeDiscount: "20.200 ",
-                      afterDicount: "18584 EGP",
-                      discount: "15 ",
+                      beforeDiscount: specialOfferItemDatas[0]["item"].price!,
+                      afterDicount: specialOfferItemDatas[0]["item"].price!,
+                      discount: specialOfferItemDatas[0]["item"].discount!,
                       specialOfferImage:
-                          "assets/images/laptops/Dell Vostro.jpg",
-                      specialOfferTitle: "DELL Vostro 3510 ...",
+                          specialOfferItemDatas[0]["item"].image!,
+                      specialOfferTitle:
+                          specialOfferItemDatas[0]["item"].title!,
                       imagePadding: 5),
                   SpecialOfferItem(
                       gridCount: 2,
                       heightValue: 0.40,
                       widthValue: 0.5,
+                      index: specialOfferItemDatas[1]["index"],
+                      aspectRatio: specialOfferItemDatas[1]["aspectRatio"],
+                      height: specialOfferItemDatas[1]["height"],
+                      itemList: specialOfferItemDatas[1]["item-list"],
                       mainPadding: mainPadding!,
                       width: width!,
-                      beforeDiscount: "25.330 ",
-                      afterDicount: "21.530 EGP",
-                      discount: "15 ",
+                      beforeDiscount: specialOfferItemDatas[1]["item"].price!,
+                      afterDicount: specialOfferItemDatas[1]["item"].price!,
+                      discount: specialOfferItemDatas[1]["item"].discount!,
                       specialOfferImage:
-                          "assets/images/laptops/laptop-asus2.jpg",
-                      specialOfferTitle: "Asus FX506HEB-B ...",
+                          specialOfferItemDatas[1]["item"].image!,
+                      specialOfferTitle:
+                          specialOfferItemDatas[1]["item"].title!,
                       imagePadding: 5),
                   SpecialOfferItem(
                       gridCount: 2,
                       heightValue: 0.60,
                       widthValue: 0.60,
+                      index: specialOfferItemDatas[2]["index"],
+                      aspectRatio: specialOfferItemDatas[2]["aspectRatio"],
+                      height: specialOfferItemDatas[2]["height"],
+                      itemList: specialOfferItemDatas[2]["item-list"],
                       mainPadding: mainPadding!,
                       width: width!,
-                      beforeDiscount: "25.330 ",
-                      afterDicount: "21.530 EGP",
-                      discount: "15 ",
-                      specialOfferImage: "assets/images/tv/led-lg-1.jpg",
-                      specialOfferTitle: "LG 32LM570BPUA ...",
+                      beforeDiscount: specialOfferItemDatas[2]["item"].price!,
+                      afterDicount: specialOfferItemDatas[2]["item"].price!,
+                      discount: specialOfferItemDatas[2]["item"].discount!,
+                      specialOfferImage:
+                          specialOfferItemDatas[2]["item"].image!,
+                      specialOfferTitle:
+                          specialOfferItemDatas[2]["item"].title!,
                       imagePadding: 5),
                   SizedBox(
                     height: width! * 0.60,
@@ -146,12 +168,21 @@ class SpecialOffer extends StatelessWidget {
                             widthValue: double.infinity,
                             mainPadding: mainPadding!,
                             width: width!,
-                            beforeDiscount: "25.330 ",
-                            afterDicount: "21.530 EGP",
-                            discount: "15 ",
+                            index: specialOfferItemDatas[3]["index"],
+                            aspectRatio: specialOfferItemDatas[3]
+                                ["aspectRatio"],
+                            height: specialOfferItemDatas[3]["height"],
+                            itemList: specialOfferItemDatas[3]["item-list"],
+                            beforeDiscount:
+                                specialOfferItemDatas[3]["item"].price!,
+                            afterDicount:
+                                specialOfferItemDatas[3]["item"].price!,
+                            discount:
+                                specialOfferItemDatas[3]["item"].discount!,
                             specialOfferImage:
-                                "assets/images/cameras/nikon.jpg",
-                            specialOfferTitle: "Sigma Alpha",
+                                specialOfferItemDatas[3]["item"].image!,
+                            specialOfferTitle:
+                                specialOfferItemDatas[3]["item"].title!,
                             imagePadding: 0),
                       ),
                       const SizedBox(height: 5),
@@ -161,13 +192,22 @@ class SpecialOffer extends StatelessWidget {
                             heightValue: double.infinity,
                             widthValue: double.infinity,
                             mainPadding: mainPadding!,
+                            index: specialOfferItemDatas[4]["index"],
+                            aspectRatio: specialOfferItemDatas[4]
+                                ["aspectRatio"],
+                            height: specialOfferItemDatas[4]["height"],
+                            itemList: specialOfferItemDatas[4]["item-list"],
                             width: width!,
-                            beforeDiscount: "25.330 ",
-                            afterDicount: "21.530 EGP",
-                            discount: "15 ",
+                            beforeDiscount:
+                                specialOfferItemDatas[4]["item"].price!,
+                            afterDicount:
+                                specialOfferItemDatas[4]["item"].price!,
+                            discount:
+                                specialOfferItemDatas[4]["item"].discount!,
                             specialOfferImage:
-                                "assets/images/cameras/Sigma Alpha.jpg",
-                            specialOfferTitle: "Sony Alpha 7 IV",
+                                specialOfferItemDatas[4]["item"].image!,
+                            specialOfferTitle:
+                                specialOfferItemDatas[4]["item"].title!,
                             imagePadding: 0),
                       )
                     ]),
@@ -212,7 +252,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.topLeft,
                                   child: ConstrainedBox(
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                         maxHeight: 18, maxWidth: 40),
                                     child: SizedBox(
                                       width: width! / 9,
@@ -223,7 +263,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                                 222, 53, 59, 0.7)),
                                         child: Center(
                                           child: Text(
-                                            SpecialOfferItemDatas[index]
+                                            specialOfferItemDatas[index]["item"]
                                                 .discount!,
                                             style: const TextStyle(
                                                 color: Color(0xFFffffff)),
@@ -239,25 +279,25 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                       child: Padding(
                                         padding: EdgeInsets.all(imagePadding!),
                                         child: Image.asset(
-                                          SpecialOfferItemDatas[index]
-                                              .specialOfferImage!,
+                                          specialOfferItemDatas[index]["item"]
+                                              .image!,
                                         ),
                                       )),
                                 ),
                                 Text(
-                                  SpecialOfferItemDatas[index]
-                                      .specialOfferTitle!,
+                                  specialOfferItemDatas[index]["item"].title!,
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
-                                ), //"DELL Vostro 3510 ..."
+                                ),
                                 Padding(
                                   padding: EdgeInsets.all(width! / 120),
                                   child: RichText(
                                       maxLines: 1,
                                       text: TextSpan(children: [
                                         TextSpan(
-                                            text: SpecialOfferItemDatas[index]
-                                                .beforeDiscount!, //"20.200 "
+                                            text: specialOfferItemDatas[index]
+                                                    ["item"]
+                                                .price!,
                                             style: const TextStyle(
                                               decoration:
                                                   TextDecoration.lineThrough,
@@ -265,8 +305,9 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                               fontSize: 13,
                                             )),
                                         TextSpan(
-                                            text: SpecialOfferItemDatas[index]
-                                                .afterDicount!, //"18584 EGP"
+                                            text: specialOfferItemDatas[index]
+                                                    ["item"]
+                                                .oldPrice!,
                                             style: const TextStyle(
                                                 color: Colors.blue,
                                                 fontSize: 13.5)),
@@ -275,9 +316,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: width! / 28,
-                          )
+                          SizedBox(width: width! / 28)
                         ],
                       ),
                     ))),
@@ -302,43 +341,12 @@ class SpecialOfferItemData {
       specialOfferTitle;
 }
 
-List<SpecialOfferItemData> SpecialOfferItemDatas = [
-  SpecialOfferItemData(
-    beforeDiscount: "20.200 ",
-    afterDicount: "18584 EGP",
-    discount: "15 ",
-    imageSize: "medium",
-    specialOfferImage: "assets/images/laptops/Dell Vostro.jpg",
-    specialOfferTitle: "DELL Vostro 3510 ...",
-  ),
-  SpecialOfferItemData(
-    beforeDiscount: "25.330 ",
-    afterDicount: "21.530 EGP",
-    discount: "15 ",
-    imageSize: "medium",
-    specialOfferImage: "assets/images/laptops/laptop-asus2.jpg",
-    specialOfferTitle: "Asus FX506HEB-B ...",
-  ),
-  SpecialOfferItemData(
-    beforeDiscount: "25.330 ",
-    afterDicount: "21.530 EGP",
-    discount: "15 ",
-    imageSize: "large",
-    specialOfferImage: "assets/images/tv/led-lg-1.jpg",
-    specialOfferTitle: "LG 32LM570BPUA ...",
-  ),
-  SpecialOfferItemData(
-    beforeDiscount: "25.330 ",
-    afterDicount: "21.530 EGP",
-    discount: "15 ",
-    specialOfferImage: "assets/images/cameras/nikon.jpg",
-    specialOfferTitle: "Sigma Alpha",
-  ),
-  SpecialOfferItemData(
-    beforeDiscount: "25.330 ",
-    afterDicount: "21.530 EGP",
-    discount: "15 ",
-    specialOfferImage: "assets/images/cameras/Sigma Alpha.jpg",
-    specialOfferTitle: "Sony Alpha 7 IV",
-  ),
-];
+List special = [];
+
+
+
+/*
+
+EdgeInsets.only(
+                      right: mainPadding, left: mainPadding, top: 115),
+*/

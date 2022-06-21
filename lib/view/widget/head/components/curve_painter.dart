@@ -29,3 +29,31 @@ class CurvePainter extends CustomPainter {
     return true;
   }
 }
+
+class CurvePainter2 extends CustomPainter {
+  CurvePainter2({this.color});
+  final Color? color;
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint();
+    paint.color = color!;
+    paint.style = PaintingStyle.fill;
+
+    var path = Path();
+
+    path.moveTo(0, 0);
+    path.lineTo(0, 0);
+    path.quadraticBezierTo(size.width * 0.20, 0, size.width / 2, size.height);
+
+    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 0);
+
+    path.lineTo(size.width, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
+  }
+}

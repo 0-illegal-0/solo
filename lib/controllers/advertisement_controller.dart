@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:solo/models/advertisement_models.dart';
 
 class Sliders extends GetxController {
-  static late PageController move = PageController();
+  static late PageController move;
   double offset;
   static String text = "Text";
   static double? moveTo;
@@ -25,6 +25,7 @@ class Sliders extends GetxController {
       required this.contentCount});
 
   onInit() {
+    move = PageController();
     execute();
   }
 
@@ -122,6 +123,7 @@ class Sliders extends GetxController {
       stages();
     });
     stageListen();
+
     update();
   }
 

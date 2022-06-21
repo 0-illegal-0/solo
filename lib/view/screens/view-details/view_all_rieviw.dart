@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solo/view/widget/view-details/cient_review.dart';
-import 'package:solo/view/widget/view-details/user_review.dart';
+import 'package:solo/view/screens/view-details/cient_review.dart';
+import 'package:solo/view/screens/view-details/user_review.dart';
 
 class ViewAllRieviw extends StatelessWidget {
   const ViewAllRieviw({Key? key, this.reviewsList}) : super(key: key);

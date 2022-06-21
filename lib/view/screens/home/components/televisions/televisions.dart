@@ -88,7 +88,9 @@ class TelevisionItems extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title!, style: Theme.of(context).textTheme.headline6),
+          child: Text(title!,
+              style:
+                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
         ),
         SizedBox(
           height: instanceSizes.stackHeight,

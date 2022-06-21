@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/latest_item_controller.dart';
+import 'package:solo/models/latest_item_models.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/view_item.dart';
 
 class LatestItems extends StatelessWidget {
@@ -11,7 +13,6 @@ class LatestItems extends StatelessWidget {
       this.mainPadding,
       this.space,
       this.title,
-      this.latestItems,
       this.aspectRatio,
       this.viewitemCount,
       this.height})
@@ -19,7 +20,6 @@ class LatestItems extends StatelessWidget {
   final double? width;
   final double? mainPadding, space, aspectRatio, height;
   final String? title;
-  final List? latestItems;
   int? itemIndex;
   final int? viewitemCount;
   @override
@@ -32,26 +32,36 @@ class LatestItems extends StatelessWidget {
   }
 
   int get wrapCount {
-    return (latestItems!.length / (viewitemCount!)).ceil();
+    return (latestItems.length / (viewitemCount!)).ceil();
   }
 
   int listIndex(int? index2) {
-    if (index2 == wrapCount - 1 && latestItems!.length > viewitemCount!) {
-      return latestItems!.length % viewitemCount!;
-    } else if (latestItems!.length < viewitemCount!) {
-      return latestItems!.length;
+    if (index2 == wrapCount - 1 && latestItems.length > viewitemCount!) {
+      return latestItems.length % viewitemCount!;
+    } else if (latestItems.length < viewitemCount!) {
+      return latestItems.length;
     } else {
       return viewitemCount!;
     }
   }
 
+  int get widthVal {
+    if (latestItems.length / 5 <= 1) {
+      return 1;
+    } else {
+      return (latestItems.length / 5).ceil();
+    }
+    ;
+  }
+
   Widget build(BuildContext context) {
     getDevice(width);
-    SizesData instanceSizes = SizesData(
+    getDataToLatestItems();
+    /* SizesData instanceSizes = SizesData(
         aspectRatio: aspectRatio!,
         itemList: latestItems,
         mainPadding: mainPadding,
-        width: width);
+        width: width);*/
     MoveSlider controller =
         Get.put(MoveSlider(itemsList: latestItems, width: width));
     return Column(
@@ -61,39 +71,57 @@ class LatestItems extends StatelessWidget {
           title!,
           style: device == DeviceType.Mobile
               ? Theme.of(context).textTheme.headline6
-              : const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              : const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         device == DeviceType.Mobile
             ? SizedBox(
                 height: 300,
                 width: double.infinity,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: SizedBox(
-                    width: width! * 3,
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: List.generate(
-                          wrapCount,
-                          (index1) =>
-                              GetBuilder<MoveSlider>(builder: (context) {
-                                return AnimatedPositioned(
-                                  duration: const Duration(milliseconds: 500),
-                                  left: width! * index1.toDouble() +
-                                      controller.moveUnit,
-                                  child: Container(
-                                      width: width! / 1.09,
-                                      alignment: Alignment.center,
-                                      child: Wrap(
-                                        spacing: space!,
-                                        runSpacing: space!,
-                                        children: List.generate(
-                                            listIndex(
-                                              index1,
-                                            ), (index) {
-                                          itemIndex =
-                                              index + index1 * viewitemCount!;
-                                          return Container(
+                child: SizedBox(
+                  width: width! * widthVal,
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: List.generate(
+                        wrapCount,
+                        (index1) => GetBuilder<MoveSlider>(builder: (context) {
+                              return AnimatedPositioned(
+                                duration: const Duration(milliseconds: 500),
+                                left: width! * index1.toDouble() +
+                                    controller.moveUnit,
+                                child: Container(
+                                    width: width! / 1.09,
+                                    alignment: Alignment.center,
+                                    child: Wrap(
+                                      spacing: space!,
+                                      runSpacing: space!,
+                                      children: List.generate(
+                                          listIndex(
+                                            index1,
+                                          ), (index) {
+                                        itemIndex =
+                                            index + index1 * viewitemCount!;
+                                        return InkWell(
+                                          onTap: () {
+                                            Get.to(
+                                                () => ViewDetails(
+                                                      width: width!,
+                                                      aspectRatio: latestItems[
+                                                              itemIndex!]
+                                                          ["aspectRatio"],
+                                                      height: latestItems[
+                                                          itemIndex!]["height"],
+                                                      itemList: latestItems[
+                                                              itemIndex!]
+                                                          ["item-list"],
+                                                      index: latestItems[
+                                                          itemIndex!]["index"],
+                                                      numberOfRows: 1,
+                                                      title: "Customer  Viewed",
+                                                    ),
+                                                preventDuplicates: false);
+                                            Get.deleteAll();
+                                          },
+                                          child: Container(
                                             width: brandGrid(index > 1 ? 3 : 2),
                                             height: 140,
                                             decoration: const BoxDecoration(
@@ -117,13 +145,14 @@ class LatestItems extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Expanded(
-                                                  child: Image.asset(
-                                                      latestItems![itemIndex!]
-                                                          .image!),
-                                                ),
+                                                    child: Image.asset(
+                                                        latestItems[itemIndex!]
+                                                                ["item"]
+                                                            .image!)),
                                                 Text(
-                                                  latestItems![itemIndex!]
-                                                      .desciption!,
+                                                  latestItems[itemIndex!]
+                                                          ["item"]
+                                                      .title!,
                                                   maxLines: 2,
                                                   textAlign: TextAlign.center,
                                                   style: const TextStyle(
@@ -135,19 +164,20 @@ class LatestItems extends StatelessWidget {
                                                       const EdgeInsets.only(
                                                           top: 15),
                                                   child: Text(
-                                                    latestItems![itemIndex!]
+                                                    latestItems[itemIndex!]
+                                                            ["item"]
                                                         .price!,
                                                     maxLines: 1,
                                                   ),
                                                 )
                                               ],
                                             ),
-                                          );
-                                        }),
-                                      )),
-                                );
-                              })),
-                    ),
+                                          ),
+                                        );
+                                      }),
+                                    )),
+                              );
+                            })),
                   ),
                 ),
               )
@@ -157,8 +187,7 @@ class LatestItems extends StatelessWidget {
                 mainPadding: mainPadding,
                 width: width,
                 height: height,
-                numberOfRows: 2,
-              ),
+                numberOfRows: 2),
         ArrowWidget(
           controller: controller,
           itemLength: latestItems,
@@ -169,7 +198,7 @@ class LatestItems extends StatelessWidget {
 }
 
 class LatestItemNoMobile extends StatelessWidget {
-  const LatestItemNoMobile(
+  LatestItemNoMobile(
       {Key? key,
       this.itemList,
       this.width,
@@ -180,16 +209,25 @@ class LatestItemNoMobile extends StatelessWidget {
       this.height})
       : super(key: key);
   final List? itemList;
+  List values = [];
   final double? width, mainPadding, aspectRatio, height;
   final String? title;
   final int? numberOfRows;
   @override
+  getListvalues() {
+    for (var item in itemList!) {
+      values.add(item["item"]);
+    }
+  }
+
   Widget build(BuildContext context) {
+    getListvalues();
     SizesData instanceSizes = SizesData(
         aspectRatio: aspectRatio!,
         itemList: itemList,
         mainPadding: mainPadding,
         width: width);
+
     MoveSlider controller =
         Get.put(MoveSlider(itemsList: itemList, width: width));
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -206,7 +244,7 @@ class LatestItemNoMobile extends StatelessWidget {
                   crossAxisCount: SizesData.crossAxisCount,
                   width: width,
                   numberOfRows: numberOfRows!,
-                  itemList: itemList,
+                  itemList: values,
                   mainPadding: mainPadding,
                   index2: index,
                   wrapCount: instanceSizes.wrapCount,
@@ -218,10 +256,6 @@ class LatestItemNoMobile extends StatelessWidget {
           }),
         )),
       ),
-      /*   ArrowWidget(
-        controller: controller,
-        itemLength: itemList,
-      )*/
     ]);
   }
 }

@@ -23,7 +23,7 @@ class Gift extends StatelessWidget {
             title!,
             style: device == DeviceType.Mobile
                 ? Theme.of(context).textTheme.headline6
-                : const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                : const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ),
         Container(

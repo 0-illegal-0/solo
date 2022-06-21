@@ -1,10 +1,30 @@
+import 'package:solo/models/categories_models.dart';
+
 class MostLikedItem {
   MostLikedItem({this.image, this.title, this.price});
   final String? image, title, price;
 }
 
-List<MostLikedItem> mostLikedItems = [
-  MostLikedItem(
+getDataToMostLikedItems() {
+  for (var item in topCategories) {
+    int index = 0;
+    for (var item2 in item.classModel!) {
+      if (item2.liked == true) {
+        mostLikedItems.add({
+          "item": item2,
+          "height": item.height,
+          "aspectRatio": item.aspectRatio,
+          "item-list": item.classModel,
+          "index": index
+        });
+      }
+      index = index + 1;
+    }
+  }
+}
+
+List mostLikedItems = [
+/*  MostLikedItem(
       image: "assets/images/cameras/sony-alpha-7-2.png",
       price: "17.33.00",
       title: "Sony-Alpha-7"),
@@ -31,5 +51,5 @@ List<MostLikedItem> mostLikedItems = [
   MostLikedItem(
       image: "assets/images/pc/dell-optiplex -3080 copy.png",
       price: "11.000.00",
-      title: "DELL OptiPlex 3080"),
+      title: "DELL OptiPlex 3080"),*/
 ];

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solo/view/responsive.dart';
-import 'package:solo/view/widget/view-details/bottom_sheet.dart';
-import 'package:solo/view/widget/view-details/information_design.dart';
+import 'package:solo/view/screens/view-details/bottom_sheet.dart';
+import 'package:solo/view/screens/view-details/information_design.dart';
 
 class Details extends StatelessWidget {
   const Details(
@@ -78,7 +78,7 @@ class Details extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         Text(
-                          "Samsung",
+                          product.productBrands,
                           textAlign: device == DeviceType.Desktop
                               ? TextAlign.left
                               : TextAlign.right,

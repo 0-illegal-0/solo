@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:solo/view/screens/view-details/view_details.dart';
 
 class SpecialOfferItem extends StatelessWidget {
   const SpecialOfferItem(
@@ -13,7 +15,11 @@ class SpecialOfferItem extends StatelessWidget {
       required this.widthValue,
       required this.heightValue,
       required this.gridCount,
-      this.imagePadding})
+      this.imagePadding,
+      this.aspectRatio,
+      this.height,
+      this.index,
+      this.itemList})
       : super(key: key);
   final double width;
   final double mainPadding;
@@ -22,9 +28,10 @@ class SpecialOfferItem extends StatelessWidget {
   final String? specialOfferTitle;
   final String? beforeDiscount;
   final String? afterDicount;
-  final double widthValue;
+  final double? widthValue, aspectRatio, height;
   final double heightValue;
-  final int gridCount;
+  final int? gridCount, index;
+  final List? itemList;
   final double? imagePadding;
 
   double get space {
@@ -47,64 +54,68 @@ class SpecialOfferItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: width * heightValue, // 0.40
-        width: brandGrid(gridCount, widthValue), // 0.5 , /2
-        decoration: specialOfferDecoration,
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                    maxHeight: 18, maxWidth: 40), //2.222222222222222
-                child: SizedBox(
-                  width: width / 9,
-                  height: width / 20,
-                  child: CustomPaint(
-                    painter: const DiscountChip(
-                        DiscountChipColor: Color.fromRGBO(222, 53, 59, 0.7)),
-                    child: Center(
-                      child: Text(
-                        discount!,
-                        style: const TextStyle(color: Color(0xFFffffff)),
+    return InkWell(
+      onTap: () {
+        Get.to(
+            () => ViewDetails(
+                  width: width,
+                  aspectRatio: aspectRatio,
+                  height: height,
+                  itemList: itemList,
+                  index: index,
+                  numberOfRows: 1,
+                  title: "Customer  Viewed",
+                ),
+            preventDuplicates: false);
+        Get.deleteAll();
+      },
+      child: Container(
+          height: width * heightValue,
+          width: brandGrid(gridCount, widthValue),
+          decoration: specialOfferDecoration,
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(maxHeight: 18, maxWidth: 40),
+                  child: SizedBox(
+                    width: width / 9,
+                    height: width / 20,
+                    child: CustomPaint(
+                      painter: const DiscountChip(
+                          DiscountChipColor: Color.fromRGBO(222, 53, 59, 0.7)),
+                      child: Center(
+                        child: Text(
+                          discount!,
+                          style: const TextStyle(color: Color(0xFFffffff)),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: EdgeInsets.all(imagePadding!),
-                    child: Image.asset(
-                      specialOfferImage!,
-                    ),
-                  )),
-            ),
-            Text(specialOfferTitle!, maxLines: 1), //"DELL Vostro 3510 ..."
-            Padding(
-              padding: EdgeInsets.all(width / 120),
-              child: RichText(
-                  maxLines: 1,
-                  text: TextSpan(children: [
-                    TextSpan(
-                        text: beforeDiscount, //"20.200 "
-                        style: const TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.grey,
-                          fontSize: 13,
-                        )),
-                    TextSpan(
-                        text: afterDicount, //"18584 EGP"
-                        style: const TextStyle(
-                            color: Colors.blue, fontSize: 13.5)),
-                  ])),
-            ),
-          ],
-        ));
+              Expanded(
+                child: Container(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.all(imagePadding!),
+                      child: Image.asset(
+                        specialOfferImage!,
+                      ),
+                    )),
+              ),
+              Text(specialOfferTitle!, maxLines: 1),
+              Padding(
+                  padding: EdgeInsets.all(width / 120),
+                  child: Text(afterDicount!,
+                      maxLines: 1,
+                      style:
+                          const TextStyle(color: Colors.blue, fontSize: 13.5))),
+            ],
+          )),
+    );
   }
 }
 
@@ -114,8 +125,8 @@ class DiscountChip extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
-    paint.color = DiscountChipColor; // 0xFF26a1d1   0xFFa88f32
-    paint.style = PaintingStyle.fill; // Change this to fill
+    paint.color = DiscountChipColor;
+    paint.style = PaintingStyle.fill;
 
     var path = Path();
     path.lineTo(size.width * 0.80, 0);

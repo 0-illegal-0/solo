@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:solo/models/cameras_models.dart';
+import 'package:solo/models/categories_models.dart';
+import 'package:solo/models/laptop_models.dart';
+import 'package:solo/models/mobiles_models.dart';
+import 'package:solo/models/television_models.dart';
 
 class HotDealsItemsModels {
   final title;
@@ -9,35 +14,36 @@ class HotDealsItemsModels {
   HotDealsItemsModels({this.image, this.title, this.price, this.color});
 }
 
-List<HotDealsItemsModels> hotDealsItemsList = [
-  HotDealsItemsModels(
-      color: Colors.green,
-      price: "50",
-      title: "Lenovo-v15",
-      image: "assets/images/laptops/lenovo-v15.png"),
-  HotDealsItemsModels(
-      color: Colors.blue,
-      price: "50",
-      title: "reno 6",
-      image: "assets/images/mobiles/reno-6-black.png"),
-  HotDealsItemsModels(
-      color: const Color(0xFFe3be19),
-      price: "50",
-      title: "Sharp-55-inch-4K",
-      image: "assets/images/tv/Sharp-55-inch-4K.png"),
-  HotDealsItemsModels(
-      color: const Color(0xFF4d248f),
-      price: "50",
-      title: "Watch",
-      image: "assets/images/cameras/nikon-p950y.png"),
-  HotDealsItemsModels(
-      color: const Color(0xFF11bed1),
-      price: "50",
-      title: "Watch",
-      image: "assets/images/laptops/hp-255-g8.png"),
-  HotDealsItemsModels(
-      color: const Color(0xFF11bed1),
-      price: "50",
-      title: "redmi-note-11",
-      image: "assets/images/mobiles/xiaomi-redmi-note-11.png"),
+List listhotDealsItemsList = [
+  {
+    "item": laptops[0],
+    "height": 0.55,
+    "aspectRatio": 0.9,
+    "item-list": laptops
+  },
+  {
+    "item": mobiles[1],
+    "height": 0.60,
+    "aspectRatio": 0.8,
+    "item-list": mobiles
+  },
+  {
+    "item": televisions[1],
+    "height": 0.50,
+    "aspectRatio": 1.2,
+    "item-list": televisions
+  },
+  {
+    "item": cameras[2],
+    "height": 0.50,
+    "aspectRatio": 1.1,
+    "item-list": cameras
+  },
+  {
+    "item": laptops[1],
+    "height": 0.55,
+    "aspectRatio": 0.9,
+    "item-list": laptops
+  },
+  {"item": mobiles[0], "height": 0.60, "aspectRatio": 0.8, "item-list": mobiles}
 ];
