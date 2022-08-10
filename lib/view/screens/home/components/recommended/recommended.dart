@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/models/categories_models.dart';
-import 'package:solo/models/recommended_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 
+import '../../../../style.dart';
+
 class Recommended extends StatelessWidget {
-  const Recommended({Key? key, this.width, this.title}) : super(key: key);
+  const Recommended({Key? key, this.width, this.title, this.recomendedList})
+      : super(key: key);
   final double? width;
   final String? title;
+  final List? recomendedList;
   double get itemWidth {
     if (width! < 500) {
       return width!;
@@ -19,10 +21,9 @@ class Recommended extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getDataToRecomendedList();
     if (device == DeviceType.Desktop) {
       return RecommendedDesktopDesign(
-        recomendedList: recomendedList,
+        recomendedList: recomendedList!,
         width: width,
         title: title!,
         showCountInRow: 3,
@@ -35,7 +36,7 @@ class Recommended extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
             child: Text(
               title!,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: titleStyle,
             ),
           ),
           Container(
@@ -52,7 +53,7 @@ class Recommended extends StatelessWidget {
             height: itemWidth / 2.76,
             child: ListView.builder(
               itemExtent: itemWidth / 1.24,
-              itemCount: recomendedList.length,
+              itemCount: recomendedList!.length,
               cacheExtent: itemWidth / 36,
               itemBuilder: (context, index) {
                 return Container(
@@ -74,11 +75,11 @@ class Recommended extends StatelessWidget {
                       Get.to(
                           () => ViewDetails(
                                 width: width!,
-                                aspectRatio: recomendedList[index]
+                                aspectRatio: recomendedList![index]
                                     ["aspectRatio"],
-                                height: recomendedList[index]["height"],
-                                itemList: recomendedList[index]["item-list"],
-                                index: recomendedList[index]["index"],
+                                height: recomendedList![index]["height"],
+                                itemList: recomendedList![index]["item-list"],
+                                index: recomendedList![index]["index"],
                                 numberOfRows: 1,
                                 title: "Customer  Viewed",
                               ),
@@ -97,7 +98,7 @@ class Recommended extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
-                                    recomendedList[index]["item"].image!,
+                                    recomendedList![index]["item"].image!,
                                     width: 90,
                                   ),
                                 ),
@@ -105,7 +106,7 @@ class Recommended extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(0.0),
                                 child: Text(
-                                  recomendedList[index]["item"].title!,
+                                  recomendedList![index]["item"].title!,
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
                                   style: Theme.of(context).textTheme.subtitle2,
@@ -121,7 +122,7 @@ class Recommended extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                recomendedList[index]["item"].description!,
+                                recomendedList![index]["item"].description!,
                                 style: Theme.of(context).textTheme.bodyText2,
                                 maxLines: 4,
                               ),
@@ -136,7 +137,7 @@ class Recommended extends StatelessWidget {
                                               : Colors.cyan))),
                               const Spacer(),
                               Text(
-                                recomendedList[index]["item"].price!,
+                                recomendedList![index]["item"].price!,
                                 maxLines: 1,
                                 style:
                                     const TextStyle(color: Color(0xFF26bd08)),

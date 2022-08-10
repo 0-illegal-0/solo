@@ -68,7 +68,7 @@ class CategoriesDropDown extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
           isExpanded: true,
-          items: ["white", "blue", "red", "yellow"]
+          items: ["Laptops", "Mobiles", "Teblets", "Television", "Cameras"]
               .map(
                 (v) => DropdownMenuItem(
                   child: Text(v),
@@ -76,7 +76,7 @@ class CategoriesDropDown extends StatelessWidget {
                 ),
               )
               .toList(),
-          hint: Text("defult"),
+          hint: const Text("Category"),
           onChanged: (val) {},
           dropdownColor: Colors.white,
           iconDisabledColor: Colors.white,

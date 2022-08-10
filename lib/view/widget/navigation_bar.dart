@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/navigation-state.dart';
@@ -5,6 +7,8 @@ import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/cart/cart.dart';
 import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/login_register/login.dart';
+import 'package:solo/view/screens/privacy/privacy_policy.dart';
+import 'package:solo/view/widget/important.dart';
 import 'package:solo/view/widget/note.dart';
 
 class NavigationBar extends StatelessWidget {
@@ -122,15 +126,13 @@ List<Map<String, dynamic>> bottomNavDetails = [
     "page": const HomePage()
   },
   {
-    "title": "Categories",
-    "icon": const Icon(Icons.category_outlined),
+    "title": "Important",
+    "icon": const ImportantButton(),
     "page": const HomePage()
   },
   {
     "title": "Cart",
-    "icon": const Icon(
-      Icons.shopping_cart_outlined,
-    ),
+    "icon": const Icon(Icons.shopping_cart_outlined),
     "page": const Cart()
   },
   {
@@ -143,7 +145,7 @@ List<Map<String, dynamic>> bottomNavDetails = [
       {"title": "Help", "page": const Progress()},
       {"title": "Contact Us", "page": const Progress()},
       {"title": "About Us", "page": const Progress()},
-      {"title": "Privacy Policy", "page": const Progress()}
+      {"title": "Privacy Policy", "page": const PrivacyPolicy()}
     ]
   },
 ];
@@ -159,6 +161,64 @@ class Progress extends StatelessWidget {
           "In Progress",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ));
+  }
+}
+
+class ImportantButton extends StatelessWidget {
+  const ImportantButton({Key? key, this.width}) : super(key: key);
+  final double? width;
+  importantNote(context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) => Ink(
+              padding: const EdgeInsets.all(8),
+              height: 150,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text("Fornt-End : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                                color: Color(0xFFc20e32))),
+                        Text("99% completed", style: TextStyle(fontSize: 22))
+                      ]),
+                  const SizedBox(height: 20),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text("Back-End : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                                color: Color(0xFFc20e32))),
+                        Text("In Progress", style: TextStyle(fontSize: 22))
+                      ]),
+                ],
+              ),
+            ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ChangeColor controller = Get.put(ChangeColor());
+
+    return InkWell(onTap: () {
+      importantNote(context);
+    }, child: GetBuilder<ChangeColor>(builder: (context) {
+      return AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          color: controller.styleColor,
+          width: 100,
+          height: 40,
+          child: const Center(
+              child: Text("Important",
+                  style: TextStyle(fontWeight: FontWeight.bold))));
+    }));
   }
 }
 
@@ -187,7 +247,12 @@ class BottomRow extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               bottomNavDetails[index]["icon"],
-                              Text(bottomNavDetails[index]["title"])
+                              bottomNavDetails[index]["title"] == "Important"
+                                  ? const SizedBox()
+                                  : Text(bottomNavDetails[index]["title"],
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold))
                             ],
                           ),
                           onTap: () {

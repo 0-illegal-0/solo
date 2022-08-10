@@ -10,9 +10,8 @@ class RotateHeadController extends GetxController {
       required this.targetTimeDayes,
       required this.targetTimeHours,
       required this.targetTimeMonth});
-  //  final targetTimeYear, targetTimeDayes, targetTimeMinutes,targetTimeSeconds;
 
-  Color backgroundColor = Colors.grey;
+  Color backgroundColor = const Color(0xFFf5c842);
 
   rotateBox() {
     val = pi;
@@ -25,7 +24,7 @@ class RotateHeadController extends GetxController {
   }
 
   Future call() async {
-    await Future.delayed(const Duration(seconds: 2), () async {
+    await Future.delayed(const Duration(milliseconds: 500), () async {
       if (val == 0) {
         rotateBox();
       } else {
@@ -41,10 +40,10 @@ class RotateHeadController extends GetxController {
   changeColor() async {
     await Future.delayed(const Duration(seconds: 1), () async {
       if (x == 0) {
-        backgroundColor = Colors.blue;
+        backgroundColor = const Color(0xFFf5c842);
         x = 1;
       } else {
-        backgroundColor = Colors.grey;
+        backgroundColor = const Color(0xFF9c172d);
         x = 0;
       }
     });

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FilterProperty extends StatelessWidget {
-  const FilterProperty({
+  FilterProperty({
     Key? key,
     this.itemProperty,
     this.controller,
@@ -14,6 +14,14 @@ class FilterProperty extends StatelessWidget {
   final dynamic controller;
   final int? id;
   final width;
+  int bar = 5;
+  static const List itemsColor = [
+    {"color-name": "Black", "color": Colors.black},
+    {"color-name": "White", "color": Colors.white},
+    {"color-name": "Red", "color": Colors.red},
+    {"color-name": "Blue", "color": Colors.blue}
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,6 +32,7 @@ class FilterProperty extends StatelessWidget {
         Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(itemProperty!.length, (index) {
+              title == "Rating" ? bar = bar - 1 : bar = 0;
               return Row(
                 children: [
                   SizedBox(
@@ -35,6 +44,10 @@ class FilterProperty extends StatelessWidget {
                             index2: index,
                             listItems: controller.values,
                             id: id);
+                        controller.filterResult(
+                            filterTitle: title,
+                            filterValue: itemProperty![index]["value"],
+                            checkVal: val);
                       },
                     ),
                   ),
@@ -47,11 +60,49 @@ class FilterProperty extends StatelessWidget {
                                 index2: index,
                                 listItems: controller.values,
                                 id: id);
+                            controller.filterResult(
+                                filterTitle: title,
+                                filterValue: itemProperty![index]["value"],
+                                checkVal: controller.values![index + id!]);
                           },
-                          child: Text(
-                            itemProperty![index],
-                            style: const TextStyle(color: Colors.black),
-                          ))),
+                          child: title == "Rating"
+                              ? Row(
+                                  children: List.generate(5, (index) {
+                                  return Icon(Icons.star_rate,
+                                      size: 20.0,
+                                      color: index > bar
+                                          ? Colors.grey
+                                          : const Color(0xFFfc8c03));
+                                }))
+                              : Text(
+                                  itemProperty![index]['text'],
+                                  style: const TextStyle(color: Colors.black),
+                                ))),
+                  title == "Color"
+                      ? Container(
+                          width: 15,
+                          height: 15,
+                          decoration: BoxDecoration(
+                              color: itemsColor[index]["color"],
+                              border: Border.all(
+                                  color: index == 1
+                                      ? Colors.grey
+                                      : itemsColor[index]["color"],
+                                  width: 0.5)),
+                          child: TextButton(
+                            child: const SizedBox(),
+                            onPressed: () {
+                              controller.checkStateChange(
+                                  index2: index,
+                                  listItems: controller.values,
+                                  id: id);
+                              controller.filterResult(
+                                  filterTitle: title,
+                                  filterValue: itemProperty![index]["value"],
+                                  checkVal: controller.values![index + id!]);
+                            },
+                          ))
+                      : const SizedBox()
                 ],
               );
             })),

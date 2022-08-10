@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solo/view/screens/fotter/fotter.dart';
+import 'package:solo/view/widget/fotter/fotter.dart';
 import 'package:solo/view/widget/head/head.dart';
 
 class Login extends StatelessWidget {
@@ -16,7 +16,7 @@ class Login extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            Head(width: width),
+            //  Head(width: width),
             Container(
               decoration:
                   const BoxDecoration(color: Color(0xFFffffff), boxShadow: [

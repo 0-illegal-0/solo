@@ -2,27 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/filter_controller.dart';
 import 'package:solo/models/categories_models.dart';
-import 'package:solo/view/screens/fotter/fotter.dart';
 import 'package:solo/view/screens/product-page/components/filter_property.dart';
 import 'package:solo/view/screens/product-page/components/item_color.dart';
 import 'package:solo/view/screens/product-page/components/price_range.dart';
 import 'package:solo/view/screens/product-page/components/rating.dart';
+import 'package:solo/view/widget/fotter/fotter.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
-import '../../responsive.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage(
-      {Key? key,
-      this.category,
-      this.width,
-      this.itemList,
-      this.aspectRatio,
-      this.height})
+      {Key? key, this.category, this.width, this.aspectRatio, this.height})
       : super(key: key);
   final Product? category;
-  final List? itemList;
   final double? width, aspectRatio, height;
   double? filterWidth, itemCount, rowSpace;
   double get mainPadding {
@@ -62,10 +55,9 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     responsiveSizes();
-    FilterController controller = Get.put(FilterController(width: width));
+    FilterController controller =
+        Get.put(FilterController(width: width, mainItem: category!.products));
     return Scaffold(
-      bottomNavigationBar:
-          device == DeviceType.Desktop ? const SizedBox() : NavigationBar(),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -104,49 +96,76 @@ class ProductPage extends StatelessWidget {
                                     width: width! < 901 ? 0 : rowSpace,
                                     height: controller.sizedBoxFilter,
                                   ),
-                                  Expanded(
-                                    child: Wrap(
-                                        runSpacing: mainPadding,
-                                        spacing: mainPadding,
-                                        children: List.generate(
-                                            category!.classModel!.length,
-                                            (index) => Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          boxShadow: [
-                                                        BoxShadow(
-                                                            color: Color(
-                                                                0xFFb1b3b5),
-                                                            blurRadius: 5,
-                                                            spreadRadius: 0.1,
-                                                            offset:
-                                                                Offset(0, 0))
-                                                      ],
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          5))),
-                                                  constraints: BoxConstraints(
-                                                      maxHeight:
-                                                          SizesData.maxHeight,
-                                                      minHeight:
-                                                          SizesData.minHeight),
-                                                  width: gridWidth!,
-                                                  child: AspectRatio(
-                                                    aspectRatio: aspectRatio!,
-                                                    child: ViewItemContent(
-                                                      index: index,
-                                                      width: width,
-                                                      aspectRatio: aspectRatio,
-                                                      height: height,
-                                                      itemList:
-                                                          category!.classModel,
-                                                    ),
-                                                  ),
-                                                ))),
-                                  ),
+                                  controller.afterfilter.isEmpty &&
+                                          controller.mainItem!.isEmpty
+                                      ? const Text("There is No Item")
+                                      : controller.afterfilter.isEmpty &&
+                                              controller.click != 0
+                                          ? const Text("There is no items")
+                                          : Expanded(
+                                              child: Wrap(
+                                                  runSpacing: mainPadding,
+                                                  spacing: mainPadding,
+                                                  children: List.generate(
+                                                      controller.afterfilter.isEmpty &&
+                                                              controller
+                                                                      .click ==
+                                                                  0
+                                                          ? controller
+                                                              .mainItem!.length
+                                                          : controller
+                                                              .afterfilter
+                                                              .length,
+                                                      (index) => Container(
+                                                            decoration: const BoxDecoration(
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                      color: Color(
+                                                                          0xFFb1b3b5),
+                                                                      blurRadius:
+                                                                          5,
+                                                                      spreadRadius:
+                                                                          0.1,
+                                                                      offset:
+                                                                          Offset(
+                                                                              0,
+                                                                              0))
+                                                                ],
+                                                                color: Colors
+                                                                    .white,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5))),
+                                                            constraints: BoxConstraints(
+                                                                maxHeight:
+                                                                    SizesData
+                                                                        .maxHeight,
+                                                                minHeight: SizesData
+                                                                    .minHeight),
+                                                            width: gridWidth!,
+                                                            child: AspectRatio(
+                                                              aspectRatio:
+                                                                  aspectRatio!,
+                                                              child:
+                                                                  ViewItemContent(
+                                                                index: index,
+                                                                width: width,
+                                                                aspectRatio:
+                                                                    aspectRatio,
+                                                                height: height,
+                                                                itemList: controller
+                                                                            .afterfilter.isEmpty &&
+                                                                        controller.click ==
+                                                                            0
+                                                                    ? controller
+                                                                        .mainItem
+                                                                    : controller
+                                                                        .afterfilter,
+                                                              ),
+                                                            ),
+                                                          ))),
+                                            ),
                                 ],
                               ),
                               const SizedBox(height: 20)
@@ -159,7 +178,7 @@ class ProductPage extends StatelessWidget {
                                 controller.intialValHiddenButton,
                             child: InkWell(onTap: () {
                               controller.displayFilter(
-                                  categoryName: category!.name);
+                                  categoryName: category!.productName);
                             })),
                         Positioned(
                             left: controller.hiddenFilterWidth,
@@ -213,6 +232,7 @@ class ProductPage extends StatelessWidget {
               }),
             ),
             Head(width: width),
+            const BottomRow()
           ],
         ),
       ),
@@ -242,9 +262,9 @@ class Filter extends StatelessWidget {
         decoration: const BoxDecoration(
             boxShadow: [
               BoxShadow(
-                  color: Color(0xFFb1b3b5),
+                  color: Color(0xFF787575),
                   blurRadius: 5,
-                  spreadRadius: 0.1,
+                  spreadRadius: 1,
                   offset: Offset(0, 0))
             ],
             color: Colors.white,
@@ -252,10 +272,6 @@ class Filter extends StatelessWidget {
         width: filterWidth,
         child: Column(
           children: [
-            Rating(
-              controller: controller,
-              width: width,
-            ),
             PriceRange(
               controller: controller,
               width: width,
@@ -266,7 +282,6 @@ class Filter extends StatelessWidget {
               (index) {
                 controller.checkboxValues(
                     itemProperty: productPageFilterItems![index]["items"]);
-
                 id = index == 0
                     ? 0
                     : productPageFilterItems![index - 1]["items"].length + id;
@@ -280,14 +295,6 @@ class Filter extends StatelessWidget {
                         title: productPageFilterItems![index]["title"]);
               },
             )),
-            category!.name == "Mobiles" ||
-                    category!.name == "Tablet" ||
-                    category!.name == "Laptops"
-                ? ItemColor(
-                    controller: controller,
-                    width: width,
-                  )
-                : const SizedBox(),
             Align(
               alignment: Alignment.topLeft,
               child: Column(
@@ -299,6 +306,8 @@ class Filter extends StatelessWidget {
                     value: controller.discount,
                     onChanged: (val) {
                       controller.discountValue();
+                      controller.filterResult(
+                          items: [], filterTitle: "Discount", checkVal: val);
                     },
                   ),
                 ],
@@ -348,7 +357,7 @@ class FilterIcon extends StatelessWidget {
           ],
         ),
         onPressed: () {
-          controller.displayFilter(categoryName: category!.name);
+          controller.displayFilter(categoryName: category!.productName);
         },
       ),
     );

@@ -18,8 +18,7 @@ List<Brand> topBrands = [
       name: "Name",
       description:
           '3Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
-      image:
-          'assets/images/brands/huawei.png'), //assets/images/brands/huawei.png
+      image: 'assets/images/brands/huawei.png'),
   const Brand(
       name: "Name",
       description:

@@ -1,18 +1,19 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:solo/controllers/add_data.dart';
+import 'package:solo/models/add_main_data.dart';
 import 'package:solo/models/cameras_models.dart';
+import 'package:solo/models/categories_models.dart';
+import 'package:solo/models/hot_deals_models.dart';
 import 'package:solo/models/laptop_models.dart';
-import 'package:solo/models/latest_item_models.dart';
 import 'package:solo/models/mobiles_models.dart';
+import 'package:solo/models/most_liked_items_models.dart';
 import 'package:solo/models/recommended_models.dart';
+import 'package:solo/models/speacial_offer.dart';
 import 'package:solo/models/tablet_models.dart';
 import 'package:solo/models/television_models.dart';
+import 'package:solo/models/top_sale.dart';
 import 'package:solo/view/responsive.dart';
-import 'package:solo/view/screens/cart/cart.dart';
-import 'package:solo/view/screens/fotter/fotter.dart';
 import 'package:solo/view/screens/home/components/gift/gift.dart';
 import 'package:solo/view/screens/home/components/laptops.dart/laptop.dart';
 import 'package:solo/view/screens/home/components/latest_item/latest_items.dart';
@@ -23,26 +24,26 @@ import 'package:solo/view/screens/home/components/tablet/tablet.dart';
 import 'package:solo/view/screens/home/components/televisions/televisions.dart';
 import 'package:solo/view/screens/home/components/top-sale/top_sale.dart';
 import 'package:solo/view/screens/home/components/weeklyGift/weekly_gift.dart';
+import 'package:solo/view/widget/fotter/fotter.dart';
 import 'package:solo/view/widget/head/head.dart';
+import 'package:solo/view/widget/important.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/start_page.dart';
+import 'package:solo/view/widget/view_item.dart';
 import 'components/advertisement/advertisement.dart';
 import 'components/camera/camera.dart';
 import 'components/hot_deals/hot_deals.dart';
 import 'components/most liked items/most_liked_items.dart';
 import 'components/top-brands/top_brands.dart';
-import 'components/top_categories/top_categories.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, this.title}) : super(key: key);
   final String? title;
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    double mainPadding = width / 24;
-    getDevice(width);
-
+    AllData inst = AllData(context: context);
+    print(inst.width);
+    print("${solo.product[1].brands[0]["hello"]}-+++++++");
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -52,8 +53,8 @@ class HomePage extends StatelessWidget {
                 SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.only(
-                        right: mainPadding,
-                        left: mainPadding,
+                        right: inst.mainPadding!,
+                        left: inst.mainPadding!,
                         top: device == DeviceType.Mobile
                             ? 115
                             : device == DeviceType.Tablet
@@ -62,137 +63,142 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Advertisement(
-                          width: width,
+                          width: inst.width,
                           title: "",
-                          mainPadding: mainPadding,
+                          mainPadding: inst.mainPadding!,
                         ),
-                        SizedBox(height: width / 15),
+                        SizedBox(height: inst.verticalSpace),
                         HotDeals(
-                          mainPadding: mainPadding,
-                          width: width,
-                          maxItemCount: 20,
+                          mainPadding: inst.mainPadding!,
+                          width: inst.width,
                           title: "Hot Deals",
-                          crossAxisCount: 5,
+                          listhotDealsItemsList: listhotDealsItemsList,
                         ),
-                        SizedBox(height: width / 15),
-                        MobileView(
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 0.9,
-                          height: width * 0.60,
-                          itemCount: mobiles.length,
-                          itemList: mobiles,
-                          mainPadding: mainPadding,
+                          height: inst.width! * 0.60,
+                          itemList: solo.product[1].products,
+                          mainPadding: inst.mainPadding!,
                           title: "Mobiles",
                           numberOfRows: 2,
                           aspectRatioNoMobile: 0.8,
-                          width: width,
+                          width: inst.width!,
+                          i: 0,
                         ),
-                        SizedBox(height: width / 15),
-                        const SizedBox(height: 30),
+                        SizedBox(height: inst.verticalSpace),
                         SpecialOffer(
-                          width: width,
-                          mainPadding: mainPadding,
-                        ),
-                        SizedBox(height: width / 15),
-                        WeeklyGift(title: "Weekly Gift", width: width),
-                        SizedBox(height: width / 15),
-                        LaptopeView(
+                            width: inst.width!,
+                            mainPadding: inst.mainPadding!,
+                            specialOfferItemDatas: specialOfferItemDatas),
+                        SizedBox(height: inst.verticalSpace),
+                        WeeklyGift(title: "Weekly Gift", width: inst.width!),
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 0.9,
                           aspectRatioNoMobile: 0.7,
-                          height: width * 0.55,
-                          itemCount: laptops.length,
-                          itemList: laptops,
-                          mainPadding: mainPadding,
+                          height: inst.width! * 0.55,
+                          itemList: solo.product[0].products,
+                          mainPadding: inst.mainPadding!,
                           title: "Laptops",
-                          width: width,
+                          width: inst.width!,
                           numberOfRows: 2,
+                          i: 1,
                         ),
-                        SizedBox(height: width / 15),
-                        Recommended(width: width, title: "Recommended"),
-                        SizedBox(height: width / 15),
+                        SizedBox(height: inst.verticalSpace),
+                        Recommended(
+                            width: inst.width!,
+                            title: "Recommended",
+                            recomendedList: recomendedList),
+                        SizedBox(height: inst.verticalSpace),
                         MostLiked(
-                          width: width,
-                          mainPadding: mainPadding,
-                          space: width / 51.4,
+                          width: inst.width!,
+                          mainPadding: inst.mainPadding!,
+                          space: inst.width! / 51.4,
                           title: "Most Liked Items",
+                          mostLikedItems: mostLikedItems,
                         ),
-                        SizedBox(height: width / 15),
-                        TelevisionsView(
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 1.2,
                           aspectRatioNoMobile: 0.7,
-                          height: width * 0.50,
-                          itemCount: televisions.length,
-                          itemList: televisions,
-                          mainPadding: mainPadding,
+                          height: inst.width! * 0.50,
+                          itemList: solo.product[3].products,
+                          mainPadding: inst.mainPadding!,
                           title: "Televisions",
-                          width: width,
+                          width: inst.width!,
+                          i: 2,
                           numberOfRows: 2,
                         ),
-                        SizedBox(height: width / 15),
+                        SizedBox(height: inst.verticalSpace),
                         LatestItems(
-                          width: width,
+                          width: inst.width!,
                           space: 5,
-                          mainPadding: mainPadding,
+                          mainPadding: inst.mainPadding!,
                           title: "Latest Item",
                           aspectRatio: 1.1,
                           viewitemCount: 5,
-                          height: width * 0.50,
+                          height: inst.width! * 0.50,
                         ),
-                        SizedBox(height: width / 15),
+                        SizedBox(height: inst.verticalSpace),
                         TopBrand(
-                            mainPadding: mainPadding,
-                            spacing: width / 18,
-                            runSpacing: width / 18,
-                            width: width,
+                            mainPadding: inst.mainPadding!,
+                            spacing: inst.width! / 18,
+                            runSpacing: inst.width! / 18,
+                            width: inst.width!,
                             title: "Top Brands"),
-                        SizedBox(height: width / 15),
-                        TableteView(
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 1.1,
                           aspectRatioNoMobile: 0.7,
-                          height: width * 0.50,
-                          itemCount: tablets.length,
-                          itemList: tablets,
-                          mainPadding: mainPadding,
+                          height: inst.width! * 0.50,
+                          itemList: solo.product[2].products,
+                          mainPadding: inst.mainPadding!,
                           title: "Tablets",
-                          width: width,
-                          numberOfRows: 2,
+                          width: inst.width!,
+                          numberOfRows: 1,
+                          i: 3,
                         ),
-                        SizedBox(height: width / 15),
+                        SizedBox(height: inst.verticalSpace),
                         Gift(
                           title: "Get a Gift",
-                          width: width,
+                          width: inst.width!,
                         ),
-                        SizedBox(height: width / 15),
-                        CameraeView(
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 1.1,
                           aspectRatioNoMobile: 0.8,
-                          height: width * 0.50,
-                          itemCount: cameras.length,
-                          itemList: cameras,
-                          mainPadding: mainPadding,
+                          height: inst.width! * 0.50,
+                          itemList: solo.product[4].products,
+                          mainPadding: inst.mainPadding!,
                           title: "Cameras",
-                          width: width,
+                          width: inst.width!,
+                          i: 4,
                           numberOfRows: 2,
                         ),
-                        SizedBox(height: width / 15),
+                        SizedBox(height: inst.verticalSpace),
                         TopSale(
                           title: "Top Sale",
-                          width: width,
+                          width: inst.width!,
                           itemCountForTablet: 2,
-                          mainPadding: mainPadding,
+                          mainPadding: inst.mainPadding!,
                           itemCountForDesktop: 3,
                           space: 10,
+                          topSale: topSale,
                         ),
-                        SizedBox(height: width / 15),
-                        Fotter(width: width)
+                        SizedBox(height: inst.verticalSpace),
+                        Fotter(width: inst.width!),
+                        device == DeviceType.Tablet
+                            ? const SizedBox(height: 120)
+                            : const SizedBox()
                       ],
                     ),
                   ),
                 ),
-                Head(width: width),
+                Head(width: inst.width),
                 const BottomRow(),
-                /*    device == DeviceType.Desktop
-                    ? const SizedBox()
-                    : StartPages(height: height, width: width)*/
+                const Important()
+                // StartPages(height: inst.height!, width: inst.width)
               ],
             )));
   }

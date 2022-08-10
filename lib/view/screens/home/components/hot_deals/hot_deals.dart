@@ -4,20 +4,50 @@ import 'package:solo/view/screens/home/components/hot_deals/hot_deal_wrap.dart';
 import 'package:solo/view/screens/home/components/hot_deals/rotate_head.dart';
 import 'package:solo/controllers/rotate_head_controller.dart';
 
+import '../../../../responsive.dart';
+
 class HotDeals extends StatelessWidget {
-  const HotDeals(
-      {Key? key,
-      this.width,
-      this.mainPadding,
-      this.maxItemCount,
-      this.title,
-      this.crossAxisCount})
-      : super(key: key);
+  HotDeals({
+    Key? key,
+    this.width,
+    this.mainPadding,
+    this.title,
+    this.listhotDealsItemsList,
+  }) : super(key: key);
   final double? width;
   final double? mainPadding;
-  final int? maxItemCount, crossAxisCount;
   final String? title;
+  final List? listhotDealsItemsList;
+  double? widthValue = 0.0;
+
   @override
+  int get maxItemCount {
+    return crossAxisCount * 2;
+  }
+
+  int get crossAxisCount {
+    if (device == DeviceType.Mobile) {
+      widthValue = 3.44;
+      return 3;
+    } else if (device == DeviceType.Tablet) {
+      if (width! < 901) {
+        widthValue = 4.67;
+        return 4;
+      } else {
+        widthValue = 6;
+        return 5;
+      }
+    } else {
+      if (width! > 1200) {
+        widthValue = 8.8;
+        return 7;
+      } else {
+        widthValue = 7.4;
+        return 6;
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
     RotateHeadController controller = Get.put(RotateHeadController(
         targetTimeDayes: 17,
@@ -26,21 +56,32 @@ class HotDeals extends StatelessWidget {
         targetTimeYear: 2022));
     return Column(
       children: [
-        RotateHead(title: title!),
-        GetBuilder<RotateHeadController>(builder: (context) {
-          return AnimatedDefaultTextStyle(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(controller.stopWatch),
-              ),
-              style: const TextStyle(
-                  color: Colors.red, fontWeight: FontWeight.bold),
-              duration: const Duration(milliseconds: 500));
-        }),
-        HotDealWrap(
+        RotateHead(
+          title: title!,
           width: width,
-          mainPadding: mainPadding,
         ),
+        SizedBox(
+            height: sizesResponsive(
+                device: device, desktop: 20, teblet: 15, mobile: 10)),
+        HotDealWrap(
+            width: width,
+            mainPadding: width! / 50,
+            maxItemCount: maxItemCount,
+            widthValue: widthValue),
+        const SizedBox(height: 15),
+        listhotDealsItemsList!.length < maxItemCount
+            ? TextButton(
+                onPressed: (null),
+                child: Text("See All",
+                    style: TextStyle(
+                        color: Colors.white, fontSize: width! > 900 ? 20 : 17)),
+                style: ButtonStyle(
+                    fixedSize: MaterialStateProperty.all(
+                        Size(width! * 0.20 > 150 ? 150 : width! * 0.20, 25)),
+                    backgroundColor:
+                        MaterialStateProperty.all(const Color(0xFF2089a1))),
+              )
+            : const SizedBox()
       ],
     );
   }

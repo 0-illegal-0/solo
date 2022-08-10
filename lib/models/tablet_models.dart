@@ -14,6 +14,7 @@ class Tablet {
       this.recomended,
       this.specialOffer,
       this.liked,
+      this.hotDeal,
       this.topSale,
       this.oldPrice});
   final String? image,
@@ -26,7 +27,7 @@ class Tablet {
       productBrands;
   final List? images, reviews;
   final Map? informations;
-  final bool? specialOffer, recomended, latestItem, liked, topSale;
+  final bool? specialOffer, recomended, latestItem, liked, topSale, hotDeal;
 }
 
 List<Tablet> tablets = [
@@ -192,7 +193,8 @@ List<Tablet> tablets = [
       reviews: [],
       recomended: false,
       latestItem: true,
-      liked: true),
+      liked: true,
+      hotDeal: true),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -216,7 +218,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -240,7 +243,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -264,7 +268,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: true,
-      topSale: true),
+      topSale: true,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -288,7 +293,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -312,7 +318,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: true),
+      topSale: true,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -336,7 +343,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: true),
+      topSale: true,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -360,7 +368,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -384,7 +393,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -408,7 +418,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -432,7 +443,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/lenovo-tab-m7.png",
@@ -456,7 +468,8 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/Lenovo-M10-TB-X505X.png",
@@ -480,7 +493,8 @@ List<Tablet> tablets = [
       recomended: true,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Tablet(
       description: "Lenovo Tab M7 Tablet",
       image: "assets/images/tablet/Lenovo-M10-TB-X505X.png",
@@ -504,5 +518,6 @@ List<Tablet> tablets = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
 ];

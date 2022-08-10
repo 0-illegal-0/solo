@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/models/categories_models.dart';
+import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
 
 class CategoriesHeader extends StatelessWidget {
@@ -17,7 +17,7 @@ class CategoriesHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: List.generate(
-          topCategories.length,
+          solo.product.length,
           (index) => Row(
                 children: [
                   TextButton(
@@ -27,23 +27,23 @@ class CategoriesHeader extends StatelessWidget {
                     onPressed: () {
                       Get.to(
                           () => ProductPage(
-                                category: topCategories[index],
+                                category: solo.product[index],
                                 width: width,
-                                aspectRatio: topCategories[index].aspectRatio,
-                                height: topCategories[index].height,
+                                aspectRatio: solo.product[index].aspectRatio,
+                                height: solo.product[index].height,
                               ),
                           preventDuplicates: false);
                       Get.deleteAll();
                     },
                     child: Row(
                       children: [
-                        Text(topCategories[index].name as String,
+                        Text(solo.product[index].productName as String,
                             style: const TextStyle(
                                 color: Color(0xFFffffff), fontSize: 16)),
                       ],
                     ),
                   ),
-                  SizedBox(width: index == topCategories.length - 1 ? 0 : space)
+                  SizedBox(width: index == solo.product.length - 1 ? 0 : space)
                 ],
               )),
     );

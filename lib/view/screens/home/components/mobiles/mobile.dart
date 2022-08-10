@@ -4,13 +4,16 @@ import 'package:solo/controllers/latest_item_controller.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/widget/view_item.dart';
 
+import '../../../../style.dart';
+/*
 class MobileView extends StatelessWidget {
-  MobileView(
+  const MobileView(
       {this.width,
       this.height,
       this.itemCount,
       this.title,
       this.itemList,
+      this.i,
       this.aspectRatioMobile,
       this.mainPadding,
       this.aspectRatioNoMobile,
@@ -21,20 +24,17 @@ class MobileView extends StatelessWidget {
       mainPadding,
       aspectRatioMobile,
       aspectRatioNoMobile;
-  final int? itemCount, numberOfRows;
+  final int? itemCount, numberOfRows, i;
   final String? title;
   final List? itemList;
-  int get crossAxisCount {
-    if (device == DeviceType.Tablet) {
-      return 4;
-    } else {
-      return 6;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     getDevice(width);
+    SizesData instanceSizes = SizesData(
+        aspectRatio: aspectRatioNoMobile!,
+        itemList: itemList,
+        mainPadding: mainPadding,
+        width: width);
     return device == DeviceType.Mobile
         ? MobileDesign(
             aspectRatio: aspectRatioMobile,
@@ -44,28 +44,29 @@ class MobileView extends StatelessWidget {
             title: title,
             width: width,
           )
-        : MobileItems(
+        : AnimatedPosition2(
             itemList: itemList,
             title: title,
             width: width,
             height: height,
+            i: i!,
             numberOfRows: numberOfRows,
             mainPadding: mainPadding,
             aspectRatio: aspectRatioNoMobile,
+            crossAxisCount: SizesData.crossAxisCount,
+            wrapCount: instanceSizes.wrapCount,
+            stackHeight: instanceSizes.stackHeight,
+            space: instanceSizes.space,
+            gridWidth: instanceSizes.gridWidth,
           );
   }
-}
-
-class MobileViewController extends MoveSliderMain {
-  MobileViewController({this.itemsList, this.width});
-  double? width;
-  List? itemsList;
-}
-
+}*/
+/*
 class MobileItems extends StatelessWidget {
   const MobileItems({
     Key? key,
     this.itemList,
+    this.i,
     this.width,
     this.mainPadding,
     this.aspectRatio,
@@ -76,7 +77,7 @@ class MobileItems extends StatelessWidget {
   final List? itemList;
   final double? width, mainPadding, aspectRatio, height;
   final String? title;
-  final int? numberOfRows;
+  final int? numberOfRows, i;
   @override
   Widget build(BuildContext context) {
     SizesData instanceSizes = SizesData(
@@ -84,25 +85,26 @@ class MobileItems extends StatelessWidget {
         itemList: itemList,
         mainPadding: mainPadding,
         width: width);
-    MobileViewController controller =
-        Get.put(MobileViewController(itemsList: itemList, width: width));
+    MoveSliderMain controller = Get.put(MoveSliderMain(
+        itemsList: itemList,
+        width: width,
+        crossAxisCount: SizesData.crossAxisCount,
+        numberOfRows: numberOfRows));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title!,
-              style:
-                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+          child: Text(title!, style: titleStyle),
         ),
         SizedBox(
           height: instanceSizes.stackHeight,
           child: Stack(
               children: List.generate(
             instanceSizes.wrapCount,
-            (index) => GetBuilder<MobileViewController>(builder: (context) {
+            (index) => GetBuilder<MoveSliderMain>(builder: (context) {
               return AnimatedPositioned(
-                  left: width! * index.toDouble() + controller.moveUnit,
+                  left: width! * index.toDouble() + controller.moveUnit[i!],
                   duration: const Duration(milliseconds: 500),
                   child: AnimatedPosition2(
                     crossAxisCount: SizesData.crossAxisCount,
@@ -120,11 +122,9 @@ class MobileItems extends StatelessWidget {
             }),
           )),
         ),
-        ArrowWidget(
-          controller: controller,
-          itemLength: itemList,
-        )
+        ArrowWidget(controller: controller, itemLength: itemList, i: i)
       ],
     );
   }
 }
+*/

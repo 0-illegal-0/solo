@@ -2,43 +2,55 @@ import 'package:flutter/material.dart';
 import 'package:solo/view/widget/note.dart';
 
 class PriceRange extends StatelessWidget {
-  const PriceRange({Key? key, this.controller, this.width}) : super(key: key);
+  PriceRange({Key? key, this.controller, this.width}) : super(key: key);
   final dynamic controller;
   final double? width;
+  bool priceState = false;
+  Widget priceFilterButton({String? title, dynamic priceFun}) {
+    return TextButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.grey),
+            foregroundColor: MaterialStateProperty.all(Colors.black),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
+        onPressed: () {
+          priceFun(); //();
+
+          // controller.onFilter();
+          //priceFun;
+          controller.filterResult(
+              filterTitle: "Price",
+              filterValue: controller.priceFilterValues,
+              checkVal: controller.priceButtonState);
+        },
+        child: Text(title!,
+            style:
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Price", style: TextStyle(fontWeight: FontWeight.bold)),
-        SliderRange(
-            title: "Min: ",
-            sliderId: 1,
-            controller: controller,
-            sliderValue: controller.inia.toDouble()),
-        const SizedBox(height: 3),
-        SliderRange(
-          title: "Max: ",
-          controller: controller,
-          sliderId: 2,
-          sliderValue: controller.inia2.toDouble(),
-        ),
+        const Text("Price (EGP)",
+            style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            RangeField(controller: controller),
-            RangeField(controller: controller)
+            RangeField(controller: controller, feildId: 1, labelText: " 0"),
+            RangeField(controller: controller, feildId: 2, labelText: " 0")
           ],
         ),
-        Center(
-          child: TextButton(
-              style: ButtonStyle(
-                  padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
-              onPressed: () {
-                note(context);
-              },
-              child: const Text("Done")),
+        const SizedBox(height: 7),
+        Row(
+          // mainAxisAlignment: controller.co,
+          children: [
+            priceFilterButton(title: "Filter", priceFun: controller.filter),
+            controller.priceButtonState == true
+                ? priceFilterButton(title: "Reset", priceFun: controller.reset)
+                : const SizedBox(),
+          ],
         ),
         const Divider(thickness: 2, color: Colors.grey),
         const SizedBox(height: 10),
@@ -48,30 +60,48 @@ class PriceRange extends StatelessWidget {
 }
 
 class RangeField extends StatelessWidget {
-  const RangeField({Key? key, this.controller}) : super(key: key);
+  const RangeField({Key? key, this.controller, this.labelText, this.feildId})
+      : super(key: key);
   final dynamic controller;
+  final String? labelText;
+  final int? feildId;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 30,
       width: 80,
       child: TextFormField(
-        decoration: const InputDecoration(
+        maxLines: 1,
+        onEditingComplete: () {
+          controller.filter();
+          print("onEditingComplete");
+          controller.filterResult(
+              filterTitle: "Price",
+              filterValue: controller.priceFilterValues,
+              checkVal: controller.priceButtonState);
+        },
+        textInputAction: TextInputAction.none,
+        // initialValue: labelText!,
+        decoration: InputDecoration(
+          hintText: labelText!,
           enabled: true,
           filled: true,
           fillColor: Colors.white,
-          constraints: BoxConstraints(maxHeight: 39),
-          focusedBorder: OutlineInputBorder(
+          constraints: const BoxConstraints(maxHeight: 39),
+          focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(0)),
             borderSide: BorderSide(color: Color(0xFF000000), width: 1),
           ),
-          contentPadding: EdgeInsets.only(bottom: 0),
-          enabledBorder: OutlineInputBorder(
+          contentPadding: const EdgeInsets.only(bottom: 0),
+          enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(0)),
             borderSide: BorderSide(color: Color(0xFF000000), width: 0),
           ),
         ),
-        onChanged: (value) {},
+        onChanged: (value) {
+          controller.addValues(
+              id: feildId, priceValue: double.parse(value).ceil());
+        },
       ),
     );
   }
@@ -97,7 +127,7 @@ class SliderRange extends StatelessWidget {
           Slider(
             value: sliderValue!,
             min: 0,
-            max: 100,
+            max: 70000,
             onChanged: (val) {
               controller.friendValue(
                   v1: val.toDouble(), sliderId: sliderId, v2: val.toDouble());

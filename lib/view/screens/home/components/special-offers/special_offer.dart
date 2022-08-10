@@ -1,24 +1,32 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:solo/models/cameras_models.dart';
 import 'package:solo/models/categories_models.dart';
 import 'package:solo/models/laptop_models.dart';
-import 'package:solo/models/speacial_offer.dart';
+//import 'package:solo/models/speacial_offer.dart';
 import 'package:solo/models/television_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_header.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_item.dart';
+import 'package:solo/view/screens/view-details/view_details.dart';
+import 'package:solo/view/widget/note.dart';
 
 class SpecialOffer extends StatelessWidget {
-  SpecialOffer({Key? key, this.width, this.mainPadding}) : super(key: key);
-  final double? width;
-  final double? mainPadding;
-  double get marginTop {
-    return width! / 13;
-  }
+  SpecialOffer(
+      {Key? key, this.width, this.mainPadding, this.specialOfferItemDatas})
+      : super(key: key);
+  final double? mainPadding, width;
+  final List? specialOfferItemDatas;
 
   double get space {
     return width! / 36;
+  }
+
+  double get marginTop {
+    return width! / 18 < 33 ? 33 : width! / 18;
   }
 
   double get shadowWidth {
@@ -29,71 +37,20 @@ class SpecialOffer extends StatelessWidget {
     return width! / 24;
   }
 
-  double get topMargin {
-    return width! / 24;
-  }
-
-  double get semtricMargin {
-    return width! / 9;
-  }
-
   double get footerWidth {
     return width! / 4.5;
   }
 
-  double brandGrid(int? countItem, double? boxWidth) {
-    return (width! - (mainPadding! * 2) - (space * (countItem! - 1))) *
-        boxWidth!;
-  }
-
-  static const BoxDecoration specialOfferDecoration = BoxDecoration(boxShadow: [
-    BoxShadow(
-        color: Color(0xFFc2c2c2),
-        blurRadius: 10,
-        spreadRadius: 0.1,
-        offset: Offset(0, 5))
-  ], color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(5)));
-
-  double? heightValue;
-  double? widthValue;
-  Widget widget() {
-    for (var i = 0; i < specialOfferItemDatas.length - 2; i++) {
-      if (specialOfferItemDatas[i]["imageSize"] == "large") {
-        heightValue = 0.60;
-        widthValue = 0.60;
-      } else {
-        heightValue = 0.40;
-        widthValue = 0.50;
-      }
-      print(i);
-      return SpecialOfferItem(
-          gridCount: 2,
-          heightValue: heightValue!,
-          widthValue: widthValue!,
-          mainPadding: mainPadding!,
-          width: width!,
-          beforeDiscount: specialOfferItemDatas[i]["item"].oldPrice,
-          afterDicount: specialOfferItemDatas[i]["item"].price,
-          discount: specialOfferItemDatas[i]["item"].discount,
-          specialOfferImage: specialOfferItemDatas[i]["item"].image,
-          specialOfferTitle: specialOfferItemDatas[i]["item"].title,
-          imagePadding: 5);
-    }
-    return Text("Empety");
-  }
-
   @override
   Widget build(BuildContext context) {
-    getDevice(width);
-    getData();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SpecialOfferHeader(
           width: width,
-          topMargin: topMargin,
+          topMargin: shadowHeight,
           marginTop: marginTop,
-          semtricMargin: semtricMargin,
+          semtricMargin: shadowWidth,
           shadowWidth: shadowWidth,
           shadowHeight: shadowHeight,
           title: "Special Offers",
@@ -102,134 +59,108 @@ class SpecialOffer extends StatelessWidget {
             ? Wrap(
                 spacing: space,
                 runSpacing: space,
-                children: [
-                  SpecialOfferItem(
-                      gridCount: 2,
-                      heightValue: 0.40,
-                      widthValue: 0.5,
-                      index: specialOfferItemDatas[0]["index"],
-                      aspectRatio: specialOfferItemDatas[0]["aspectRatio"],
-                      height: specialOfferItemDatas[0]["height"],
-                      itemList: specialOfferItemDatas[0]["item-list"],
-                      mainPadding: mainPadding!,
-                      width: width!,
-                      beforeDiscount: specialOfferItemDatas[0]["item"].price!,
-                      afterDicount: specialOfferItemDatas[0]["item"].price!,
-                      discount: specialOfferItemDatas[0]["item"].discount!,
-                      specialOfferImage:
-                          specialOfferItemDatas[0]["item"].image!,
-                      specialOfferTitle:
-                          specialOfferItemDatas[0]["item"].title!,
-                      imagePadding: 5),
-                  SpecialOfferItem(
-                      gridCount: 2,
-                      heightValue: 0.40,
-                      widthValue: 0.5,
-                      index: specialOfferItemDatas[1]["index"],
-                      aspectRatio: specialOfferItemDatas[1]["aspectRatio"],
-                      height: specialOfferItemDatas[1]["height"],
-                      itemList: specialOfferItemDatas[1]["item-list"],
-                      mainPadding: mainPadding!,
-                      width: width!,
-                      beforeDiscount: specialOfferItemDatas[1]["item"].price!,
-                      afterDicount: specialOfferItemDatas[1]["item"].price!,
-                      discount: specialOfferItemDatas[1]["item"].discount!,
-                      specialOfferImage:
-                          specialOfferItemDatas[1]["item"].image!,
-                      specialOfferTitle:
-                          specialOfferItemDatas[1]["item"].title!,
-                      imagePadding: 5),
-                  SpecialOfferItem(
-                      gridCount: 2,
-                      heightValue: 0.60,
-                      widthValue: 0.60,
-                      index: specialOfferItemDatas[2]["index"],
-                      aspectRatio: specialOfferItemDatas[2]["aspectRatio"],
-                      height: specialOfferItemDatas[2]["height"],
-                      itemList: specialOfferItemDatas[2]["item-list"],
-                      mainPadding: mainPadding!,
-                      width: width!,
-                      beforeDiscount: specialOfferItemDatas[2]["item"].price!,
-                      afterDicount: specialOfferItemDatas[2]["item"].price!,
-                      discount: specialOfferItemDatas[2]["item"].discount!,
-                      specialOfferImage:
-                          specialOfferItemDatas[2]["item"].image!,
-                      specialOfferTitle:
-                          specialOfferItemDatas[2]["item"].title!,
-                      imagePadding: 5),
-                  SizedBox(
-                    height: width! * 0.60,
-                    width: brandGrid(2, 0.40),
-                    child: Column(children: [
-                      Expanded(
-                        child: SpecialOfferItem(
-                            gridCount: 0,
-                            heightValue: double.infinity,
-                            widthValue: double.infinity,
-                            mainPadding: mainPadding!,
-                            width: width!,
-                            index: specialOfferItemDatas[3]["index"],
-                            aspectRatio: specialOfferItemDatas[3]
-                                ["aspectRatio"],
-                            height: specialOfferItemDatas[3]["height"],
-                            itemList: specialOfferItemDatas[3]["item-list"],
-                            beforeDiscount:
-                                specialOfferItemDatas[3]["item"].price!,
-                            afterDicount:
-                                specialOfferItemDatas[3]["item"].price!,
-                            discount:
-                                specialOfferItemDatas[3]["item"].discount!,
-                            specialOfferImage:
-                                specialOfferItemDatas[3]["item"].image!,
-                            specialOfferTitle:
-                                specialOfferItemDatas[3]["item"].title!,
-                            imagePadding: 0),
-                      ),
-                      const SizedBox(height: 5),
-                      Expanded(
-                        child: SpecialOfferItem(
-                            gridCount: 0,
-                            heightValue: double.infinity,
-                            widthValue: double.infinity,
-                            mainPadding: mainPadding!,
-                            index: specialOfferItemDatas[4]["index"],
-                            aspectRatio: specialOfferItemDatas[4]
-                                ["aspectRatio"],
-                            height: specialOfferItemDatas[4]["height"],
-                            itemList: specialOfferItemDatas[4]["item-list"],
-                            width: width!,
-                            beforeDiscount:
-                                specialOfferItemDatas[4]["item"].price!,
-                            afterDicount:
-                                specialOfferItemDatas[4]["item"].price!,
-                            discount:
-                                specialOfferItemDatas[4]["item"].discount!,
-                            specialOfferImage:
-                                specialOfferItemDatas[4]["item"].image!,
-                            specialOfferTitle:
-                                specialOfferItemDatas[4]["item"].title!,
-                            imagePadding: 0),
-                      )
-                    ]),
-                  )
-                ],
-              )
+                children: List.generate(
+                    specialOfferItemDatas!.length > 4
+                        ? 4
+                        : specialOfferItemDatas!.length, (index) {
+                  return index < 3
+                      ? SpecialOfferItem(
+                          loopIndex: index,
+                          index: specialOfferItemDatas![index]["index"],
+                          aspectRatio: specialOfferItemDatas![index]
+                              ["aspectRatio"],
+                          height: specialOfferItemDatas![index]["height"],
+                          itemList: specialOfferItemDatas![index]["item-list"],
+                          mainPadding: mainPadding!,
+                          width: width!,
+                          beforeDiscount:
+                              specialOfferItemDatas![index]["item"].price!,
+                          afterDicount:
+                              specialOfferItemDatas![index]["item"].price!,
+                          discount:
+                              specialOfferItemDatas![index]["item"].discount!,
+                          specialOfferImage:
+                              specialOfferItemDatas![index]["item"].image!,
+                          specialOfferTitle:
+                              specialOfferItemDatas![index]["item"].title!,
+                          imagePadding: 5)
+                      : SizedBox(
+                          height: width! * 0.6,
+                          width: width! / 2.8,
+                          child: Column(
+                              children: List.generate(
+                            2,
+                            (index2) => Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: index2 == 0 ? 2.5 : 0,
+                                    top: index2 == 1 ? 2.5 : 0),
+                                child: SpecialOfferItem(
+                                    loopIndex: index,
+                                    mainPadding: mainPadding!,
+                                    width: width!,
+                                    index: specialOfferItemDatas![index + index2]
+                                        ["index"],
+                                    aspectRatio:
+                                        specialOfferItemDatas![index + index2]
+                                            ["aspectRatio"],
+                                    height: specialOfferItemDatas![index + index2]
+                                        ["height"],
+                                    itemList: specialOfferItemDatas![index + index2]
+                                        ["item-list"],
+                                    beforeDiscount:
+                                        specialOfferItemDatas![index + index2]["item"]
+                                            .price!,
+                                    afterDicount:
+                                        specialOfferItemDatas![index + index2]
+                                                ["item"]
+                                            .price!,
+                                    discount: specialOfferItemDatas![index + index2]
+                                            ["item"]
+                                        .discount!,
+                                    specialOfferImage:
+                                        specialOfferItemDatas![index + index2]["item"].image!,
+                                    specialOfferTitle: specialOfferItemDatas![index + index2]["item"].title!,
+                                    imagePadding: 0),
+                              ),
+                            ),
+                          )),
+                        );
+                }))
             : SpecialOfferNoMobile(
+                specialOfferItemDatas: specialOfferItemDatas,
                 imagePadding: 5,
-                width: width,
-              )
+                aspectRatio: 0.9,
+                width: width)
       ],
     );
   }
 }
 
 class SpecialOfferNoMobile extends StatelessWidget {
-  SpecialOfferNoMobile({
+  const SpecialOfferNoMobile({
     Key? key,
     this.width,
     this.imagePadding,
+    this.specialOfferItemDatas,
+    this.aspectRatio,
   }) : super(key: key);
-  final double? width, imagePadding;
+  final double? width, imagePadding, aspectRatio;
+  final List? specialOfferItemDatas;
+
+  double get space {
+    return width! / 40;
+  }
+
+  double get itemWidth {
+    if (width! < 1000) {
+      return width! / 3.47;
+    } else {
+      // return width! / 6.2;
+      return width! / 4.76;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     getDevice(width);
@@ -239,114 +170,228 @@ class SpecialOfferNoMobile extends StatelessWidget {
       ),
       child: SizedBox(
         height: width! / 5.1,
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Wrap(
+            spacing: space,
+            runSpacing: 20,
             children: List.generate(
-                5,
-                (index) => Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: ConstrainedBox(
-                                    constraints: const BoxConstraints(
-                                        maxHeight: 18, maxWidth: 40),
-                                    child: SizedBox(
-                                      width: width! / 9,
-                                      height: width! / 20,
-                                      child: CustomPaint(
-                                        painter: const DiscountChip(
-                                            DiscountChipColor: Color.fromRGBO(
-                                                222, 53, 59, 0.7)),
-                                        child: Center(
-                                          child: Text(
-                                            specialOfferItemDatas[index]["item"]
-                                                .discount!,
-                                            style: const TextStyle(
-                                                color: Color(0xFFffffff)),
-                                          ),
-                                        ),
-                                      ),
+                specialOfferItemDatas!.length,
+                (index) => Container(
+                      decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0xFFb1b3b5),
+                                blurRadius: 10,
+                                spreadRadius: 0.1,
+                                offset: Offset(0, 0))
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                      constraints:
+                          const BoxConstraints(maxHeight: 240, minHeight: 210),
+                      width: itemWidth,
+                      child: AspectRatio(
+                          aspectRatio: aspectRatio!,
+                          child: InkWell(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                          width! / 45 > 20 ? 20 : width! / 45),
+                                      child: Image.asset(
+                                          specialOfferItemDatas![index]["item"]
+                                              .image!),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                      color: Colors.white,
-                                      child: Padding(
-                                        padding: EdgeInsets.all(imagePadding!),
-                                        child: Image.asset(
-                                          specialOfferItemDatas[index]["item"]
-                                              .image!,
-                                        ),
-                                      )),
-                                ),
-                                Text(
-                                  specialOfferItemDatas[index]["item"].title!,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 1,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(width! / 120),
-                                  child: RichText(
-                                      maxLines: 1,
-                                      text: TextSpan(children: [
-                                        TextSpan(
-                                            text: specialOfferItemDatas[index]
-                                                    ["item"]
-                                                .price!,
-                                            style: const TextStyle(
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    child: Text(
+                                      specialOfferItemDatas![index]["item"]
+                                          .title!,
+                                      maxLines: 2,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 3, bottom: 5, top: 5),
+                                      child: Row(
+                                          children: List.generate(
+                                              5,
+                                              (index) => Icon(Icons.star_rate,
+                                                  size: 17,
+                                                  color: index > 2
+                                                      ? Colors.grey
+                                                      : Colors.cyan)))),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 11, bottom: 5, left: 5, right: 5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${specialOfferItemDatas![index]["item"]
+                                              .oldPrice} EGP",
+                                          style: const TextStyle(
                                               decoration:
-                                                  TextDecoration.lineThrough,
-                                              color: Colors.grey,
-                                              fontSize: 13,
-                                            )),
-                                        TextSpan(
-                                            text: specialOfferItemDatas[index]
+                                                  TextDecoration.lineThrough),
+                                        ),
+                                        const Text(
+                                          " 25% off",
+                                          style: TextStyle(
+                                              color: Color(0xFF32a852),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 5, bottom: 5, left: 5, right: 5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "${specialOfferItemDatas![index]
                                                     ["item"]
-                                                .oldPrice!,
-                                            style: const TextStyle(
-                                                color: Colors.blue,
-                                                fontSize: 13.5)),
-                                      ])),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: width! / 28)
-                        ],
-                      ),
+                                                .price} EGP",
+                                            maxLines: 1,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 25,
+                                          child: IconButton(
+                                            alignment: Alignment.topRight,
+                                            padding: const EdgeInsets.only(
+                                                right: 0, bottom: 3),
+                                            color: const Color(0xfffca503),
+                                            icon: const Icon(
+                                                Icons.shopping_cart_outlined),
+                                            onPressed: () {
+                                              note(context);
+                                            },
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {
+                                Get.to(
+                                    () => ViewDetails(
+                                          width: width!,
+                                          aspectRatio:
+                                              specialOfferItemDatas![index]
+                                                  ["aspectRatio"],
+                                          height: width! *
+                                              specialOfferItemDatas![index]
+                                                  ["height"],
+                                          itemList:
+                                              specialOfferItemDatas![index]
+                                                  ["item-list"],
+                                          index: specialOfferItemDatas![index]
+                                              ["index"],
+                                          numberOfRows: 1,
+                                          title: "Customer  Viewed",
+                                        ),
+                                    preventDuplicates: false);
+                                Get.deleteAll();
+                              })),
                     ))),
       ),
     );
   }
 }
 
-class SpecialOfferItemData {
-  SpecialOfferItemData(
-      {this.imageSize,
-      this.beforeDiscount,
-      this.afterDicount,
-      this.discount,
-      this.specialOfferImage,
-      this.specialOfferTitle});
-  final String? beforeDiscount,
-      afterDicount,
-      discount,
-      imageSize,
-      specialOfferImage,
-      specialOfferTitle;
-}
-
-List special = [];
-
-
 
 /*
 
-EdgeInsets.only(
-                      right: mainPadding, left: mainPadding, top: 115),
-*/
+InkWell(
+                      onTap: () {
+                        Get.to(
+                            () => ViewDetails(
+                                  width: width!,
+                                  aspectRatio: specialOfferItemDatas![index]
+                                      ["aspectRatio"],
+                                  height: width! *
+                                      specialOfferItemDatas![index]["height"],
+                                  itemList: specialOfferItemDatas![index]
+                                      ["item-list"],
+                                  index: specialOfferItemDatas![index]["index"],
+                                  numberOfRows: 1,
+                                  title: "Customer  Viewed",
+                                ),
+                            preventDuplicates: false);
+                        Get.deleteAll();
+                      },
+                      child: SizedBox(
+                        width: itemWidth,
+                        height: itemWidth * 1.5,
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: ConstrainedBox(
+                                constraints: const BoxConstraints(
+                                    maxHeight: 18, maxWidth: 40),
+                                child: SizedBox(
+                                  width: width! / 9,
+                                  height: width! / 20,
+                                  child: CustomPaint(
+                                    painter: const DiscountChip(
+                                        DiscountChipColor:
+                                            Color.fromRGBO(222, 53, 59, 0.7)),
+                                    child: Center(
+                                      child: Text(
+                                        specialOfferItemDatas![index]["item"]
+                                            .discount!,
+                                        style: const TextStyle(
+                                            color: Color(0xFFffffff)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                                color: Colors.white,
+                                child: Padding(
+                                  padding: EdgeInsets.all(imagePadding!),
+                                  child: Image.asset(
+                                    specialOfferItemDatas![index]["item"]
+                                        .image!,
+                                  ),
+                                )),
+                            Text(specialOfferItemDatas![index]["item"].title!,
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                            Padding(
+                              padding: EdgeInsets.all(width! / 120),
+                              child: Text(
+                                  specialOfferItemDatas![index]["item"].price,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1),
+                            ),
+                            Text(specialOfferItemDatas![index]["item"].oldPrice,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                    color: Colors.blue, fontSize: 13.5)),
+                          ],
+                        ),
+                      ),
+                    )
+
+                    */

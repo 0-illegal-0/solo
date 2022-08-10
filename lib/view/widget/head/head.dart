@@ -12,17 +12,15 @@ class Head extends StatelessWidget {
   Head({
     Key? key,
     this.width,
-    this.height,
-    this.aspectRatio,
   }) : super(key: key);
-  final double? width, height, aspectRatio;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-            margin: const EdgeInsets.only(top: 0.2),
+            margin: const EdgeInsets.only(top: 0.8),
             color: const Color(0xFF078fa3),
             height: device == DeviceType.Desktop
                 ? 115
@@ -37,8 +35,6 @@ class Head extends StatelessWidget {
                     : MobileHead(
                         space: width! / 10.8,
                         width: width!,
-                        aspectRatio: aspectRatio,
-                        height: height,
                       )),
         SizedBox(
             width: double.infinity,
@@ -48,7 +44,7 @@ class Head extends StatelessWidget {
                     ? 18
                     : 13,
             child: CustomPaint(
-                painter: CurvePainter2(color: const Color(0xFF13a7bd))))
+                painter: CurvePainter2(color: const Color(0xFF13a7bd)))),
       ],
     );
   }

@@ -1,8 +1,185 @@
-import 'package:solo/models/cameras_models.dart';
-import 'package:solo/models/laptop_models.dart';
-import 'package:solo/models/mobiles_models.dart';
-import 'package:solo/models/tablet_models.dart';
-import 'package:solo/models/television_models.dart';
+class Solo {
+  String? projectName;
+  List<Product>? product;
+
+  Solo({this.projectName, this.product});
+
+  Solo.fromJson(Map<String, dynamic> json) {
+    projectName = json['project-name'];
+    if (json['product'] != null) {
+      product = <Product>[];
+      json['product'].forEach((v) {
+        product!.add(Product.fromJson(v));
+      });
+    }
+  }
+}
+
+class Product {
+  String? productName;
+  List? brands;
+  String? icon;
+  double? aspectRatio;
+  double? height;
+  List? displaySizes;
+  List? cameraSizes;
+  List? processors;
+  List? hardsize;
+  List? memorySize;
+  List? batteryLife;
+  List? graphicsMemory;
+  List? displayResolution;
+  List? graphicsChipsetBrand;
+  List? rating;
+  List? itemsColor;
+  List<Products>? products;
+
+  Product(
+      {this.productName,
+      this.brands,
+      this.icon,
+      this.aspectRatio,
+      this.height,
+      this.displaySizes,
+      this.cameraSizes,
+      this.processors,
+      this.hardsize,
+      this.memorySize,
+      this.batteryLife,
+      this.graphicsMemory,
+      this.displayResolution,
+      this.graphicsChipsetBrand,
+      this.rating,
+      this.itemsColor,
+      this.products});
+
+  Product.fromJson(Map<String, dynamic> json) {
+    productName = json['product-name'];
+    brands = json['brands'];
+    icon = json['icon'];
+    aspectRatio = json['aspect-ratio'];
+    height = json['height'];
+    displaySizes = json['display-sizes'];
+    cameraSizes = json['camera-sizes'];
+    processors = json['processors'];
+    hardsize = json['hardsize'];
+    memorySize = json['memory-size'];
+    batteryLife = json['battery-life'];
+    graphicsMemory = json['graphics-memory'];
+    displayResolution = json['display-resolution'];
+    graphicsChipsetBrand = json['graphics-chipsetBrand'];
+    rating = json['rating'];
+    itemsColor = json['items-color'];
+    if (json['products'] != null) {
+      products = <Products>[];
+      json['products'].forEach((v) {
+        products!.add(Products.fromJson(v));
+      });
+    }
+  }
+}
+
+class Products {
+  String? description;
+  String? image;
+  String? title;
+  bool? specialOffer;
+  String? price;
+  String? discount;
+  String? oldPrice;
+  String? brandName;
+  List<String>? images;
+  Map? informations;
+  List? reviews;
+  String? warranty;
+  bool? recomended;
+  bool? latestItem;
+  bool? liked;
+  bool? topSale;
+  bool? hotDeal;
+  String? productBrands;
+  int? stars;
+  double? cameraResolution,
+      cameraSizes,
+      hardSize,
+      memorySizes,
+      displaySize,
+      graphicsMemory,
+      displayResolution,
+      betteryLife;
+  String? cpu, graphicsChipsetBrand, color;
+
+  Products(
+      {this.description,
+      this.image,
+      this.title,
+      this.stars,
+      this.specialOffer,
+      this.price,
+      this.discount,
+      this.oldPrice,
+      this.brandName,
+      this.images,
+      this.informations,
+      this.reviews,
+      this.warranty,
+      this.recomended,
+      this.latestItem,
+      this.liked,
+      this.topSale,
+      this.hotDeal,
+      this.cameraResolution,
+      this.productBrands,
+      this.hardSize,
+      this.memorySizes,
+      this.displaySize,
+      this.betteryLife,
+      this.graphicsMemory,
+      this.displayResolution,
+      this.graphicsChipsetBrand,
+      this.color,
+      this.cpu});
+
+  Products.fromJson(Map<String, dynamic> json) {
+    description = json['description'];
+    image = json['image'];
+    title = json['title'];
+    specialOffer = json['special-offer'];
+    price = json['price'];
+    discount = json['discount'];
+    oldPrice = json['old-price'];
+    brandName = json['product-brands'];
+    images = json['images'].cast<String>();
+    informations = json['informations'];
+    if (json['reviews'] != null) {
+      reviews = [];
+      json['reviews'].forEach((v) {
+        reviews!.add(v);
+      });
+    }
+    warranty = json['warranty'];
+    recomended = json['recomended'];
+    latestItem = json['latest-item'];
+    liked = json['liked'];
+    topSale = json['top-sale'];
+    stars = json['stars'];
+    hotDeal = json['hot-deal'];
+    productBrands = json['product-brands'];
+    cameraResolution = json['camera-resolution'];
+    cameraSizes = json['camera-sizes'];
+    cpu = json['cpu'];
+    hardSize = json['hardsize'];
+    memorySizes = json['memory-sizes'];
+    displaySize = json['display-size'];
+    betteryLife = json['bettery-life'];
+    graphicsMemory = json['graphics-memory'];
+    displayResolution = json['display-resolution'];
+    graphicsChipsetBrand = json['graphics-chipsetBrand'];
+    color = json['color'];
+  }
+}
+
+/*
 
 class Product {
   Product(
@@ -16,7 +193,7 @@ class Product {
       this.batteryLife,
       this.cameraSizes,
       this.name,
-      this.brandstype,
+      this.brands,
       this.graphicsMemory,
       this.displayResolution,
       this.displaySizes,
@@ -24,7 +201,7 @@ class Product {
   final String? name, icon;
   final List? classModel;
   final double? aspectRatio, height;
-  final List<String>? brandstype,
+  final List<String>? brands,
       displaySizes,
       cameraSizes,
       batteryLife,
@@ -36,14 +213,14 @@ class Product {
       memorySize;
 }
 
-List<Product> topCategories = [
+List<Product> Products = [
   Product(
     name: "Laptops",
     icon: "assets/images/categories_icons/laptop.jpg",
     aspectRatio: 0.9,
     height: 0.55,
     classModel: laptops,
-    brandstype: ["HP", "DELL", "Lenovo", "Acer", "ASUS"],
+    brands: ["HP", "DELL", "Lenovo", "Acer", "ASUS"],
     displaySizes: [
       "11 inches & under",
       "12 & above",
@@ -98,7 +275,7 @@ List<Product> topCategories = [
     classModel: mobiles,
     aspectRatio: 0.8,
     height: 0.60,
-    brandstype: ["Aplle", "Samsung", "Hawaii", "Lenovo", "Xiaomi"],
+    brands: ["Aplle", "Samsung", "Hawaii", "Lenovo", "Xiaomi"],
     displaySizes: [
       "2.5 inch & above",
       "4 inch & above",
@@ -127,7 +304,7 @@ List<Product> topCategories = [
       aspectRatio: 1.1,
       height: 0.50,
       classModel: tablets,
-      brandstype: ["Aplle", "Samsung", "Hawaii", "Lenovo", "Xiaomi"],
+      brands: ["Aplle", "Samsung", "Hawaii", "Lenovo", "Xiaomi"],
       displaySizes: [],
       cameraSizes: [],
       processors: [],
@@ -143,7 +320,7 @@ List<Product> topCategories = [
     aspectRatio: 1.2,
     height: 0.50,
     classModel: televisions,
-    brandstype: [
+    brands: [
       "LG",
       "Sony",
       "Samsung",
@@ -168,7 +345,7 @@ List<Product> topCategories = [
       aspectRatio: 1.1,
       height: 0.50,
       classModel: cameras,
-      brandstype: [
+      brands: [
         "Canon",
         "Nikon",
         "Pentax",
@@ -206,10 +383,12 @@ List<Product> topCategories = [
       displayResolution: [],
       graphicsChipsetBrand: []),
 ];
-
+*/
 List productPageFilterItems(category) {
   return [
-    {"title": "Brands", "items": category!.brandstype},
+    {"title": "Price", "items": []},
+    {"title": "Rating", "items": category!.rating},
+    {"title": "Brands", "items": category!.brands},
     {"title": "Camera Resolution", "items": category!.cameraSizes},
     {"title": "Display Size", "items": category!.displaySizes},
     {"title": "CPU", "items": category!.processors},
@@ -219,5 +398,7 @@ List productPageFilterItems(category) {
     {"title": "Graphics Memory", "items": category!.graphicsMemory},
     {"title": "Display Resolution", "items": category!.displayResolution},
     {"title": "Graphics ChipsetBrand", "items": category!.graphicsChipsetBrand},
+    {"title": "Color", "items": category.itemsColor},
+    //{"title": "Discount", "items": []}
   ];
 }

@@ -14,6 +14,7 @@ class Mobile {
       this.recomended,
       this.warranty,
       this.liked,
+      this.hotDeal,
       this.topSale,
       this.informations});
 
@@ -27,7 +28,7 @@ class Mobile {
       productBrands;
   final List? images, reviews;
   final Map? informations;
-  final bool? specialOffer, recomended, latestItem, liked, topSale;
+  final bool? specialOffer, recomended, latestItem, liked, topSale, hotDeal;
 }
 
 List<Mobile> mobiles = [
@@ -118,7 +119,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: true),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -207,7 +209,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -296,7 +299,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -384,7 +388,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: true,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -472,7 +477,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -560,7 +566,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: true,
       liked: true,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -648,7 +655,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -736,7 +744,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: true),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -824,7 +833,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -912,7 +922,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -1000,7 +1011,8 @@ List<Mobile> mobiles = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
@@ -1088,9 +1100,9 @@ List<Mobile> mobiles = [
       recomended: true,
       latestItem: false,
       liked: false,
-      topSale:
-          false), // "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet"
-  Mobile(
+      topSale: false,
+      hotDeal: false),
+  /*Mobile(
       description:
           "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
       image: "assets/images/mobiles/samsung_galaxy_a72.png",
@@ -1177,5 +1189,6 @@ List<Mobile> mobiles = [
       recomended: true,
       latestItem: false,
       liked: false,
-      topSale: true),
+      topSale: true,
+      hotDeal: false),*/
 ];

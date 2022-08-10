@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/view_details_controller.dart';
 import 'package:solo/models/tablet_models.dart';
 import 'package:solo/view/responsive.dart';
-import 'package:solo/view/screens/fotter/fotter.dart';
 import 'package:solo/view/screens/home/home_page.dart';
+import 'package:solo/view/widget/fotter/fotter.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
@@ -14,6 +14,7 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    print("${tablets.length}......");
     return Scaffold(
       bottomNavigationBar: NavigationBar(),
       body: SafeArea(
@@ -63,14 +64,16 @@ class Cart extends StatelessWidget {
                       ),
                     ),
                     device == DeviceType.Desktop
-                        ? BestSellingProducts(
-                            title: "Best Selling Products",
-                            width: width,
-                            height: width * 0.50,
-                            mainPadding: width / 24,
-                            aspectRatio: 1.1,
+                        ? ViewItem(
+                            aspectRatioMobile: 0.9,
+                            height: width * 0.60,
                             itemList: tablets,
+                            mainPadding: width / 24,
+                            title: "Mobiles",
                             numberOfRows: 1,
+                            aspectRatioNoMobile: 0.8,
+                            width: width,
+                            i: 6,
                           )
                         : MobileDesign(
                             aspectRatio: 1.1,
@@ -89,86 +92,6 @@ class Cart extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class BestSellingProductsController extends MoveSliderData {
-  BestSellingProductsController({this.itemsList, this.width});
-  double? width;
-  List? itemsList;
-}
-
-class BestSellingProducts extends StatelessWidget {
-  const BestSellingProducts(
-      {Key? key,
-      this.itemList,
-      this.width,
-      this.mainPadding,
-      this.aspectRatio,
-      this.title,
-      this.height,
-      this.numberOfRows})
-      : super(key: key);
-  final List? itemList;
-  final int? numberOfRows;
-  final double? width, mainPadding, aspectRatio, height, itemwidth = 250;
-  final String? title;
-  @override
-  int get viewCount {
-    if (width! > 1200) {
-      return 5;
-    } else {
-      return 4;
-    }
-  }
-
-  int get wrapCount {
-    return (itemList!.length / viewCount).ceil();
-  }
-
-  double get space {
-    return (width! - mainPadding! * 2 - itemwidth! * viewCount) /
-        (viewCount - 1);
-  }
-
-  Widget build(BuildContext context) {
-    MoveSliderData controller =
-        Get.put(MoveSliderData(width: width, wrapCount: wrapCount));
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title!, style: Theme.of(context).textTheme.headline6),
-        ),
-        SizedBox(
-          height: 240,
-          child: Stack(
-              children: List.generate(
-            wrapCount,
-            (index) => GetBuilder<MoveSliderData>(builder: (context) {
-              return AnimatedPositioned(
-                  left: width! * index.toDouble() + controller.moveUnit,
-                  duration: const Duration(milliseconds: 500),
-                  child: AnimatedPosition2(
-                    crossAxisCount: viewCount,
-                    width: width,
-                    itemList: itemList,
-                    numberOfRows: numberOfRows!,
-                    mainPadding: mainPadding,
-                    index2: index,
-                    wrapCount: wrapCount,
-                    aspectRatio: aspectRatio,
-                    gridWidth: itemwidth,
-                    space: space,
-                    height: height,
-                  ));
-            }),
-          )),
-        ),
-        ArrowWidget(controller: controller, itemLength: itemList!),
-      ],
     );
   }
 }

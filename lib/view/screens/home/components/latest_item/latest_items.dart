@@ -6,6 +6,8 @@ import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/view_item.dart';
 
+import '../../../../style.dart';
+
 class LatestItems extends StatelessWidget {
   LatestItems(
       {Key? key,
@@ -51,12 +53,19 @@ class LatestItems extends StatelessWidget {
     } else {
       return (latestItems.length / 5).ceil();
     }
-    ;
+  }
+
+  List? values = [];
+  getListvalues() {
+    for (var item in latestItems) {
+      values!.add(item["item"]);
+    }
   }
 
   Widget build(BuildContext context) {
     getDevice(width);
     getDataToLatestItems();
+    getListvalues();
     /* SizesData instanceSizes = SizesData(
         aspectRatio: aspectRatio!,
         itemList: latestItems,
@@ -69,9 +78,7 @@ class LatestItems extends StatelessWidget {
       children: [
         Text(
           title!,
-          style: device == DeviceType.Mobile
-              ? Theme.of(context).textTheme.headline6
-              : const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: titleStyle,
         ),
         device == DeviceType.Mobile
             ? SizedBox(
@@ -181,81 +188,18 @@ class LatestItems extends StatelessWidget {
                   ),
                 ),
               )
-            : LatestItemNoMobile(
-                itemList: latestItems,
-                aspectRatio: aspectRatio,
-                mainPadding: mainPadding,
-                width: width,
+            : ViewItem(
                 height: height,
-                numberOfRows: 2),
-        ArrowWidget(
-          controller: controller,
-          itemLength: latestItems,
-        )
+                itemList: values,
+                mainPadding: mainPadding!,
+                title: "",
+                numberOfRows: 2,
+                aspectRatioNoMobile: aspectRatio,
+                width: width!,
+                i: 5,
+                aspectRatioMobile: aspectRatio,
+              ),
       ],
     );
-  }
-}
-
-class LatestItemNoMobile extends StatelessWidget {
-  LatestItemNoMobile(
-      {Key? key,
-      this.itemList,
-      this.width,
-      this.mainPadding,
-      this.aspectRatio,
-      this.title,
-      this.numberOfRows,
-      this.height})
-      : super(key: key);
-  final List? itemList;
-  List values = [];
-  final double? width, mainPadding, aspectRatio, height;
-  final String? title;
-  final int? numberOfRows;
-  @override
-  getListvalues() {
-    for (var item in itemList!) {
-      values.add(item["item"]);
-    }
-  }
-
-  Widget build(BuildContext context) {
-    getListvalues();
-    SizesData instanceSizes = SizesData(
-        aspectRatio: aspectRatio!,
-        itemList: itemList,
-        mainPadding: mainPadding,
-        width: width);
-
-    MoveSlider controller =
-        Get.put(MoveSlider(itemsList: itemList, width: width));
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SizedBox(
-        height: instanceSizes.stackHeight,
-        child: Stack(
-            children: List.generate(
-          instanceSizes.wrapCount,
-          (index) => GetBuilder<MoveSlider>(builder: (context) {
-            return AnimatedPositioned(
-                left: width! * index.toDouble() + controller.moveUnit,
-                duration: const Duration(milliseconds: 500),
-                child: AnimatedPosition2(
-                  crossAxisCount: SizesData.crossAxisCount,
-                  width: width,
-                  numberOfRows: numberOfRows!,
-                  itemList: values,
-                  mainPadding: mainPadding,
-                  index2: index,
-                  wrapCount: instanceSizes.wrapCount,
-                  aspectRatio: aspectRatio,
-                  gridWidth: instanceSizes.gridWidth,
-                  space: instanceSizes.space,
-                  height: height,
-                ));
-          }),
-        )),
-      ),
-    ]);
   }
 }

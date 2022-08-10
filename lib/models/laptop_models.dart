@@ -12,6 +12,7 @@ class Laptop {
       this.recomended,
       this.specialOffer,
       this.title,
+      this.hotDeal,
       this.latestItem,
       this.description,
       this.liked,
@@ -26,7 +27,7 @@ class Laptop {
       productBrands;
   final List? images, reviews;
   final Map? informations;
-  final bool? specialOffer, recomended, latestItem, liked, topSale;
+  final bool? specialOffer, recomended, latestItem, liked, topSale, hotDeal;
 }
 
 List<Laptop> laptops = [
@@ -108,15 +109,15 @@ List<Laptop> laptops = [
           "user-name": "Ibrahim Youssef",
           "rate": 4,
           "comment":
-              "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-                  "There is no one who loves pain itself."
+              "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...There is no one who loves pain itself."
         }
       ],
       warranty: "1 year",
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Laptop(
       description: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
       image: "assets/images/laptops/hp-probook-445.png",
@@ -203,7 +204,8 @@ List<Laptop> laptops = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: true),
   Laptop(
       description: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
       image: "assets/images/laptops/dell-g15.jpg",
@@ -290,7 +292,8 @@ List<Laptop> laptops = [
       recomended: false,
       latestItem: true,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Laptop(
       description: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
       image: "assets/images/laptops/dell-g15.jpg",
@@ -377,7 +380,8 @@ List<Laptop> laptops = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Laptop(
       description: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
       image: "assets/images/laptops/dell-g15.jpg",
@@ -464,7 +468,8 @@ List<Laptop> laptops = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: true),
+      topSale: true,
+      hotDeal: false),
   Laptop(
       description: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
       image: "assets/images/laptops/dell-g15.jpg",
@@ -551,7 +556,8 @@ List<Laptop> laptops = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: true),
   Laptop(
       description: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
       image: "assets/images/laptops/hp-probook-445.png",
@@ -638,7 +644,8 @@ List<Laptop> laptops = [
       recomended: true,
       latestItem: false,
       liked: false,
-      topSale: true),
+      topSale: true,
+      hotDeal: false),
   Laptop(
       description: "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
       image: "assets/images/laptops/apple-macbook -air13.png",
@@ -725,5 +732,6 @@ List<Laptop> laptops = [
       recomended: false,
       latestItem: false,
       liked: true,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
 ];

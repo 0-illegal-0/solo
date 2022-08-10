@@ -23,8 +23,8 @@ class SpecialOfferHeader extends StatelessWidget {
   final String? title;
 
   double get titleFontSize {
-    if (width! / 20 > 50) {
-      return 50;
+    if (width! / 20 > 45) {
+      return 45;
     } else if (width! / 20 < 22) {
       return 22;
     } else {
@@ -37,7 +37,7 @@ class SpecialOfferHeader extends StatelessWidget {
     print(width);
     return SizedBox(
       width: double.infinity,
-      height: width! / 6.6,
+      height: width! / 8 < 60 ? 60 : width! / 8,
       child: Stack(
         children: [
           Positioned(
@@ -71,20 +71,21 @@ class SpecialOfferHeader extends StatelessWidget {
             right: semtricMargin,
             child: Container(
               height: marginTop,
-              color: const Color(0xFFf22e36), //Color(0xFFfcba03)
-              child: Center(
-                  child: Text(title!,
-                      style: TextStyle(
-                          shadows: const [
-                            BoxShadow(
-                                color: Color(0xFFf0faf5),
-                                blurRadius: 4,
-                                spreadRadius: 1,
-                                offset: Offset(0, 0))
-                          ],
-                          letterSpacing: 1,
-                          fontSize: titleFontSize,
-                          color: const Color(0xFFfcba03)))),
+              alignment: Alignment.center,
+              color: const Color(0xFFf22e36),
+              child: Text(title!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      shadows: const [
+                        BoxShadow(
+                            color: Color(0xFFf0faf5),
+                            blurRadius: 4,
+                            spreadRadius: 1,
+                            offset: Offset(0, 0))
+                      ],
+                      letterSpacing: 0.5,
+                      fontSize: titleFontSize,
+                      color: const Color(0xFFfcba03))),
             ),
           ),
           Positioned(
@@ -129,8 +130,8 @@ class SpecialOfferHeaderStyle extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
-    paint.color = headColor; // 0xFF26a1d1   0xFFa88f32
-    paint.style = PaintingStyle.fill; // Change this to fill
+    paint.color = headColor;
+    paint.style = PaintingStyle.fill;
 
     var path = Path();
 
@@ -162,8 +163,8 @@ class Shadow extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
-    paint.color = shadowColor; // 0xFF26a1d1   0xFFa88f32
-    paint.style = PaintingStyle.fill; // Change this to fill
+    paint.color = shadowColor;
+    paint.style = PaintingStyle.fill;
 
     var path = Path();
 

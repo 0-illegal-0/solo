@@ -9,31 +9,20 @@ class HotDealWrap extends StatelessWidget {
     Key? key,
     this.mainPadding,
     this.width,
+    this.widthValue,
+    this.maxItemCount,
   }) : super(key: key);
 
   final double? mainPadding;
-  final double? width;
-  int get maxItemCount {
-    return crossAxisCount * 2;
-  }
-
-  int get crossAxisCount {
-    if (device == DeviceType.Mobile) {
-      return 3;
-    } else if (device == DeviceType.Tablet) {
-      return 5;
-    } else {
-      return 7;
-    }
-  }
+  final double? width, widthValue;
+  final int? maxItemCount;
 
   double get gridWidth {
-    return ((width! - ((crossAxisCount + 1) * mainPadding!)) / crossAxisCount) -
-        0.4;
+    return width! / widthValue!;
   }
 
   int itemCount() {
-    if (listhotDealsItemsList.length <= maxItemCount) {
+    if (listhotDealsItemsList.length <= maxItemCount!) {
       return listhotDealsItemsList.length;
     } else {
       return 6;
@@ -61,7 +50,7 @@ class HotDealWrap extends StatelessWidget {
                                   listhotDealsItemsList[index]["height"],
                               itemList: listhotDealsItemsList[index]
                                   ["item-list"],
-                              index: index,
+                              index: listhotDealsItemsList[index]["index"],
                               numberOfRows: 1,
                               title: "Customer  Viewed",
                             ),

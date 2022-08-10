@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/latest_item_controller.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/widget/view_item.dart';
-
+/*
 class CameraeView extends StatelessWidget {
   const CameraeView(
       {this.width,
@@ -120,3 +120,4 @@ class CameraItems extends StatelessWidget {
     );
   }
 }
+*/

@@ -5,13 +5,14 @@ import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/view_details_controller.dart';
 import 'package:solo/view/responsive.dart';
-import 'package:solo/view/screens/fotter/fotter.dart';
 import 'package:solo/view/screens/view-details/bottom_sheet.dart';
 import 'package:solo/view/screens/view-details/cient_review.dart';
 import 'package:solo/view/screens/view-details/details.dart';
 import 'package:solo/view/screens/view-details/information_design.dart';
 import 'package:solo/view/screens/view-details/view_all_rieviw.dart';
+import 'package:solo/view/widget/fotter/fotter.dart';
 import 'package:solo/view/widget/head/head.dart';
+import 'package:solo/view/widget/important.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
 
@@ -53,8 +54,6 @@ class _ViewDetailsState extends State<ViewDetails>
     controller.initStates(this);
     return Scaffold(
       backgroundColor: const Color(0xFFe1e1e3),
-      bottomNavigationBar:
-          device == DeviceType.Desktop ? const SizedBox() : NavigationBar(),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -186,14 +185,16 @@ class _ViewDetailsState extends State<ViewDetails>
                         : const SizedBox(),
                     const SizedBox(height: 15),
                     device == DeviceType.Desktop
-                        ? ViewAlso(
-                            title: "Customer Also Viewed",
-                            width: widget.width,
-                            height: widget.width! * 0.50,
-                            mainPadding: widget.width! / 24,
-                            aspectRatio: 1.1,
+                        ? ViewItem(
+                            aspectRatioMobile: 0.9,
+                            height: widget.width! * 0.60,
                             itemList: widget.itemList!,
-                            numberOfRows: widget.numberOfRows!,
+                            mainPadding: widget.width! / 24,
+                            title: "Mobiles",
+                            numberOfRows: 1,
+                            aspectRatioNoMobile: 0.8,
+                            width: widget.width,
+                            i: 7,
                           )
                         : MobileDesign(
                             aspectRatio: widget.aspectRatio,
@@ -248,7 +249,8 @@ class _ViewDetailsState extends State<ViewDetails>
                       ),
                     ),
                   )
-                : const SizedBox()
+                : const SizedBox(),
+            const BottomRow()
           ],
         ),
       ),
@@ -403,89 +405,6 @@ class ProductImages extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ViewAlso extends StatelessWidget {
-  const ViewAlso(
-      {Key? key,
-      this.itemList,
-      this.width,
-      this.mainPadding,
-      this.aspectRatio,
-      this.title,
-      this.height,
-      this.numberOfRows})
-      : super(key: key);
-  final List? itemList;
-  final int? numberOfRows;
-  final double? width, mainPadding, aspectRatio, height, itemwidth = 250;
-  final String? title;
-  @override
-  int get viewCount {
-    if (width! > 1200) {
-      return 5;
-    } else {
-      return 4;
-    }
-  }
-
-  int get wrapCount {
-    return (itemList!.length / viewCount).ceil();
-  }
-
-  double get space {
-    return (width! - mainPadding! * 2 - itemwidth! * viewCount) /
-        (viewCount - 1);
-  }
-
-  Widget build(BuildContext context) {
-    SizesData instanceSizes = SizesData(
-        aspectRatio: aspectRatio!,
-        itemList: itemList,
-        mainPadding: mainPadding,
-        numberOfRows: numberOfRows,
-        width: width);
-    MoveSliderData controller =
-        Get.put(MoveSliderData(width: width, wrapCount: wrapCount));
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title!, style: Theme.of(context).textTheme.headline6),
-        ),
-        SizedBox(
-          height: 240,
-          child: Stack(
-              children: List.generate(
-            wrapCount,
-            (index) => GetBuilder<MoveSliderData>(builder: (context) {
-              return AnimatedPositioned(
-                  left: width! * index.toDouble() + controller.moveUnit,
-                  duration: const Duration(milliseconds: 500),
-                  child: AnimatedPosition2(
-                    crossAxisCount: viewCount,
-                    width: width,
-                    itemList: itemList,
-                    numberOfRows: numberOfRows!,
-                    mainPadding: mainPadding,
-                    index2: index,
-                    wrapCount: wrapCount,
-                    aspectRatio: aspectRatio,
-                    gridWidth: itemwidth,
-                    space: space,
-                    height: height,
-                  ));
-            }),
-          )),
-        ),
-        ArrowWidget(
-          controller: controller,
-          itemLength: itemList!,
-        )
-      ],
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:solo/models/top_brand_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/top-brands/brands_items.dart';
 
+import '../../../../style.dart';
+
 class TopBrand extends StatelessWidget {
   const TopBrand(
       {Key? key,
@@ -42,10 +44,7 @@ class TopBrand extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5.0),
-          child: Text(title,
-              style: TextStyle(
-                  fontSize: width! > 1099 ? 22 : 16,
-                  fontWeight: FontWeight.bold)),
+          child: Text(title, style: titleStyle),
         ),
         Wrap(
             spacing: spacing!,

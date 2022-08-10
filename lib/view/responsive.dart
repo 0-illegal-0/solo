@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 Enum? device;
 getDevice(double? width) {
   if (width! < 650) {
@@ -22,5 +24,16 @@ double doubleResponsiveSize(
     return min.toDouble();
   } else {
     return (deviceWidth / mainFont);
+  }
+}
+
+double sizesResponsive(
+    {double? mobile, double? teblet, double? desktop, Enum? device}) {
+  if (device! == DeviceType.Mobile) {
+    return mobile!;
+  } else if (device == DeviceType.Tablet) {
+    return teblet!;
+  } else {
+    return desktop!;
   }
 }

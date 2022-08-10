@@ -1,16 +1,16 @@
 import 'package:solo/models/categories_models.dart';
+import 'add_main_data.dart';
 
-getData() {
-  for (var item in topCategories) {
+addDataToSpecialOffer() {
+  for (var item in solo!.product) {
     int index = 0;
-    for (var item2 in item.classModel!) {
+    for (var item2 in item!.products!) {
       if (item2.specialOffer == true) {
         specialOfferItemDatas.add({
           "item": item2,
           "height": item.height,
           "aspectRatio": item.aspectRatio,
-          "imageSize": item.name == "Television" ? "large" : "medium",
-          "item-list": item.classModel,
+          "item-list": item.products,
           "index": index
         });
       }

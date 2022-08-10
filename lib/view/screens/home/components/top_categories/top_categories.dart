@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:solo/constants/constants.dart';
 import 'package:solo/models/top_categories_models.dart';
-
+/*
 class TopCategories extends StatelessWidget {
   const TopCategories(
       {Key? key, this.width, this.crossAxisCount, this.title, this.mainPadding})
@@ -88,3 +88,4 @@ class TopCategoriesItems extends StatelessWidget {
     );
   }
 }
+*/

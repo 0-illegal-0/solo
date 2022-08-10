@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:solo/models/add_main_data.dart';
+import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/screens/product-page/product_page.dart';
 
 class SlidersStyle1 extends StatelessWidget {
   const SlidersStyle1({
     Key? key,
     required this.width,
+    this.index,
   }) : super(key: key);
   final double width;
+  final int? index;
 
   double get positionedItem {
     return width / 50;
@@ -16,122 +22,135 @@ class SlidersStyle1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xFFb00b31),
-      child: Stack(
-        children: [
-          Transform.translate(
-            offset: Offset(width / 5.53, 0),
-            child: SizedBox(
-              width: width / 1.8,
-              height: width / 1.8,
-              child: CustomPaint(
-                painter: SlidersStyle1CircleGradian(
-                    color: Colors.white,
-                    gradiantColor: const Color(0xFFb00b31)),
+      child: InkWell(
+        onTap: () {
+          Get.to(
+              () => ProductPage(
+                    category: solo.product[index!],
+                    width: width,
+                    aspectRatio: solo.product[index!].aspectRatio,
+                    height: solo.product[index!].height,
+                  ),
+              preventDuplicates: false);
+          Get.deleteAll();
+        },
+        child: Stack(
+          children: [
+            Transform.translate(
+              offset: Offset(width / 5.53, 0),
+              child: SizedBox(
+                width: width / 1.8,
+                height: width / 1.8,
+                child: CustomPaint(
+                  painter: SlidersStyle1CircleGradian(
+                      color: Colors.white,
+                      gradiantColor: const Color(0xFFb00b31)),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: width,
-            height: width / 2.4,
-            child: CustomPaint(painter: SlidersStyle1Painter()),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: SizedBox(
-              width: width / 4 < 120 ? 120 : width / 4,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Image.asset(
-                      "assets/images/weekly_gifts/mobile2.jpg",
-                      // height: width / 5.1,
-                    ),
-                  ),
-                  SizedBox(
-                    width: width / 48,
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Image.asset(
-                      "assets/images/weekly_gifts/tablet1.jpg",
-                    ),
-                  ),
-                  SizedBox(
-                    width: width / 48,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Image.asset(
-                      "assets/images/weekly_gifts/mobile2.jpg",
-                    ),
-                  ),
-                ],
-              ),
+            SizedBox(
+              width: width,
+              height: width / 2.4,
+              child: CustomPaint(painter: SlidersStyle1Painter()),
             ),
-          ),
-          Positioned(
-            top: positionedItem / 2,
-            left: positionedItem,
-            child: Text(
-              "Exclusive\nOffers",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  shadows: const [
-                    Shadow(color: Colors.black, blurRadius: 5),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: width / 4 < 120 ? 120 : width / 4,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Image.asset(
+                        "assets/images/weekly_gifts/mobile2.jpg",
+                        // height: width / 5.1,
+                      ),
+                    ),
+                    SizedBox(
+                      width: width / 48,
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Image.asset(
+                        "assets/images/weekly_gifts/tablet1.jpg",
+                      ),
+                    ),
+                    SizedBox(
+                      width: width / 48,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Image.asset(
+                        "assets/images/weekly_gifts/mobile2.jpg",
+                      ),
+                    ),
                   ],
-                  color: const Color(0xFF339cd4),
-                  fontSize: doubleResponsiveSize(14, 25, 35, width)),
+                ),
+              ),
             ),
-          ),
-          Positioned(
-            right: positionedItem,
-            bottom: positionedItem,
-            child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(children: [
-                  TextSpan(
-                      text: "5G Mobiles\n",
-                      style: TextStyle(
+            Positioned(
+              top: positionedItem / 2,
+              left: positionedItem,
+              child: Text(
+                "Exclusive\nOffers",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    shadows: const [
+                      Shadow(color: Colors.black, blurRadius: 5),
+                    ],
+                    color: const Color(0xFF339cd4),
+                    fontSize: doubleResponsiveSize(14, 25, 35, width)),
+              ),
+            ),
+            Positioned(
+              right: positionedItem,
+              bottom: positionedItem,
+              child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: "5G Mobiles\n",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFFfcba03),
+                            fontSize: doubleResponsiveSize(14, 25, 37, width))),
+                    TextSpan(
+                        text: "AND",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: doubleResponsiveSize(14, 25, 37, width),
+                        )),
+                    TextSpan(
+                        text: "\nTeblets",
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFFfcba03),
-                          fontSize: doubleResponsiveSize(14, 25, 37, width))),
-                  TextSpan(
-                      text: "AND",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: doubleResponsiveSize(14, 25, 37, width),
-                      )),
-                  TextSpan(
-                      text: "\nTeblets",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFFfcba03),
-                        fontSize: doubleResponsiveSize(14, 25, 37, width),
-                      ))
-                ])),
-          ),
-          Positioned(
-            bottom: positionedItem,
-            left: positionedItem,
-            child: Text(
-              "35% Off",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: doubleResponsiveSize(14, 23, 40, width)),
+                          fontSize: doubleResponsiveSize(14, 25, 37, width),
+                        ))
+                  ])),
             ),
-          ),
-          Positioned(
-            right: positionedItem,
-            top: positionedItem,
-            child: Text(
-              "Only Today",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: doubleResponsiveSize(14, 23, 40, width)),
+            Positioned(
+              bottom: positionedItem,
+              left: positionedItem,
+              child: Text(
+                "35% Off",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: doubleResponsiveSize(14, 23, 40, width)),
+              ),
             ),
-          ),
-        ],
+            Positioned(
+              right: positionedItem,
+              top: positionedItem,
+              child: Text(
+                "Only Today",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: doubleResponsiveSize(14, 23, 40, width)),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

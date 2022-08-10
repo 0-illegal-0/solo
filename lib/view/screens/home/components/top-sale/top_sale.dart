@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/models/top_sale.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
+
+import '../../../../style.dart';
 
 class TopSale extends StatelessWidget {
   TopSale(
@@ -12,10 +13,12 @@ class TopSale extends StatelessWidget {
       this.space,
       this.title,
       this.itemCountForTablet,
-      this.itemCountForDesktop})
+      this.itemCountForDesktop,
+      this.topSale})
       : super(key: key);
   final double? width, mainPadding, space;
   final String? title;
+  final List? topSale;
   final int? itemCountForTablet, itemCountForDesktop;
   double? designHeight, designWidth;
 
@@ -40,23 +43,18 @@ class TopSale extends StatelessWidget {
   Widget build(BuildContext context) {
     getDevice(width);
     responsiveSizes();
-    getDataToTopSale();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text(
-            title!,
-            style: TextStyle(
-                fontSize: width! > 1099 ? 22 : 16, fontWeight: FontWeight.bold),
-          ),
+          child: Text(title!, style: titleStyle),
         ),
         Wrap(
             spacing: space!,
             runSpacing: space!,
             children: List.generate(
-              topSale.length,
+              topSale!.length,
               (index) => Container(
                 decoration:
                     const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
@@ -73,10 +71,10 @@ class TopSale extends StatelessWidget {
                     Get.to(
                         () => ViewDetails(
                               width: width!,
-                              aspectRatio: topSale[index]["aspectRatio"],
-                              height: topSale[index]["height"],
-                              itemList: topSale[index]["item-list"],
-                              index: topSale[index]["index"],
+                              aspectRatio: topSale![index]["aspectRatio"],
+                              height: topSale![index]["height"],
+                              itemList: topSale![index]["item-list"],
+                              index: topSale![index]["index"],
                               numberOfRows: 1,
                               title: "Customer  Viewed",
                             ),
@@ -99,11 +97,11 @@ class TopSale extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Image.asset(
-                                          topSale[index]["item"].image,
+                                          topSale![index]["item"].image,
                                           height: designHeight! * 0.50,
                                         ),
                                         Text(
-                                          topSale[index]["item"].title,
+                                          topSale![index]["item"].title,
                                           softWrap: false,
                                           maxLines: 2,
                                           textAlign: TextAlign.center,
@@ -145,7 +143,7 @@ class TopSale extends StatelessWidget {
                                   padding: const EdgeInsets.only(
                                       top: 5, right: 5, left: 5),
                                   child: Text(
-                                      topSale[index]["item"].description,
+                                      topSale![index]["item"].description,
                                       maxLines: 5),
                                 )),
                             const Expanded(

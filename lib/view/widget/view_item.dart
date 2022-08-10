@@ -1,26 +1,97 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/latest_item_controller.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
+import 'package:solo/view/style.dart';
 import 'package:solo/view/widget/note.dart';
 
-class ArrowWidget extends StatelessWidget {
-  ArrowWidget({Key? key, this.controller, this.itemLength}) : super(key: key);
-  dynamic controller;
-  final List? itemLength;
+class ViewItem extends StatelessWidget {
+  const ViewItem(
+      {this.width,
+      this.height,
+      this.title,
+      this.itemList,
+      this.i,
+      this.aspectRatioMobile,
+      this.mainPadding,
+      this.aspectRatioNoMobile,
+      this.numberOfRows});
+
+  final double? width,
+      height,
+      mainPadding,
+      aspectRatioMobile,
+      aspectRatioNoMobile;
+  final int? numberOfRows, i;
+  final String? title;
+  final List? itemList;
   @override
   Widget build(BuildContext context) {
-    return itemLength!.length > SizesData.crossAxisCount * 2
+    getDevice(width);
+    SizesData instanceSizes = SizesData(
+        aspectRatio: aspectRatioNoMobile!,
+        itemList: itemList,
+        mainPadding: mainPadding,
+        numberOfRows: numberOfRows,
+        width: width);
+    return device == DeviceType.Mobile
+        ? MobileDesign(
+            aspectRatio: aspectRatioMobile,
+            height: height,
+            itemCount: itemList!.length,
+            itemList: itemList,
+            title: title,
+            width: width,
+          )
+        : AnimatedItems(
+            itemList: itemList,
+            title: title,
+            width: width,
+            height: height,
+            i: i!,
+            numberOfRows: numberOfRows,
+            mainPadding: mainPadding,
+            aspectRatio: aspectRatioNoMobile,
+            crossAxisCount: instanceSizes.crossAxisCount,
+            wrapCount: instanceSizes.wrapCount,
+            stackHeight: instanceSizes.stackHeight,
+            space: instanceSizes.space,
+            gridWidth: instanceSizes.gridWidth,
+          );
+  }
+}
+
+class ArrowWidget extends StatelessWidget {
+  ArrowWidget(
+      {Key? key,
+      this.controller,
+      this.itemLength,
+      this.i,
+      this.crossAxisCount,
+      this.wrapCount})
+      : super(key: key);
+  dynamic controller;
+  final List? itemLength;
+
+  final int? i, crossAxisCount, wrapCount;
+  @override
+  Widget build(BuildContext context) {
+    return itemLength!.length > crossAxisCount! * 2
         ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                  onPressed: controller.moveBack,
+                  onPressed: () {
+                    controller.moveBack(i: i, wrapCount: wrapCount);
+                  },
                   icon: const Icon(
                     Icons.arrow_back_ios_outlined,
                   )),
               IconButton(
-                onPressed: controller.moveNext,
+                onPressed: () {
+                  controller.moveNext(i: i, wrapCount: wrapCount);
+                },
                 icon: const Icon(
                   Icons.arrow_forward_ios_outlined,
                 ),
@@ -83,28 +154,37 @@ class MobileDesign extends StatelessWidget {
   }
 }
 
-class AnimatedPosition2 extends StatelessWidget {
-  const AnimatedPosition2(
+class AnimatedItems extends StatelessWidget {
+  const AnimatedItems(
       {Key? key,
       this.width,
       this.crossAxisCount,
       this.itemList,
       this.mainPadding,
-      this.index2,
       this.aspectRatio,
       this.wrapCount,
       this.space,
-      this.gridWidth,
       this.height,
-      this.numberOfRows})
+      this.numberOfRows,
+      this.i,
+      this.title,
+      this.stackHeight,
+      this.gridWidth})
       : super(key: key);
 
-  final double? width, mainPadding, aspectRatio, space, gridWidth, height;
-  final int? crossAxisCount, index2, wrapCount, numberOfRows;
+  final double? width,
+      mainPadding,
+      aspectRatio,
+      space,
+      height,
+      stackHeight,
+      gridWidth;
+  final int? crossAxisCount, wrapCount, numberOfRows, i;
   final List? itemList;
+  final String? title;
 
-  int get listIndex {
-    if (index2 == wrapCount! - 1 &&
+  int listIndex(index) {
+    if (index == wrapCount! - 1 &&
         itemList!.length > crossAxisCount! * numberOfRows!) {
       if (itemList!.length % (crossAxisCount! * numberOfRows!) == 0) {
         return crossAxisCount! * numberOfRows!;
@@ -118,45 +198,82 @@ class AnimatedPosition2 extends StatelessWidget {
     }
   }
 
-  int get stageNumber {
-    return index2! * (crossAxisCount! * numberOfRows!);
+  int stageNumber(index) {
+    return index! * (crossAxisCount! * numberOfRows!);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: Wrap(
-        spacing: space!,
-        runSpacing: space!,
-        children: List.generate(
-            listIndex,
-            (index) => Container(
-                  decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Color(0xFFb1b3b5),
-                            blurRadius: 10,
-                            spreadRadius: 0.1,
-                            offset: Offset(0, 0))
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  constraints: BoxConstraints(
-                      maxHeight: SizesData.maxHeight,
-                      minHeight: SizesData.minHeight),
-                  width: gridWidth!,
-                  child: AspectRatio(
-                      aspectRatio: aspectRatio!,
-                      child: ViewItemContent(
-                        index: index + stageNumber,
-                        itemList: itemList,
-                        aspectRatio: aspectRatio,
-                        width: width,
-                        height: height!,
-                      )),
-                )),
-      ),
+    MoveSliderMain controller = Get.put(MoveSliderMain(
+        itemsList: itemList,
+        width: width,
+        crossAxisCount: crossAxisCount,
+        numberOfRows: numberOfRows));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 5),
+          child: Text(title!, style: titleStyle),
+        ),
+        SizedBox(
+          height: stackHeight,
+          child: Stack(
+              children: List.generate(
+            wrapCount!,
+            (index) => GetBuilder<MoveSliderMain>(builder: (context) {
+              return AnimatedPositioned(
+                  left: width! * index.toDouble() + controller.moveUnit[i!],
+                  duration: const Duration(milliseconds: 500),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    child: SizedBox(
+                      width: width! - (width! / 24) * 2,
+                      child: Wrap(
+                        spacing: space!,
+                        runSpacing: space!,
+                        children: List.generate(listIndex(index), (index2) {
+                          return Container(
+                            decoration: const BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color(0xFFb1b3b5),
+                                      blurRadius: 10,
+                                      spreadRadius: 0.1,
+                                      offset: Offset(0, 0))
+                                ],
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
+                            constraints: BoxConstraints(
+                                maxHeight: SizesData.maxHeight,
+                                minHeight: SizesData.minHeight),
+                            width: gridWidth,
+                            child: AspectRatio(
+                                aspectRatio: aspectRatio!,
+                                child: ViewItemContent(
+                                  index: index2 + stageNumber(index),
+                                  itemList: itemList,
+                                  aspectRatio: aspectRatio,
+                                  width: width,
+                                  height: height!,
+                                )),
+                          );
+                        }),
+                      ),
+                    ),
+                  ));
+            }),
+          )),
+        ),
+        ArrowWidget(
+            controller: controller,
+            itemLength: itemList,
+            i: i,
+            crossAxisCount: crossAxisCount,
+            wrapCount: wrapCount)
+      ],
     );
   }
 }
@@ -199,9 +316,11 @@ class ViewItemContent extends StatelessWidget {
                 child: Row(
                     children: List.generate(
                         5,
-                        (index) => Icon(Icons.star_rate,
+                        (index2) => Icon(Icons.star_rate,
                             size: 17,
-                            color: index > 2 ? Colors.grey : Colors.cyan)))),
+                            color: index2 < itemList![index!].stars
+                                ? Colors.orange
+                                : Colors.grey)))),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -210,7 +329,7 @@ class ViewItemContent extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),
                     child: Text(
-                      itemList![index!].price!,
+                      "${itemList![index!].price!} EGP ",
                       maxLines: 1,
                     ),
                   ),
@@ -261,17 +380,25 @@ class SizesData {
   final int? numberOfRows;
   static double maxHeight = 240;
   static double minHeight = 210;
+  double? widthValue;
 
-  static int get crossAxisCount {
+  int get crossAxisCount {
     if (device == DeviceType.Tablet) {
-      return 4;
+      if (width! < 800) {
+        widthValue = 3.53;
+        return 3;
+      } else {
+        widthValue = 4.85;
+        return 4;
+      }
     } else {
+      widthValue = 6.25;
       return 5;
     }
   }
 
   int get wrapCount {
-    return (itemList!.length / (crossAxisCount * 2)).ceil();
+    return (itemList!.length / (crossAxisCount * numberOfRows!)).ceil();
   }
 
   double get space {
@@ -279,9 +406,7 @@ class SizesData {
   }
 
   double get gridWidth {
-    return (((width! - mainPadding! * 2 - space * (crossAxisCount - 1))) /
-            crossAxisCount) -
-        0.05;
+    return width! / widthValue!;
   }
 
   double get height {
@@ -295,7 +420,7 @@ class SizesData {
   }
 
   double get stackHeight {
-    if (itemList!.length > crossAxisCount) {
+    if (itemList!.length > crossAxisCount && numberOfRows! > 1) {
       return height * 2 + space + 20;
     } else {
       return height + 20;

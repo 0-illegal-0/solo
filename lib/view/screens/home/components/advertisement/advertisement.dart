@@ -11,7 +11,6 @@ class Advertisement extends StatelessWidget {
   final double? width, mainPadding;
   final String? title;
   @override
-  int foo = 3;
   Widget build(BuildContext context) {
     Sliders controller = Get.put(Sliders(
         width: width,
@@ -45,11 +44,7 @@ class Advertisement extends StatelessWidget {
                 controller: Sliders.move,
                 itemCount: advertisements.length,
                 itemBuilder: (context, i) {
-                  return SlidersStyle1(
-                      width:
-                          width!); /*AdvertisementContent(
-                    i: i,
-                  );*/
+                  return SlidersStyle1(width: width!, index: i);
                 })),
         const SizedBox(height: 10),
         SizedBox(

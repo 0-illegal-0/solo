@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 
 class SpecialOfferItem extends StatelessWidget {
-  const SpecialOfferItem(
+  SpecialOfferItem(
       {Key? key,
       required this.width,
       required this.mainPadding,
@@ -12,14 +12,12 @@ class SpecialOfferItem extends StatelessWidget {
       this.specialOfferTitle,
       this.beforeDiscount,
       this.afterDicount,
-      required this.widthValue,
-      required this.heightValue,
-      required this.gridCount,
       this.imagePadding,
       this.aspectRatio,
       this.height,
       this.index,
-      this.itemList})
+      this.itemList,
+      this.loopIndex})
       : super(key: key);
   final double width;
   final double mainPadding;
@@ -28,21 +26,11 @@ class SpecialOfferItem extends StatelessWidget {
   final String? specialOfferTitle;
   final String? beforeDiscount;
   final String? afterDicount;
-  final double? widthValue, aspectRatio, height;
-  final double heightValue;
-  final int? gridCount, index;
+  final double? aspectRatio, height;
+  final int? index, loopIndex;
   final List? itemList;
   final double? imagePadding;
-
-  double get space {
-    return width / 36;
-  }
-
-  double brandGrid(int? countItem, double? boxWidth) {
-    return ((width - (mainPadding * 2) - (space * (countItem! - 1))) *
-            boxWidth!) -
-        0.05;
-  }
+  double? heightValue, widthValue;
 
   static const BoxDecoration specialOfferDecoration = BoxDecoration(boxShadow: [
     BoxShadow(
@@ -52,8 +40,22 @@ class SpecialOfferItem extends StatelessWidget {
         offset: Offset(0, 5))
   ], color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(5)));
 
+  sizes(index) {
+    widthValue = index < 2
+        ? 2.25
+        : index < 3
+            ? 1.9
+            : 2.8;
+    heightValue = index < 2
+        ? 0.4
+        : index < 3
+            ? 0.6
+            : 0.6;
+  }
+
   @override
   Widget build(BuildContext context) {
+    sizes(loopIndex);
     return InkWell(
       onTap: () {
         Get.to(
@@ -70,8 +72,8 @@ class SpecialOfferItem extends StatelessWidget {
         Get.deleteAll();
       },
       child: Container(
-          height: width * heightValue,
-          width: brandGrid(gridCount, widthValue),
+          height: width * heightValue!,
+          width: width / widthValue!,
           decoration: specialOfferDecoration,
           child: Column(
             children: [
@@ -101,9 +103,7 @@ class SpecialOfferItem extends StatelessWidget {
                     color: Colors.white,
                     child: Padding(
                       padding: EdgeInsets.all(imagePadding!),
-                      child: Image.asset(
-                        specialOfferImage!,
-                      ),
+                      child: Image.asset(specialOfferImage!),
                     )),
               ),
               Text(specialOfferTitle!, maxLines: 1),

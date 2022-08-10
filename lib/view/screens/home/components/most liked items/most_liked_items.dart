@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/models/most_liked_items_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/note.dart';
+
+import '../../../../style.dart';
 
 class MostLiked extends StatelessWidget {
   const MostLiked({
@@ -12,9 +13,11 @@ class MostLiked extends StatelessWidget {
     this.mainPadding,
     this.space,
     this.title,
+    this.mostLikedItems,
   }) : super(key: key);
   final String? title;
   final double width;
+  final List? mostLikedItems;
   final double? mainPadding, space;
   static const double symmetricPadding = 7;
 
@@ -40,15 +43,13 @@ class MostLiked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getDevice(width);
-    getDataToMostLikedItems();
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title!,
-            style: TextStyle(
-                fontSize: width > 1099 ? 22 : 16, fontWeight: FontWeight.bold),
+            style: titleStyle,
           ),
         ),
         Container(
@@ -69,7 +70,7 @@ class MostLiked extends StatelessWidget {
             runSpacing: 20,
             alignment: WrapAlignment.center,
             children: List.generate(
-                mostLikedItems.length > 6 ? 6 : mostLikedItems.length,
+                mostLikedItems!.length > 6 ? 6 : mostLikedItems!.length,
                 (index) => SizedBox(
                     width: brandGrid,
                     child: CustomPaint(
@@ -79,12 +80,12 @@ class MostLiked extends StatelessWidget {
                           Get.to(
                               () => ViewDetails(
                                     width: width,
-                                    aspectRatio: mostLikedItems[index]
+                                    aspectRatio: mostLikedItems![index]
                                         ["aspectRatio"],
-                                    height: mostLikedItems[index]["height"],
-                                    itemList: mostLikedItems[index]
+                                    height: mostLikedItems![index]["height"],
+                                    itemList: mostLikedItems![index]
                                         ["item-list"],
-                                    index: mostLikedItems[index]["index"],
+                                    index: mostLikedItems![index]["index"],
                                     numberOfRows: 1,
                                     title: "Customer  Viewed",
                                   ),
@@ -96,7 +97,7 @@ class MostLiked extends StatelessWidget {
                           children: [
                             SizedBox(height: width / 25),
                             Image.asset(
-                              mostLikedItems[index]["item"].image!,
+                              mostLikedItems![index]["item"].image!,
                               width: brandGrid * 0.60,
                               height: device == DeviceType.Desktop ||
                                       device == DeviceType.Tablet
@@ -105,14 +106,14 @@ class MostLiked extends StatelessWidget {
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              mostLikedItems[index]["item"].title!,
+                              mostLikedItems![index]["item"].title!,
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 9, bottom: 5),
                               child: Text(
-                                mostLikedItems[index]["item"].price!,
+                                mostLikedItems![index]["item"].price!,
                                 maxLines: 1,
                                 style: const TextStyle(shadows: [
                                   BoxShadow(
@@ -129,7 +130,7 @@ class MostLiked extends StatelessWidget {
                     ))),
           ),
         ),
-        mostLikedItems.length > 6
+        mostLikedItems!.length > 6
             ? Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: TextButton(

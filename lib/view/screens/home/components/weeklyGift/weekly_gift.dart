@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/weekly_gift_controller.dart';
 
+import '../../../../style.dart';
 import 'slider_style1.dart';
 import 'slider_style2.dart';
 import 'slider_style3.dart';
@@ -9,11 +10,11 @@ import 'slider_style3.dart';
 class WeeklyGift extends StatelessWidget {
   const WeeklyGift({Key? key, this.width, this.title}) : super(key: key);
 
-  List<Widget> styleWidget({width}) {
+  List<Widget> styleWidget({width, index}) {
     return [
-      SlidersStyle1(width: width),
-      SlidersStyle2(width: width),
-      SlidersStyle3(width: width),
+      SlidersStyle1(width: width, index: index),
+      SlidersStyle2(width: width, index: index),
+      SlidersStyle3(width: width, index: index),
     ];
   }
 
@@ -31,10 +32,7 @@ class WeeklyGift extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title,
-              style: TextStyle(
-                  fontSize: width! > 1099 ? 22 : 16,
-                  fontWeight: FontWeight.bold)),
+          child: Text(title, style: titleStyle),
         ),
         Container(
             decoration: const BoxDecoration(
@@ -55,7 +53,7 @@ class WeeklyGift extends StatelessWidget {
                 controller: SlidersPage.move2,
                 itemCount: styleWidget(width: width).length,
                 itemBuilder: (context, i) {
-                  return styleWidget(width: width)[i];
+                  return styleWidget(width: width, index: i)[i];
                 })),
         const SizedBox(height: 3),
         Center(
@@ -64,9 +62,7 @@ class WeeklyGift extends StatelessWidget {
             child: GetBuilder<SlidersPage>(builder: (controller) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: SlidersPage.stageIcon == null
-                    ? controller.initValue()
-                    : SlidersPage.stageIcon,
+                children: SlidersPage.stageIcon ?? controller.initValue(),
               );
             }),
           ),

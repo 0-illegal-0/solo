@@ -14,14 +14,13 @@ class Television {
     this.description,
     this.price,
     this.topSale,
+    this.hotDeal,
     this.title,
     this.liked,
-    this.fulldescription,
   });
   final String? image,
       title,
       description,
-      fulldescription,
       price,
       warranty,
       discount,
@@ -29,7 +28,7 @@ class Television {
       productBrands;
   final List? images, reviews;
   final Map? informations;
-  final bool? specialOffer, recomended, latestItem, liked, topSale;
+  final bool? specialOffer, recomended, latestItem, liked, topSale, hotDeal;
 }
 
 List<Television> televisions = [
@@ -37,8 +36,6 @@ List<Television> televisions = [
       description: "Samsung 75 Inches 4K Ultra HD LED Smart TV...",
       title: "Samsung 75",
       specialOffer: false,
-      fulldescription:
-          "Samsung 75 Inches 4K Ultra HD LED Smart TV with Built-in Receiver, Black - UA75AU8000UXEG",
       image: "assets/images/tv/samsung-75-inches.png",
       price: "26,150.00 EGP",
       discount: "20%",
@@ -107,14 +104,13 @@ List<Television> televisions = [
       recomended: false,
       latestItem: false,
       liked: true,
-      topSale: true),
+      topSale: true,
+      hotDeal: false),
   Television(
       description: "LG 65 inches UHD 4K Smart TV, Active HDR, WebOS...",
       image: "assets/images/tv/led-lg-1.jpg",
       specialOffer: false,
       title: "Asus FX506HEB-B ...",
-      fulldescription:
-          "LG 65 inches UHD 4K Smart TV, Active HDR, WebOS Operating System, ThinQ AI - 65UP7550PVG",
       price: "36,500.00 EGP",
       discount: "20%",
       oldPrice: "3,500.00 EGP",
@@ -181,14 +177,13 @@ List<Television> televisions = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Television(
       description: "Sharp 55 inch 4K Ultra HD LED Smart Android TV with...",
       image: "assets/images/tv/led-lg-1.jpg",
       title: "Samsung 75",
       specialOffer: true,
-      fulldescription:
-          "Sharp 55 inch 4K Ultra HD LED Smart Android TV with Remote Control and Built-in Receiver - 4T-C55DL6EX",
       price: "9,500.00 EGP",
       discount: "20%",
       oldPrice: "3,500.00 EGP",
@@ -255,5 +250,6 @@ List<Television> televisions = [
       recomended: true,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: true),
 ];

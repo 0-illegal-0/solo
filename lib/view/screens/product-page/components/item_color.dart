@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:solo/models/add_main_data.dart';
 
 class ItemColor extends StatelessWidget {
-  const ItemColor({Key? key, this.controller, this.width}) : super(key: key);
+  const ItemColor(
+      {Key? key,
+      this.controller,
+      this.width,
+      this.title,
+      this.itemProperty,
+      this.id})
+      : super(key: key);
   final double? width;
+  final String? title;
+  final int? id;
+  final List? itemProperty;
   final dynamic controller;
   static const List itemsColor = [
     {"color-name": "Black", "color": Colors.black},
@@ -37,6 +48,10 @@ class ItemColor extends StatelessWidget {
                               id: 0,
                               listItems: controller.itemsColor,
                             );
+                            controller.filterResult(
+                                filterTitle: "Color",
+                                filterValue: itemsColor[index]["color-name"],
+                                checkVal: val);
                           },
                         ),
                       ),
@@ -61,6 +76,11 @@ class ItemColor extends StatelessWidget {
                                 index2: index,
                                 id: 0,
                                 listItems: controller.itemsColor);
+
+                            controller.filterResult(
+                                filterTitle: "Color",
+                                filterValue: itemsColor[index]["color-name"],
+                                checkVal: controller.values![index + id!]);
                           },
                           child: Container(
                             width: 15,

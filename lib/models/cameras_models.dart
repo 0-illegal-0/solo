@@ -1,22 +1,22 @@
 class Camera {
-  Camera({
-    this.warranty,
-    this.discount,
-    this.recomended,
-    this.oldPrice,
-    this.images,
-    this.reviews,
-    this.specialOffer,
-    this.title,
-    this.productBrands,
-    this.informations,
-    this.image,
-    this.description,
-    this.latestItem,
-    this.liked,
-    this.topSale,
-    this.price,
-  });
+  Camera(
+      {this.warranty,
+      this.discount,
+      this.recomended,
+      this.oldPrice,
+      this.images,
+      this.reviews,
+      this.specialOffer,
+      this.title,
+      this.productBrands,
+      this.informations,
+      this.image,
+      this.description,
+      this.latestItem,
+      this.liked,
+      this.topSale,
+      this.price,
+      this.hotDeal});
   final String? image,
       description,
       title,
@@ -27,7 +27,7 @@ class Camera {
       productBrands;
   final List? images, reviews;
   final Map? informations;
-  final bool? specialOffer, recomended, latestItem, liked, topSale;
+  final bool? specialOffer, recomended, latestItem, liked, topSale, hotDeal;
 }
 
 List<Camera> cameras = [
@@ -97,7 +97,8 @@ List<Camera> cameras = [
       recomended: true,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Camera(
       description:
           "Canon EOS 800D EF-S 18-55mm F4-5.6 IS STM lens - 24.2 MP DSLR Camera Black...",
@@ -164,7 +165,8 @@ List<Camera> cameras = [
       recomended: false,
       latestItem: false,
       liked: true,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
   Camera(
       description: "Nikon COOLPIX P950 Digital Camera...",
       image: "assets/images/cameras/Sigma Alpha.jpg",
@@ -230,7 +232,8 @@ List<Camera> cameras = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: true),
+      topSale: true,
+      hotDeal: true),
   Camera(
       description:
           "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera Black...",
@@ -297,5 +300,6 @@ List<Camera> cameras = [
       recomended: false,
       latestItem: false,
       liked: false,
-      topSale: false),
+      topSale: false,
+      hotDeal: false),
 ];
