@@ -46,7 +46,7 @@ class SpecialOffer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SpecialOfferHeader(
+      /*  SpecialOfferHeader(
           width: width,
           topMargin: shadowHeight,
           marginTop: marginTop,
@@ -54,7 +54,7 @@ class SpecialOffer extends StatelessWidget {
           shadowWidth: shadowWidth,
           shadowHeight: shadowHeight,
           title: "Special Offers",
-        ),
+        ),*/
         device == DeviceType.Mobile
             ? Wrap(
                 spacing: space,
@@ -149,249 +149,147 @@ class SpecialOfferNoMobile extends StatelessWidget {
   final List? specialOfferItemDatas;
 
   double get space {
-    return width! / 40;
+    return width! / 30;
   }
 
   double get itemWidth {
     if (width! < 1000) {
-      return width! / 3.47;
-    } else {
-      // return width! / 6.2;
-      return width! / 4.76;
+      return width! / 3.7;
+    }
+    else {
+      return width! / 5.1;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     getDevice(width);
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        minHeight: 150,
-      ),
-      child: SizedBox(
-        height: width! / 5.1,
-        child: Wrap(
-            spacing: space,
-            runSpacing: 20,
-            children: List.generate(
-                specialOfferItemDatas!.length,
-                (index) => Container(
-                      decoration: const BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color(0xFFb1b3b5),
-                                blurRadius: 10,
-                                spreadRadius: 0.1,
-                                offset: Offset(0, 0))
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      constraints:
-                          const BoxConstraints(maxHeight: 240, minHeight: 210),
-                      width: itemWidth,
-                      child: AspectRatio(
-                          aspectRatio: aspectRatio!,
-                          child: InkWell(
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(
-                                          width! / 45 > 20 ? 20 : width! / 45),
-                                      child: Image.asset(
-                                          specialOfferItemDatas![index]["item"]
-                                              .image!),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: Text(
-                                      specialOfferItemDatas![index]["item"]
-                                          .title!,
-                                      maxLines: 2,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 3, bottom: 5, top: 5),
-                                      child: Row(
-                                          children: List.generate(
-                                              5,
-                                              (index) => Icon(Icons.star_rate,
-                                                  size: 17,
-                                                  color: index > 2
-                                                      ? Colors.grey
-                                                      : Colors.cyan)))),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 11, bottom: 5, left: 5, right: 5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "${specialOfferItemDatas![index]["item"]
-                                              .oldPrice} EGP",
-                                          style: const TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough),
-                                        ),
-                                        const Text(
-                                          " 25% off",
-                                          style: TextStyle(
-                                              color: Color(0xFF32a852),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5, bottom: 5, left: 5, right: 5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            "${specialOfferItemDatas![index]
-                                                    ["item"]
-                                                .price} EGP",
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 25,
-                                          child: IconButton(
-                                            alignment: Alignment.topRight,
-                                            padding: const EdgeInsets.only(
-                                                right: 0, bottom: 3),
-                                            color: const Color(0xfffca503),
-                                            icon: const Icon(
-                                                Icons.shopping_cart_outlined),
-                                            onPressed: () {
-                                              note(context);
-                                            },
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              onTap: () {
-                                Get.to(
-                                    () => ViewDetails(
-                                          width: width!,
-                                          aspectRatio:
-                                              specialOfferItemDatas![index]
-                                                  ["aspectRatio"],
-                                          height: width! *
-                                              specialOfferItemDatas![index]
-                                                  ["height"],
-                                          itemList:
-                                              specialOfferItemDatas![index]
-                                                  ["item-list"],
-                                          index: specialOfferItemDatas![index]
-                                              ["index"],
-                                          numberOfRows: 1,
-                                          title: "Customer  Viewed",
-                                        ),
-                                    preventDuplicates: false);
-                                Get.deleteAll();
-                              })),
-                    ))),
-      ),
-    );
-  }
-}
+    return Wrap(
+      spacing: space,
+        runSpacing: 20,
+     children: List.generate(specialOfferItemDatas!.length, (index) => Card(
+       child: SizedBox(
+         width: itemWidth,
+         child: AspectRatio(
+             aspectRatio: aspectRatio!,
+             child: InkWell(
+                 child: Container(
+                   decoration: const BoxDecoration(
+                       boxShadow: [
+                         BoxShadow(
+                             color: Color(0xFF999797),
+                             blurRadius: 10,
+                             spreadRadius: 0.5,
+                             offset: Offset(0, 0))
+                       ],
+                       color: Colors.white,
+                       borderRadius: BorderRadius.all(Radius.circular(5))),
+                   child: Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                       Expanded(
+                         child: Padding(
+                           padding: EdgeInsets.all(width! / 45 > 20 ? 20 : width! / 45),
+                           child: Image.asset(specialOfferItemDatas![index]["item"]
+                               .image!),
+                         ),
+                       ),
+                       Padding(
+                         padding: const EdgeInsets.symmetric(horizontal: 5),
+                         child: Text(
+                           specialOfferItemDatas![index]["item"].title!,
+                           maxLines: 2,
+                           textAlign: TextAlign.center,
+                         ),
+                       ),
+                       const SizedBox(height: 8),
+                       Padding(
+                           padding: const EdgeInsets.only(left: 3),
+                           child: Row(
+                               children: List.generate(
+                                   5,
+                                       (index2) => Icon(Icons.star_rate,
+                                       size: 17,
+                                       color: index2 < specialOfferItemDatas![index]["item"].stars
+                                           ? Colors.orange
+                                           : Colors.grey)))),
+                       const SizedBox(height: 10),
+                       Padding(
+                       //  padding: const EdgeInsets.Se(8.0),
+                         padding: const EdgeInsets.symmetric(horizontal: 5),
+                         child: Row(
+                           mainAxisAlignment:
+                           MainAxisAlignment.spaceBetween,
+                           children: [
+                             Text(
+                               "${specialOfferItemDatas![index]["item"].oldPrice} EGP",
+                               style: const TextStyle(
+                                   decoration:
+                                   TextDecoration.lineThrough),
+                             ),
+                             const Text(
+                               " 25% off",
+                               style: TextStyle(
+                                   color: Color(0xFF32a852),
+                                   fontWeight: FontWeight.bold,
+                                   fontSize: 13),
+                             ),
+                           ],
+                         ),
+                       ),
+                       const SizedBox(height: 4),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                           Expanded(
+                             child: Padding(
+                               padding: const EdgeInsets.only(left: 5),
+                               child: Text(
+                                 "${specialOfferItemDatas![index]["item"].price!} EGP ",
+                                 maxLines: 1,
+                               ),
+                             ),
+                           ),
+                           SizedBox(
+                             height: 25,
+                             child: IconButton(
+                               alignment: Alignment.topRight,
+                               padding: const EdgeInsets.only(right: 3, bottom: 3),
+                               color: Colors.green,
+                               icon: const Icon(Icons.shopping_cart_outlined),
+                               onPressed: () {
+                                 note(context);
+                               },
+                             ),
+                           )
+                         ],
+                       ),
+                     ],
+                   ),
+                 ),
+                 onTap: () {
+                   Get.to(
+                           () => ViewDetails(
+                         width: width!,
+                         aspectRatio:
+                         specialOfferItemDatas![index]
+                         ["aspectRatio"],
+                         height: width! *
+                             specialOfferItemDatas![index]
+                             ["height"],
+                         itemList:
+                         specialOfferItemDatas![index]
+                         ["item-list"],
+                         index: specialOfferItemDatas![index]
+                         ["index"],
+                         numberOfRows: 1,
+                         title: "Customer  Viewed",
+                       ),
+                       preventDuplicates: false);
+                   Get.deleteAll();
+                 })),
+       ),
+     ),)
 
 
-/*
-
-InkWell(
-                      onTap: () {
-                        Get.to(
-                            () => ViewDetails(
-                                  width: width!,
-                                  aspectRatio: specialOfferItemDatas![index]
-                                      ["aspectRatio"],
-                                  height: width! *
-                                      specialOfferItemDatas![index]["height"],
-                                  itemList: specialOfferItemDatas![index]
-                                      ["item-list"],
-                                  index: specialOfferItemDatas![index]["index"],
-                                  numberOfRows: 1,
-                                  title: "Customer  Viewed",
-                                ),
-                            preventDuplicates: false);
-                        Get.deleteAll();
-                      },
-                      child: SizedBox(
-                        width: itemWidth,
-                        height: itemWidth * 1.5,
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                    maxHeight: 18, maxWidth: 40),
-                                child: SizedBox(
-                                  width: width! / 9,
-                                  height: width! / 20,
-                                  child: CustomPaint(
-                                    painter: const DiscountChip(
-                                        DiscountChipColor:
-                                            Color.fromRGBO(222, 53, 59, 0.7)),
-                                    child: Center(
-                                      child: Text(
-                                        specialOfferItemDatas![index]["item"]
-                                            .discount!,
-                                        style: const TextStyle(
-                                            color: Color(0xFFffffff)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                                color: Colors.white,
-                                child: Padding(
-                                  padding: EdgeInsets.all(imagePadding!),
-                                  child: Image.asset(
-                                    specialOfferItemDatas![index]["item"]
-                                        .image!,
-                                  ),
-                                )),
-                            Text(specialOfferItemDatas![index]["item"].title!,
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold)),
-                            Padding(
-                              padding: EdgeInsets.all(width! / 120),
-                              child: Text(
-                                  specialOfferItemDatas![index]["item"].price,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 1),
-                            ),
-                            Text(specialOfferItemDatas![index]["item"].oldPrice,
-                                maxLines: 1,
-                                style: const TextStyle(
-                                    color: Colors.blue, fontSize: 13.5)),
-                          ],
-                        ),
-                      ),
-                    )
-
-                    */
+          );

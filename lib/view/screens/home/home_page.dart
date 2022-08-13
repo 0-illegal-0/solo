@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                                 : 140),
                     child: Column(
                       children: [
-                        Advertisement(
+                        /*   Advertisement(
                           width: inst.width,
                           title: "",
                           mainPadding: inst.mainPadding!,
@@ -86,12 +86,12 @@ class HomePage extends StatelessWidget {
                           width: inst.width!,
                           i: 0,
                         ),
-                        SizedBox(height: inst.verticalSpace),
+                        SizedBox(height: inst.verticalSpace),*/
                         SpecialOffer(
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             specialOfferItemDatas: specialOfferItemDatas),
-                        SizedBox(height: inst.verticalSpace),
+                        /*  SizedBox(height: inst.verticalSpace),
                         WeeklyGift(title: "Weekly Gift", width: inst.width!),
                         SizedBox(height: inst.verticalSpace),
                         ViewItem(
@@ -190,14 +190,14 @@ class HomePage extends StatelessWidget {
                         Fotter(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
-                            : const SizedBox()
+                            : const SizedBox()*/
                       ],
                     ),
                   ),
                 ),
-                Head(width: inst.width),
+              /*  Head(width: inst.width),
                 const BottomRow(),
-                const Important()
+                const Important()*/
                 // StartPages(height: inst.height!, width: inst.width)
               ],
             )));
