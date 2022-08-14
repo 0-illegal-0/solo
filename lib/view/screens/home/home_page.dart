@@ -91,9 +91,9 @@ class HomePage extends StatelessWidget {
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             specialOfferItemDatas: specialOfferItemDatas),
-                        /*  SizedBox(height: inst.verticalSpace),
+                          SizedBox(height: inst.verticalSpace),
                         WeeklyGift(title: "Weekly Gift", width: inst.width!),
-                        SizedBox(height: inst.verticalSpace),
+                       /* SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 0.9,
                           aspectRatioNoMobile: 0.7,
