@@ -1,6 +1,51 @@
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 addToCart({BuildContext? context, double? width,String? image, String? price, String? title, int? stars}){
+  dynamic getValue;
+  shared() async {
+
+    // if u don't use this there will be error
+ //  SharedPreferences.setMockInitialValues({});
+    SharedPreferences shred = await SharedPreferences.getInstance();
+    //shred.setString("", "Soliman");
+    for( var d = 0 ; d < 99; d++ ) {
+      print("...........");
+      if(shred.getString("$d") == null){
+        //getValue = shred.getString("4d");
+        //print(getValue);
+        shred.setString("$d", "SOLIMAN");
+        print("$d");
+        break;
+      }
+  print("shared");
+    }
+
+    // shred.setDouble(string,double);
+    // shred.setInt(string, int);
+    // shred.setBool(String,bool);
+    // shred.setStringList(String,List<string>);
+  }
+  get() async {
+    // if u don't use this there will be error
+    // SharedPreferences.setMockInitialValues({});
+    SharedPreferences shred = await SharedPreferences.getInstance();
+    for( var i = 0 ; i < 99; i++ ) {
+      if(shred.getString("$i") != null){
+        getValue = shred.getString("$i");
+        print("... $i ...");
+        print("Content:- $getValue");
+      }else{
+        break;
+      }
+    }
+
+
+  }
   showDialog(
     barrierColor: Colors.white70,
     barrierDismissible:
@@ -13,7 +58,8 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
       contentTextStyle:
       const TextStyle(color: Colors.blue, fontSize: 35),
       actions: [
-        MaterialButton(onPressed: (){}, child: const Text('ok')),
+        MaterialButton(onPressed: shared, child: const Text('set')),
+        MaterialButton(onPressed: get, child: const Text('get')),
         MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -23,6 +69,10 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
     ),
   );
 }
+
+
+
+
 
 class Item extends StatelessWidget {
   const Item({Key? key, this.image, this.title, this.price, this.stars, this.width}) : super(key: key);

@@ -92,7 +92,7 @@ class HomePage extends StatelessWidget {
                             mainPadding: inst.mainPadding!,
                             specialOfferItemDatas: specialOfferItemDatas),
                           SizedBox(height: inst.verticalSpace),
-                        WeeklyGift(title: "Weekly Gift", width: inst.width!),
+                       // WeeklyGift(title: "Weekly Gift", width: inst.width!),
                        /* SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 0.9,
