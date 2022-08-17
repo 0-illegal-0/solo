@@ -11,11 +11,20 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
   Item itemInstance = Item();
 
 
-  shared()  {
-    itemInstance._localPath;
+  shared() async {
+    SharedPreferences shred = await SharedPreferences.getInstance();
 
+    for (var d = 0; d < 99; d++) {
+      print("...........");
+      if (shred.getString("$d") == null) {
+        //getValue = shred.getString("4d");
+        //print(getValue);
+        shred.setString("$d", "SOLIMAN");
+        print("$d");
+        break;
+      }
+    }
   }
-
   get() async {
     // if u don't use this there will be error
     // SharedPreferences.setMockInitialValues({});
@@ -42,9 +51,14 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
       contentTextStyle:
       const TextStyle(color: Colors.blue, fontSize: 35),
       actions: [
-        MaterialButton(onPressed:         () {
-  Navigator.of(context).pop();
+        MaterialButton(onPressed:  () {
+          shared();
+  //Navigator.of(context).pop();
   }, child: const Text('Add')),
+  MaterialButton(onPressed:  () {
+    get();
+  //Navigator.of(context).pop();
+  }, child: const Text('Get')),
         MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -67,8 +81,33 @@ class Item extends StatelessWidget {
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
-
     return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/counter.txt');
+  }
+
+  Future<File> writeCounter(int counter) async {
+    final file = await _localFile;
+
+    // Write the file
+    return file.writeAsString('$counter');
+  }
+
+  Future<int> readCounter() async {
+    try {
+      final file = await _localFile;
+
+      // Read the file
+      final contents = await file.readAsString();
+
+      return int.parse(contents);
+    } catch (e) {
+      // If encountering an error, return 0
+      return 0;
+    }
   }
 
   @override

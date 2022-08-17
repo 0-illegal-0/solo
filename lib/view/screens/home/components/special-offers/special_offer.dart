@@ -14,6 +14,10 @@ import 'package:solo/view/screens/home/components/special-offers/special_offer_i
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/add_to_cart.dart';
 import 'package:solo/view/widget/note.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
 
 class SpecialOffer extends StatelessWidget {
   SpecialOffer(
@@ -315,3 +319,98 @@ class SpecialOfferNoMobile extends StatelessWidget {
 
     );
   }}
+
+
+class CounterStorage {
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/counter.txt');
+  }
+
+  Future<int> readCounter() async {
+    try {
+      final file = await _localFile;
+
+      // Read the file
+      final contents = await file.readAsString();
+
+      return int.parse(contents);
+    } catch (e) {
+      // If encountering an error, return 0
+      return 5;
+    }
+  }
+
+  Future<File> writeCounter(int counter) async {
+    final file = await _localFile;
+
+    // Write the file
+    return file.writeAsString('$counter');
+  }
+}
+
+class FlutterDemo extends StatefulWidget {
+  const FlutterDemo({required this.storage});
+
+  final CounterStorage storage;
+
+  @override
+  State<FlutterDemo> createState() => _FlutterDemoState();
+}
+
+class _FlutterDemoState extends State<FlutterDemo> {
+  dynamic _counter;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.storage.readCounter().then((value) {
+      setState(() {
+        _counter = value;
+      });
+    });
+  }
+
+  Future<File> _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+
+    // Write the variable as a string to the file.
+    return widget.storage.writeCounter(_counter);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Center(
+        child: Column(
+          children: [
+            Container(
+              width: 500,
+              height: 500,
+              color: Colors.red,
+              child: Text(
+                'Button tapped $_counter time${_counter == 1 ? '' : 's'}.',
+              ),
+            ),
+        MaterialButton(onPressed:  () {
+          _incrementCounter();
+          //Navigator.of(context).pop();
+        },child:Text("Press"))
+          ]
+        ),
+      );
+     /* floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),*/
+
+
+  }
+}
