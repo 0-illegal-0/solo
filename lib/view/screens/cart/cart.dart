@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solo/controllers/view_details_controller.dart';
 import 'package:solo/models/tablet_models.dart';
 import 'package:solo/view/responsive.dart';
@@ -8,13 +9,21 @@ import 'package:solo/view/widget/fotter/fotter.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
+import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
 
 class Cart extends StatelessWidget {
   const Cart({Key? key}) : super(key: key);
   @override
+  showItem()async{
+    SharedPreferences shred = await SharedPreferences.getInstance();
+    dynamic getValue2 = shred.getString("0");
+    print(getValue2);
+  }
   Widget build(BuildContext context) {
+    showItem();
     double width = MediaQuery.of(context).size.width;
-    print("${tablets.length}......");
     return Scaffold(
       bottomNavigationBar: NavigationBar(),
       body: SafeArea(

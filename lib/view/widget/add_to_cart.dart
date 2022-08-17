@@ -1,35 +1,21 @@
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 addToCart({BuildContext? context, double? width,String? image, String? price, String? title, int? stars}){
   dynamic getValue;
-  shared() async {
 
-    // if u don't use this there will be error
- //  SharedPreferences.setMockInitialValues({});
-    SharedPreferences shred = await SharedPreferences.getInstance();
-    //shred.setString("", "Soliman");
-    for( var d = 0 ; d < 99; d++ ) {
-      print("...........");
-      if(shred.getString("$d") == null){
-        //getValue = shred.getString("4d");
-        //print(getValue);
-        shred.setString("$d", "SOLIMAN");
-        print("$d");
-        break;
-      }
-  print("shared");
-    }
+  Item itemInstance = Item();
 
-    // shred.setDouble(string,double);
-    // shred.setInt(string, int);
-    // shred.setBool(String,bool);
-    // shred.setStringList(String,List<string>);
+
+  shared()  {
+    itemInstance._localPath;
+
   }
+
   get() async {
     // if u don't use this there will be error
     // SharedPreferences.setMockInitialValues({});
@@ -43,8 +29,6 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
         break;
       }
     }
-
-
   }
   showDialog(
     barrierColor: Colors.white70,
@@ -58,8 +42,9 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
       contentTextStyle:
       const TextStyle(color: Colors.blue, fontSize: 35),
       actions: [
-        MaterialButton(onPressed: shared, child: const Text('set')),
-        MaterialButton(onPressed: get, child: const Text('get')),
+        MaterialButton(onPressed:         () {
+  Navigator.of(context).pop();
+  }, child: const Text('Add')),
         MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -73,7 +58,6 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
 
 
 
-
 class Item extends StatelessWidget {
   const Item({Key? key, this.image, this.title, this.price, this.stars, this.width}) : super(key: key);
 
@@ -81,6 +65,11 @@ class Item extends StatelessWidget {
   final int? stars;
   final double? width;
 
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,4 +139,5 @@ class Item extends StatelessWidget {
       ),
     );
   }
+
 }
