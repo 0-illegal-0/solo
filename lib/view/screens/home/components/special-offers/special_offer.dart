@@ -1,29 +1,21 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:solo/models/cameras_models.dart';
-import 'package:solo/models/categories_models.dart';
-import 'package:solo/models/laptop_models.dart';
-//import 'package:solo/models/speacial_offer.dart';
-import 'package:solo/models/television_models.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_header.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_item.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/add_to_cart.dart';
-import 'package:solo/view/widget/note.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-import 'dart:async';
-import 'dart:convert';
+
 
 class SpecialOffer extends StatelessWidget {
   SpecialOffer(
-      {Key? key, this.width, this.mainPadding, this.specialOfferItemDatas})
+      {Key? key, this.width, this.mainPadding, this.specialOfferItemDatas, this.controller})
       : super(key: key);
   final double? mainPadding, width;
+  final  controller;
   final List? specialOfferItemDatas;
 
   double get space {
@@ -134,6 +126,7 @@ class SpecialOffer extends StatelessWidget {
                 }))
             : SpecialOfferNoMobile(
                 specialOfferItemDatas: specialOfferItemDatas,
+                controller: controller,
                 imagePadding: 5,
                 aspectRatio: 0.9,
                 width: width)
@@ -148,11 +141,12 @@ class SpecialOfferNoMobile extends StatelessWidget {
     this.width,
     this.imagePadding,
     this.specialOfferItemDatas,
-    this.aspectRatio,
+    this.aspectRatio, this.controller,
   }) : super(key: key);
   final double? width, imagePadding, aspectRatio;
   final List? specialOfferItemDatas;
   double? itemWidth;
+   final  controller;
   int? itemCount;
 
   double get space {
@@ -172,6 +166,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Cart controller = Get.put(Cart());
     getDevice(width);
     getItemWidth();
     return Wrap(
@@ -245,12 +240,16 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                         decoration:
                                         TextDecoration.lineThrough),
                                   ),
-                                  const Text(
-                                    " 25% off",
-                                    style: TextStyle(
-                                        color: Color(0xFF32a852),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                  Expanded(
+                                    child: const Text(
+                                      " 25% off",
+                                      maxLines: 1,
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                          color: Color(0xFF32a852),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -280,10 +279,13 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                     icon: const Icon(
                                         Icons.shopping_cart_outlined),
                                     onPressed: () {
-                                      addToCart(context:context,image: specialOfferItemDatas![index]["item"]
+                                      controller.addToCart(context:context,image: specialOfferItemDatas![index]["item"]
                                           .image!,price: specialOfferItemDatas![index]["item"]
                                           .price!,stars: specialOfferItemDatas![index]["item"]
-                                          .stars,title: specialOfferItemDatas![index]["item"].title!,width: width);
+                                          .stars,title: specialOfferItemDatas![index]["item"].title!,width: width,
+                                        itemIndex: specialOfferItemDatas![index]['index'],
+                                        prductItem: specialOfferItemDatas![index]['product-index']
+                                      );
                                     },
                                   ),
                                 )
@@ -319,98 +321,3 @@ class SpecialOfferNoMobile extends StatelessWidget {
 
     );
   }}
-
-
-class CounterStorage {
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/counter.txt');
-  }
-
-  Future<int> readCounter() async {
-    try {
-      final file = await _localFile;
-
-      // Read the file
-      final contents = await file.readAsString();
-
-      return int.parse(contents);
-    } catch (e) {
-      // If encountering an error, return 0
-      return 5;
-    }
-  }
-
-  Future<File> writeCounter(int counter) async {
-    final file = await _localFile;
-
-    // Write the file
-    return file.writeAsString('$counter');
-  }
-}
-
-class FlutterDemo extends StatefulWidget {
-  const FlutterDemo({required this.storage});
-
-  final CounterStorage storage;
-
-  @override
-  State<FlutterDemo> createState() => _FlutterDemoState();
-}
-
-class _FlutterDemoState extends State<FlutterDemo> {
-  dynamic _counter;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.storage.readCounter().then((value) {
-      setState(() {
-        _counter = value;
-      });
-    });
-  }
-
-  Future<File> _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-
-    // Write the variable as a string to the file.
-    return widget.storage.writeCounter(_counter);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return  Center(
-        child: Column(
-          children: [
-            Container(
-              width: 500,
-              height: 500,
-              color: Colors.red,
-              child: Text(
-                'Button tapped $_counter time${_counter == 1 ? '' : 's'}.',
-              ),
-            ),
-        MaterialButton(onPressed:  () {
-          _incrementCounter();
-          //Navigator.of(context).pop();
-        },child:Text("Press"))
-          ]
-        ),
-      );
-     /* floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),*/
-
-
-  }
-}

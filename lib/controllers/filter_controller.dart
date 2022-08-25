@@ -1,4 +1,3 @@
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,7 +37,6 @@ class FilterController extends GetxController {
   bool priceButtonState = false;
   filter() {
     priceButtonState = true;
-    print("soliman");
     update();
   }
 
@@ -56,7 +54,6 @@ class FilterController extends GetxController {
     } else {
       priceFilterValues["max"] = priceValue!;
     }
-    print("----- $priceFilterValues");
   }
 
   checkStateChange({int? index2, List? listItems, dynamic id}) {

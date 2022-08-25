@@ -42,7 +42,7 @@ class SpecialOfferItem extends StatelessWidget {
 
   sizes(index) {
     widthValue = index < 2
-        ? 2.25
+        ? 2.27
         : index < 3
             ? 1.9
             : 2.8;

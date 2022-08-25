@@ -10,19 +10,20 @@ class HeadIcons extends StatelessWidget {
       this.width,
       this.iconSize,
       this.rowWidth,
-      this.textIconSize})
+      this.textIconSize, this.controller})
       : super(key: key);
+  final controller;
   final double? height, width, iconSize, rowWidth, textIconSize;
-  Widget iconBar(String? title, IconData? icon, {dynamic page}) {
+  Widget iconBar(String? title, IconData? icon, {Widget? page}) {
     return SizedBox(
       height: height,
       width: width,
       child: IconButton(
         padding: const EdgeInsets.all(0),
         tooltip: title,
-        onPressed: () {
-          Get.to(page, preventDuplicates: false);
-          Get.deleteAll();
+        onPressed: () async{
+        await  controller.showItem();
+          Get.to( page);
         },
         icon: Align(
           alignment: Alignment.topRight,
@@ -56,8 +57,8 @@ class HeadIcons extends StatelessWidget {
         children: [
           iconBar("Sign In", Icons.person_outline_outlined,
               page: const Login()),
-          iconBar("Help", Icons.help_outline_outlined, page: const Cart()),
-          iconBar("Cart", Icons.shopping_cart_outlined, page: const Cart()),
+          iconBar("Help", Icons.help_outline_outlined, page:  Cart2()),
+          iconBar("Cart", Icons.shopping_cart_outlined, page:  Cart2(controller: controller,)),
         ],
       ),
     );

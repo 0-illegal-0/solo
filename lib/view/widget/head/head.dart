@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/view/screens/cart/cart.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/login_register/login.dart';
 import 'package:solo/view/widget/head/components/category_header.dart';
@@ -11,9 +12,10 @@ import 'package:solo/view/widget/head/components/search.dart';
 class Head extends StatelessWidget {
   Head({
     Key? key,
-    this.width,
+    this.width, this.controller,
   }) : super(key: key);
   final double? width;
+  final controller;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,9 @@ class Head extends StatelessWidget {
                     : 90,
             width: double.infinity,
             child: width! >= 800
-                ? DesktopHead(width: width!, space: 75)
+                ? DesktopHead(width: width!, space: 75,controller: controller)
                 : width! < 800 && width! >= 650
-                    ? TabletHead(width: width!, space: 55)
+                    ? TabletHead(width: width!, space: 55,controller: controller,)
                     : MobileHead(
                         space: width! / 10.8,
                         width: width!,
@@ -112,9 +114,10 @@ class MobileHead extends StatelessWidget {
 
 class TabletHead extends StatelessWidget {
   const TabletHead(
-      {Key? key, this.width, this.space, this.aspectRatio, this.height})
+      {Key? key, this.width, this.space, this.aspectRatio, this.height, this.controller})
       : super(key: key);
   final double? width, space, aspectRatio, height;
+  final controller;
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +187,7 @@ class TabletHead extends StatelessWidget {
                       iconSize: 22,
                       rowWidth: 170,
                       textIconSize: 13)
-                  .iconBar("Cart", Icons.shopping_cart_outlined)
+                  .iconBar("Cart", Icons.shopping_cart_outlined, page: Cart2(controller: controller,))
             ],
           ),
         ),
@@ -203,8 +206,9 @@ class TabletHead extends StatelessWidget {
 }
 
 class DesktopHead extends StatelessWidget {
-  const DesktopHead({Key? key, this.width, this.space}) : super(key: key);
+  const DesktopHead({Key? key, this.width, this.space, this.controller}) : super(key: key);
   final double? width, space;
+  final controller;
 
   double get gap {
     return width! / 36;
@@ -230,6 +234,7 @@ class DesktopHead extends StatelessWidget {
                   height: 50,
                   width: 52,
                   iconSize: 25,
+                  controller:controller,
                   rowWidth: width! < 1100 ? 180 : 200,
                   textIconSize: 15)
             ],

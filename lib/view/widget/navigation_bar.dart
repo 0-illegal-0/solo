@@ -133,7 +133,7 @@ List<Map<String, dynamic>> bottomNavDetails = [
   {
     "title": "Cart",
     "icon": const Icon(Icons.shopping_cart_outlined),
-    "page": const Cart()
+    "page":  Cart2()
   },
   {
     "title": "More",

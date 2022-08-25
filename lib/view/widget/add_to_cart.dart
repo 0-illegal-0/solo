@@ -1,44 +1,46 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'dart:async';
-import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:solo/controllers/cart.dart';
+import 'package:get/get.dart';
 
-addToCart({BuildContext? context, double? width,String? image, String? price, String? title, int? stars}){
+/*
+addToCart({BuildContext? context, double? width,String? image, String? price, String? title, int? stars,int? prductItem, int?itemIndex}){
   dynamic getValue;
 
   Item itemInstance = Item();
-
-
+  Cart controller = Get.put(Cart());
   shared() async {
-    SharedPreferences shred = await SharedPreferences.getInstance();
-
-    for (var d = 0; d < 99; d++) {
-      print("...........");
-      if (shred.getString("$d") == null) {
-        //getValue = shred.getString("4d");
-        //print(getValue);
-        shred.setString("$d", "SOLIMAN");
-        print("$d");
+   SharedPreferences share = await SharedPreferences.getInstance();
+    for (var d = 0; d < 999; d++) {
+      if (controller.share!.getStringList("$d") == null) {
+        print("......$d.....");
+        controller.share!.setStringList("$d", ["$prductItem", "$itemIndex"]);
         break;
       }
+      print(".in loop.....$d.....");
     }
   }
-  get() async {
-    // if u don't use this there will be error
-    // SharedPreferences.setMockInitialValues({});
-    SharedPreferences shred = await SharedPreferences.getInstance();
-    for( var i = 0 ; i < 99; i++ ) {
-      if(shred.getString("$i") != null){
-        getValue = shred.getString("$i");
-        print("... $i ...");
-        print("Content:- $getValue");
+
+  clear() async {
+    SharedPreferences share = await SharedPreferences.getInstance();
+    print("=====  ======");
+    share.clear();   // this will remove 4d key
+  }
+
+List items = [];
+  showItem() async {
+   // SharedPreferences share = await SharedPreferences.getInstance();
+    for( var i = 0 ; i < 999; i++ ) {
+      if(controller.share!.getStringList("$i") != null){
+        items.add(controller.share!.getStringList("$i"));
+
       }else{
         break;
       }
     }
+    print("this is items ${items}");
   }
+
   showDialog(
     barrierColor: Colors.white70,
     barrierDismissible:
@@ -49,27 +51,86 @@ addToCart({BuildContext? context, double? width,String? image, String? price, St
       content:  Item(width: width,image: image!,price: price!, stars: stars!, title: title!),
       titleTextStyle: const TextStyle(color: Colors.green),
       contentTextStyle:
-      const TextStyle(color: Colors.blue, fontSize: 35),
+      const TextStyle(color: Colors.black, fontSize: 35),
       actions: [
-        MaterialButton(onPressed:  () {
-          shared();
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 150,
+              height: 100,
+              child: GetBuilder<Cart>(
+                builder: (context) {
+                  return Column(
+                    children: [
+                      SizedBox(height: 23),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            isDense: false,
+                            hintText:controller.count.toString(),
+                            filled: false,
+                            fillColor: Colors.black,
+                            enabled: true,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                            ),
+                          ),
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  );
+                }
+              ),
+            ),
+            SizedBox(height: 10),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                IconButton(onPressed: (){controller.onClick(1);}, icon: Icon(
+                  Icons.expand_less_outlined,
+                )),            IconButton(onPressed:(){controller.onClick(2);}, icon: Icon(
+                  Icons.keyboard_arrow_down_outlined,
+                ),)
+              ],
+            ),
+
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MaterialButton(onPressed:  () async{
+             await shared();
   //Navigator.of(context).pop();
   }, child: const Text('Add')),
-  MaterialButton(onPressed:  () {
-    get();
-  //Navigator.of(context).pop();
-  }, child: const Text('Get')),
-        MaterialButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Cancel')),
+  MaterialButton(
+  onPressed: () async{
+   await showItem();
+    print("+++++++ $items +++++++");
+ // Navigator.of(context).pop();
+  },
+  child: const Text('Cancel')),
+            MaterialButton(
+                onPressed: () async{
+                  await clear();
+                  print("+++++++ $items +++++++");
+                  // Navigator.of(context).pop();
+                },
+                child: const Text('Clear'))
+          ],
+        ),
+
       ],
     ),
   );
 }
 
-
+*/
 
 
 class Item extends StatelessWidget {
@@ -79,50 +140,17 @@ class Item extends StatelessWidget {
   final int? stars;
   final double? width;
 
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/counter.txt');
-  }
-
-  Future<File> writeCounter(int counter) async {
-    final file = await _localFile;
-
-    // Write the file
-    return file.writeAsString('$counter');
-  }
-
-  Future<int> readCounter() async {
-    try {
-      final file = await _localFile;
-
-      // Read the file
-      final contents = await file.readAsString();
-
-      return int.parse(contents);
-    } catch (e) {
-      // If encountering an error, return 0
-      return 0;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width! / 3,
       height: width! / 5,
       decoration: const BoxDecoration(
-
           color: Color(0xFFd4d3d2),
           borderRadius: BorderRadius.all(
               Radius.circular(5))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
         children: [
           Expanded(
             child: Padding(
@@ -178,5 +206,5 @@ class Item extends StatelessWidget {
       ),
     );
   }
-
 }
+

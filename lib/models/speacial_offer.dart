@@ -1,6 +1,5 @@
 import 'package:solo/models/categories_models.dart';
 import 'add_main_data.dart';
-
 addDataToSpecialOffer() {
   int productIndex =0;
   for (var item in solo!.product) {

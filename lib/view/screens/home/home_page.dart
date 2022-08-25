@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:solo/controllers/add_data.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/models/cameras_models.dart';
 import 'package:solo/models/categories_models.dart';
@@ -42,6 +44,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AllData inst = AllData(context: context);
+    Cart controller = Get.put(Cart());
     print(inst.width);
     print("${solo.product[1].brands[0]["hello"]}-+++++++");
     return Scaffold(
@@ -90,6 +93,7 @@ class HomePage extends StatelessWidget {
                         SpecialOffer(
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
+                            controller: controller,
                             specialOfferItemDatas: specialOfferItemDatas),
                           SizedBox(height: inst.verticalSpace),
                        // WeeklyGift(title: "Weekly Gift", width: inst.width!),
@@ -195,9 +199,9 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-              /*  Head(width: inst.width),
+                Head(width: inst.width,controller: controller),
                 const BottomRow(),
-                const Important()*/
+              /*  const Important()*/
                 // StartPages(height: inst.height!, width: inst.width)
               ],
             )));
