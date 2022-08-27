@@ -173,24 +173,23 @@ class Cart2 extends StatelessWidget {
                                              height: 25,
                                              child: Builder(
                                                  builder: (context) {
+                                                 //  print("This is I in delete button ${controller.itemId[index]}");
                                                    return IconButton(
                                                      alignment: Alignment.topRight,
                                                      padding: const EdgeInsets.only(
                                                          right: 3, bottom: 3),
-                                                     color: Colors.orange,
+                                                     color: Colors.black,
                                                      icon: const Icon(
-                                                         Icons.shopping_cart_outlined),
+                                                       Icons.delete_outlined
+                                                     ),
                                                      onPressed: () {
-                                                       controller.deletePref(id:index);
-                                                       print("This is index $index");
+                                                       print("This is I in delete button ${controller.itemId[index]}");
+                                                       controller.deletePref(id:controller.itemId[index]);
                                                      },
                                                    );
                                                  }
                                              ),
                                            )
-                                         /*  Row(children: [
-
-                                           ])*/
                                          ],
                                        ),
                                      ),

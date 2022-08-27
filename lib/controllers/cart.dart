@@ -22,7 +22,7 @@ onClick(int? id){
 
   List items = [];
 int itemsCount = 0;
-int? deletedItemsCount = 0;
+List<int> itemId = [];
 
   showItem() async {
     items = [];
@@ -32,11 +32,13 @@ int? deletedItemsCount = 0;
      print(itemsCount);
    }else{
      itemsCount = share.getInt("itemCount")!.toInt();
-     print(itemsCount);
+     print("This itemCount:- $itemsCount");
    }
     for( var i = 0 ; items.length < itemsCount; i++ ) {
       if(share.getStringList("$i") != null) {
+        print("This is I $i");
         items.add(share.getStringList("$i"));
+        itemId.add(i);
       }
     }
     update();
@@ -44,8 +46,11 @@ int? deletedItemsCount = 0;
 
   deletePref({int? id}) async {
     SharedPreferences share = await SharedPreferences.getInstance();
-    share.setInt("itemCount", itemsCount - 1);
-    share.remove("$id");
+    itemsCount = itemsCount - 1;
+    await share.setInt("itemCount", itemsCount);
+    await  share.remove("$id");
+    print("This itemCount:-  ${share.getInt("itemCount")!.toInt()}");
+    showItem();
     update();
   }
 
@@ -55,7 +60,6 @@ shared({int? prductItem, int?itemIndex}) async {
   print("In share $share");
   for (var d = 0; d < 999; d++) {
     if (share.getStringList("$d") == null) {
-
       share.setStringList("$d", ["$prductItem", "$itemIndex"]);
       share.setInt("itemCount", d + 1);
       print("...This is item Count...${share.getInt("itemCount")!.toInt()}.....");
