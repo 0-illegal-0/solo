@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solo/view/screens/view-details/cient_review.dart';
+import 'package:solo/view/screens/view-details/client_review.dart';
 import 'package:solo/view/screens/view-details/user_review.dart';
 
 class ViewAllRieviw extends StatelessWidget {

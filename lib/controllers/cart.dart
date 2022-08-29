@@ -20,7 +20,7 @@ onClick(int? id){
   update();
 }
 
-  List items = [];
+List items = [];
 int itemsCount = 0;
 List<int> itemId = [];
 
@@ -29,14 +29,11 @@ List<int> itemId = [];
     SharedPreferences share = await SharedPreferences.getInstance();
    if(share.getInt("itemCount") == null){
      itemsCount = 0;
-     print(itemsCount);
    }else{
      itemsCount = share.getInt("itemCount")!.toInt();
-     print("This itemCount:- $itemsCount");
    }
     for( var i = 0 ; items.length < itemsCount; i++ ) {
       if(share.getStringList("$i") != null) {
-        print("This is I $i");
         items.add(share.getStringList("$i"));
         itemId.add(i);
       }
@@ -49,37 +46,23 @@ List<int> itemId = [];
     itemsCount = itemsCount - 1;
     await share.setInt("itemCount", itemsCount);
     await  share.remove("$id");
-    print("This itemCount:-  ${share.getInt("itemCount")!.toInt()}");
     showItem();
     update();
   }
 
-shared({int? prductItem, int?itemIndex}) async {
+shared({int? productItem, int?itemIndex}) async {
   SharedPreferences share = await SharedPreferences.getInstance();
 
-  print("In share $share");
   for (var d = 0; d < 999; d++) {
     if (share.getStringList("$d") == null) {
-      share.setStringList("$d", ["$prductItem", "$itemIndex"]);
+      share.setStringList("$d", ["$productItem", "$itemIndex"]);
       share.setInt("itemCount", d + 1);
-      print("...This is item Count...${share.getInt("itemCount")!.toInt()}.....");
-      print(".in loop.....$d.....");
       break;
     }
   }
 }
 
-  addToCart({BuildContext? context, double? width,String? image, String? price, String? title, int? stars,int? prductItem, int?itemIndex}){
-    dynamic getValue;
-
-    Item itemInstance = Item();
-
-
-    clear() async {
-      SharedPreferences share = await SharedPreferences.getInstance();
-      print("=====  ======");
-      share.clear();   // this will remove 4d key
-    }
+  addToCart({BuildContext? context, double? width,String? image, String? price, String? title, int? stars,int? productItem, int?itemIndex}){
 
     showDialog(
       barrierColor: Colors.white70,
@@ -104,7 +87,7 @@ shared({int? prductItem, int?itemIndex}) async {
                     builder: (context) {
                       return Column(
                         children: [
-                          SizedBox(height: 23),
+                          const SizedBox(height: 23),
                           TextFormField(
                             decoration: InputDecoration(
                               isDense: false,
@@ -112,11 +95,11 @@ shared({int? prductItem, int?itemIndex}) async {
                               filled: false,
                               fillColor: Colors.black,
                               enabled: true,
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
                                 borderSide: BorderSide(color: Colors.black),
                               ),
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
                               ),
                             ),
@@ -127,13 +110,13 @@ shared({int? prductItem, int?itemIndex}) async {
                     }
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(onPressed: (){onClick(1);}, icon: Icon(
+                  IconButton(onPressed: (){onClick(1);}, icon: const Icon(
                     Icons.expand_less_outlined,
-                  )),            IconButton(onPressed:(){onClick(2);}, icon: Icon(
+                  )),            IconButton(onPressed:(){onClick(2);}, icon: const Icon(
                     Icons.keyboard_arrow_down_outlined,
                   ),)
                 ],
@@ -145,37 +128,19 @@ shared({int? prductItem, int?itemIndex}) async {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MaterialButton(onPressed:  () async{
-                await shared(prductItem: prductItem,itemIndex: itemIndex);
-               // await showItem();
-                //Navigator.of(context).pop();
+                await shared(productItem: productItem,itemIndex: itemIndex);
               }, child: const Text('Add')),
               MaterialButton(
-                  onPressed: () async{
-                   // await showItem();
-
-                    print("+++++++ $items +++++++");
-                    // Navigator.of(context).pop();
+                  onPressed: () {
+                    Navigator.of(context).pop();
                   },
                   child: const Text('Cancel')),
-              MaterialButton(
-                  onPressed: () {
-                     clear();
-                    print("+++++++ $items +++++++");
-                    // Navigator.of(context).pop();
-                  },
-                  child: const Text('Clear'))
+
             ],
           ),
-
         ],
       ),
     );
-  }
-
-@override
-  void onInit() {
-   //showItem();
-    super.onInit();
   }
 
 }

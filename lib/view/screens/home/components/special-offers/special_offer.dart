@@ -1,3 +1,4 @@
+//ignore: must_be_immutable
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,15 +8,14 @@ import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_header.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer_item.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
-import 'package:solo/view/widget/add_to_cart.dart';
 
 
 class SpecialOffer extends StatelessWidget {
-  SpecialOffer(
+  const SpecialOffer(
       {Key? key, this.width, this.mainPadding, this.specialOfferItemDatas, this.controller})
       : super(key: key);
   final double? mainPadding, width;
-  final  controller;
+  final Cart? controller;
   final List? specialOfferItemDatas;
 
   double get space {
@@ -63,6 +63,7 @@ class SpecialOffer extends StatelessWidget {
                   return index < 3
                       ? SpecialOfferItem(
                           loopIndex: index,
+                          controller:controller ,
                           index: specialOfferItemDatas![index]["index"],
                           aspectRatio: specialOfferItemDatas![index]
                               ["aspectRatio"],
@@ -146,7 +147,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
   final double? width, imagePadding, aspectRatio;
   final List? specialOfferItemDatas;
   double? itemWidth;
-   final  controller;
+   final Cart? controller;
   int? itemCount;
 
   double get space {
@@ -240,8 +241,8 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                         decoration:
                                         TextDecoration.lineThrough),
                                   ),
-                                  Expanded(
-                                    child: const Text(
+                                  const Expanded(
+                                    child: Text(
                                       " 25% off",
                                       maxLines: 1,
                                       textAlign: TextAlign.right,
@@ -279,12 +280,12 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                     icon: const Icon(
                                         Icons.shopping_cart_outlined),
                                     onPressed: () {
-                                      controller.addToCart(context:context,image: specialOfferItemDatas![index]["item"]
+                                      controller!.addToCart(context:context,image: specialOfferItemDatas![index]["item"]
                                           .image!,price: specialOfferItemDatas![index]["item"]
                                           .price!,stars: specialOfferItemDatas![index]["item"]
                                           .stars,title: specialOfferItemDatas![index]["item"].title!,width: width,
                                         itemIndex: specialOfferItemDatas![index]['index'],
-                                        prductItem: specialOfferItemDatas![index]['product-index']
+                                        productItem: specialOfferItemDatas![index]['product-index']
                                       );
                                     },
                                   ),
@@ -295,6 +296,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
+                        print("Before $controller");
                         Get.to(
                                 () =>
                                 ViewDetails(
@@ -312,9 +314,10 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                   ["index"],
                                   numberOfRows: 1,
                                   title: "Customer  Viewed",
+                                  controller: controller,
                                 ),
-                            preventDuplicates: false);
-                        Get.deleteAll();
+                           /* preventDuplicates: false*/);
+                      //  Get.deleteAll();
                       })),
             ),)
 

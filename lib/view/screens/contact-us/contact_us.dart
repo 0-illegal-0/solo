@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solo/view/widget/fotter/fotter.dart';
+import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 
@@ -30,7 +30,7 @@ class ContactUs extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [Fotter(width: width)],
+                    children: [Close(width: width)],
                   ),
                 )),
             Head(width: width),

@@ -13,7 +13,7 @@ class FilterProperty extends StatelessWidget {
   final String? title;
   final dynamic controller;
   final int? id;
-  final width;
+  final double? width;
   int bar = 5;
   static const List itemsColor = [
     {"color-name": "Black", "color": Colors.black},

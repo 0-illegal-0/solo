@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/controllers/navigation-state.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/cart/cart.dart';
@@ -133,7 +134,7 @@ List<Map<String, dynamic>> bottomNavDetails = [
   {
     "title": "Cart",
     "icon": const Icon(Icons.shopping_cart_outlined),
-    "page":  Cart2()
+    "page":  CartBudget(controller: Cart())
   },
   {
     "title": "More",
@@ -223,8 +224,8 @@ class ImportantButton extends StatelessWidget {
 }
 
 class BottomRow extends StatelessWidget {
-  const BottomRow({Key? key}) : super(key: key);
-
+  const BottomRow({Key? key, this.controller}) : super(key: key);
+  final Cart? controller;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -255,10 +256,17 @@ class BottomRow extends StatelessWidget {
                                           fontWeight: FontWeight.bold))
                             ],
                           ),
-                          onTap: () {
+                          onTap: () async{
                             if (bottomNavDetails[index]["title"] == "More") {
                               bottomSheet(context, width);
-                            } else if (bottomNavDetails[index]["title"] ==
+                            } else if(bottomNavDetails[index]["title"] ==
+                                "Cart"){
+                             // print("ON  $controller");
+                              Cart controller = Get.put(Cart());
+                              await controller.showItem();
+                              Get.to(CartBudget(controller: controller));
+                            }
+                            else if (bottomNavDetails[index]["title"] ==
                                 "Categories") {
                               note(context);
                             } else {

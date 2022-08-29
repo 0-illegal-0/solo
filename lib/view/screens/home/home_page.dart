@@ -19,21 +19,17 @@ import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/gift/gift.dart';
 import 'package:solo/view/screens/home/components/laptops.dart/laptop.dart';
 import 'package:solo/view/screens/home/components/latest_item/latest_items.dart';
-import 'package:solo/view/screens/home/components/mobiles/mobile.dart';
 import 'package:solo/view/screens/home/components/recommended/recommended.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer.dart';
-import 'package:solo/view/screens/home/components/tablet/tablet.dart';
-import 'package:solo/view/screens/home/components/televisions/televisions.dart';
 import 'package:solo/view/screens/home/components/top-sale/top_sale.dart';
 import 'package:solo/view/screens/home/components/weeklyGift/weekly_gift.dart';
-import 'package:solo/view/widget/fotter/fotter.dart';
+import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/important.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/start_page.dart';
 import 'package:solo/view/widget/view_item.dart';
 import 'components/advertisement/advertisement.dart';
-import 'components/camera/camera.dart';
 import 'components/hot_deals/hot_deals.dart';
 import 'components/most liked items/most_liked_items.dart';
 import 'components/top-brands/top_brands.dart';
@@ -46,9 +42,8 @@ class HomePage extends StatelessWidget {
     AllData inst = AllData(context: context);
     Cart controller = Get.put(Cart());
     print(inst.width);
-    print("${solo.product[1].brands[0]["hello"]}-+++++++");
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFe1e1e3),
         body: SafeArea(
             bottom: false,
             child: Stack(
@@ -77,8 +72,8 @@ class HomePage extends StatelessWidget {
                           title: "Hot Deals",
                           listhotDealsItemsList: listhotDealsItemsList,
                         ),
-                        SizedBox(height: inst.verticalSpace),
-                        ViewItem(
+                        SizedBox(height: inst.verticalSpace),*/
+                       /* ViewItem(
                           aspectRatioMobile: 0.9,
                           height: inst.width! * 0.60,
                           itemList: solo.product[1].products,
@@ -180,8 +175,8 @@ class HomePage extends StatelessWidget {
                           i: 4,
                           numberOfRows: 2,
                         ),
-                        SizedBox(height: inst.verticalSpace),
-                        TopSale(
+                        SizedBox(height: inst.verticalSpace),*/
+                      /*  TopSale(
                           title: "Top Sale",
                           width: inst.width!,
                           itemCountForTablet: 2,
@@ -191,7 +186,7 @@ class HomePage extends StatelessWidget {
                           topSale: topSale,
                         ),
                         SizedBox(height: inst.verticalSpace),
-                        Fotter(width: inst.width!),
+                        Close(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
                             : const SizedBox()*/
@@ -200,7 +195,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 Head(width: inst.width,controller: controller),
-                const BottomRow(),
+                 BottomRow(controller: controller),
               /*  const Important()*/
                 // StartPages(height: inst.height!, width: inst.width)
               ],

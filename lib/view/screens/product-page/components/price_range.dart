@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:solo/view/widget/note.dart';
 
 class PriceRange extends StatelessWidget {
   PriceRange({Key? key, this.controller, this.width}) : super(key: key);
@@ -14,9 +13,6 @@ class PriceRange extends StatelessWidget {
             padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
         onPressed: () {
           priceFun(); //();
-
-          // controller.onFilter();
-          //priceFun;
           controller.filterResult(
               filterTitle: "Price",
               filterValue: controller.priceFilterValues,
@@ -38,8 +34,8 @@ class PriceRange extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            RangeField(controller: controller, feildId: 1, labelText: " 0"),
-            RangeField(controller: controller, feildId: 2, labelText: " 0")
+            RangeField(controller: controller, fieldId: 1, labelText: " 0"),
+            RangeField(controller: controller, fieldId: 2, labelText: " 0")
           ],
         ),
         const SizedBox(height: 7),
@@ -60,11 +56,11 @@ class PriceRange extends StatelessWidget {
 }
 
 class RangeField extends StatelessWidget {
-  const RangeField({Key? key, this.controller, this.labelText, this.feildId})
+  const RangeField({Key? key, this.controller, this.labelText, this.fieldId})
       : super(key: key);
   final dynamic controller;
   final String? labelText;
-  final int? feildId;
+  final int? fieldId;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -74,7 +70,6 @@ class RangeField extends StatelessWidget {
         maxLines: 1,
         onEditingComplete: () {
           controller.filter();
-          print("onEditingComplete");
           controller.filterResult(
               filterTitle: "Price",
               filterValue: controller.priceFilterValues,
@@ -100,7 +95,7 @@ class RangeField extends StatelessWidget {
         ),
         onChanged: (value) {
           controller.addValues(
-              id: feildId, priceValue: double.parse(value).ceil());
+              id: fieldId, priceValue: double.parse(value).ceil());
         },
       ),
     );

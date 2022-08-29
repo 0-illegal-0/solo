@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solo/view/widget/fotter/fotter.dart';
+import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 
 class Login extends StatelessWidget {

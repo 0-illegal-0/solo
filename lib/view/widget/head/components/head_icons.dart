@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/view/screens/cart/cart.dart';
 import 'package:solo/view/screens/login_register/login.dart';
 
@@ -12,9 +13,9 @@ class HeadIcons extends StatelessWidget {
       this.rowWidth,
       this.textIconSize, this.controller})
       : super(key: key);
-  final controller;
+  final Cart? controller;
   final double? height, width, iconSize, rowWidth, textIconSize;
-  Widget iconBar(String? title, IconData? icon, {Widget? page}) {
+  Widget iconBar(String? title, IconData? icon, {Widget? page, dynamic controllers}) {
     return SizedBox(
       height: height,
       width: width,
@@ -22,7 +23,12 @@ class HeadIcons extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         tooltip: title,
         onPressed: () async{
-        await  controller.showItem();
+          print(controllers);
+          if(controllers == null){
+            await  controller!.showItem();
+          }else{
+            await controllers!.showItem();
+          }
           Get.to( page);
         },
         icon: Align(
@@ -57,8 +63,8 @@ class HeadIcons extends StatelessWidget {
         children: [
           iconBar("Sign In", Icons.person_outline_outlined,
               page: const Login()),
-          iconBar("Help", Icons.help_outline_outlined, page:  Cart2()),
-          iconBar("Cart", Icons.shopping_cart_outlined, page:  Cart2(controller: controller,)),
+          iconBar("Help", Icons.help_outline_outlined, page:  CartBudget()),
+          iconBar("Cart", Icons.shopping_cart_outlined, page:  CartBudget(controller: controller)),
         ],
       ),
     );

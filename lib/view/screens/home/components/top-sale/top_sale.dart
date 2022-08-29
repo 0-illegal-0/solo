@@ -159,7 +159,7 @@ class TopSale extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Expanded(
+                            const Expanded(
                                 flex: 2,
                                 child: Center(
                                   child: Text(

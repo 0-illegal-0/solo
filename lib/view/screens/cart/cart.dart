@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:solo/controllers/add_data.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/models/speacial_offer.dart';
 import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
-import 'package:solo/view/widget/fotter/fotter.dart';
+import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 
-class Cart2 extends StatelessWidget {
-   Cart2({Key? key,this.share, this.controller}) : super(key: key);
-  @override
+import '../../style.dart';
+
+class CartBudget extends StatelessWidget {
+  CartBudget({Key? key, this.controller}) : super(key: key);
   double? itemWidth, space;
   int? itemCount;
   double? width;
-  final controller;
-   final SharedPreferences? share;
+  final dynamic controller;
 
     sizesData (width){
       space = width! / 30;
@@ -32,21 +31,17 @@ class Cart2 extends StatelessWidget {
       }
   }
 
-
   widthValue(context){
      width = MediaQuery.of(context).size.width;
   }
+
   execute(context){
      widthValue(context);
      sizesData(width);
   }
+  @override
   Widget build(BuildContext context) {
     execute(context);
-   // Cart controller = Get.put(Cart());
-    AllData inst = AllData(context: context);
-   // controller.showItem();
-
-   // print
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -60,7 +55,7 @@ class Cart2 extends StatelessWidget {
                   children:[
                     controller.items.length> 0?  GetBuilder<Cart>(
                    builder: (context) {
-                     return  Padding(
+                     return width! >650?  Padding(
                        padding: const EdgeInsets.only(top:120),
                        child: Wrap(spacing: space!,runSpacing: 20,
                            children: List.generate(controller.items.length, (index)
@@ -100,7 +95,7 @@ class Cart2 extends StatelessWidget {
                                              padding: const EdgeInsets.symmetric(
                                                  horizontal: 5),
                                              child: Text(
-                                               specialOfferItemDatas[index]["item"]
+                                               solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
                                                    .title!,
                                                maxLines: 2,
                                                textAlign: TextAlign.center,
@@ -117,7 +112,7 @@ class Cart2 extends StatelessWidget {
                                                            Icon(Icons.star_rate,
                                                                size: 17,
                                                                color: index2 <
-                                                                   specialOfferItemDatas[index]["item"]
+                                                                   solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
                                                                        .stars
                                                                    ? Colors.orange
                                                                    : Colors.grey)))),
@@ -131,7 +126,7 @@ class Cart2 extends StatelessWidget {
                                                    padding: const EdgeInsets.only(
                                                        left: 5),
                                                    child: Text(
-                                                     "${specialOfferItemDatas[index]["item"]
+                                                     "${solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
                                                          .price!} EGP ",
                                                      maxLines: 1,
                                                    ),
@@ -183,7 +178,6 @@ class Cart2 extends StatelessWidget {
                                                        Icons.delete_outlined
                                                      ),
                                                      onPressed: () {
-                                                       print("This is I in delete button ${controller.itemId[index]}");
                                                        controller.deletePref(id:controller.itemId[index]);
                                                      },
                                                    );
@@ -216,7 +210,7 @@ class Cart2 extends StatelessWidget {
                                        Get.deleteAll();
                                      })),
                            );},)),
-                     );
+                     ):CartWidgetForMobile(width: width,title: "",controller: controller);
                    }
                  ):
                     Container(
@@ -260,7 +254,7 @@ class Cart2 extends StatelessWidget {
                             height: width * 0.60,
                             itemList: tablets,
                             mainPadding: width / 24,
-                            title: "Mobiles",
+                            title: "Best Selling Products",
                             numberOfRows: 1,
                             aspectRatioNoMobile: 0.8,
                             width: width,
@@ -275,15 +269,173 @@ class Cart2 extends StatelessWidget {
                             width: width,
                           ),*/
                     const SizedBox(height: 50),
-                    Fotter(width: width)
+                    Close(width: width)
                   ],
                 ),
               ),
-            ),const BottomRow(),
-            Head(width: width),
+            ), BottomRow(controller: controller),
+            Head(width: width,controller: controller),
           ],
         ),
       ),
     );
   }
 }
+
+
+class CartWidgetForMobile extends StatelessWidget {
+  const CartWidgetForMobile({Key? key, this.width, this.title, this.controller}) : super(key: key);
+
+  final double? width;
+  final String? title;
+  final dynamic controller;
+
+  @override
+  Widget build(BuildContext context) {
+    double? designHeight, designWidth;
+    designHeight = width! / 2.57 > 160 ? 160 : width! / 2.57;
+    designWidth = width;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 5),
+          child: Text(title!, style: titleStyle),
+        ),
+        Wrap(
+            alignment:WrapAlignment.center,
+            crossAxisAlignment:WrapCrossAlignment.center,
+            runSpacing: 15,
+            children: List.generate(
+              controller.items.length!,
+                  (index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Container(
+                decoration:
+                 BoxDecoration(color: Color(0xFFffffff), boxShadow: [
+                    BoxShadow(
+                        color: Color(0xFF999797),
+                        blurRadius: 7,
+                        spreadRadius: 0.5,
+                        offset: Offset(0, 0.5))
+                ],/*border: Border.all(color: Colors.black, width: 1.0)*/),
+
+                width: designWidth,
+                height: designHeight,
+                child: InkWell(
+                    onTap: () {
+                    /*  Get.to(
+                              () => ViewDetails(
+                            width: width!,
+                            aspectRatio: item![index]["aspectRatio"],
+                            height: item![index]["height"],
+                            itemList: item![index]["item-list"],
+                            index: item![index]["index"],
+                            numberOfRows: 1,
+                            title: "Customer  Viewed",
+                          ),
+                          preventDuplicates: false);
+                      Get.deleteAll();*/
+                    },
+                 child: Row(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 5, left: 5, top: 5),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Image.asset(
+                                            solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
+                                                .image!,
+                                            height: designHeight! * 0.50,
+                                          ),
+                                          Text(
+                                            solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].title,
+                                            softWrap: false,
+                                            maxLines: 2,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                          ),
+                                          const Divider(
+                                            height: 0,
+                                            color: Colors.grey,
+                                            indent: 00,
+                                            endIndent: 0,
+                                            thickness: 1,
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                                Expanded(
+                                  flex: 1,
+                                  child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: List.generate(
+                                          5,
+                                              (index) => Icon(Icons.star_rate,
+                                              size: 17.0,
+                                              color: index > 2
+                                                  ? Colors.grey
+                                                  : Colors.green))),
+                                ),
+                              ],
+                            )),
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  flex: 5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 5, right: 5, left: 5),
+                                    child: Text(
+                                        solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].description,
+                                        maxLines: 5),
+                                  )),
+                              const Expanded(
+                                flex: 1,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Divider(
+                                    height: 0,
+                                    color: Colors.grey,
+                                    indent: 00,
+                                    endIndent: 0,
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ),
+                              const Expanded(
+                                  flex: 2,
+                                  child: Center(
+                                    child: Text(
+                                      "13.000 EGP",
+                                      maxLines: 1,
+                                    ),
+                                  )),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                ),
+              ),
+                  ),
+            )),
+      ],
+    );
+  }
+}
+

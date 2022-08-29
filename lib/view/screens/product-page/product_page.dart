@@ -3,10 +3,8 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/filter_controller.dart';
 import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/screens/product-page/components/filter_property.dart';
-import 'package:solo/view/screens/product-page/components/item_color.dart';
 import 'package:solo/view/screens/product-page/components/price_range.dart';
-import 'package:solo/view/screens/product-page/components/rating.dart';
-import 'package:solo/view/widget/fotter/fotter.dart';
+import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
@@ -219,7 +217,7 @@ class ProductPage extends StatelessWidget {
                             child: SizedBox(
                               child: Padding(
                                 padding: EdgeInsets.all(mainPadding),
-                                child: Fotter(width: width),
+                                child: Close(width: width),
                               ),
                               width: width,
                             ),

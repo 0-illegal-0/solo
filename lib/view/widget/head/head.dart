@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/view/screens/cart/cart.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/login_register/login.dart';
@@ -10,12 +11,12 @@ import 'package:solo/view/widget/head/components/head_icons.dart';
 import 'package:solo/view/widget/head/components/search.dart';
 
 class Head extends StatelessWidget {
-  Head({
+  const Head({
     Key? key,
     this.width, this.controller,
   }) : super(key: key);
   final double? width;
-  final controller;
+  final Cart? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class Head extends StatelessWidget {
                     : MobileHead(
                         space: width! / 10.8,
                         width: width!,
+
                       )),
         SizedBox(
             width: double.infinity,
@@ -107,7 +109,7 @@ class MobileHead extends StatelessWidget {
         builder: (context) => Container(
               height: 100,
               color: Colors.white,
-              child: const Text("empety"),
+              child: const Text("empty"),
             ));
   }
 }
@@ -117,7 +119,7 @@ class TabletHead extends StatelessWidget {
       {Key? key, this.width, this.space, this.aspectRatio, this.height, this.controller})
       : super(key: key);
   final double? width, space, aspectRatio, height;
-  final controller;
+  final Cart? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -154,14 +156,12 @@ class TabletHead extends StatelessWidget {
                       child: IconButton(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         onPressed: () {
-                          print("Help");
                         },
                         icon: Row(
                           children: const [
                             Icon(Icons.help_outline_outlined,
                                 size: 22, color: Color(0xFFffffff)),
                             SizedBox(width: 5),
-                            Text("Help")
                           ],
                         ),
                       ),
@@ -187,7 +187,7 @@ class TabletHead extends StatelessWidget {
                       iconSize: 22,
                       rowWidth: 170,
                       textIconSize: 13)
-                  .iconBar("Cart", Icons.shopping_cart_outlined, page: Cart2(controller: controller,))
+                  .iconBar("Cart", Icons.shopping_cart_outlined, page: CartBudget(controller: controller),controllers: controller)
             ],
           ),
         ),
@@ -208,7 +208,7 @@ class TabletHead extends StatelessWidget {
 class DesktopHead extends StatelessWidget {
   const DesktopHead({Key? key, this.width, this.space, this.controller}) : super(key: key);
   final double? width, space;
-  final controller;
+  final Cart? controller;
 
   double get gap {
     return width! / 36;

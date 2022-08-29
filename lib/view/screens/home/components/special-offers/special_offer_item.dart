@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 
 class SpecialOfferItem extends StatelessWidget {
@@ -17,10 +18,11 @@ class SpecialOfferItem extends StatelessWidget {
       this.height,
       this.index,
       this.itemList,
-      this.loopIndex})
+      this.loopIndex, this.controller})
       : super(key: key);
   final double width;
   final double mainPadding;
+  final Cart? controller;
   final String? discount;
   final String? specialOfferImage;
   final String? specialOfferTitle;
@@ -58,6 +60,7 @@ class SpecialOfferItem extends StatelessWidget {
     sizes(loopIndex);
     return InkWell(
       onTap: () {
+
         Get.to(
             () => ViewDetails(
                   width: width,
@@ -67,6 +70,7 @@ class SpecialOfferItem extends StatelessWidget {
                   index: index,
                   numberOfRows: 1,
                   title: "Customer  Viewed",
+              controller: controller,
                 ),
             preventDuplicates: false);
         Get.deleteAll();

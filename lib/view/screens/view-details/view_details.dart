@@ -3,18 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/controllers/view_details_controller.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/bottom_sheet.dart';
-import 'package:solo/view/screens/view-details/cient_review.dart';
+import 'package:solo/view/screens/view-details/client_review.dart';
 import 'package:solo/view/screens/view-details/details.dart';
 import 'package:solo/view/screens/view-details/information_design.dart';
-import 'package:solo/view/screens/view-details/view_all_rieviw.dart';
-import 'package:solo/view/widget/fotter/fotter.dart';
+import 'package:solo/view/screens/view-details/view_all_review.dart';
+import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
-import 'package:solo/view/widget/important.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
+
 
 class ViewDetails extends StatefulWidget {
   const ViewDetails(
@@ -25,12 +26,13 @@ class ViewDetails extends StatefulWidget {
       this.width,
       this.itemList,
       this.index,
-      this.numberOfRows})
+      this.numberOfRows, this.controller})
       : super(key: key);
   final String? title;
   final double? height, aspectRatio, width;
   final int? index, numberOfRows;
   final List? itemList;
+  final Cart? controller;
   @override
   State<ViewDetails> createState() => _ViewDetailsState();
 }
@@ -47,8 +49,6 @@ class _ViewDetailsState extends State<ViewDetails>
 
   @override
   Widget build(BuildContext context) {
-    print(widget.width);
-    print("ratio ----- ${widget.height}");
     ImageSlider controller =
         Get.put(ImageSlider(imagesTab: product.images, product: product));
     controller.initStates(this);
@@ -208,7 +208,7 @@ class _ViewDetailsState extends State<ViewDetails>
                     Container(
                       color: const Color(0xFFffffff),
                       padding: const EdgeInsets.all(10),
-                      child: Fotter(width: widget.width),
+                      child: Close(width: widget.width),
                     ),
                     const SizedBox(height: 20)
                   ],
@@ -250,7 +250,7 @@ class _ViewDetailsState extends State<ViewDetails>
                     ),
                   )
                 : const SizedBox(),
-            const BottomRow()
+             BottomRow(controller: widget.controller,)
           ],
         ),
       ),
@@ -262,7 +262,7 @@ class ProductImagesDesktop extends StatelessWidget {
   const ProductImagesDesktop(
       {Key? key, this.product, this.controller, this.fontTitle, this.width})
       : super(key: key);
-  final product, controller;
+  final dynamic product, controller;
   final double? fontTitle, width;
   @override
   Widget build(BuildContext context) {
@@ -346,7 +346,7 @@ class ProductImages extends StatelessWidget {
       {Key? key, this.product, this.fontTitle, this.width, this.controller})
       : super(key: key);
 
-  final product, controller;
+  final dynamic product, controller;
   final double? fontTitle, width;
 
   @override
@@ -396,7 +396,6 @@ class ProductImages extends StatelessWidget {
                       labelPadding: const EdgeInsets.all(5),
                       unselectedLabelColor: Colors.yellow,
                       onTap: (indexNum) {
-                        print(indexNum);
                       },
                       tabs: controller.imgaes());
                 })

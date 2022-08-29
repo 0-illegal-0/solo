@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Fotter extends StatelessWidget {
-  Fotter({Key? key, this.width}) : super(key: key);
+class Close extends StatelessWidget {
+  Close({Key? key, this.width}) : super(key: key);
   final double? width;
 
   Widget socialMediaIcon(double? height, String? image) {
@@ -11,7 +11,7 @@ class Fotter extends StatelessWidget {
             padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
         child: Image.asset(
           image!,
-          height: height,
+          height: height
         ));
   }
 

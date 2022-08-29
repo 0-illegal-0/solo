@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:solo/view/widget/fotter/fotter.dart';
+import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 
@@ -13,7 +13,7 @@ class PrivacyPolicy extends StatelessWidget {
   static const TextStyle contentStyle =
       TextStyle(color: Color(0xFF000000), fontSize: 14);
 
-  static const TextStyle titleSyle = TextStyle(
+  static const TextStyle titleStyle = TextStyle(
       color: Color(0xFF000000), fontSize: 16, fontWeight: FontWeight.bold);
 
   static const String loremText =
@@ -49,17 +49,17 @@ class PrivacyPolicy extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 15),
-                      const Text("ABOUT THIS POLICY", style: titleSyle),
+                      const Text("ABOUT THIS POLICY", style: titleStyle),
                       const Text(loremText, style: contentStyle),
                       const SizedBox(
                         height: 15,
                       ),
                       const Text("HOW WE WILL USE YOUR PERSONAL INFORMATION?",
-                          style: titleSyle),
+                          style: titleStyle),
                       const Text(loremText, style: contentStyle),
                       const SizedBox(height: 15),
                       const Text("HOW YOUR INFORMATION IS SHARED",
-                          style: titleSyle),
+                          style: titleStyle),
                       const Text(loremText, style: contentStyle),
                       const SizedBox(height: 15),
                       const Text("HOW USE COOKIES"),
@@ -67,12 +67,12 @@ class PrivacyPolicy extends StatelessWidget {
                       const SizedBox(height: 15),
                       const Text(
                           "WHAT IS OUR PLAN TO PROTECT YOUR INFORMATION?",
-                          style: titleSyle),
+                          style: titleStyle),
                       const Text(loremText, style: contentStyle),
-                      const Text("YOUR LEGAL RIGHTS", style: titleSyle),
+                      const Text("YOUR LEGAL RIGHTS", style: titleStyle),
                       const Text(loremText, style: contentStyle),
                       const SizedBox(height: 15),
-                      Fotter(width: width)
+                      Close(width: width)
                     ],
                   ),
                 )),
