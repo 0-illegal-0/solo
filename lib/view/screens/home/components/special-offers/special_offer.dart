@@ -81,6 +81,7 @@ class SpecialOffer extends StatelessWidget {
                               specialOfferItemDatas![index]["item"].image!,
                           specialOfferTitle:
                               specialOfferItemDatas![index]["item"].title!,
+                          productItem: specialOfferItemDatas![index]["product-index"],
                           imagePadding: 5)
                       : SizedBox(
                           height: width! * 0.6,
@@ -99,6 +100,8 @@ class SpecialOffer extends StatelessWidget {
                                     width: width!,
                                     index: specialOfferItemDatas![index + index2]
                                         ["index"],
+                                    productItem: specialOfferItemDatas![index + index2]["product-index"],
+                                    controller:controller ,
                                     aspectRatio:
                                         specialOfferItemDatas![index + index2]
                                             ["aspectRatio"],
@@ -310,6 +313,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                   itemList:
                                   specialOfferItemDatas![index]
                                   ["item-list"],
+                                  productItem: specialOfferItemDatas![index]['product-index'],
                                   index: specialOfferItemDatas![index]
                                   ["index"],
                                   numberOfRows: 1,

@@ -26,17 +26,22 @@ List<int> itemId = [];
 
   showItem() async {
     items = [];
+    itemId = [];
     SharedPreferences share = await SharedPreferences.getInstance();
    if(share.getInt("itemCount") == null){
      itemsCount = 0;
    }else{
      itemsCount = share.getInt("itemCount")!.toInt();
    }
+
     for( var i = 0 ; items.length < itemsCount; i++ ) {
+
       if(share.getStringList("$i") != null) {
         items.add(share.getStringList("$i"));
         itemId.add(i);
       }
+      print(" items.length ${items.length}");
+      print("itemsCount ${itemsCount}");
     }
     update();
   }
@@ -46,7 +51,8 @@ List<int> itemId = [];
     itemsCount = itemsCount - 1;
     await share.setInt("itemCount", itemsCount);
     await  share.remove("$id");
-    showItem();
+
+  await  showItem();
     update();
   }
 
@@ -56,10 +62,19 @@ shared({int? productItem, int?itemIndex}) async {
   for (var d = 0; d < 999; d++) {
     if (share.getStringList("$d") == null) {
       share.setStringList("$d", ["$productItem", "$itemIndex"]);
-      share.setInt("itemCount", d + 1);
+      if(share.getInt("itemCount") == null){
+        share.setInt("itemCount", d + 1);
+      }else{
+        share.setInt("itemCount", share.getInt("itemCount")!.toInt() + 1);
+      }
       break;
     }
   }
+}
+
+clear()async{
+  SharedPreferences share = await SharedPreferences.getInstance();
+  share.clear();
 }
 
   addToCart({BuildContext? context, double? width,String? image, String? price, String? title, int? stars,int? productItem, int?itemIndex}){
@@ -135,6 +150,12 @@ shared({int? productItem, int?itemIndex}) async {
                     Navigator.of(context).pop();
                   },
                   child: const Text('Cancel')),
+
+              MaterialButton(
+                  onPressed: () async{
+                   await clear();
+                  },
+                  child: const Text('Clear')),
 
             ],
           ),

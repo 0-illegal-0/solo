@@ -144,7 +144,7 @@ class CartBudget extends StatelessWidget {
                                                        icon: const Icon(
                                                            Icons.shopping_cart_outlined),
                                                        onPressed: () {
-                                                        controller.addToCart(context: context,
+                                                               controller.addToCart(context: context,
                                                              image: specialOfferItemDatas[index]["item"]
                                                                  .image!,
                                                              price: specialOfferItemDatas[index]["item"]
@@ -155,7 +155,7 @@ class CartBudget extends StatelessWidget {
                                                                  .title!,
                                                              width: width,
                                                              itemIndex: specialOfferItemDatas[index]['index'],
-                                                             prductItem: specialOfferItemDatas[index]['product-index']
+                                                             productItem:specialOfferItemDatas[index]['product-index']
                                                          );
                                                        },
                                                      );
@@ -168,7 +168,7 @@ class CartBudget extends StatelessWidget {
                                              height: 25,
                                              child: Builder(
                                                  builder: (context) {
-                                                 //  print("This is I in delete button ${controller.itemId[index]}");
+                                                 print("This is I in delete button ${controller.itemId[index]}");
                                                    return IconButton(
                                                      alignment: Alignment.topRight,
                                                      padding: const EdgeInsets.only(
@@ -178,6 +178,7 @@ class CartBudget extends StatelessWidget {
                                                        Icons.delete_outlined
                                                      ),
                                                      onPressed: () {
+                                                       print("this is Id ${controller.itemId[index]}");
                                                        controller.deletePref(id:controller.itemId[index]);
                                                      },
                                                    );
@@ -210,7 +211,7 @@ class CartBudget extends StatelessWidget {
                                        Get.deleteAll();
                                      })),
                            );},)),
-                     ):CartWidgetForMobile(width: width,title: "",controller: controller);
+                     ):CartWidgetForMobile(width: width,title: "",controller: controller,);
                    }
                  ):
                     Container(
@@ -380,14 +381,14 @@ class CartWidgetForMobile extends StatelessWidget {
                                 Expanded(
                                   flex: 1,
                                   child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: List.generate(
                                           5,
-                                              (index) => Icon(Icons.star_rate,
-                                              size: 17.0,
-                                              color: index > 2
-                                                  ? Colors.grey
-                                                  : Colors.green))),
+                                              (index2) => Icon(Icons.star_rate,
+                                              size: 17,
+                                              color: index2 < solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
+                                                  .stars!
+                                                  ? Colors.orange
+                                                  : Colors.grey))),
                                 ),
                               ],
                             )),
@@ -417,12 +418,37 @@ class CartWidgetForMobile extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              const Expanded(
+                               Expanded(
                                   flex: 2,
                                   child: Center(
-                                    child: Text(
-                                      "13.000 EGP",
-                                      maxLines: 1,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "13.000 EGP",
+                                          maxLines: 1,
+                                        ),
+                                        SizedBox(
+                                          height: 25,
+                                          child: Builder(
+                                              builder: (context) {
+                                                //  print("This is I in delete button ${controller.itemId[index]}");
+                                                return IconButton(
+                                                  alignment: Alignment.topRight,
+                                                  padding: const EdgeInsets.only(
+                                                      right: 3, bottom: 3),
+                                                  color: Colors.black,
+                                                  icon: const Icon(
+                                                      Icons.delete_outlined
+                                                  ),
+                                                  onPressed: () {
+                                                    controller.deletePref(id:controller.itemId[index]);
+                                                  },
+                                                );
+                                              }
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   )),
                             ],

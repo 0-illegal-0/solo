@@ -23,9 +23,9 @@ class HeadIcons extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         tooltip: title,
         onPressed: () async{
-          print(controllers);
           if(controllers == null){
             await  controller!.showItem();
+
           }else{
             await controllers!.showItem();
           }

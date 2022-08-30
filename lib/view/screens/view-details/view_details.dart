@@ -26,11 +26,11 @@ class ViewDetails extends StatefulWidget {
       this.width,
       this.itemList,
       this.index,
-      this.numberOfRows, this.controller})
+      this.numberOfRows, this.controller, this.productItem})
       : super(key: key);
   final String? title;
   final double? height, aspectRatio, width;
-  final int? index, numberOfRows;
+  final int? index, numberOfRows,productItem;
   final List? itemList;
   final Cart? controller;
   @override
@@ -58,7 +58,7 @@ class _ViewDetailsState extends State<ViewDetails>
         bottom: false,
         child: Stack(
           children: [
-            Head(width: widget.width),
+            Head(width: widget.width,controller: widget.controller),
             Padding(
               padding: EdgeInsets.only(
                   left: widget.width! / 24,
@@ -75,7 +75,8 @@ class _ViewDetailsState extends State<ViewDetails>
                         ? ProductImagesDesktop(
                             controller: controller,
                             fontTitle: fontTitle,
-                            product: product,
+                            index: widget.index,
+                            product: product,productIndex: widget.productItem,
                             width: widget.width)
                         : ProductImages(
                             controller: controller,
@@ -210,47 +211,58 @@ class _ViewDetailsState extends State<ViewDetails>
                       padding: const EdgeInsets.all(10),
                       child: Close(width: widget.width),
                     ),
-                    const SizedBox(height: 20)
+                    const SizedBox(height: 40)
                   ],
                 ),
               ),
             ),
-            device == DeviceType.Mobile
-                ? Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      width: widget.width,
-                      height: 43,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 5),
-                      decoration: const BoxDecoration(
-                        color: Color.fromRGBO(220, 222, 221, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: 33,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    ChargeButton(title: "Add To Cart"),
-                                    ChargeButton(title: "Buy Now")
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                : const SizedBox(),
-             BottomRow(controller: widget.controller,)
+
+             Align(
+               alignment: Alignment.bottomCenter,
+
+               child: Column(
+                 mainAxisAlignment: MainAxisAlignment.end,
+                 children: [
+                   device == DeviceType.Mobile
+                       ? Container(
+                         width: widget.width,
+                         height: 43,
+                         padding: const EdgeInsets.symmetric(
+                             horizontal: 5, vertical: 5),
+                         decoration: const BoxDecoration(
+                           color: Color.fromRGBO(220, 222, 221, 1),
+                           borderRadius: BorderRadius.all(Radius.circular(5)),
+                         ),
+                         child: Column(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Column(
+                               children: [
+                                 SizedBox(
+                                   height: 33,
+                                   child: Row(
+                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    /* mainAxisAlignment:
+                                    // MainAxisAlignment.spaceBetween,*/
+                                     children:  [
+                                       ChargeButton(title: "Add To Cart",productItem: widget.productItem,
+                                         width: widget.width,stars: product.stars,price: product.price,image: product.image,
+                                       itemTitle: product.title,itemIndex: widget.index),
+                                       SizedBox(width: 20,),
+                                       ChargeButton(title: "Buy Now")
+                                     ],
+                                   ),
+                                 )
+                               ],
+                             ),
+                           ],
+                         ),
+                       )
+                       : const SizedBox(),
+                   BottomRow(controller: widget.controller,),
+                 ],
+               ),
+             )
           ],
         ),
       ),
@@ -260,10 +272,11 @@ class _ViewDetailsState extends State<ViewDetails>
 
 class ProductImagesDesktop extends StatelessWidget {
   const ProductImagesDesktop(
-      {Key? key, this.product, this.controller, this.fontTitle, this.width})
+      {Key? key, this.product, this.controller, this.fontTitle, this.width, this.index, this.productIndex})
       : super(key: key);
   final dynamic product, controller;
   final double? fontTitle, width;
+  final index,productIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -318,14 +331,16 @@ class ProductImagesDesktop extends StatelessWidget {
                       children: [
                         Delivery(width: width),
                         const SizedBox(
-                          height: 10,
+                          height: 10
                         ),
                         SizedBox(
                           height: 30,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              ChargeButton(title: "Add To Cart"),
+                            children:  [
+                              ChargeButton(title: "Add To Cart",image:product.image,price:product.price,
+                                  stars:product.stars,itemTitle:product.title,width:width,
+                                  itemIndex:index,productItem:productIndex,),
                               ChargeButton(title: "Buy Now")
                             ],
                           ),

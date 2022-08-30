@@ -262,9 +262,12 @@ class BottomRow extends StatelessWidget {
                             } else if(bottomNavDetails[index]["title"] ==
                                 "Cart"){
                              // print("ON  $controller");
-                              Cart controller = Get.put(Cart());
-                              await controller.showItem();
+                              //Get.deleteAll();
+                                //Cart controller = Get.put(Cart());
+                              await controller!.showItem();
                               Get.to(CartBudget(controller: controller));
+
+                                print(controller!.items.length);
                             }
                             else if (bottomNavDetails[index]["title"] ==
                                 "Categories") {

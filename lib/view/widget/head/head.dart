@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/view/screens/cart/cart.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/login_register/login.dart';
 import 'package:solo/view/widget/head/components/category_header.dart';
 import 'package:solo/view/widget/head/components/curve_painter.dart';
@@ -256,11 +257,21 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return TextButton(
+      style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+              const EdgeInsets.all( 0))),
+        onPressed: () {
+          Get.to(()=> HomePage());
+        },
+        child: Text("Solo",
+            textAlign: TextAlign.center,
+            style:  TextStyle(
+                fontFamily: "Lobster", fontSize: fontSize!, color: Colors.white)));/*Text(
       "Solo",
       style: TextStyle(
           fontFamily: "Lobster", fontSize: fontSize!, color: Colors.white),
-    );
+    );*/
   }
 }
 
