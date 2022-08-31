@@ -299,7 +299,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        print("Before $controller");
+
                         Get.to(
                                 () =>
                                 ViewDetails(
@@ -318,7 +318,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                   ["index"],
                                   numberOfRows: 1,
                                   title: "Customer  Viewed",
-                                  controller: controller,
+                                //  controller: controller,
                                 ),
                            /* preventDuplicates: false*/);
                       //  Get.deleteAll();

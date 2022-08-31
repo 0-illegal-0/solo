@@ -14,6 +14,44 @@ class AllData {
   }
   final BuildContext? context;
   double? width, height, mainPadding, verticalSpace;
+Map itemData = {"special-offer":[],"hot-deal":[],"latest-item":[],"liked":[], "recomended":[],"top-sale":[],};
+  List getItemData({dynamic data}) {
+    return [
+      {"method":data.specialOffer,"item":"special-offer"},
+      {"method":data.hotDeal,"item":"hot-deal"},
+      {"method":data.latestItem,"item":"latest-item"},
+      {"method":data.liked,"item":"liked"},
+      {"method":data.recomended,"item":"recomended"},
+      {"method":data.topSale,"item":"top-sale"},
+    ];
+  }
+  int dataIndex = 0;
+  getItem() {
+    itemData.forEach((key, value) {
+      int productIndex =0;
+      for (var item in solo!.product) {
+        int index = 0;
+        for (var item2 in item!.products!) {
+          if (getItemData(data: item2)[dataIndex]['method'] == true) {
+             itemData[key!].add({
+              "item": item2,
+              "height": item.height,
+              "aspectRatio": item.aspectRatio,
+              "item-list": item.products,
+              "index": index,
+              "product-index":productIndex
+            });
+          }
+          index = index + 1;
+        }
+        productIndex = productIndex +1;
+      }
+      dataIndex = dataIndex +1;
+    });
+
+    print("++++$itemData");
+  }
+
   void init() {
     width = MediaQuery.of(context!).size.width;
     height = MediaQuery.of(context!).size.height;
@@ -21,10 +59,11 @@ class AllData {
     verticalSpace = width! / 15 > 80 ? 80 : width! / 15;
     getDevice(width);
     addMainData();
-    addDataToSpecialOffer();
+   /* addDataToSpecialOffer();
     getDataToDealsItemsList();
     getDataToRecomendedList();
     getDataToMostLikedItems();
-    getDataToTopSale();
+    getDataToTopSale();*/
+    getItem();
   }
 }

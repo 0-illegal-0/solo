@@ -69,7 +69,7 @@ class SpecialOfferItem extends StatelessWidget {
                   index: index,
                   numberOfRows: 1,
                   title: "Customer  Viewed",
-              controller: controller,
+            //  controller: controller,
               productItem: productItem,
                 ),
             preventDuplicates: false);

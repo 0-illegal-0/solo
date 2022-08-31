@@ -4,20 +4,15 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/add_data.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/models/cameras_models.dart';
 import 'package:solo/models/categories_models.dart';
 import 'package:solo/models/hot_deals_models.dart';
-import 'package:solo/models/laptop_models.dart';
 import 'package:solo/models/mobiles_models.dart';
 import 'package:solo/models/most_liked_items_models.dart';
 import 'package:solo/models/recommended_models.dart';
 import 'package:solo/models/speacial_offer.dart';
-import 'package:solo/models/tablet_models.dart';
-import 'package:solo/models/television_models.dart';
 import 'package:solo/models/top_sale.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/gift/gift.dart';
-import 'package:solo/view/screens/home/components/laptops.dart/laptop.dart';
 import 'package:solo/view/screens/home/components/latest_item/latest_items.dart';
 import 'package:solo/view/screens/home/components/recommended/recommended.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer.dart';
@@ -64,16 +59,17 @@ class HomePage extends StatelessWidget {
                           width: inst.width,
                           title: "",
                           mainPadding: inst.mainPadding!,
-                        ),
+                        ),*/
                         SizedBox(height: inst.verticalSpace),
                         HotDeals(
                           mainPadding: inst.mainPadding!,
                           width: inst.width,
                           title: "Hot Deals",
+                          data:inst.itemData["hot-deal"],
                           listhotDealsItemsList: listhotDealsItemsList,
-                        ),
+                        ),/*
                         SizedBox(height: inst.verticalSpace),*/
-                       /* ViewItem(
+                      /*  ViewItem(
                           aspectRatioMobile: 0.9,
                           height: inst.width! * 0.60,
                           itemList: solo.product[1].products,
@@ -83,14 +79,15 @@ class HomePage extends StatelessWidget {
                           aspectRatioNoMobile: 0.8,
                           width: inst.width!,
                           i: 0,
+                          productItem: 1,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
+                        SizedBox(height: inst.verticalSpace),
                         SpecialOffer(
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             controller: controller,
                             specialOfferItemDatas: specialOfferItemDatas),
-                          SizedBox(height: inst.verticalSpace),
+                          SizedBox(height: inst.verticalSpace),*/
                        // WeeklyGift(title: "Weekly Gift", width: inst.width!),
                        /* SizedBox(height: inst.verticalSpace),
                         ViewItem(
@@ -103,6 +100,7 @@ class HomePage extends StatelessWidget {
                           width: inst.width!,
                           numberOfRows: 2,
                           i: 1,
+                          productItem: 0,
                         ),
                         SizedBox(height: inst.verticalSpace),
                         Recommended(
@@ -128,6 +126,7 @@ class HomePage extends StatelessWidget {
                           width: inst.width!,
                           i: 2,
                           numberOfRows: 2,
+                          productItem: 3,
                         ),
                         SizedBox(height: inst.verticalSpace),
                         LatestItems(
@@ -157,6 +156,7 @@ class HomePage extends StatelessWidget {
                           width: inst.width!,
                           numberOfRows: 1,
                           i: 3,
+                          productItem: 2,
                         ),
                         SizedBox(height: inst.verticalSpace),
                         Gift(
@@ -174,6 +174,7 @@ class HomePage extends StatelessWidget {
                           width: inst.width!,
                           i: 4,
                           numberOfRows: 2,
+                          productItem: 4,
                         ),
                         SizedBox(height: inst.verticalSpace),*/
                       /*  TopSale(

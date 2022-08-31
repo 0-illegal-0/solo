@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/add_data.dart';
 import 'package:solo/models/hot_deals_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
@@ -10,20 +11,22 @@ class HotDealWrap extends StatelessWidget {
     this.mainPadding,
     this.width,
     this.widthValue,
+    this.data,
     this.maxItemCount,
   }) : super(key: key);
 
   final double? mainPadding;
   final double? width, widthValue;
   final int? maxItemCount;
+  final List? data;
 
   double get gridWidth {
     return width! / widthValue!;
   }
 
   int itemCount() {
-    if (listhotDealsItemsList.length <= maxItemCount!) {
-      return listhotDealsItemsList.length;
+    if (data!.length <= maxItemCount!) {
+      return data!.length;
     } else {
       return 6;
     }
@@ -44,15 +47,16 @@ class HotDealWrap extends StatelessWidget {
                     Get.to(
                         () => ViewDetails(
                               width: width!,
-                              aspectRatio: listhotDealsItemsList[index]
+                              aspectRatio: data![index]
                                   ["aspectRatio"],
                               height: width! *
-                                  listhotDealsItemsList[index]["height"],
-                              itemList: listhotDealsItemsList[index]
+                                  data![index]["height"],
+                              itemList: data![index]
                                   ["item-list"],
-                              index: listhotDealsItemsList[index]["index"],
+                              index: data![index]["index"],
                               numberOfRows: 1,
                               title: "Customer  Viewed",
+                          productItem: data![index]["product-index"],
                             ),
                         preventDuplicates: false);
                     Get.deleteAll();
@@ -74,7 +78,7 @@ class HotDealWrap extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
-                            listhotDealsItemsList[index]["item"].image),
+                            data![index]["item"].image),
                       ),
                     ),
                     Padding(
@@ -82,7 +86,7 @@ class HotDealWrap extends StatelessWidget {
                       child: SizedBox(
                         width: gridWidth,
                         child: Text(
-                          listhotDealsItemsList[index]["item"].title!,
+                          data![index]["item"].title!,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.subtitle2,
                         ),

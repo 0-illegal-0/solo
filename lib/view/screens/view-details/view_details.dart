@@ -26,13 +26,13 @@ class ViewDetails extends StatefulWidget {
       this.width,
       this.itemList,
       this.index,
-      this.numberOfRows, this.controller, this.productItem})
+      this.numberOfRows,  this.productItem})
       : super(key: key);
   final String? title;
   final double? height, aspectRatio, width;
   final int? index, numberOfRows,productItem;
   final List? itemList;
-  final Cart? controller;
+  //final Cart? controller;
   @override
   State<ViewDetails> createState() => _ViewDetailsState();
 }
@@ -58,7 +58,7 @@ class _ViewDetailsState extends State<ViewDetails>
         bottom: false,
         child: Stack(
           children: [
-            Head(width: widget.width,controller: widget.controller),
+            Head(width: widget.width,/*controller: widget.controller*/),
             Padding(
               padding: EdgeInsets.only(
                   left: widget.width! / 24,
@@ -259,7 +259,7 @@ class _ViewDetailsState extends State<ViewDetails>
                          ),
                        )
                        : const SizedBox(),
-                   BottomRow(controller: widget.controller,),
+                   BottomRow(/*controller: widget.controller,*/),
                  ],
                ),
              )

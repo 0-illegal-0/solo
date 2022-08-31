@@ -40,8 +40,6 @@ List<int> itemId = [];
         items.add(share.getStringList("$i"));
         itemId.add(i);
       }
-      print(" items.length ${items.length}");
-      print("itemsCount ${itemsCount}");
     }
     update();
   }

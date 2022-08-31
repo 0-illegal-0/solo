@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/add_data.dart';
 import 'package:solo/view/screens/home/components/hot_deals/hot_deal_wrap.dart';
 import 'package:solo/view/screens/home/components/hot_deals/rotate_head.dart';
 import 'package:solo/controllers/rotate_head_controller.dart';
@@ -12,11 +13,12 @@ class HotDeals extends StatelessWidget {
     this.width,
     this.mainPadding,
     this.title,
-    this.listhotDealsItemsList,
+    this.listhotDealsItemsList, this.data,
   }) : super(key: key);
   final double? width;
   final double? mainPadding;
   final String? title;
+  final List? data;
   final List? listhotDealsItemsList;
   double? widthValue = 0.0;
 
@@ -67,6 +69,7 @@ class HotDeals extends StatelessWidget {
             width: width,
             mainPadding: width! / 50,
             maxItemCount: maxItemCount,
+            data:data,
             widthValue: widthValue),
         const SizedBox(height: 15),
         listhotDealsItemsList!.length < maxItemCount

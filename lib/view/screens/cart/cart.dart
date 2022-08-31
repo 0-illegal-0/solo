@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/models/speacial_offer.dart';
@@ -168,7 +167,6 @@ class CartBudget extends StatelessWidget {
                                              height: 25,
                                              child: Builder(
                                                  builder: (context) {
-                                                 print("This is I in delete button ${controller.itemId[index]}");
                                                    return IconButton(
                                                      alignment: Alignment.topRight,
                                                      padding: const EdgeInsets.only(
@@ -178,7 +176,6 @@ class CartBudget extends StatelessWidget {
                                                        Icons.delete_outlined
                                                      ),
                                                      onPressed: () {
-                                                       print("this is Id ${controller.itemId[index]}");
                                                        controller.deletePref(id:controller.itemId[index]);
                                                      },
                                                    );
@@ -314,13 +311,13 @@ class CartWidgetForMobile extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Container(
                 decoration:
-                 BoxDecoration(color: Color(0xFFffffff), boxShadow: [
+                 const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
                     BoxShadow(
                         color: Color(0xFF999797),
                         blurRadius: 7,
                         spreadRadius: 0.5,
                         offset: Offset(0, 0.5))
-                ],/*border: Border.all(color: Colors.black, width: 1.0)*/),
+                ],),
 
                 width: designWidth,
                 height: designHeight,
@@ -424,7 +421,7 @@ class CartWidgetForMobile extends StatelessWidget {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
+                                        const Text(
                                           "13.000 EGP",
                                           maxLines: 1,
                                         ),
@@ -432,7 +429,6 @@ class CartWidgetForMobile extends StatelessWidget {
                                           height: 25,
                                           child: Builder(
                                               builder: (context) {
-                                                //  print("This is I in delete button ${controller.itemId[index]}");
                                                 return IconButton(
                                                   alignment: Alignment.topRight,
                                                   padding: const EdgeInsets.only(

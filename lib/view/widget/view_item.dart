@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/controllers/latest_item_controller.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
@@ -16,14 +17,14 @@ class ViewItem extends StatelessWidget {
       this.aspectRatioMobile,
       this.mainPadding,
       this.aspectRatioNoMobile,
-      this.numberOfRows});
+      this.numberOfRows, this.productItem});
 
   final double? width,
       height,
       mainPadding,
       aspectRatioMobile,
       aspectRatioNoMobile;
-  final int? numberOfRows, i;
+  final int? numberOfRows, i, productItem;
   final String? title;
   final List? itemList;
   @override
@@ -43,6 +44,7 @@ class ViewItem extends StatelessWidget {
             itemList: itemList,
             title: title,
             width: width,
+      productItem: productItem,
           )
         : AnimatedItems(
             itemList: itemList,
@@ -57,7 +59,7 @@ class ViewItem extends StatelessWidget {
             wrapCount: instanceSizes.wrapCount,
             stackHeight: instanceSizes.stackHeight,
             space: instanceSizes.space,
-            gridWidth: instanceSizes.gridWidth,
+            gridWidth: instanceSizes.gridWidth,productItem: productItem,
           );
   }
 }
@@ -110,12 +112,12 @@ class MobileDesign extends StatelessWidget {
       this.aspectRatio,
       this.width,
       this.itemCount,
-      this.itemList})
+      this.itemList, this.productItem})
       : super(key: key);
 
   final String? title;
   final double? height, aspectRatio, width;
-  final int? itemCount;
+  final int? itemCount, productItem;
   final List? itemList;
 
   @override
@@ -145,7 +147,7 @@ class MobileDesign extends StatelessWidget {
                           index: index,
                           width: width,
                           aspectRatio: aspectRatio,
-                          height: height,
+                          height: height,productItem: productItem,
                         )),
                   );
                 })),
@@ -169,7 +171,7 @@ class AnimatedItems extends StatelessWidget {
       this.i,
       this.title,
       this.stackHeight,
-      this.gridWidth})
+      this.gridWidth, this.productItem})
       : super(key: key);
 
   final double? width,
@@ -179,7 +181,7 @@ class AnimatedItems extends StatelessWidget {
       height,
       stackHeight,
       gridWidth;
-  final int? crossAxisCount, wrapCount, numberOfRows, i;
+  final int? crossAxisCount, wrapCount, numberOfRows, i,productItem;
   final List? itemList;
   final String? title;
 
@@ -258,6 +260,7 @@ class AnimatedItems extends StatelessWidget {
                                   aspectRatio: aspectRatio,
                                   width: width,
                                   height: height!,
+                                  productItem:productItem ,
                                 )),
                           );
                         }),
@@ -285,10 +288,10 @@ class ViewItemContent extends StatelessWidget {
       this.index,
       this.width,
       this.aspectRatio,
-      this.height})
+      this.height, this.productItem})
       : super(key: key);
   final List? itemList;
-  final int? index;
+  final int? index,productItem;
   final double? width, aspectRatio, height;
   @override
   Widget build(BuildContext context) {
@@ -342,7 +345,15 @@ class ViewItemContent extends StatelessWidget {
                     color: Colors.green,
                     icon: const Icon(Icons.shopping_cart_outlined),
                     onPressed: () {
-                      note(context);
+                      Cart controller = Get.put(Cart());
+                      controller.addToCart(context:context,image: itemList![index!].image!
+                          ,price: itemList![index!].price!
+                          ,stars: itemList![index!].stars!
+                          ,title: itemList![index!].title!,
+                          width: width,
+                          productItem: productItem,
+                          itemIndex:index
+                      );
                     },
                   ),
                 )
