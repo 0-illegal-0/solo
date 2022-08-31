@@ -48,8 +48,6 @@ Map itemData = {"special-offer":[],"hot-deal":[],"latest-item":[],"liked":[], "r
       }
       dataIndex = dataIndex +1;
     });
-
-    print("++++$itemData");
   }
 
   void init() {

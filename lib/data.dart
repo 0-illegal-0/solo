@@ -301,7 +301,7 @@ Map<String, dynamic> data = {
               "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
           "image": "assets/images/laptops/hp-probook-445.png",
           "special-offer": false,
-          "title": "HP Probook 445",
+          "title": "HP Probook 446",
           "price": "25.500.00",
           "discount": "20%",
           "old-price": "3,500.00 EGP",

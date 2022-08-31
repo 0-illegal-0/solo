@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
                           width: inst.width,
                           title: "",
                           mainPadding: inst.mainPadding!,
-                        ),*/
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         HotDeals(
                           mainPadding: inst.mainPadding!,
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                           title: "Hot Deals",
                           data:inst.itemData["hot-deal"],
                           listhotDealsItemsList: listhotDealsItemsList,
-                        ),/*
+                        ),*//*
                         SizedBox(height: inst.verticalSpace),*/
                       /*  ViewItem(
                           aspectRatioMobile: 0.9,
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             controller: controller,
-                            specialOfferItemDatas: specialOfferItemDatas),
+                            data: inst.itemData["special-offer"]),
                           SizedBox(height: inst.verticalSpace),*/
                        // WeeklyGift(title: "Weekly Gift", width: inst.width!),
                        /* SizedBox(height: inst.verticalSpace),
@@ -102,20 +102,21 @@ class HomePage extends StatelessWidget {
                           i: 1,
                           productItem: 0,
                         ),
-                        SizedBox(height: inst.verticalSpace),
+                        SizedBox(height: inst.verticalSpace),*/
                         Recommended(
                             width: inst.width!,
                             title: "Recommended",
-                            recomendedList: recomendedList),
+                            data: inst.itemData["recomended"]),
+                        /*
                         SizedBox(height: inst.verticalSpace),
                         MostLiked(
                           width: inst.width!,
                           mainPadding: inst.mainPadding!,
                           space: inst.width! / 51.4,
                           title: "Most Liked Items",
-                          mostLikedItems: mostLikedItems,
-                        ),
-                        SizedBox(height: inst.verticalSpace),
+                          data: inst.itemData["liked"],
+                        ),*/
+                      /*  SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 1.2,
                           aspectRatioNoMobile: 0.7,
@@ -128,8 +129,8 @@ class HomePage extends StatelessWidget {
                           numberOfRows: 2,
                           productItem: 3,
                         ),
-                        SizedBox(height: inst.verticalSpace),
-                        LatestItems(
+                        SizedBox(height: inst.verticalSpace),*/
+                        /*LatestItems(
                           width: inst.width!,
                           space: 5,
                           mainPadding: inst.mainPadding!,
@@ -137,7 +138,8 @@ class HomePage extends StatelessWidget {
                           aspectRatio: 1.1,
                           viewitemCount: 5,
                           height: inst.width! * 0.50,
-                        ),
+                          data: inst.itemData["latest-item"],
+                        ),*//*
                         SizedBox(height: inst.verticalSpace),
                         TopBrand(
                             mainPadding: inst.mainPadding!,
@@ -177,15 +179,15 @@ class HomePage extends StatelessWidget {
                           productItem: 4,
                         ),
                         SizedBox(height: inst.verticalSpace),*/
-                      /*  TopSale(
+                        TopSale(
                           title: "Top Sale",
                           width: inst.width!,
                           itemCountForTablet: 2,
                           mainPadding: inst.mainPadding!,
                           itemCountForDesktop: 3,
                           space: 10,
-                          topSale: topSale,
-                        ),
+                          data: inst.itemData["latest-item"],
+                        ),/*
                         SizedBox(height: inst.verticalSpace),
                         Close(width: inst.width!),
                         device == DeviceType.Tablet

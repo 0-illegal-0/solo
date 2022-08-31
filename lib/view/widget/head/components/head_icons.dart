@@ -23,8 +23,9 @@ class HeadIcons extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         tooltip: title,
         onPressed: () async{
+          Cart controller = Get.put(Cart());
           if(controllers == null){
-            await  controller!.showItem();
+            await  controller.showItem();
 
           }else{
             await controllers!.showItem();
@@ -55,6 +56,7 @@ class HeadIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   Cart controller = Get.put(Cart());
     return SizedBox(
       width: rowWidth,
       child: Row(
@@ -64,7 +66,7 @@ class HeadIcons extends StatelessWidget {
           iconBar("Sign In", Icons.person_outline_outlined,
               page: const Login()),
           iconBar("Help", Icons.help_outline_outlined, page:  CartBudget()),
-          iconBar("Cart", Icons.shopping_cart_outlined, page:  CartBudget(controller: controller)),
+          iconBar("Cart", Icons.shopping_cart_outlined, page:  CartBudget(controller: controller,)),
         ],
       ),
     );

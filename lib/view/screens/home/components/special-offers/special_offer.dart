@@ -12,11 +12,11 @@ import 'package:solo/view/screens/view-details/view_details.dart';
 
 class SpecialOffer extends StatelessWidget {
   const SpecialOffer(
-      {Key? key, this.width, this.mainPadding, this.specialOfferItemDatas, this.controller})
+      {Key? key, this.width, this.mainPadding, this.data, this.controller})
       : super(key: key);
   final double? mainPadding, width;
   final Cart? controller;
-  final List? specialOfferItemDatas;
+  final List? data;
 
   double get space {
     return width! / 36;
@@ -57,31 +57,31 @@ class SpecialOffer extends StatelessWidget {
                 spacing: space,
                 runSpacing: space,
                 children: List.generate(
-                    specialOfferItemDatas!.length > 4
+                    data!.length > 4
                         ? 4
-                        : specialOfferItemDatas!.length, (index) {
+                        : data!.length, (index) {
                   return index < 3
                       ? SpecialOfferItem(
                           loopIndex: index,
                           controller:controller ,
-                          index: specialOfferItemDatas![index]["index"],
-                          aspectRatio: specialOfferItemDatas![index]
+                          index: data![index]["index"],
+                          aspectRatio: data![index]
                               ["aspectRatio"],
-                          height: specialOfferItemDatas![index]["height"],
-                          itemList: specialOfferItemDatas![index]["item-list"],
+                          height: data![index]["height"],
+                          itemList: data![index]["item-list"],
                           mainPadding: mainPadding!,
                           width: width!,
                           beforeDiscount:
-                              specialOfferItemDatas![index]["item"].price!,
+                              data![index]["item"].price!,
                           afterDicount:
-                              specialOfferItemDatas![index]["item"].price!,
+                              data![index]["item"].price!,
                           discount:
-                              specialOfferItemDatas![index]["item"].discount!,
+                              data![index]["item"].discount!,
                           specialOfferImage:
-                              specialOfferItemDatas![index]["item"].image!,
+                              data![index]["item"].image!,
                           specialOfferTitle:
-                              specialOfferItemDatas![index]["item"].title!,
-                          productItem: specialOfferItemDatas![index]["product-index"],
+                              data![index]["item"].title!,
+                          productItem: data![index]["product-index"],
                           imagePadding: 5)
                       : SizedBox(
                           height: width! * 0.6,
@@ -98,30 +98,30 @@ class SpecialOffer extends StatelessWidget {
                                     loopIndex: index,
                                     mainPadding: mainPadding!,
                                     width: width!,
-                                    index: specialOfferItemDatas![index + index2]
+                                    index: data![index + index2]
                                         ["index"],
-                                    productItem: specialOfferItemDatas![index + index2]["product-index"],
+                                    productItem: data![index + index2]["product-index"],
                                     controller:controller ,
                                     aspectRatio:
-                                        specialOfferItemDatas![index + index2]
+                                        data![index + index2]
                                             ["aspectRatio"],
-                                    height: specialOfferItemDatas![index + index2]
+                                    height: data![index + index2]
                                         ["height"],
-                                    itemList: specialOfferItemDatas![index + index2]
+                                    itemList: data![index + index2]
                                         ["item-list"],
                                     beforeDiscount:
-                                        specialOfferItemDatas![index + index2]["item"]
+                                        data![index + index2]["item"]
                                             .price!,
                                     afterDicount:
-                                        specialOfferItemDatas![index + index2]
+                                        data![index + index2]
                                                 ["item"]
                                             .price!,
-                                    discount: specialOfferItemDatas![index + index2]
+                                    discount: data![index + index2]
                                             ["item"]
                                         .discount!,
                                     specialOfferImage:
-                                        specialOfferItemDatas![index + index2]["item"].image!,
-                                    specialOfferTitle: specialOfferItemDatas![index + index2]["item"].title!,
+                                        data![index + index2]["item"].image!,
+                                    specialOfferTitle: data![index + index2]["item"].title!,
                                     imagePadding: 0),
                               ),
                             ),
@@ -129,7 +129,7 @@ class SpecialOffer extends StatelessWidget {
                         );
                 }))
             : SpecialOfferNoMobile(
-                specialOfferItemDatas: specialOfferItemDatas,
+                data: data,
                 controller: controller,
                 imagePadding: 5,
                 aspectRatio: 0.9,
@@ -144,11 +144,11 @@ class SpecialOfferNoMobile extends StatelessWidget {
     Key? key,
     this.width,
     this.imagePadding,
-    this.specialOfferItemDatas,
+    this.data,
     this.aspectRatio, this.controller,
   }) : super(key: key);
   final double? width, imagePadding, aspectRatio;
-  final List? specialOfferItemDatas;
+  final List? data;
   double? itemWidth;
    final Cart? controller;
   int? itemCount;
@@ -176,7 +176,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
     return Wrap(
         spacing: space,
         runSpacing: 20,
-        children: List.generate(specialOfferItemDatas!.length > itemCount!?itemCount!:specialOfferItemDatas!.length, (index) =>
+        children: List.generate(data!.length > itemCount!?itemCount!:data!.length, (index) =>
             SizedBox(
               width: itemWidth,
               child: AspectRatio(
@@ -202,7 +202,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                 padding: EdgeInsets.all(
                                     width! / 45 > 20 ? 20 : width! / 45),
                                 child: Image.asset(
-                                    specialOfferItemDatas![index]["item"]
+                                    data![index]["item"]
                                         .image!),
                               ),
                             ),
@@ -210,7 +210,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 5),
                               child: Text(
-                                specialOfferItemDatas![index]["item"].title!,
+                                data![index]["item"].title!,
                                 maxLines: 2,
                                 textAlign: TextAlign.center,
                               ),
@@ -225,7 +225,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                             Icon(Icons.star_rate,
                                                 size: 17,
                                                 color: index2 <
-                                                    specialOfferItemDatas![index]["item"]
+                                                    data![index]["item"]
                                                         .stars
                                                     ? Colors.orange
                                                     : Colors.grey)))),
@@ -238,7 +238,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                 MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "${specialOfferItemDatas![index]["item"]
+                                    "${data![index]["item"]
                                         .oldPrice} EGP",
                                     style: const TextStyle(
                                         decoration:
@@ -267,7 +267,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 5),
                                     child: Text(
-                                      "${specialOfferItemDatas![index]["item"]
+                                      "${data![index]["item"]
                                           .price!} EGP ",
                                       maxLines: 1,
                                     ),
@@ -283,12 +283,12 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                     icon: const Icon(
                                         Icons.shopping_cart_outlined),
                                     onPressed: () {
-                                      controller!.addToCart(context:context,image: specialOfferItemDatas![index]["item"]
-                                          .image!,price: specialOfferItemDatas![index]["item"]
-                                          .price!,stars: specialOfferItemDatas![index]["item"]
-                                          .stars,title: specialOfferItemDatas![index]["item"].title!,width: width,
-                                        itemIndex: specialOfferItemDatas![index]['index'],
-                                        productItem: specialOfferItemDatas![index]['product-index']
+                                      controller!.addToCart(context:context,image: data![index]["item"]
+                                          .image!,price: data![index]["item"]
+                                          .price!,stars: data![index]["item"]
+                                          .stars,title: data![index]["item"].title!,width: width,
+                                        itemIndex: data![index]['index'],
+                                        productItem: data![index]['product-index']
                                       );
                                     },
                                   ),
@@ -305,16 +305,16 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                 ViewDetails(
                                   width: width!,
                                   aspectRatio:
-                                  specialOfferItemDatas![index]
+                                  data![index]
                                   ["aspectRatio"],
                                   height: width! *
-                                      specialOfferItemDatas![index]
+                                      data![index]
                                       ["height"],
                                   itemList:
-                                  specialOfferItemDatas![index]
+                                  data![index]
                                   ["item-list"],
-                                  productItem: specialOfferItemDatas![index]['product-index'],
-                                  index: specialOfferItemDatas![index]
+                                  productItem: data![index]['product-index'],
+                                  index: data![index]
                                   ["index"],
                                   numberOfRows: 1,
                                   title: "Customer  Viewed",

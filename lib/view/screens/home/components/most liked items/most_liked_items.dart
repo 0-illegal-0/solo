@@ -13,11 +13,11 @@ class MostLiked extends StatelessWidget {
     this.mainPadding,
     this.space,
     this.title,
-    this.mostLikedItems,
+    this.data,
   }) : super(key: key);
   final String? title;
   final double width;
-  final List? mostLikedItems;
+  final List? data;
   final double? mainPadding, space;
   static const double symmetricPadding = 7;
 
@@ -70,7 +70,7 @@ class MostLiked extends StatelessWidget {
             runSpacing: 20,
             alignment: WrapAlignment.center,
             children: List.generate(
-                mostLikedItems!.length > 6 ? 6 : mostLikedItems!.length,
+                data!.length > 6 ? 6 : data!.length,
                 (index) => SizedBox(
                     width: brandGrid,
                     child: CustomPaint(
@@ -80,14 +80,15 @@ class MostLiked extends StatelessWidget {
                           Get.to(
                               () => ViewDetails(
                                     width: width,
-                                    aspectRatio: mostLikedItems![index]
+                                    aspectRatio: data![index]
                                         ["aspectRatio"],
-                                    height: mostLikedItems![index]["height"],
-                                    itemList: mostLikedItems![index]
+                                    height: data![index]["height"],
+                                    itemList: data![index]
                                         ["item-list"],
-                                    index: mostLikedItems![index]["index"],
+                                    index: data![index]["index"],
                                     numberOfRows: 1,
                                     title: "Customer  Viewed",
+                                productItem: data![index]["product-index"],
                                   ),
                               preventDuplicates: false);
                           Get.deleteAll();
@@ -97,7 +98,7 @@ class MostLiked extends StatelessWidget {
                           children: [
                             SizedBox(height: width / 25),
                             Image.asset(
-                              mostLikedItems![index]["item"].image!,
+                              data![index]["item"].image!,
                               width: brandGrid * 0.60,
                               height: device == DeviceType.Desktop ||
                                       device == DeviceType.Tablet
@@ -106,14 +107,14 @@ class MostLiked extends StatelessWidget {
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              mostLikedItems![index]["item"].title!,
+                              data![index]["item"].title!,
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 9, bottom: 5),
                               child: Text(
-                                mostLikedItems![index]["item"].price!,
+                                data![index]["item"].price!,
                                 maxLines: 1,
                                 style: const TextStyle(shadows: [
                                   BoxShadow(
@@ -130,7 +131,7 @@ class MostLiked extends StatelessWidget {
                     ))),
           ),
         ),
-        mostLikedItems!.length > 6
+        data!.length > 6
             ? Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: TextButton(

@@ -5,7 +5,6 @@ import 'package:solo/controllers/latest_item_controller.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/style.dart';
-import 'package:solo/view/widget/note.dart';
 
 class ViewItem extends StatelessWidget {
   const ViewItem(

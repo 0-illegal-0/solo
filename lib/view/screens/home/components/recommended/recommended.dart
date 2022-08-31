@@ -6,11 +6,11 @@ import 'package:solo/view/screens/view-details/view_details.dart';
 import '../../../../style.dart';
 
 class Recommended extends StatelessWidget {
-  const Recommended({Key? key, this.width, this.title, this.recomendedList})
+   Recommended({Key? key, this.width, this.title, this.data})
       : super(key: key);
   final double? width;
   final String? title;
-  final List? recomendedList;
+  final List? data;
   double get itemWidth {
     if (width! < 500) {
       return width!;
@@ -19,11 +19,24 @@ class Recommended extends StatelessWidget {
     }
   }
 
+  double? designHeight, designWidth;
+  responsiveSizes() {
+    if (width! < 850) {
+      designHeight = width! / 2.57 > 160 ? 160 : width! / 2.57;
+      designWidth = width;
+    }else{
+      designWidth = 500;
+      designHeight = 160;
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    responsiveSizes();
     if (device == DeviceType.Desktop) {
       return RecommendedDesktopDesign(
-        recomendedList: recomendedList!,
+        data: data!,
         width: width,
         title: title!,
         showCountInRow: 3,
@@ -52,11 +65,136 @@ class Recommended extends StatelessWidget {
             ),
             height: itemWidth / 2.76,
             child: ListView.builder(
-              itemExtent: itemWidth / 1.24,
-              itemCount: recomendedList!.length,
+             // itemExtent: itemWidth / 1.1,
+              itemCount: data!.length,
               cacheExtent: itemWidth / 36,
               itemBuilder: (context, index) {
-                return Container(
+                return Row(
+                  children: [
+                    Container(
+                      decoration:
+                      const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
+                        BoxShadow(
+                            color: Color(0xFFbababa),
+                            blurRadius: 7,
+                            spreadRadius: 0.5,
+                            offset: Offset(0, 0))
+                      ]),
+                      width: designWidth!,
+                      height: designHeight,
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(
+                                  () => ViewDetails(
+                                width: width!,
+                                aspectRatio: data![index]["aspectRatio"],
+                                height: data![index]["height"],
+                                itemList: data![index]["item-list"],
+                                index: data![index]["index"],
+                                numberOfRows: 1,
+                                title: "Customer  Viewed",
+                                productItem: data![index]["product-index"],
+                              ),
+                              preventDuplicates: false);
+                          Get.deleteAll();
+                        },
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                        flex: 3,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 5, left: 5, top: 5),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Image.asset(
+                                                data![index]["item"].image,
+                                                height: designHeight! * 0.50,
+                                              ),
+                                              Text(
+                                                data![index]["item"].title,
+                                                softWrap: false,
+                                                maxLines: 2,
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 13),
+                                              ),
+                                              const Divider(
+                                                height: 0,
+                                                color: Colors.grey,
+                                                indent: 00,
+                                                endIndent: 0,
+                                                thickness: 1,
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: List.generate(
+                                              5,
+                                                  (index) => Icon(Icons.star_rate,
+                                                  size: 17.0,
+                                                  color: index > 2
+                                                      ? Colors.grey
+                                                      : Colors.green))),
+                                    ),
+                                  ],
+                                )),
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                      flex: 5,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 5, right: 5, left: 5),
+                                        child: Text(
+                                            data![index]["item"].description,
+                                            maxLines: 5),
+                                      )),
+                                  const Expanded(
+                                    flex: 1,
+                                    child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Divider(
+                                        height: 0,
+                                        color: Colors.grey,
+                                        indent: 00,
+                                        endIndent: 0,
+                                        thickness: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  const Expanded(
+                                      flex: 2,
+                                      child: Center(
+                                        child: Text(
+                                          "13.000 EGP",
+                                          maxLines: 1,
+                                        ),
+                                      )),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10)
+                  ],
+                );
+                /*Container(
                   padding: const EdgeInsets.all(5),
                   margin: const EdgeInsets.only(left: 5),
                   decoration: const BoxDecoration(
@@ -75,13 +213,14 @@ class Recommended extends StatelessWidget {
                       Get.to(
                           () => ViewDetails(
                                 width: width!,
-                                aspectRatio: recomendedList![index]
+                                aspectRatio: data![index]
                                     ["aspectRatio"],
-                                height: recomendedList![index]["height"],
-                                itemList: recomendedList![index]["item-list"],
-                                index: recomendedList![index]["index"],
+                                height: data![index]["height"],
+                                itemList: data![index]["item-list"],
+                                index: data![index]["index"],
                                 numberOfRows: 1,
                                 title: "Customer  Viewed",
+                            productItem: data![index]["product-index"],
                               ),
                           preventDuplicates: false);
                       Get.deleteAll();
@@ -98,7 +237,7 @@ class Recommended extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
-                                    recomendedList![index]["item"].image!,
+                                    data![index]["item"].image!,
                                     width: 90,
                                   ),
                                 ),
@@ -106,7 +245,7 @@ class Recommended extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(0.0),
                                 child: Text(
-                                  recomendedList![index]["item"].title!,
+                                  data![index]["item"].title!,
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
                                   style: Theme.of(context).textTheme.subtitle2,
@@ -122,7 +261,7 @@ class Recommended extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                recomendedList![index]["item"].description!,
+                                data![index]["item"].description!,
                                 style: Theme.of(context).textTheme.bodyText2,
                                 maxLines: 4,
                               ),
@@ -137,7 +276,7 @@ class Recommended extends StatelessWidget {
                                               : Colors.cyan))),
                               const Spacer(),
                               Text(
-                                recomendedList![index]["item"].price!,
+                                data![index]["item"].price!,
                                 maxLines: 1,
                                 style:
                                     const TextStyle(color: Color(0xFF26bd08)),
@@ -148,7 +287,7 @@ class Recommended extends StatelessWidget {
                       ],
                     ),
                   ),
-                );
+                );*/
               },
               scrollDirection: Axis.horizontal,
             ),
@@ -162,12 +301,12 @@ class Recommended extends StatelessWidget {
 class RecommendedDesktopDesign extends StatelessWidget {
   const RecommendedDesktopDesign(
       {Key? key,
-      this.recomendedList,
+      this.data,
       this.width,
       this.showCountInRow,
       this.title})
       : super(key: key);
-  final List? recomendedList;
+  final List? data;
   final double? width;
   final int? showCountInRow;
   final String? title;
@@ -184,7 +323,7 @@ class RecommendedDesktopDesign extends StatelessWidget {
                     fontSize: 22, fontWeight: FontWeight.bold))),
         Column(
           children: List.generate(
-              recomendedList!.length > 3 ? 2 : 1,
+              data!.length > 3 ? 2 : 1,
               (index) => Padding(
                     padding: EdgeInsets.only(bottom: width! / 55.8),
                     child: Row(
@@ -211,15 +350,16 @@ class RecommendedDesktopDesign extends StatelessWidget {
                               Get.to(
                                   () => ViewDetails(
                                         width: width!,
-                                        aspectRatio: recomendedList![index2]
+                                        aspectRatio: data![index2]
                                             ["aspectRatio"],
-                                        height: recomendedList![index2]
+                                        height: data![index2]
                                             ["height"],
-                                        itemList: recomendedList![index2]
+                                        itemList: data![index2]
                                             ["item-list"],
-                                        index: recomendedList![index2]["index"],
+                                        index: data![index2]["index"],
                                         numberOfRows: 1,
                                         title: "Customer  Viewed",
+                                    productItem: data![index2]["product-index"],
                                       ),
                                   preventDuplicates: false);
                               Get.deleteAll();
@@ -239,7 +379,7 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Image.asset(
-                                            recomendedList![index2]["item"]
+                                            data![index2]["item"]
                                                 .image!,
                                             width: 90,
                                           ),
@@ -248,7 +388,7 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                       Padding(
                                         padding: const EdgeInsets.all(3.0),
                                         child: Text(
-                                          recomendedList![index2]["item"]
+                                          data![index2]["item"]
                                               .title!,
                                           maxLines: 1,
                                           style: Theme.of(context)
@@ -270,7 +410,7 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        recomendedList![index2]["item"]
+                                        data![index2]["item"]
                                             .description!,
                                         style: Theme.of(context)
                                             .textTheme
@@ -288,7 +428,7 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                                       : Colors.cyan))),
                                       const Spacer(),
                                       Text(
-                                        recomendedList![index2]["item"].price!,
+                                        data![index2]["item"].price!,
                                         maxLines: 1,
                                         style: const TextStyle(
                                             color: Color(0xFF26bd08)),
@@ -304,7 +444,7 @@ class RecommendedDesktopDesign extends StatelessWidget {
                     ),
                   )),
         ),
-        recomendedList!.length > showCountInRow! * 2
+        data!.length > showCountInRow! * 2
             ? const TextButton(onPressed: null, child: Text("Show All"))
             : const SizedBox()
       ],

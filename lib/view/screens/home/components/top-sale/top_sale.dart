@@ -14,11 +14,11 @@ class TopSale extends StatelessWidget {
       this.title,
       this.itemCountForTablet,
       this.itemCountForDesktop,
-      this.topSale})
+      this.data})
       : super(key: key);
   final double? width, mainPadding, space;
   final String? title;
-  final List? topSale;
+  final List? data;
   final int? itemCountForTablet, itemCountForDesktop;
   double? designHeight, designWidth;
 
@@ -54,7 +54,7 @@ class TopSale extends StatelessWidget {
             spacing: space!,
             runSpacing: space!,
             children: List.generate(
-              topSale!.length,
+              data!.length,
               (index) => Container(
                 decoration:
                     const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
@@ -71,12 +71,13 @@ class TopSale extends StatelessWidget {
                     Get.to(
                         () => ViewDetails(
                               width: width!,
-                              aspectRatio: topSale![index]["aspectRatio"],
-                              height: topSale![index]["height"],
-                              itemList: topSale![index]["item-list"],
-                              index: topSale![index]["index"],
+                              aspectRatio: data![index]["aspectRatio"],
+                              height: data![index]["height"],
+                              itemList: data![index]["item-list"],
+                              index: data![index]["index"],
                               numberOfRows: 1,
                               title: "Customer  Viewed",
+                         productItem: data![index]["product-index"],
                             ),
                         preventDuplicates: false);
                     Get.deleteAll();
@@ -97,11 +98,11 @@ class TopSale extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Image.asset(
-                                          topSale![index]["item"].image,
+                                          data![index]["item"].image,
                                           height: designHeight! * 0.50,
                                         ),
                                         Text(
-                                          topSale![index]["item"].title,
+                                          data![index]["item"].title,
                                           softWrap: false,
                                           maxLines: 2,
                                           textAlign: TextAlign.center,
@@ -143,7 +144,7 @@ class TopSale extends StatelessWidget {
                                   padding: const EdgeInsets.only(
                                       top: 5, right: 5, left: 5),
                                   child: Text(
-                                      topSale![index]["item"].description,
+                                      data![index]["item"].description,
                                       maxLines: 5),
                                 )),
                             const Expanded(
