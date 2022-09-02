@@ -12,10 +12,9 @@ import 'package:solo/view/screens/view-details/view_details.dart';
 
 class SpecialOffer extends StatelessWidget {
   const SpecialOffer(
-      {Key? key, this.width, this.mainPadding, this.data, this.controller})
+      {Key? key, this.width, this.mainPadding, this.data})
       : super(key: key);
   final double? mainPadding, width;
-  final Cart? controller;
   final List? data;
 
   double get space {
@@ -63,7 +62,6 @@ class SpecialOffer extends StatelessWidget {
                   return index < 3
                       ? SpecialOfferItem(
                           loopIndex: index,
-                          controller:controller ,
                           index: data![index]["index"],
                           aspectRatio: data![index]
                               ["aspectRatio"],
@@ -101,7 +99,6 @@ class SpecialOffer extends StatelessWidget {
                                     index: data![index + index2]
                                         ["index"],
                                     productItem: data![index + index2]["product-index"],
-                                    controller:controller ,
                                     aspectRatio:
                                         data![index + index2]
                                             ["aspectRatio"],
@@ -130,7 +127,6 @@ class SpecialOffer extends StatelessWidget {
                 }))
             : SpecialOfferNoMobile(
                 data: data,
-                controller: controller,
                 imagePadding: 5,
                 aspectRatio: 0.9,
                 width: width)
@@ -145,12 +141,11 @@ class SpecialOfferNoMobile extends StatelessWidget {
     this.width,
     this.imagePadding,
     this.data,
-    this.aspectRatio, this.controller,
+    this.aspectRatio,
   }) : super(key: key);
   final double? width, imagePadding, aspectRatio;
   final List? data;
   double? itemWidth;
-   final Cart? controller;
   int? itemCount;
 
   double get space {
@@ -170,7 +165,6 @@ class SpecialOfferNoMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Cart controller = Get.put(Cart());
     getDevice(width);
     getItemWidth();
     return Wrap(
@@ -283,7 +277,8 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                     icon: const Icon(
                                         Icons.shopping_cart_outlined),
                                     onPressed: () {
-                                      controller!.addToCart(context:context,image: data![index]["item"]
+                                      Cart controller = Get.put(Cart());
+                                      controller.addToCart(context:context,image: data![index]["item"]
                                           .image!,price: data![index]["item"]
                                           .price!,stars: data![index]["item"]
                                           .stars,title: data![index]["item"].title!,width: width,

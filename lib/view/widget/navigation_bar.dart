@@ -134,7 +134,7 @@ List<Map<String, dynamic>> bottomNavDetails = [
   {
     "title": "Cart",
     "icon": const Icon(Icons.shopping_cart_outlined),
-    "page":  CartBudget(controller: Cart())
+    "page":  CartBudget()
   },
   {
     "title": "More",
@@ -261,11 +261,9 @@ class BottomRow extends StatelessWidget {
                               bottomSheet(context, width);
                             } else if(bottomNavDetails[index]["title"] ==
                                 "Cart"){
-                             // print("ON  $controller");
-                              //Get.deleteAll();
                                 Cart controller = Get.put(Cart());
                               await controller.showItem();
-                              Get.to(CartBudget(controller: controller));
+                              Get.to(CartBudget());
 
                                 print(controller.items.length);
                             }

@@ -48,7 +48,7 @@ class Advertisement extends StatelessWidget {
                 })),
         const SizedBox(height: 10),
         SizedBox(
-          width: width! / 3.3,
+          width: width! / 15 < 70?70:width! / 15,
           child: GetBuilder<Sliders>(builder: (controller) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

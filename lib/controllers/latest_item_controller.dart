@@ -30,30 +30,18 @@ class MoveSlider extends GetxController {
 class MoveSliderMain extends GetxController {
   MoveSliderMain(
       {this.crossAxisCount, this.numberOfRows, this.itemsList, this.width});
-  List<int> moveCount = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-  ];
-  List<double> moveUnit = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-  ];
+  List<int> moveCount = [];
+
+createMoveCountList(){
+  for (var i = 0; i < 21; i++) {
+    if (i <= 10){
+      moveCount.add(0);
+    }else{
+      moveUnit.add(0);
+    }
+  }
+}
+  List<double> moveUnit = [];
   final int? crossAxisCount, numberOfRows;
   double? width;
   List? itemsList;
@@ -73,5 +61,11 @@ class MoveSliderMain extends GetxController {
       moveCount[i] = moveCount[i] - 1;
     }
     update();
+  }
+
+  @override
+  void onInit() {
+    createMoveCountList();
+    super.onInit();
   }
 }

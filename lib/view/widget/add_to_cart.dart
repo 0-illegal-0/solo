@@ -11,7 +11,7 @@ class Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width! / 3,
-      height: width! / 5,
+      height: width! / 5 < 200?200:width! / 5,
       decoration: const BoxDecoration(
           color: Color(0xFFd4d3d2),
           borderRadius: BorderRadius.all(
@@ -21,8 +21,8 @@ class Item extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(
-                  width! / 45 > 20 ? 20 : width! / 45),
+              padding: EdgeInsets.all(0
+                 /* width! / 45 > 20 ? 20 : width! / 45*/),
               child: Image.asset(
                   image!),
             ),

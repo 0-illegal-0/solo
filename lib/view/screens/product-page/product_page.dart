@@ -11,10 +11,11 @@ import 'package:solo/view/widget/view_item.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage(
-      {Key? key, this.category, this.width, this.aspectRatio, this.height})
+      {Key? key, this.category, this.width, this.aspectRatio, this.height, this.productItem})
       : super(key: key);
   final Product? category;
   final double? width, aspectRatio, height;
+  final int? productItem;
   double? filterWidth, itemCount, rowSpace;
   double get mainPadding {
     return width! / 35;
@@ -148,6 +149,7 @@ class ProductPage extends StatelessWidget {
                                                               child:
                                                                   ViewItemContent(
                                                                 index: index,
+                                                                productItem: productItem,
                                                                 width: width,
                                                                 aspectRatio:
                                                                     aspectRatio,

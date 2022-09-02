@@ -5,10 +5,11 @@ import 'package:solo/view/screens/view-details/information_design.dart';
 
 class Details extends StatelessWidget {
   const Details(
-      {Key? key, this.fontTitle, this.controller, this.product, this.width})
+      {Key? key, this.fontTitle, this.controller, this.product, this.width, this.index, this.productIndex})
       : super(key: key);
   final double? fontTitle, width;
   final controller, product;
+  final int? index,productIndex;
 
   Color get detailsColor {
     return device == DeviceType.Desktop
@@ -153,8 +154,10 @@ class Details extends StatelessWidget {
                             height: 66,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                ChargeButton(title: "Add To Cart"),
+                              children:  [
+                                ChargeButton(title: "Add To Cart",image:product.image,price:product.price,
+                                    stars:product.stars,itemTitle:product.title,width:width,
+                                    itemIndex:index,productItem:productIndex),
                                 SizedBox(height: 8),
                                 ChargeButton(title: "Buy Now")
                               ],

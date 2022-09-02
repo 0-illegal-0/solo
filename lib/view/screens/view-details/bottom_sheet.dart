@@ -67,13 +67,13 @@ class ChargeButton extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(8)),
         color: Color(0xFFeb821a),
       ),
-      width: 170,
-      child: TextButton(                                                        // print("Product ${specialOfferItemDatas[index]['product-index']}");
-
+      width: width! < 400?150: 170,
+      child: TextButton(
           onPressed: () async{
             Cart controller = Get.put(Cart());
             controller.addToCart(context:context,image: image,price: price,stars: stars,
-                title: itemTitle,width: width,
+                title: itemTitle,
+                width: width,
                 itemIndex: itemIndex,
                 productItem: productItem
             );

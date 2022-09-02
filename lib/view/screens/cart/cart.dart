@@ -3,20 +3,23 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/models/speacial_offer.dart';
+import 'package:solo/models/tablet_models.dart';
 import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
+import 'package:solo/view/widget/view_item.dart';
 
+import '../../responsive.dart';
 import '../../style.dart';
 
 class CartBudget extends StatelessWidget {
-  CartBudget({Key? key, this.controller}) : super(key: key);
+  CartBudget({Key? key}) : super(key: key);
   double? itemWidth, space;
   int? itemCount;
   double? width;
-  final dynamic controller;
+  //final dynamic controller;
 
     sizesData (width){
       space = width! / 30;
@@ -40,6 +43,7 @@ class CartBudget extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
+    Cart controller = Get.put(Cart());
     execute(context);
     return Scaffold(
       body: SafeArea(
@@ -144,17 +148,17 @@ class CartBudget extends StatelessWidget {
                                                            Icons.shopping_cart_outlined),
                                                        onPressed: () {
                                                                controller.addToCart(context: context,
-                                                             image: specialOfferItemDatas[index]["item"]
-                                                                 .image!,
-                                                             price: specialOfferItemDatas[index]["item"]
-                                                                 .price!,
-                                                             stars: specialOfferItemDatas[index]["item"]
-                                                                 .stars,
-                                                             title: specialOfferItemDatas[index]["item"]
-                                                                 .title!,
+                                                             image: solo.product[int.parse(controller.items[index][0])].
+                                                             products[int.parse(controller.items[index][1])].image!,
+                                                             price: solo.product[int.parse(controller.items[index][0])].
+                                                             products[int.parse(controller.items[index][1])].price!,
+                                                             stars: solo.product[int.parse(controller.items[index][0])].
+                                                             products[int.parse(controller.items[index][1])].stars,
+                                                             title: solo.product[int.parse(controller.items[index][0])].
+                                                             products[int.parse(controller.items[index][1])].title!,
                                                              width: width,
-                                                             itemIndex: specialOfferItemDatas[index]['index'],
-                                                             productItem:specialOfferItemDatas[index]['product-index']
+                                                             itemIndex: int.parse(controller.items[index][1]),
+                                                             productItem:int.parse(controller.items[index][0])
                                                          );
                                                        },
                                                      );
@@ -186,23 +190,22 @@ class CartBudget extends StatelessWidget {
                                        ),
                                      ),
                                      onTap: () {
+
                                        Get.to(
-                                               () =>
+                                               () => // aspectRatio
                                                ViewDetails(
                                                  width: width,
                                                  aspectRatio:
-                                                 specialOfferItemDatas[index]
-                                                 ["aspectRatio"],
+                                                 solo.product[int.parse(controller.items[index][0])].aspectRatio,
                                                  height: width! *
-                                                     specialOfferItemDatas[index]
-                                                     ["height"],
+                                                     solo.product[int.parse(controller.items[index][0])].height,
                                                  itemList:
-                                                 specialOfferItemDatas[index]
-                                                 ["item-list"],
-                                                 index: specialOfferItemDatas[index]
-                                                 ["index"],
+                                                 solo.product[int.parse(controller.items[index][0])].
+                                                 products,
+                                                 index: int.parse(controller.items[index][1]),
                                                  numberOfRows: 1,
                                                  title: "Customer  Viewed",
+                                                 productItem: int.parse(controller.items[index][0]),
                                                ),
                                            preventDuplicates: false);
                                        Get.deleteAll();
@@ -246,12 +249,12 @@ class CartBudget extends StatelessWidget {
                         ],
                       ),
                     ),
-                  /*  device == DeviceType.Desktop
+                    device == DeviceType.Desktop
                         ? ViewItem(
                             aspectRatioMobile: 0.9,
-                            height: width * 0.60,
+                            height: width! * 0.60,
                             itemList: tablets,
-                            mainPadding: width / 24,
+                            mainPadding: width! / 24,
                             title: "Best Selling Products",
                             numberOfRows: 1,
                             aspectRatioNoMobile: 0.8,
@@ -260,12 +263,12 @@ class CartBudget extends StatelessWidget {
                           )
                         : MobileDesign(
                             aspectRatio: 1.1,
-                            height: width * 0.50,
+                            height: width! * 0.50,
                             itemCount: tablets.length,
                             itemList: tablets,
                             title: "Best Selling Products",
                             width: width,
-                          ),*/
+                          ),
                     const SizedBox(height: 50),
                     Close(width: width)
                   ],
@@ -323,18 +326,19 @@ class CartWidgetForMobile extends StatelessWidget {
                 height: designHeight,
                 child: InkWell(
                     onTap: () {
-                    /*  Get.to(
+                      Get.to(
                               () => ViewDetails(
                             width: width!,
-                            aspectRatio: item![index]["aspectRatio"],
-                            height: item![index]["height"],
-                            itemList: item![index]["item-list"],
-                            index: item![index]["index"],
+                            aspectRatio: controller.item![index]["aspectRatio"],
+                            height: controller.item![index]["height"],
+                            itemList: controller.item![index]["item-list"],
+                            index: controller.item![index]["index"],
                             numberOfRows: 1,
                             title: "Customer  Viewed",
+                                productItem: controller.item![index]["index"],
                           ),
                           preventDuplicates: false);
-                      Get.deleteAll();*/
+                      Get.deleteAll();
                     },
                  child: Row(
                       children: [

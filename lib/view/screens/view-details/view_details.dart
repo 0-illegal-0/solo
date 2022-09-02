@@ -32,7 +32,6 @@ class ViewDetails extends StatefulWidget {
   final double? height, aspectRatio, width;
   final int? index, numberOfRows,productItem;
   final List? itemList;
-  //final Cart? controller;
   @override
   State<ViewDetails> createState() => _ViewDetailsState();
 }
@@ -58,7 +57,7 @@ class _ViewDetailsState extends State<ViewDetails>
         bottom: false,
         child: Stack(
           children: [
-            Head(width: widget.width,/*controller: widget.controller*/),
+            Head(width: widget.width),
             Padding(
               padding: EdgeInsets.only(
                   left: widget.width! / 24,
@@ -121,7 +120,7 @@ class _ViewDetailsState extends State<ViewDetails>
                             controller: controller,
                             fontTitle: fontTitle,
                             product: product,
-                            width: widget.width,
+                            width: widget.width,index: widget.index,productIndex: widget.productItem,
                           ),
                     const SizedBox(height: 20),
                     widget.itemList![widget.index!].reviews.isNotEmpty == true
@@ -242,14 +241,12 @@ class _ViewDetailsState extends State<ViewDetails>
                                    height: 33,
                                    child: Row(
                                      mainAxisAlignment: MainAxisAlignment.center,
-                                    /* mainAxisAlignment:
-                                    // MainAxisAlignment.spaceBetween,*/
                                      children:  [
                                        ChargeButton(title: "Add To Cart",productItem: widget.productItem,
                                          width: widget.width,stars: product.stars,price: product.price,image: product.image,
                                        itemTitle: product.title,itemIndex: widget.index),
-                                       SizedBox(width: 20,),
-                                       ChargeButton(title: "Buy Now")
+                                       SizedBox(width: 20),
+                                       ChargeButton(title: "Buy Now",width: widget.width)
                                      ],
                                    ),
                                  )
@@ -317,7 +314,7 @@ class ProductImagesDesktop extends StatelessWidget {
                     controller: controller,
                     fontTitle: fontTitle,
                     product: product,
-                    width: width,
+                    width: width,productIndex: productIndex,index: index,
                   ),
                   Container(
                     width: 430,
@@ -340,8 +337,8 @@ class ProductImagesDesktop extends StatelessWidget {
                             children:  [
                               ChargeButton(title: "Add To Cart",image:product.image,price:product.price,
                                   stars:product.stars,itemTitle:product.title,width:width,
-                                  itemIndex:index,productItem:productIndex,),
-                              ChargeButton(title: "Buy Now")
+                                  itemIndex:index,productItem:productIndex),
+                              ChargeButton(title: "Buy Now",width:width,)
                             ],
                           ),
                         )

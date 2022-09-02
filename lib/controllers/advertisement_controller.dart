@@ -32,11 +32,14 @@ class Sliders extends GetxController {
   List<Widget> initValue() {
     return List.generate(advertisements.length, (index) {
       return Container(
-        color: index == (offset)
+       /* color: index == (offset)
             ? const Color(0xFF049cc2)
-            : const Color(0xFF02132b),
-        width: 15,
-        height: 7,
+            : const Color(0xFF02132b),*/
+        width: 10,
+        height: 10,
+        decoration: BoxDecoration(shape: BoxShape.circle, color:index == (offset)
+            ? const Color(0xFF049cc2)
+            : const Color(0xFF02132b), ),
       );
     });
   }
@@ -46,11 +49,14 @@ class Sliders extends GetxController {
   List<Widget> stages() {
     stageIcon = List.generate(advertisements.length, (index) {
       return Container(
-        color: index == (move.page!.toInt())
+       /* color: index == (move.page!.toInt())
             ? const Color(0xFF049cc2)
-            : const Color(0xFF02132b),
-        width: 15,
-        height: 7,
+            : const Color(0xFF02132b),*/
+        width: 10,
+        height: 10,
+          decoration: BoxDecoration(shape: BoxShape.circle, color:index == (move.page!.toInt())
+              ? const Color(0xFF049cc2)
+              : const Color(0xFF02132b), )
       );
     });
     return stageIcon;

@@ -7,7 +7,7 @@ import 'package:solo/view/widget/add_to_cart.dart';
 
 class  Cart extends GetxController {
 
-int count = 0;
+int count = 1;
 
 onClick(int? id){
   if(id == 1){
