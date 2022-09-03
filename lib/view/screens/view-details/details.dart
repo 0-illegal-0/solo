@@ -159,7 +159,7 @@ class Details extends StatelessWidget {
                                     stars:product.stars,itemTitle:product.title,width:width,
                                     itemIndex:index,productItem:productIndex),
                                 SizedBox(height: 8),
-                                ChargeButton(title: "Buy Now")
+                                ChargeButton(title: "Buy Now",width: width)
                               ],
                             ),
                           )

@@ -256,7 +256,7 @@ class _ViewDetailsState extends State<ViewDetails>
                          ),
                        )
                        : const SizedBox(),
-                   BottomRow(/*controller: widget.controller,*/),
+                   BottomRow(),
                  ],
                ),
              )

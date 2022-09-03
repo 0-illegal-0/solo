@@ -249,32 +249,39 @@ class CartBudget extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 50),
                     device == DeviceType.Desktop
                         ? ViewItem(
-                            aspectRatioMobile: 0.9,
-                            height: width! * 0.60,
-                            itemList: tablets,
-                            mainPadding: width! / 24,
-                            title: "Best Selling Products",
-                            numberOfRows: 1,
-                            aspectRatioNoMobile: 0.8,
-                            width: width,
-                            i: 6,
-                          )
-                        : MobileDesign(
-                            aspectRatio: 1.1,
-                            height: width! * 0.50,
-                            itemCount: tablets.length,
-                            itemList: tablets,
-                            title: "Best Selling Products",
-                            width: width,
-                          ),
+                      aspectRatioMobile: 0.9,
+                      height: width! * 0.60,
+                      itemList: solo.product[1].
+                      products,
+                      mainPadding: width! / 24,
+                      title: "Best Selling Products",
+                      numberOfRows: 1,
+                      aspectRatioNoMobile: 0.8,
+                      width: width,
+                      i: 6,
+                    )
+                    : MobileDesign(
+                      aspectRatio: 1.1,
+                      height: width! * 0.50,
+                      itemCount: solo.product[1].
+                      products.length,
+                      itemList: solo.product[1].
+                      products,
+                      title: "Best Selling Products",
+                      width: width,
+                    ),
                     const SizedBox(height: 50),
-                    Close(width: width)
+                    Close(width: width),
+
                   ],
                 ),
               ),
-            ), BottomRow(controller: controller),
+            ),
+          //  Positioned(child: Container(color: Colors.red, width: 300,height: 100),bottom: 100,),
+            BottomRow(controller: controller),
             Head(width: width,controller: controller),
           ],
         ),
@@ -311,7 +318,7 @@ class CartWidgetForMobile extends StatelessWidget {
             children: List.generate(
               controller.items.length!,
                   (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: Container(
                 decoration:
                  const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
@@ -329,13 +336,14 @@ class CartWidgetForMobile extends StatelessWidget {
                       Get.to(
                               () => ViewDetails(
                             width: width!,
-                            aspectRatio: controller.item![index]["aspectRatio"],
-                            height: controller.item![index]["height"],
-                            itemList: controller.item![index]["item-list"],
-                            index: controller.item![index]["index"],
+                            aspectRatio: solo.product[int.parse(controller.items[index][0])].aspectRatio,
+                            height:  width! *
+                                solo.product[int.parse(controller.items[index][0])].height,
+                            itemList: solo.product[int.parse(controller.items[index][0])].products,
+                            index: int.parse(controller.items[index][1]),
                             numberOfRows: 1,
                             title: "Customer  Viewed",
-                                productItem: controller.item![index]["index"],
+                            productItem: int.parse(controller.items[index][0]),
                           ),
                           preventDuplicates: false);
                       Get.deleteAll();
@@ -460,6 +468,7 @@ class CartWidgetForMobile extends StatelessWidget {
               ),
                   ),
             )),
+       // Spacer()
       ],
     );
   }
