@@ -294,7 +294,6 @@ class SpecialOfferNoMobile extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-
                         Get.to(
                                 () =>
                                 ViewDetails(
@@ -313,7 +312,6 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                   ["index"],
                                   numberOfRows: 1,
                                   title: "Customer  Viewed",
-                                //  controller: controller,
                                 ),
                            /* preventDuplicates: false*/);
                       //  Get.deleteAll();

@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AllData inst = AllData(context: context);
- //  Cart controller = Get.put(Cart());
+    //  Cart controller = Get.put(Cart());
     print(inst.width);
     return Scaffold(
         backgroundColor: const Color(0xFFe1e1e3),
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                                 : 140),
                     child: Column(
                       children: [
-                        /*     Advertisement(
+                        Advertisement(
                           width: inst.width,
                           title: "",
                           mainPadding: inst.mainPadding!,
@@ -65,32 +65,31 @@ class HomePage extends StatelessWidget {
                           mainPadding: inst.mainPadding!,
                           width: inst.width,
                           title: "Hot Deals",
-                          data:inst.itemData["hot-deal"],
+                          data: inst.itemData["hot-deal"],
                           listhotDealsItemsList: listhotDealsItemsList,
-                        ),*//*
-                        SizedBox(height: inst.verticalSpace),*/
-                      /*  ViewItem(
+                        ),
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 0.9,
                           height: inst.width! * 0.60,
                           itemList: solo.product[1].products,
                           mainPadding: inst.mainPadding!,
                           title: "Mobiles",
                           numberOfRows: 2,
-                          aspectRatioNoMobile: 0.8,
+                          aspectRatioNoMobile: 0.7,
                           width: inst.width!,
                           i: 0,
                           productItem: 1,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
-                 /*       SpecialOffer(
+                        SizedBox(height: inst.verticalSpace),
+                        SpecialOffer(
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
-                            controller: controller,
                             data: inst.itemData["special-offer"]),
-                          SizedBox(height: inst.verticalSpace),*/
-                      //  WeeklyGift(title: "Weekly Gift", width: inst.width!),
                         SizedBox(height: inst.verticalSpace),
-                      /*  ViewItem(
+                        WeeklyGift(title: "Weekly Gift", width: inst.width!),
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 0.9,
                           aspectRatioNoMobile: 0.7,
                           height: inst.width! * 0.55,
@@ -101,13 +100,12 @@ class HomePage extends StatelessWidget {
                           numberOfRows: 2,
                           i: 1,
                           productItem: 0,
-                        ),*/
-                    /*    SizedBox(height: inst.verticalSpace),*/
-                    /*    Recommended(
+                        ),
+                        SizedBox(height: inst.verticalSpace),
+                        Recommended(
                             width: inst.width!,
                             title: "Recommended",
-                            data: inst.itemData["recomended"]),*/
-                        /*
+                            data: inst.itemData["recomended"]),
                         SizedBox(height: inst.verticalSpace),
                         MostLiked(
                           width: inst.width!,
@@ -115,9 +113,9 @@ class HomePage extends StatelessWidget {
                           space: inst.width! / 51.4,
                           title: "Most Liked Items",
                           data: inst.itemData["liked"],
-                        ),*/
-                      /*  SizedBox(height: inst.verticalSpace),
-                           ViewItem(
+                        ),
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 1.2,
                           aspectRatioNoMobile: 0.7,
                           height: inst.width! * 0.50,
@@ -129,17 +127,17 @@ class HomePage extends StatelessWidget {
                           numberOfRows: 2,
                           productItem: 3,
                         ),
-                       SizedBox(height: inst.verticalSpace),*/
-                        /*LatestItems(
+                        SizedBox(height: inst.verticalSpace),
+                        LatestItems(
                           width: inst.width!,
                           space: 5,
                           mainPadding: inst.mainPadding!,
                           title: "Latest Item",
-                          aspectRatio: 1.1,
+                          aspectRatio: 0.8,
                           viewitemCount: 5,
                           height: inst.width! * 0.50,
                           data: inst.itemData["latest-item"],
-                        ),*//*
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         TopBrand(
                             mainPadding: inst.mainPadding!,
@@ -147,8 +145,8 @@ class HomePage extends StatelessWidget {
                             runSpacing: inst.width! / 18,
                             width: inst.width!,
                             title: "Top Brands"),
-                        SizedBox(height: inst.verticalSpace),*/
-                       /* ViewItem(
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 1.1,
                           aspectRatioNoMobile: 0.7,
                           height: inst.width! * 0.50,
@@ -156,10 +154,10 @@ class HomePage extends StatelessWidget {
                           mainPadding: inst.mainPadding!,
                           title: "Tablets",
                           width: inst.width!,
-                          numberOfRows: 1,
+                          numberOfRows: 2,
                           i: 3,
                           productItem: 2,
-                        ),*//*
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         Gift(
                           title: "Get a Gift",
@@ -178,8 +176,8 @@ class HomePage extends StatelessWidget {
                           numberOfRows: 2,
                           productItem: 4,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
-                       /* TopSale(
+                        SizedBox(height: inst.verticalSpace),
+                        TopSale(
                           title: "Top Sale",
                           width: inst.width!,
                           itemCountForTablet: 2,
@@ -187,20 +185,20 @@ class HomePage extends StatelessWidget {
                           itemCountForDesktop: 3,
                           space: 10,
                           data: inst.itemData["latest-item"],
-                        ),*//*
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         Close(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
-                            : const SizedBox()*/
+                            : const SizedBox()
                       ],
                     ),
                   ),
                 ),
-                Head(width: inst.width),
-                 BottomRow(/*controller: controller*/),
-              /*  const Important()*/
-                // StartPages(height: inst.height!, width: inst.width)
+                /*   Head(width: inst.width),
+                const BottomRow(),
+                const Important(),
+                StartPages(height: inst.height!, width: inst.width)*/
               ],
             )));
   }

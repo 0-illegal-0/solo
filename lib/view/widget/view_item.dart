@@ -16,7 +16,8 @@ class ViewItem extends StatelessWidget {
       this.aspectRatioMobile,
       this.mainPadding,
       this.aspectRatioNoMobile,
-      this.numberOfRows, this.productItem});
+      this.numberOfRows,
+      this.productItem});
 
   final double? width,
       height,
@@ -43,7 +44,7 @@ class ViewItem extends StatelessWidget {
             itemList: itemList,
             title: title,
             width: width,
-      productItem: productItem,
+            productItem: productItem,
           )
         : AnimatedItems(
             itemList: itemList,
@@ -58,7 +59,8 @@ class ViewItem extends StatelessWidget {
             wrapCount: instanceSizes.wrapCount,
             stackHeight: instanceSizes.stackHeight,
             space: instanceSizes.space,
-            gridWidth: instanceSizes.gridWidth,productItem: productItem,
+            gridWidth: instanceSizes.gridWidth,
+            productItem: productItem,
           );
   }
 }
@@ -111,7 +113,8 @@ class MobileDesign extends StatelessWidget {
       this.aspectRatio,
       this.width,
       this.itemCount,
-      this.itemList, this.productItem})
+      this.itemList,
+      this.productItem})
       : super(key: key);
 
   final String? title;
@@ -146,7 +149,8 @@ class MobileDesign extends StatelessWidget {
                           index: index,
                           width: width,
                           aspectRatio: aspectRatio,
-                          height: height,productItem: productItem,
+                          height: height,
+                          productItem: productItem,
                         )),
                   );
                 })),
@@ -170,7 +174,8 @@ class AnimatedItems extends StatelessWidget {
       this.i,
       this.title,
       this.stackHeight,
-      this.gridWidth, this.productItem})
+      this.gridWidth,
+      this.productItem})
       : super(key: key);
 
   final double? width,
@@ -180,7 +185,7 @@ class AnimatedItems extends StatelessWidget {
       height,
       stackHeight,
       gridWidth;
-  final int? crossAxisCount, wrapCount, numberOfRows, i,productItem;
+  final int? crossAxisCount, wrapCount, numberOfRows, i, productItem;
   final List? itemList;
   final String? title;
 
@@ -219,58 +224,56 @@ class AnimatedItems extends StatelessWidget {
         ),
         SizedBox(
           height: stackHeight,
-          child: GetBuilder<MoveSliderMain>(
-            builder: (context) {
-              return Stack(
-                  children: List.generate(
-                wrapCount!,
-                (index) => AnimatedPositioned(
-                      left: width! * index.toDouble() + controller.moveUnit[i!],
-                      duration: const Duration(milliseconds: 500),
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                        child: SizedBox(
-                          width: width! - (width! / 24) * 2,
-                          child: Wrap(
-                            spacing: space!,
-                            runSpacing: space!,
-                            children: List.generate(listIndex(index), (index2) {
-                              return Container(
-                                decoration: const BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Color(0xFFb1b3b5),
-                                          blurRadius: 10,
-                                          spreadRadius: 0.1,
-                                          offset: Offset(0, 0))
-                                    ],
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                constraints: BoxConstraints(
-                                    maxHeight: SizesData.maxHeight,
-                                    minHeight: SizesData.minHeight),
-                                width: gridWidth,
-                                child: AspectRatio(
-                                    aspectRatio: aspectRatio!,
-                                    child: ViewItemContent(
-                                      index: index2 + stageNumber(index),
-                                      itemList: itemList,
-                                      aspectRatio: aspectRatio,
-                                      width: width,
-                                      height: height!,
-                                      productItem:productItem ,
-                                    )),
-                              );
-                            }),
+          child: GetBuilder<MoveSliderMain>(builder: (context) {
+            return Stack(
+                children: List.generate(
+                    wrapCount!,
+                    (index) => AnimatedPositioned(
+                        left:
+                            width! * index.toDouble() + controller.moveUnit[i!],
+                        duration: const Duration(milliseconds: 500),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 2),
+                          child: SizedBox(
+                            width: width! / 1.09,
+                            child: Wrap(
+                              spacing: space!,
+                              runSpacing: space!,
+                              children:
+                                  List.generate(listIndex(index), (index2) {
+                                return Container(
+                                  decoration: const BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Color(0xFFb1b3b5),
+                                            blurRadius: 10,
+                                            spreadRadius: 0.1,
+                                            offset: Offset(0, 0))
+                                      ],
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  constraints: BoxConstraints(
+                                      maxHeight: SizesData.maxHeight,
+                                      minHeight: SizesData.minHeight),
+                                  width: gridWidth,
+                                  child: AspectRatio(
+                                      aspectRatio: aspectRatio!,
+                                      child: ViewItemContent(
+                                        index: index2 + stageNumber(index),
+                                        itemList: itemList,
+                                        aspectRatio: aspectRatio,
+                                        width: width,
+                                        height: height!,
+                                        productItem: productItem,
+                                      )),
+                                );
+                              }),
+                            ),
                           ),
-                        ),
-                      ))
-
-              ));
-            }
-          ),
+                        ))));
+          }),
         ),
         ArrowWidget(
             controller: controller,
@@ -290,10 +293,11 @@ class ViewItemContent extends StatelessWidget {
       this.index,
       this.width,
       this.aspectRatio,
-      this.height, this.productItem})
+      this.height,
+      this.productItem})
       : super(key: key);
   final List? itemList;
-  final int? index,productItem;
+  final int? index, productItem;
   final double? width, aspectRatio, height;
   @override
   Widget build(BuildContext context) {
@@ -348,14 +352,15 @@ class ViewItemContent extends StatelessWidget {
                     icon: const Icon(Icons.shopping_cart_outlined),
                     onPressed: () {
                       Cart controller = Get.put(Cart());
-                      controller.addToCart(context:context,image: itemList![index!].image!
-                          ,price: itemList![index!].price!
-                          ,stars: itemList![index!].stars!
-                          ,title: itemList![index!].title!,
+                      controller.addToCart(
+                          context: context,
+                          image: itemList![index!].image!,
+                          price: itemList![index!].price!,
+                          stars: itemList![index!].stars!,
+                          title: itemList![index!].title!,
                           width: width,
                           productItem: productItem,
-                          itemIndex:index
-                      );
+                          itemIndex: index);
                     },
                   ),
                 )
@@ -373,7 +378,7 @@ class ViewItemContent extends StatelessWidget {
                     index: index,
                     numberOfRows: 1,
                     title: "Customer  Viewed",
-                productItem:productItem ,
+                    productItem: productItem,
                   ),
               preventDuplicates: false);
           Get.deleteAll();
@@ -392,7 +397,7 @@ class SizesData {
   List? itemList;
   final double? width, mainPadding, aspectRatio;
   final int? numberOfRows;
-  static double maxHeight = 240;
+  static double maxHeight = 300;
   static double minHeight = 210;
   double? widthValue;
 

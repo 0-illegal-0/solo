@@ -13,7 +13,8 @@ class HotDeals extends StatelessWidget {
     this.width,
     this.mainPadding,
     this.title,
-    this.listhotDealsItemsList, this.data,
+    this.listhotDealsItemsList,
+    this.data,
   }) : super(key: key);
   final double? width;
   final double? mainPadding;
@@ -41,8 +42,8 @@ class HotDeals extends StatelessWidget {
       }
     } else {
       if (width! > 1200) {
-        widthValue = 8.8;
-        return 7;
+        widthValue = 6;
+        return 5;
       } else {
         widthValue = 7.4;
         return 6;
@@ -69,10 +70,10 @@ class HotDeals extends StatelessWidget {
             width: width,
             mainPadding: width! / 50,
             maxItemCount: maxItemCount,
-            data:data,
+            data: data,
             widthValue: widthValue),
         const SizedBox(height: 15),
-        listhotDealsItemsList!.length < maxItemCount
+        data!.length < maxItemCount
             ? TextButton(
                 onPressed: (null),
                 child: Text("See All",
