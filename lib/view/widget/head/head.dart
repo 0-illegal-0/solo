@@ -16,7 +16,8 @@ import '../note.dart';
 class Head extends StatelessWidget {
   const Head({
     Key? key,
-    this.width, this.controller,
+    this.width,
+    this.controller,
   }) : super(key: key);
   final double? width;
   final Cart? controller;
@@ -35,13 +36,12 @@ class Head extends StatelessWidget {
                     : 90,
             width: double.infinity,
             child: width! >= 800
-                ? DesktopHead(width: width!, space: 75,controller: controller)
+                ? DesktopHead(width: width!, space: 75, controller: controller)
                 : width! < 800 && width! >= 650
                     ? TabletHead(width: width!, space: 55)
                     : MobileHead(
                         space: width! / 10.8,
                         width: width!,
-
                       )),
         SizedBox(
             width: double.infinity,
@@ -122,7 +122,7 @@ class TabletHead extends StatelessWidget {
       {Key? key, this.width, this.space, this.aspectRatio, this.height})
       : super(key: key);
   final double? width, space, aspectRatio, height;
- // final Cart? controller;
+  // final Cart? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -193,8 +193,9 @@ class TabletHead extends StatelessWidget {
                       iconSize: 22,
                       rowWidth: 170,
                       textIconSize: 13)
-                  .iconBar("Cart", Icons.shopping_cart_outlined, page: CartBudget(/*controller: controller*/),pageState: "CART")
-              ],
+                  .iconBar("Cart", Icons.shopping_cart_outlined,
+                      page: CartBudget(), pageState: "CART")
+            ],
           ),
         ),
         const Spacer(),
@@ -212,7 +213,8 @@ class TabletHead extends StatelessWidget {
 }
 
 class DesktopHead extends StatelessWidget {
-  const DesktopHead({Key? key, this.width, this.space, this.controller}) : super(key: key);
+  const DesktopHead({Key? key, this.width, this.space, this.controller})
+      : super(key: key);
   final double? width, space;
   final Cart? controller;
 
@@ -240,7 +242,7 @@ class DesktopHead extends StatelessWidget {
                   height: 50,
                   width: 52,
                   iconSize: 25,
-                  controller:controller,
+                  controller: controller,
                   rowWidth: width! < 1100 ? 180 : 200,
                   textIconSize: 15)
             ],
@@ -263,16 +265,18 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      style: ButtonStyle(
-          padding: MaterialStateProperty.all(
-              const EdgeInsets.all( 0))),
+        style: ButtonStyle(
+            padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
         onPressed: () {
-          Get.to(()=> HomePage());
+          Get.to(() => HomePage());
         },
         child: Text("Solo",
             textAlign: TextAlign.center,
-            style:  TextStyle(
-                fontFamily: "Lobster", fontSize: fontSize!, color: Colors.white)));/*Text(
+            style: TextStyle(
+                fontFamily: "Lobster",
+                fontSize: fontSize!,
+                color: Colors
+                    .white))); /*Text(
       "Solo",
       style: TextStyle(
           fontFamily: "Lobster", fontSize: fontSize!, color: Colors.white),

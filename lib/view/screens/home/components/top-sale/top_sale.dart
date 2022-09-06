@@ -68,6 +68,7 @@ class TopSale extends StatelessWidget {
                 height: designHeight,
                 child: InkWell(
                   onTap: () {
+                    Get.deleteAll();
                     Get.to(
                         () => ViewDetails(
                               width: width!,
@@ -77,10 +78,9 @@ class TopSale extends StatelessWidget {
                               index: data![index]["index"],
                               numberOfRows: 1,
                               title: "Customer  Viewed",
-                         productItem: data![index]["product-index"],
+                              productItem: data![index]["product-index"],
                             ),
                         preventDuplicates: false);
-                    Get.deleteAll();
                   },
                   child: Row(
                     children: [
@@ -126,11 +126,12 @@ class TopSale extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: List.generate(
                                         5,
-                                        (index) => Icon(Icons.star_rate,
+                                        (index2) => Icon(Icons.star_rate,
                                             size: 17.0,
-                                            color: index > 2
-                                                ? Colors.grey
-                                                : Colors.green))),
+                                            color: index2 <
+                                                    data![index]["item"].stars
+                                                ? Colors.orange
+                                                : Colors.grey))),
                               ),
                             ],
                           )),
@@ -143,8 +144,7 @@ class TopSale extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       top: 5, right: 5, left: 5),
-                                  child: Text(
-                                      data![index]["item"].description,
+                                  child: Text(data![index]["item"].description,
                                       maxLines: 5),
                                 )),
                             const Expanded(

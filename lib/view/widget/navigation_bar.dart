@@ -35,8 +35,8 @@ class NavigationBar extends StatelessWidget {
             } else if (bottomNavDetails[val]["title"] == "Categories") {
               note(context);
             } else {
-              Get.to(bottomNavDetails[val]["page"], preventDuplicates: false);
               Get.deleteAll();
+              Get.to(bottomNavDetails[val]["page"], preventDuplicates: false);
             }
           },
           items: List.generate(
@@ -103,8 +103,8 @@ class More extends StatelessWidget {
             bottomNavDetails[3]["drop-menu"].length,
             (index) => TextButton(
               onPressed: () {
-                Get.to(bottomNavDetails[3]["drop-menu"][index]["page"]);
                 Get.deleteAll();
+                Get.to(bottomNavDetails[3]["drop-menu"][index]["page"]);
               },
               child: Text(
                 bottomNavDetails[3]["drop-menu"][index]["title"],
@@ -134,7 +134,7 @@ List<Map<String, dynamic>> bottomNavDetails = [
   {
     "title": "Cart",
     "icon": const Icon(Icons.shopping_cart_outlined),
-    "page":  CartBudget()
+    "page": CartBudget()
   },
   {
     "title": "More",
@@ -256,24 +256,24 @@ class BottomRow extends StatelessWidget {
                                           fontWeight: FontWeight.bold))
                             ],
                           ),
-                          onTap: () async{
+                          onTap: () async {
                             if (bottomNavDetails[index]["title"] == "More") {
                               bottomSheet(context, width);
-                            } else if(bottomNavDetails[index]["title"] ==
-                                "Cart"){
-                                Cart controller = Get.put(Cart());
+                            } else if (bottomNavDetails[index]["title"] ==
+                                "Cart") {
+                              Get.deleteAll();
+                              Cart controller = Get.put(Cart());
                               await controller.showItem();
                               Get.to(CartBudget());
 
-                                print(controller.items.length);
-                            }
-                            else if (bottomNavDetails[index]["title"] ==
+                              print(controller.items.length);
+                            } else if (bottomNavDetails[index]["title"] ==
                                 "Categories") {
                               note(context);
                             } else {
+                              Get.deleteAll();
                               Get.to(bottomNavDetails[index]["page"],
                                   preventDuplicates: false);
-                              Get.deleteAll();
                             }
                           },
                         )),

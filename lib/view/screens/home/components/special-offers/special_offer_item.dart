@@ -17,7 +17,8 @@ class SpecialOfferItem extends StatelessWidget {
       this.height,
       this.index,
       this.itemList,
-      this.loopIndex, this.productItem})
+      this.loopIndex,
+      this.productItem})
       : super(key: key);
   final double width;
   final double mainPadding;
@@ -58,6 +59,7 @@ class SpecialOfferItem extends StatelessWidget {
     sizes(loopIndex);
     return InkWell(
       onTap: () {
+        Get.deleteAll();
         Get.to(
             () => ViewDetails(
                   width: width,
@@ -67,10 +69,9 @@ class SpecialOfferItem extends StatelessWidget {
                   index: index,
                   numberOfRows: 1,
                   title: "Customer  Viewed",
-              productItem: productItem,
+                  productItem: productItem,
                 ),
             preventDuplicates: false);
-        Get.deleteAll();
       },
       child: Container(
           height: width * heightValue!,

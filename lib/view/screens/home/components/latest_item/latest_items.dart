@@ -17,7 +17,8 @@ class LatestItems extends StatelessWidget {
       this.title,
       this.aspectRatio,
       this.viewitemCount,
-      this.height, this.data})
+      this.height,
+      this.data})
       : super(key: key);
   final double? width;
   final double? mainPadding, space, aspectRatio, height;
@@ -49,8 +50,7 @@ class LatestItems extends StatelessWidget {
   }
 
   int listIndex2(index) {
-    if (index == wrapCount - 1 &&
-        data!.length > viewitemCount!) {
+    if (index == wrapCount - 1 && data!.length > viewitemCount!) {
       if (data!.length % viewitemCount! == 0) {
         return viewitemCount!;
       } else {
@@ -87,140 +87,153 @@ class LatestItems extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        /*  Text(
           title!,
           style: titleStyle,
-        ),
+        ),*/
         device == DeviceType.Mobile
             ? Column(
-              children: [
-                SizedBox(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: Text(title!, style: titleStyle),
+                  ),
+                  SizedBox(
                     height: 300,
                     width: double.infinity,
                     child: SizedBox(
                       width: width! * widthVal,
-                      child: GetBuilder<MoveSliderMain>(
-                        builder: (context) {
-                          return Stack(
-                            alignment: AlignmentDirectional.center,
-                            children: List.generate(
-                                wrapCount,
-                                (index1) =>  AnimatedPositioned(
-                                        duration: const Duration(milliseconds: 500),
-                                        left: width! * index1.toDouble() +
-                                            controller.moveUnit[8],
-                                        child: Container(
-                                            width: width! / 1.09,
-                                            alignment: Alignment.center,
-                                            child: Wrap(
-                                              spacing: space!,
-                                              runSpacing: space!,
-                                              children: List.generate(
-                                                  listIndex2(
-                                                    index1,
-                                                  ), (index) {
-                                                itemIndex =
-                                                    index + index1 * viewitemCount!;
-                                                return InkWell(
-                                                  onTap: () {
-
-                                                    print("itemIndex  $itemIndex");
-                                                    print("index  ${index + index1 * viewitemCount!}");
-                                                    Get.to(
-                                                        () => ViewDetails(
-                                                              width: width!,
-                                                              aspectRatio: data![
-                                                              index + index1 * viewitemCount!]
-                                                                  ["aspectRatio"],
-                                                              height: data![
-                                                              index + index1 * viewitemCount!]["height"],
-                                                              itemList: data![
-                                                              index + index1 * viewitemCount!]
-                                                                  ["item-list"],
-                                                              index: data![
-                                                              index + index1 * viewitemCount!]["index"],
-                                                              numberOfRows: 1,
-                                                              title: "Customer  Viewed",
-                                                          productItem: data![index + index1 * viewitemCount!]["product-index"],
-                                                            ),
-                                                        preventDuplicates: false);
-                                                    Get.deleteAll();
-                                                  },
-                                                  child: Container(
-                                                    width: brandGrid(index > 1 ? 3 : 2),
-                                                    height: 140,
-                                                    decoration: const BoxDecoration(
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                              color: Color(0xFFc2c2c2),
-                                                              blurRadius: 5,
-                                                              spreadRadius: 1,
-                                                              offset: Offset(0, 0.5))
-                                                        ],
-                                                        color: Colors.white,
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(5))),
-                                                    padding: EdgeInsets.only(
-                                                        top: width! / 36,
-                                                        right: width! / 36,
-                                                        left: width! / 36,
-                                                        bottom: width! / 72),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.center,
-                                                      children: [
-                                                        Expanded(
-                                                            child: Image.asset(
-                                                                data![itemIndex!]
-                                                                        ["item"]
-                                                                    .image!)),
-                                                        Text(
-                                                          data![itemIndex!]
-                                                                  ["item"]
-                                                              .title!,
-                                                          maxLines: 2,
-                                                          textAlign: TextAlign.center,
-                                                          style: const TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight.bold),
+                      child: GetBuilder<MoveSliderMain>(builder: (context) {
+                        return Stack(
+                          alignment: AlignmentDirectional.center,
+                          children: List.generate(
+                              wrapCount,
+                              (index1) => AnimatedPositioned(
+                                    duration: const Duration(milliseconds: 500),
+                                    left: width! * index1.toDouble() +
+                                        controller.moveUnit[8],
+                                    child: Container(
+                                        width: width! / 1.09,
+                                        alignment: Alignment.center,
+                                        child: Wrap(
+                                          spacing: space!,
+                                          runSpacing: space!,
+                                          children: List.generate(
+                                              listIndex2(
+                                                index1,
+                                              ), (index) {
+                                            itemIndex =
+                                                index + index1 * viewitemCount!;
+                                            return InkWell(
+                                              onTap: () {
+                                                Get.deleteAll();
+                                                Get.to(
+                                                    () => ViewDetails(
+                                                          width: width!,
+                                                          aspectRatio: data![index +
+                                                                  index1 *
+                                                                      viewitemCount!]
+                                                              ["aspectRatio"],
+                                                          height: data![index +
+                                                                  index1 *
+                                                                      viewitemCount!]
+                                                              ["height"],
+                                                          itemList: data![index +
+                                                                  index1 *
+                                                                      viewitemCount!]
+                                                              ["item-list"],
+                                                          index: data![index +
+                                                                  index1 *
+                                                                      viewitemCount!]
+                                                              ["index"],
+                                                          numberOfRows: 1,
+                                                          title:
+                                                              "Customer  Viewed",
+                                                          productItem: data![index +
+                                                                  index1 *
+                                                                      viewitemCount!]
+                                                              ["product-index"],
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets.only(
-                                                                  top: 15),
-                                                          child: Text(
+                                                    preventDuplicates: false);
+                                              },
+                                              child: Container(
+                                                width: brandGrid(
+                                                    index > 1 ? 3 : 2),
+                                                height: 140,
+                                                decoration: const BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color:
+                                                              Color(0xFFc2c2c2),
+                                                          blurRadius: 5,
+                                                          spreadRadius: 1,
+                                                          offset:
+                                                              Offset(0, 0.5))
+                                                    ],
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                                padding: EdgeInsets.only(
+                                                    top: width! / 36,
+                                                    right: width! / 36,
+                                                    left: width! / 36,
+                                                    bottom: width! / 72),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Expanded(
+                                                        child: Image.asset(
                                                             data![itemIndex!]
                                                                     ["item"]
-                                                                .price!,
-                                                            maxLines: 1,
-                                                          ),
-                                                        )
-                                                      ],
+                                                                .image!)),
+                                                    Text(
+                                                      data![itemIndex!]["item"]
+                                                          .title!,
+                                                      maxLines: 2,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: const TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                     ),
-                                                  ),
-                                                );
-                                              }),
-                                            )),
-                                      )
-                                    ),
-                          );
-                        }
-                      ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15),
+                                                      child: Text(
+                                                        data![itemIndex!]
+                                                                ["item"]
+                                                            .price!,
+                                                        maxLines: 1,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                        )),
+                                  )),
+                        );
+                      }),
                     ),
                   ),
-                ArrowWidget(
-                    controller: controller,
-                    itemLength: values,
-                    i: 8,
-                    crossAxisCount: 2.5.ceil(),
-                    wrapCount: wrapCount)
-              ],
-            )
+                  ArrowWidget(
+                      controller: controller,
+                      itemLength: values,
+                      i: 8,
+                      crossAxisCount: 2.5.ceil(),
+                      wrapCount: wrapCount)
+                ],
+              )
             : ViewItem(
                 height: height,
                 itemList: values,
                 mainPadding: mainPadding!,
-                title: "",
+                title: title!,
                 numberOfRows: 2,
                 aspectRatioNoMobile: aspectRatio,
                 width: width!,

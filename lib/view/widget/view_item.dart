@@ -369,6 +369,7 @@ class ViewItemContent extends StatelessWidget {
           ],
         ),
         onTap: () {
+          Get.deleteAll();
           Get.to(
               () => ViewDetails(
                     width: width!,
@@ -381,7 +382,6 @@ class ViewItemContent extends StatelessWidget {
                     productItem: productItem,
                   ),
               preventDuplicates: false);
-          Get.deleteAll();
         });
   }
 }

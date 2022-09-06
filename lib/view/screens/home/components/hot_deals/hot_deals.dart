@@ -4,6 +4,7 @@ import 'package:solo/controllers/add_data.dart';
 import 'package:solo/view/screens/home/components/hot_deals/hot_deal_wrap.dart';
 import 'package:solo/view/screens/home/components/hot_deals/rotate_head.dart';
 import 'package:solo/controllers/rotate_head_controller.dart';
+import 'package:solo/view/widget/view_all_button.dart';
 
 import '../../../../responsive.dart';
 
@@ -37,7 +38,7 @@ class HotDeals extends StatelessWidget {
         widthValue = 4.67;
         return 4;
       } else {
-        widthValue = 6;
+        widthValue = 5;
         return 5;
       }
     } else {
@@ -57,6 +58,7 @@ class HotDeals extends StatelessWidget {
         targetTimeHours: 5,
         targetTimeMonth: 4,
         targetTimeYear: 2022));
+
     return Column(
       children: [
         RotateHead(
@@ -73,19 +75,7 @@ class HotDeals extends StatelessWidget {
             data: data,
             widthValue: widthValue),
         const SizedBox(height: 15),
-        data!.length < maxItemCount
-            ? TextButton(
-                onPressed: (null),
-                child: Text("See All",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: width! > 900 ? 20 : 17)),
-                style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                        Size(width! * 0.20 > 150 ? 150 : width! * 0.20, 25)),
-                    backgroundColor:
-                        MaterialStateProperty.all(const Color(0xFF2089a1))),
-              )
-            : const SizedBox()
+        viewAll(data, maxItemCount, width, title: title)
       ],
     );
   }

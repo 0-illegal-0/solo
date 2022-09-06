@@ -47,10 +47,7 @@ class MostLiked extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(
-            title!,
-            style: titleStyle,
-          ),
+          child: Text(title!, style: titleStyle),
         ),
         Container(
           decoration: const BoxDecoration(
@@ -77,21 +74,19 @@ class MostLiked extends StatelessWidget {
                       painter: MostLikedPainter(),
                       child: InkWell(
                         onTap: () {
+                          Get.deleteAll();
                           Get.to(
                               () => ViewDetails(
                                     width: width,
-                                    aspectRatio: data![index]
-                                        ["aspectRatio"],
+                                    aspectRatio: data![index]["aspectRatio"],
                                     height: data![index]["height"],
-                                    itemList: data![index]
-                                        ["item-list"],
+                                    itemList: data![index]["item-list"],
                                     index: data![index]["index"],
                                     numberOfRows: 1,
                                     title: "Customer  Viewed",
-                                productItem: data![index]["product-index"],
+                                    productItem: data![index]["product-index"],
                                   ),
                               preventDuplicates: false);
-                          Get.deleteAll();
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -16,6 +16,7 @@ class SlidersStyle3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Get.deleteAll();
         Get.to(
             () => ProductPage(
                   category: solo.product[index!],
@@ -24,7 +25,6 @@ class SlidersStyle3 extends StatelessWidget {
                   height: solo.product[index!].height,
                 ),
             preventDuplicates: false);
-        Get.deleteAll();
       },
       child: Stack(
         children: [

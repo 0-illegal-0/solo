@@ -11,26 +11,29 @@ class HeadIcons extends StatelessWidget {
       this.width,
       this.iconSize,
       this.rowWidth,
-      this.textIconSize, this.controller})
+      this.textIconSize,
+      this.controller})
       : super(key: key);
   final Cart? controller;
   final double? height, width, iconSize, rowWidth, textIconSize;
-  Widget iconBar(String? title, IconData? icon, {Widget? page, dynamic pageState}) {
+  Widget iconBar(String? title, IconData? icon,
+      {Widget? page, dynamic pageState}) {
     return SizedBox(
       height: height,
       width: width,
       child: IconButton(
         padding: const EdgeInsets.all(0),
         tooltip: title,
-        onPressed: () async{
-          if(pageState == "CART"){
+        onPressed: () async {
+          Get.deleteAll();
+          if (pageState == "CART") {
             Cart controller = Get.put(Cart());
-            await  controller.showItem();
-           Get.to( page);
-          }else{
-            print("pageState is Null");
+            await controller.showItem();
+            Get.to(page);
+          } else {
+            Get.deleteAll();
+            Get.to(page);
           }
-          print("$page ....");
         },
         icon: Align(
           alignment: Alignment.topRight,
@@ -56,7 +59,7 @@ class HeadIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   Cart controller = Get.put(Cart());
+    Cart controller = Get.put(Cart());
     return SizedBox(
       width: rowWidth,
       child: Row(
@@ -65,8 +68,9 @@ class HeadIcons extends StatelessWidget {
         children: [
           iconBar("Sign In", Icons.person_outline_outlined,
               page: const Login()),
-          iconBar("Help", Icons.help_outline_outlined, page:  CartBudget()),
-          iconBar("Cart", Icons.shopping_cart_outlined, page:  CartBudget(/*controller: controller*/),pageState: "CART"),
+          iconBar("Help", Icons.help_outline_outlined, page: CartBudget()),
+          iconBar("Cart", Icons.shopping_cart_outlined,
+              page: CartBudget(/*controller: controller*/), pageState: "CART"),
         ],
       ),
     );

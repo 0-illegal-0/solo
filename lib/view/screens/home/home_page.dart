@@ -159,10 +159,7 @@ class HomePage extends StatelessWidget {
                           productItem: 2,
                         ),
                         SizedBox(height: inst.verticalSpace),
-                        Gift(
-                          title: "Get a Gift",
-                          width: inst.width!,
-                        ),
+                        Gift(title: "Get a Gift", width: inst.width!),
                         SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 1.1,
@@ -195,10 +192,10 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                /*   Head(width: inst.width),
+                Head(width: inst.width),
                 const BottomRow(),
                 const Important(),
-                StartPages(height: inst.height!, width: inst.width)*/
+                StartPages(height: inst.height!, width: inst.width)
               ],
             )));
   }

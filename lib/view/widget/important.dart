@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/widget/navigation_bar.dart';
 
 class Important extends StatelessWidget {
   const Important({Key? key}) : super(key: key);
@@ -9,9 +10,11 @@ class Important extends StatelessWidget {
   Widget build(BuildContext context) {
     ChangeColor controller = Get.put(ChangeColor());
     return device == DeviceType.Desktop
-        ? GetBuilder<ChangeColor>(builder: (context) {
+        ? GetBuilder<ChangeColor>(builder: (context2) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                const ImportantButton().importantNote(context);
+              },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 500),
                 margin: const EdgeInsets.only(top: 150),

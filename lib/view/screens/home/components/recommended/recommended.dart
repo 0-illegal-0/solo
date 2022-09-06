@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 
 import '../../../../style.dart';
 
 class Recommended extends StatelessWidget {
-   Recommended({Key? key, this.width, this.title, this.data})
-      : super(key: key);
+  Recommended({Key? key, this.width, this.title, this.data}) : super(key: key);
   final double? width;
   final String? title;
   final List? data;
@@ -24,12 +24,11 @@ class Recommended extends StatelessWidget {
     if (width! < 850) {
       designHeight = width! / 2.57 > 160 ? 160 : width! / 2.57;
       designWidth = width;
-    }else{
+    } else {
       designWidth = 500;
       designHeight = 160;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +45,8 @@ class Recommended extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Text(
-              title!,
-              style: titleStyle,
-            ),
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(title!, style: titleStyle),
           ),
           Container(
             decoration: const BoxDecoration(
@@ -65,38 +61,39 @@ class Recommended extends StatelessWidget {
             ),
             height: itemWidth / 2.76,
             child: ListView.builder(
-             // itemExtent: itemWidth / 1.1,
+              // itemExtent: itemWidth / 1.1,
               itemCount: data!.length,
               cacheExtent: itemWidth / 36,
               itemBuilder: (context, index) {
                 return Row(
                   children: [
                     Container(
-                      decoration:
-                      const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
-                        BoxShadow(
-                            color: Color(0xFFbababa),
-                            blurRadius: 7,
-                            spreadRadius: 0.5,
-                            offset: Offset(0, 0))
-                      ]),
+                      decoration: const BoxDecoration(
+                          color: Color(0xFFffffff),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0xFFbababa),
+                                blurRadius: 7,
+                                spreadRadius: 0.5,
+                                offset: Offset(0, 0))
+                          ]),
                       width: designWidth!,
                       height: designHeight,
                       child: InkWell(
                         onTap: () {
-                          Get.to(
-                                  () => ViewDetails(
-                                width: width!,
-                                aspectRatio: data![index]["aspectRatio"],
-                                height: data![index]["height"],
-                                itemList: data![index]["item-list"],
-                                index: data![index]["index"],
-                                numberOfRows: 1,
-                                title: "Customer  Viewed",
-                                productItem: data![index]["product-index"],
-                              ),
-                              preventDuplicates: false);
                           Get.deleteAll();
+                          Get.to(
+                              () => ViewDetails(
+                                    width: width!,
+                                    aspectRatio: data![index]["aspectRatio"],
+                                    height: data![index]["height"],
+                                    itemList: data![index]["item-list"],
+                                    index: data![index]["index"],
+                                    numberOfRows: 1,
+                                    title: "Customer  Viewed",
+                                    productItem: data![index]["product-index"],
+                                  ),
+                              preventDuplicates: false);
                         },
                         child: Row(
                           children: [
@@ -111,7 +108,7 @@ class Recommended extends StatelessWidget {
                                               right: 5, left: 5, top: 5),
                                           child: Column(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Image.asset(
                                                 data![index]["item"].image,
@@ -139,14 +136,17 @@ class Recommended extends StatelessWidget {
                                     Expanded(
                                       flex: 1,
                                       child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: List.generate(
                                               5,
-                                                  (index) => Icon(Icons.star_rate,
+                                              (index2) => Icon(Icons.star_rate,
                                                   size: 17.0,
-                                                  color: index > 2
-                                                      ? Colors.grey
-                                                      : Colors.green))),
+                                                  color: index2 <
+                                                          data![index]["item"]
+                                                              .stars
+                                                      ? Colors.orange
+                                                      : Colors.grey))),
                                     ),
                                   ],
                                 )),
@@ -191,10 +191,9 @@ class Recommended extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10)
+                    const SizedBox(width: 10)
                   ],
                 );
-
               },
               scrollDirection: Axis.horizontal,
             ),
@@ -207,11 +206,7 @@ class Recommended extends StatelessWidget {
 
 class RecommendedDesktopDesign extends StatelessWidget {
   const RecommendedDesktopDesign(
-      {Key? key,
-      this.data,
-      this.width,
-      this.showCountInRow,
-      this.title})
+      {Key? key, this.data, this.width, this.showCountInRow, this.title})
       : super(key: key);
   final List? data;
   final double? width;
@@ -224,10 +219,9 @@ class RecommendedDesktopDesign extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-            padding: const EdgeInsets.only(bottom: 5),
-            child: Text(title!,
-                style: const TextStyle(
-                    fontSize: 22, fontWeight: FontWeight.bold))),
+          padding: const EdgeInsets.only(bottom: 5),
+          child: Text(title!, style: titleStyle),
+        ),
         Column(
           children: List.generate(
               data!.length > 3 ? 2 : 1,
@@ -237,31 +231,34 @@ class RecommendedDesktopDesign extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(showCountInRow!, (index2) {
                         return Container(
-                          decoration:
-                          const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
-                            BoxShadow(
-                                color: Color(0xFFbababa),
-                                blurRadius: 7,
-                                spreadRadius: 0.5,
-                                offset: Offset(0, 0))
-                          ]),
+                          decoration: const BoxDecoration(
+                              color: Color(0xFFffffff),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color(0xFFbababa),
+                                    blurRadius: 7,
+                                    spreadRadius: 0.5,
+                                    offset: Offset(0, 0))
+                              ]),
                           width: width! / 3.44,
                           height: 160,
                           child: InkWell(
                             onTap: () {
-                              Get.to(
-                                      () => ViewDetails(
-                                    width: width!,
-                                    aspectRatio: data![index]["aspectRatio"],
-                                    height: data![index]["height"],
-                                    itemList: data![index]["item-list"],
-                                    index: data![index]["index"],
-                                    numberOfRows: 1,
-                                    title: "Customer  Viewed",
-                                    productItem: data![index]["product-index"],
-                                  ),
-                                  preventDuplicates: false);
                               Get.deleteAll();
+                              Get.to(
+                                  () => ViewDetails(
+                                        width: width!,
+                                        aspectRatio: data![index]
+                                            ["aspectRatio"],
+                                        height: data![index]["height"],
+                                        itemList: data![index]["item-list"],
+                                        index: data![index]["index"],
+                                        numberOfRows: 1,
+                                        title: "Customer  Viewed",
+                                        productItem: data![index]
+                                            ["product-index"],
+                                      ),
+                                  preventDuplicates: false);
                             },
                             child: Row(
                               children: [
@@ -276,7 +273,8 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                                   right: 5, left: 5, top: 5),
                                               child: Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Image.asset(
                                                     data![index]["item"].image,
@@ -288,7 +286,8 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                                     maxLines: 2,
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         fontSize: 13),
                                                   ),
                                                   const Divider(
@@ -303,15 +302,21 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                             )),
                                         Expanded(
                                           flex: 1,
-                                          child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: List.generate(
-                                                  5,
-                                                      (index) => Icon(Icons.star_rate,
-                                                      size: 17.0,
-                                                      color: index > 2
-                                                          ? Colors.grey
-                                                          : Colors.green))),
+                                          child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 3),
+                                              child: Row(
+                                                  children: List.generate(
+                                                      5,
+                                                      (index2) => Icon(
+                                                          Icons.star_rate,
+                                                          size: 17,
+                                                          color: index2 <
+                                                                  data![index][
+                                                                          "item"]
+                                                                      .stars
+                                                              ? Colors.orange
+                                                              : Colors.grey)))),
                                         ),
                                       ],
                                     )),
@@ -325,7 +330,8 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 top: 5, right: 5, left: 5),
                                             child: Text(
-                                                data![index]["item"].description,
+                                                data![index]["item"]
+                                                    .description,
                                                 maxLines: 5),
                                           )),
                                       const Expanded(

@@ -599,7 +599,7 @@ Map<String, dynamic> data = {
           "image": "assets/images/laptops/dell-g15.jpg",
           "title": "HP Probook 445",
           "price": "27,200.00",
-          "special-offer": false,
+          "special-offer": true,
           "discount": "20%",
           "old-price": "3,500.00 EGP",
           "product-brands": "Lenovo",
@@ -690,7 +690,7 @@ Map<String, dynamic> data = {
           "latest-item": false,
           "liked": false,
           "top-sale": true,
-          "hot-deal": false
+          "hot-deal": true
         },
         {
           "description":
@@ -1448,7 +1448,7 @@ Map<String, dynamic> data = {
           "latest-item": false,
           "liked": true,
           "top-sale": false,
-          "hot-deal": false
+          "hot-deal": true
         },
         {
           "description":
@@ -1836,7 +1836,7 @@ Map<String, dynamic> data = {
           "image": "assets/images/mobiles/samsung_galaxy_a72.png",
           "title": "Samsung Galaxy A72",
           "price": "4.500",
-          "special-offer": false,
+          "special-offer": true,
           "product-brands": "Samsung",
           "camera-resolution": 12,
           "camera-sizes": 6.3,
@@ -2432,7 +2432,7 @@ Map<String, dynamic> data = {
           "description": "HUAWEI MatePad 10.4-inch 2022 Tablet",
           "image": "assets/images/tablet/huawei-matepad-10.4.png",
           "title": "Lenovo M10",
-          "special-offer": false,
+          "special-offer": true,
           "price": "10,150.00",
           "product-brands": "Huawei",
           "discount": "20%",
@@ -2832,7 +2832,7 @@ Map<String, dynamic> data = {
           "latest-item": false,
           "liked": false,
           "top-sale": false,
-          "hot-deal": false
+          "hot-deal": true
         },
         {
           "description": "Lenovo Tab M7 Tablet",
@@ -2981,7 +2981,7 @@ Map<String, dynamic> data = {
         {
           "description": "LG 65 inches UHD 4K Smart TV, Active HDR, WebOS...",
           "image": "assets/images/tv/led-lg-1.jpg",
-          "special-offer": false,
+          "special-offer": true,
           "title": "Asus FX506HEB-B ...",
           "price": "10,150.00",
           "discount": "20%",
@@ -3058,7 +3058,7 @@ Map<String, dynamic> data = {
               "Sharp 55 inch 4K Ultra HD LED Smart Android TV with...",
           "image": "assets/images/tv/led-lg-1.jpg",
           "title": "Samsung 75",
-          "special-offer": true,
+          "special-offer": false,
           "price": "8,150.00",
           "discount": "20%",
           "old-price": "9300",
@@ -3972,7 +3972,7 @@ Map<String, dynamic> data = {
           "latest-item": false,
           "liked": false,
           "top-sale": false,
-          "hot-deal": false
+          "hot-deal": true
         },
         {
           "description":
@@ -4049,7 +4049,7 @@ Map<String, dynamic> data = {
               "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera Black...",
           "image": "assets/images/cameras/nikon.jpg",
           "title": "Sigma Alpha",
-          "special-offer": false,
+          "special-offer": true,
           "price": "15,699.00",
           "product-brands": "Canon",
           "discount": "15",

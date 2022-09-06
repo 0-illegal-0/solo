@@ -28,7 +28,7 @@ class HotDealWrap extends StatelessWidget {
     if (data!.length <= maxItemCount!) {
       return data!.length;
     } else {
-      return 6;
+      return maxItemCount!;
     }
   }
 
@@ -44,22 +44,19 @@ class HotDealWrap extends StatelessWidget {
               itemCount(),
               (index) => InkWell(
                   onTap: () {
+                    Get.deleteAll();
                     Get.to(
                         () => ViewDetails(
                               width: width!,
-                              aspectRatio: data![index]
-                                  ["aspectRatio"],
-                              height: width! *
-                                  data![index]["height"],
-                              itemList: data![index]
-                                  ["item-list"],
+                              aspectRatio: data![index]["aspectRatio"],
+                              height: width! * data![index]["height"],
+                              itemList: data![index]["item-list"],
                               index: data![index]["index"],
                               numberOfRows: 1,
                               title: "Customer  Viewed",
-                          productItem: data![index]["product-index"],
+                              productItem: data![index]["product-index"],
                             ),
                         preventDuplicates: false);
-                    Get.deleteAll();
                   },
                   child: Column(children: [
                     Container(
@@ -77,8 +74,7 @@ class HotDealWrap extends StatelessWidget {
                       height: gridWidth,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                            data![index]["item"].image),
+                        child: Image.asset(data![index]["item"].image),
                       ),
                     ),
                     Padding(

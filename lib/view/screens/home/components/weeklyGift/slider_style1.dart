@@ -24,6 +24,7 @@ class SlidersStyle1 extends StatelessWidget {
       color: const Color(0xFFb00b31),
       child: InkWell(
         onTap: () {
+          Get.deleteAll();
           Get.to(
               () => ProductPage(
                     category: solo.product[index!],
@@ -32,7 +33,6 @@ class SlidersStyle1 extends StatelessWidget {
                     height: solo.product[index!].height,
                   ),
               preventDuplicates: false);
-          Get.deleteAll();
         },
         child: Stack(
           children: [

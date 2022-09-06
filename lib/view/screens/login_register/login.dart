@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
-
 import '../../responsive.dart';
 
 class Login extends StatelessWidget {
@@ -12,13 +11,13 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFFe1e1e3),
       body: SafeArea(
         bottom: false,
         child: Stack(
+          alignment: AlignmentDirectional.center,
           children: [
             Padding(
               padding: EdgeInsets.only(
@@ -27,20 +26,20 @@ class Login extends StatelessWidget {
                   top: device == DeviceType.Mobile
                       ? 115
                       : device == DeviceType.Tablet
-                      ? 155
-                      : 140),
+                          ? 170
+                          : 170),
               child: Column(
                 children: [
-                  //  Head(width: width),
                   Container(
-                    decoration:
-                        const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
-                      BoxShadow(
-                          color: Color(0xFFb1b3b5),
-                          blurRadius: 5,
-                          spreadRadius: 0.1,
-                          offset: Offset(0, 0))
-                    ]),
+                    decoration: const BoxDecoration(
+                        color: Color(0xFFffffff),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Color(0xFFb1b3b5),
+                              blurRadius: 5,
+                              spreadRadius: 0.1,
+                              offset: Offset(0, 0))
+                        ]),
                     width: width < 600 ? width : 550,
                     alignment: Alignment.center,
                     padding: const EdgeInsets.all(20),
@@ -61,15 +60,17 @@ class Login extends StatelessWidget {
                             constraints: BoxConstraints(
                                 maxHeight: 40, maxWidth: double.infinity),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                              borderSide:
-                                  BorderSide(color: Color(0xFF000000), width: 0.5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)),
+                              borderSide: BorderSide(
+                                  color: Color(0xFF000000), width: 0.5),
                             ),
                             contentPadding: EdgeInsets.only(bottom: 30),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                              borderSide:
-                                  BorderSide(color: Color(0xFF8a8a88), width: 0.5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)),
+                              borderSide: BorderSide(
+                                  color: Color(0xFF8a8a88), width: 0.5),
                             ),
                           ),
                           onChanged: (value) {},
@@ -85,15 +86,17 @@ class Login extends StatelessWidget {
                             constraints: BoxConstraints(
                                 maxHeight: 40, maxWidth: double.infinity),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                              borderSide:
-                                  BorderSide(color: Color(0xFF000000), width: 0.5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)),
+                              borderSide: BorderSide(
+                                  color: Color(0xFF000000), width: 0.5),
                             ),
                             contentPadding: EdgeInsets.only(bottom: 30),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                              borderSide:
-                                  BorderSide(color: Color(0xFF8a8a88), width: 0.5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)),
+                              borderSide: BorderSide(
+                                  color: Color(0xFF8a8a88), width: 0.5),
                             ),
                           ),
                           onChanged: (value) {},
@@ -104,8 +107,8 @@ class Login extends StatelessWidget {
                           children: [
                             TextButton(
                                 style: ButtonStyle(
-                                    padding:
-                                        MaterialStateProperty.all(EdgeInsets.zero)),
+                                    padding: MaterialStateProperty.all(
+                                        EdgeInsets.zero)),
                                 onPressed: () {},
                                 child: const Text(
                                   "Forgot password ?",
@@ -128,10 +131,11 @@ class Login extends StatelessWidget {
                         const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {},
-                          child:
-                              const Text("Sign In", style: TextStyle(fontSize: 20)),
+                          child: const Text("Sign In",
+                              style: TextStyle(fontSize: 20)),
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.cyan),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.cyan),
                             minimumSize: MaterialStateProperty.all(
                                 const Size(double.infinity, 45)),
                           ),
@@ -144,7 +148,8 @@ class Login extends StatelessWidget {
                             style: TextStyle(fontSize: 20),
                           ),
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.cyan),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.cyan),
                             minimumSize: MaterialStateProperty.all(
                                 const Size(double.infinity, 45)),
                           ),
@@ -162,11 +167,13 @@ class Login extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  Close(width: width)
                 ],
               ),
             ),
             Head(width: width),
-            BottomRow(),
+            const BottomRow(),
           ],
         ),
       ),
