@@ -74,7 +74,6 @@ class MostLiked extends StatelessWidget {
                       painter: MostLikedPainter(),
                       child: InkWell(
                         onTap: () {
-                          Get.deleteAll();
                           Get.to(
                               () => ViewDetails(
                                     width: width,
@@ -87,6 +86,7 @@ class MostLiked extends StatelessWidget {
                                     productItem: data![index]["product-index"],
                                   ),
                               preventDuplicates: false);
+                          Get.deleteAll();
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

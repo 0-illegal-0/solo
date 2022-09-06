@@ -44,7 +44,6 @@ class HotDealWrap extends StatelessWidget {
               itemCount(),
               (index) => InkWell(
                   onTap: () {
-                    Get.deleteAll();
                     Get.to(
                         () => ViewDetails(
                               width: width!,
@@ -57,6 +56,7 @@ class HotDealWrap extends StatelessWidget {
                               productItem: data![index]["product-index"],
                             ),
                         preventDuplicates: false);
+                    Get.deleteAll();
                   },
                   child: Column(children: [
                     Container(

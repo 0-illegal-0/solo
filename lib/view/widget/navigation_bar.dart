@@ -35,8 +35,8 @@ class NavigationBar extends StatelessWidget {
             } else if (bottomNavDetails[val]["title"] == "Categories") {
               note(context);
             } else {
-              Get.deleteAll();
               Get.to(bottomNavDetails[val]["page"], preventDuplicates: false);
+              Get.deleteAll();
             }
           },
           items: List.generate(
@@ -103,8 +103,8 @@ class More extends StatelessWidget {
             bottomNavDetails[3]["drop-menu"].length,
             (index) => TextButton(
               onPressed: () {
-                Get.deleteAll();
                 Get.to(bottomNavDetails[3]["drop-menu"][index]["page"]);
+                Get.deleteAll();
               },
               child: Text(
                 bottomNavDetails[3]["drop-menu"][index]["title"],
@@ -261,19 +261,16 @@ class BottomRow extends StatelessWidget {
                               bottomSheet(context, width);
                             } else if (bottomNavDetails[index]["title"] ==
                                 "Cart") {
-                              Get.deleteAll();
                               Cart controller = Get.put(Cart());
                               await controller.showItem();
                               Get.to(CartBudget());
-
-                              print(controller.items.length);
                             } else if (bottomNavDetails[index]["title"] ==
                                 "Categories") {
                               note(context);
                             } else {
-                              Get.deleteAll();
                               Get.to(bottomNavDetails[index]["page"],
                                   preventDuplicates: false);
+                              Get.deleteAll();
                             }
                           },
                         )),

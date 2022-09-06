@@ -286,7 +286,6 @@ class SpecialOfferNoMobile extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          Get.deleteAll();
                           Get.to(
                             () => ViewDetails(
                               width: width!,
@@ -299,7 +298,7 @@ class SpecialOfferNoMobile extends StatelessWidget {
                               title: "Customer  Viewed",
                             ), /* preventDuplicates: false*/
                           );
-                          //  Get.deleteAll();
+                          Get.deleteAll();
                         })),
               ),
             )),

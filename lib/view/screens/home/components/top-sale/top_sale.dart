@@ -68,7 +68,6 @@ class TopSale extends StatelessWidget {
                 height: designHeight,
                 child: InkWell(
                   onTap: () {
-                    Get.deleteAll();
                     Get.to(
                         () => ViewDetails(
                               width: width!,
@@ -81,6 +80,7 @@ class TopSale extends StatelessWidget {
                               productItem: data![index]["product-index"],
                             ),
                         preventDuplicates: false);
+                    Get.deleteAll();
                   },
                   child: Row(
                     children: [

@@ -21,7 +21,6 @@ class Gift extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.deleteAll();
         Get.to(
             () => ProductPage(
                   category: solo.product[4],
@@ -30,6 +29,7 @@ class Gift extends StatelessWidget {
                   height: solo.product[4].height,
                 ),
             preventDuplicates: false);
+        Get.deleteAll();
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

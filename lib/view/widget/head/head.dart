@@ -140,8 +140,8 @@ class TabletHead extends StatelessWidget {
                       child: IconButton(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         onPressed: () {
-                          Get.to(() => const Login(), preventDuplicates: false);
                           Get.deleteAll();
+                          Get.to(() => const Login(), preventDuplicates: false);
                         },
                         icon: Row(
                           children: const [
@@ -268,6 +268,7 @@ class Logo extends StatelessWidget {
         style: ButtonStyle(
             padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
         onPressed: () {
+          Get.deleteAll();
           Get.to(() => HomePage());
         },
         child: Text("Solo",

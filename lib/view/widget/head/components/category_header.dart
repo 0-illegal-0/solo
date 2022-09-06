@@ -28,7 +28,8 @@ class CategoriesHeader extends StatelessWidget {
                       Get.to(
                           () => ProductPage(
                                 category: solo.product[index],
-                                width: width,productItem: index,
+                                width: width,
+                                productItem: index,
                                 aspectRatio: solo.product[index].aspectRatio,
                                 height: solo.product[index].height,
                               ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../navigation_bar.dart' as pro;
 
 class Close extends StatelessWidget {
   Close({Key? key, this.width}) : super(key: key);
@@ -9,19 +12,16 @@ class Close extends StatelessWidget {
         onPressed: () {},
         style: ButtonStyle(
             padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
-        child: Image.asset(
-          image!,
-          height: height
-        ));
+        child: Image.asset(image!, height: height));
   }
 
-  List<String> stringFotterList = [
-    "Careers",
-    "Warranty Policy",
-    "Sell with us",
-    "Terms of Use",
-    "Terms of Sale",
-    "Privacy Policy"
+  List<Map<String, dynamic>> stringFotterList = [
+    {"title": "Careers", "page": const pro.Progress()},
+    {"title": "Warranty Policy", "page": const pro.Progress()},
+    {"title": "Sell with us", "page": const pro.Progress()},
+    {"title": "Terms of Use", "page": const pro.Progress()},
+    {"title": "Terms of Sale", "page": const pro.Progress()},
+    {"title": "Privacy Policy", "page": const pro.Progress()},
   ];
   @override
   Widget build(BuildContext context) {
@@ -74,12 +74,15 @@ class Close extends StatelessWidget {
                         children: List.generate(
                             stringFotterList.length,
                             (index) => TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(stringFotterList[index]["page"]);
+                                    Get.deleteAll();
+                                  },
                                   style: ButtonStyle(
                                       padding: MaterialStateProperty.all(
                                           const EdgeInsets.all(0))),
                                   child: Text(
-                                    stringFotterList[index],
+                                    stringFotterList[index]["title"],
                                     style: const TextStyle(fontSize: 13),
                                   ),
                                 ))),
@@ -159,12 +162,15 @@ class Close extends StatelessWidget {
                             children: List.generate(
                                 stringFotterList.length,
                                 (index) => TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.to(stringFotterList[index]["page"]);
+                                        Get.deleteAll();
+                                      },
                                       style: ButtonStyle(
                                           padding: MaterialStateProperty.all(
                                               const EdgeInsets.all(0))),
                                       child: Text(
-                                        stringFotterList[index],
+                                        stringFotterList[index]["title"],
                                         style: const TextStyle(fontSize: 13),
                                       ),
                                     ))),

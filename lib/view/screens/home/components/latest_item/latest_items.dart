@@ -126,7 +126,6 @@ class LatestItems extends StatelessWidget {
                                                 index + index1 * viewitemCount!;
                                             return InkWell(
                                               onTap: () {
-                                                Get.deleteAll();
                                                 Get.to(
                                                     () => ViewDetails(
                                                           width: width!,
@@ -155,6 +154,7 @@ class LatestItems extends StatelessWidget {
                                                               ["product-index"],
                                                         ),
                                                     preventDuplicates: false);
+                                                Get.deleteAll();
                                               },
                                               child: Container(
                                                 width: brandGrid(

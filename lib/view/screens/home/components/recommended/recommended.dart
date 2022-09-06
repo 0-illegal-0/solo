@@ -81,7 +81,6 @@ class Recommended extends StatelessWidget {
                       height: designHeight,
                       child: InkWell(
                         onTap: () {
-                          Get.deleteAll();
                           Get.to(
                               () => ViewDetails(
                                     width: width!,
@@ -94,6 +93,7 @@ class Recommended extends StatelessWidget {
                                     productItem: data![index]["product-index"],
                                   ),
                               preventDuplicates: false);
+                          Get.deleteAll();
                         },
                         child: Row(
                           children: [
@@ -244,7 +244,6 @@ class RecommendedDesktopDesign extends StatelessWidget {
                           height: 160,
                           child: InkWell(
                             onTap: () {
-                              Get.deleteAll();
                               Get.to(
                                   () => ViewDetails(
                                         width: width!,
@@ -259,6 +258,7 @@ class RecommendedDesktopDesign extends StatelessWidget {
                                             ["product-index"],
                                       ),
                                   preventDuplicates: false);
+                              Get.deleteAll();
                             },
                             child: Row(
                               children: [

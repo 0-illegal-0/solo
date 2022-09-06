@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
 
@@ -16,7 +15,6 @@ class SlidersStyle3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.deleteAll();
         Get.to(
             () => ProductPage(
                   category: solo.product[index!],
@@ -25,6 +23,7 @@ class SlidersStyle3 extends StatelessWidget {
                   height: solo.product[index!].height,
                 ),
             preventDuplicates: false);
+        Get.deleteAll();
       },
       child: Stack(
         children: [

@@ -59,7 +59,6 @@ class SpecialOfferItem extends StatelessWidget {
     sizes(loopIndex);
     return InkWell(
       onTap: () {
-        Get.deleteAll();
         Get.to(
             () => ViewDetails(
                   width: width,
@@ -72,6 +71,7 @@ class SpecialOfferItem extends StatelessWidget {
                   productItem: productItem,
                 ),
             preventDuplicates: false);
+        Get.deleteAll();
       },
       child: Container(
           height: width * heightValue!,
