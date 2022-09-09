@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 
 class StartPage extends GetxController {
-  final width;
   StartPage({this.width, this.logo});
 
+  final double? width;
   double trick = 0;
   double? opacity = 1.0;
   String? logo;
 
   toRight() {
-    trick = width;
+    trick = width!;
     opacity = 0.0;
     update();
   }

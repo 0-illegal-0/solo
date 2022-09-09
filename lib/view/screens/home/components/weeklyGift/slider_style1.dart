@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
 
@@ -160,14 +159,11 @@ class SlidersStyle1Painter extends CustomPainter {
   SlidersStyle1Painter({
     this.color,
   });
-  @override
+
   final Color? color;
+
+  @override
   void paint(Canvas canvas, Size size) {
-    RadialGradient gradiant = const RadialGradient(
-      colors: [
-        Colors.white,
-      ],
-    );
     var paint = Paint();
 
     paint.color = const Color(0xFFe8335d);
@@ -194,9 +190,11 @@ class SlidersStyle1Painter extends CustomPainter {
 
 class SlidersStyle1CircleGradian extends CustomPainter {
   SlidersStyle1CircleGradian({this.color, this.gradiantColor});
-  @override
+
   final Color? color;
   final Color? gradiantColor;
+
+  @override
   void paint(Canvas canvas, Size size) {
     RadialGradient gradiant = RadialGradient(
       colors: [

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
 
@@ -52,13 +51,11 @@ class SlidersStyle2 extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                   ),
                   Expanded(
-                    child: Container(
-                      child: Text("HD Smart TV",
-                          style: TextStyle(
-                              color: Color(0xff0cb7c9),
-                              fontSize: doubleResponsiveSize(14, 20, 27, width),
-                              fontWeight: FontWeight.bold)),
-                    ),
+                    child: Text("HD Smart TV",
+                        style: TextStyle(
+                            color: const Color(0xff0cb7c9),
+                            fontSize: doubleResponsiveSize(14, 20, 27, width),
+                            fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),
@@ -98,8 +95,9 @@ class SlidersStyle2 extends StatelessWidget {
 
 class SlidersStyle2Painter extends CustomPainter {
   SlidersStyle2Painter({this.color});
-  @override
   final Color? color;
+
+  @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
     paint.color = const Color(0xFFb00b31);

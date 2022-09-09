@@ -16,11 +16,10 @@ class TopBrand extends StatelessWidget {
       this.runSpacing})
       : super(key: key);
 
-  final width;
-  //final countItem;
-  final title;
+  final double? width;
+  final String? title;
   final double? spacing;
-  final mainPadding;
+  final double? mainPadding;
   final double? runSpacing;
   int get countItem {
     if (device! == DeviceType.Tablet) {
@@ -33,7 +32,7 @@ class TopBrand extends StatelessWidget {
   }
 
   double get gridWidth {
-    return ((width - mainPadding * 2 - spacing! * (countItem - 1)) /
+    return ((width! - mainPadding! * 2 - spacing! * (countItem - 1)) /
             countItem) -
         0.05;
   }
@@ -44,7 +43,7 @@ class TopBrand extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5.0),
-          child: Text(title, style: titleStyle),
+          child: Text(title!, style: titleStyle),
         ),
         Wrap(
             spacing: spacing!,
@@ -52,7 +51,7 @@ class TopBrand extends StatelessWidget {
             children: List.generate(
                 topBrands.length,
                 (index) => BrandItems(
-                      width: width,
+                      width: width!,
                       gridWidth: gridWidth,
                       index: index,
                       image: topBrands[index].image,

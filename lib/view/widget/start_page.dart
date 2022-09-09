@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/constants/constants.dart';
 import 'package:solo/controllers/start_page.dart';
 import 'package:solo/view/responsive.dart';
 

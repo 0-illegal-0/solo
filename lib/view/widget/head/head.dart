@@ -122,11 +122,9 @@ class TabletHead extends StatelessWidget {
       {Key? key, this.width, this.space, this.aspectRatio, this.height})
       : super(key: key);
   final double? width, space, aspectRatio, height;
-  // final Cart? controller;
 
   @override
   Widget build(BuildContext context) {
-    Cart controller = Get.put(Cart());
     return Column(
       children: [
         width! < 800
@@ -269,7 +267,7 @@ class Logo extends StatelessWidget {
             padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
         onPressed: () {
           Get.deleteAll();
-          Get.to(() => HomePage());
+          Get.to(() => const HomePage());
         },
         child: Text("Solo",
             textAlign: TextAlign.center,

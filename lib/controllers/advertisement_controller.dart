@@ -10,7 +10,7 @@ class Sliders extends GetxController {
   static double? height;
   final double? mainPadding;
   final int contentCount;
-  final width;
+  final double? width;
   final int movementDurationPerMilliseconds;
   final int repetitionDurationPerSecond;
   Color? stage;
@@ -24,6 +24,7 @@ class Sliders extends GetxController {
       required this.repetitionDurationPerSecond,
       required this.contentCount});
 
+  @override
   onInit() {
     move = PageController();
     execute();
@@ -32,14 +33,14 @@ class Sliders extends GetxController {
   List<Widget> initValue() {
     return List.generate(advertisements.length, (index) {
       return Container(
-       /* color: index == (offset)
-            ? const Color(0xFF049cc2)
-            : const Color(0xFF02132b),*/
         width: 10,
         height: 10,
-        decoration: BoxDecoration(shape: BoxShape.circle, color:index == (offset)
-            ? const Color(0xFF049cc2)
-            : const Color(0xFF02132b), ),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: index == (offset)
+              ? const Color(0xFF049cc2)
+              : const Color(0xFF02132b),
+        ),
       );
     });
   }
@@ -49,25 +50,27 @@ class Sliders extends GetxController {
   List<Widget> stages() {
     stageIcon = List.generate(advertisements.length, (index) {
       return Container(
-       /* color: index == (move.page!.toInt())
+          /* color: index == (move.page!.toInt())
             ? const Color(0xFF049cc2)
             : const Color(0xFF02132b),*/
-        width: 10,
-        height: 10,
-          decoration: BoxDecoration(shape: BoxShape.circle, color:index == (move.page!.toInt())
-              ? const Color(0xFF049cc2)
-              : const Color(0xFF02132b), )
-      );
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: index == (move.page!.toInt())
+                ? const Color(0xFF049cc2)
+                : const Color(0xFF02132b),
+          ));
     });
     return stageIcon;
   }
 
   sizes() {
-    if (width >= 1100) {
-      moveTo = width - (mainPadding! * 2);
+    if (width! >= 1100) {
+      moveTo = width! - (mainPadding! * 2);
       height = 150;
     } else {
-      moveTo = width - (mainPadding! * 2);
+      moveTo = width! - (mainPadding! * 2);
       height = 110;
     }
   }

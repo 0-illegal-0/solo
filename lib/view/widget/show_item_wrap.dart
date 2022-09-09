@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/style.dart';

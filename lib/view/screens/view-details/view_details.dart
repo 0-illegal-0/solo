@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import 'package:solo/controllers/cart.dart';
 import 'package:solo/controllers/view_details_controller.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/bottom_sheet.dart';
@@ -16,7 +15,6 @@ import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
 
-
 class ViewDetails extends StatefulWidget {
   const ViewDetails(
       {Key? key,
@@ -26,11 +24,12 @@ class ViewDetails extends StatefulWidget {
       this.width,
       this.itemList,
       this.index,
-      this.numberOfRows,  this.productItem})
+      this.numberOfRows,
+      this.productItem})
       : super(key: key);
   final String? title;
   final double? height, aspectRatio, width;
-  final int? index, numberOfRows,productItem;
+  final int? index, numberOfRows, productItem;
   final List? itemList;
   @override
   State<ViewDetails> createState() => _ViewDetailsState();
@@ -75,7 +74,8 @@ class _ViewDetailsState extends State<ViewDetails>
                             controller: controller,
                             fontTitle: fontTitle,
                             index: widget.index,
-                            product: product,productIndex: widget.productItem,
+                            product: product,
+                            productIndex: widget.productItem,
                             width: widget.width)
                         : ProductImages(
                             controller: controller,
@@ -120,7 +120,9 @@ class _ViewDetailsState extends State<ViewDetails>
                             controller: controller,
                             fontTitle: fontTitle,
                             product: product,
-                            width: widget.width,index: widget.index,productIndex: widget.productItem,
+                            width: widget.width,
+                            index: widget.index,
+                            productIndex: widget.productItem,
                           ),
                     const SizedBox(height: 20),
                     widget.itemList![widget.index!].reviews.isNotEmpty == true
@@ -215,51 +217,58 @@ class _ViewDetailsState extends State<ViewDetails>
                 ),
               ),
             ),
-
-             Align(
-               alignment: Alignment.bottomCenter,
-
-               child: Column(
-                 mainAxisAlignment: MainAxisAlignment.end,
-                 children: [
-                   device == DeviceType.Mobile
-                       ? Container(
-                         width: widget.width,
-                         height: 43,
-                         padding: const EdgeInsets.symmetric(
-                             horizontal: 5, vertical: 5),
-                         decoration: const BoxDecoration(
-                           color: Color.fromRGBO(220, 222, 221, 1),
-                           borderRadius: BorderRadius.all(Radius.circular(5)),
-                         ),
-                         child: Column(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Column(
-                               children: [
-                                 SizedBox(
-                                   height: 33,
-                                   child: Row(
-                                     mainAxisAlignment: MainAxisAlignment.center,
-                                     children:  [
-                                       ChargeButton(title: "Add To Cart",productItem: widget.productItem,
-                                         width: widget.width,stars: product.stars,price: product.price,image: product.image,
-                                       itemTitle: product.title,itemIndex: widget.index),
-                                       SizedBox(width: 20),
-                                       ChargeButton(title: "Buy Now",width: widget.width)
-                                     ],
-                                   ),
-                                 )
-                               ],
-                             ),
-                           ],
-                         ),
-                       )
-                       : const SizedBox(),
-                   BottomRow(),
-                 ],
-               ),
-             )
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  device == DeviceType.Mobile
+                      ? Container(
+                          width: widget.width,
+                          height: 43,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 5),
+                          decoration: const BoxDecoration(
+                            color: Color.fromRGBO(220, 222, 221, 1),
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: 33,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        ChargeButton(
+                                            title: "Add To Cart",
+                                            productItem: widget.productItem,
+                                            width: widget.width,
+                                            stars: product.stars,
+                                            price: product.price,
+                                            image: product.image,
+                                            itemTitle: product.title,
+                                            itemIndex: widget.index),
+                                        const SizedBox(width: 20),
+                                        ChargeButton(
+                                            title: "Buy Now",
+                                            width: widget.width)
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      : const SizedBox(),
+                  const BottomRow(),
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -269,11 +278,17 @@ class _ViewDetailsState extends State<ViewDetails>
 
 class ProductImagesDesktop extends StatelessWidget {
   const ProductImagesDesktop(
-      {Key? key, this.product, this.controller, this.fontTitle, this.width, this.index, this.productIndex})
+      {Key? key,
+      this.product,
+      this.controller,
+      this.fontTitle,
+      this.width,
+      this.index,
+      this.productIndex})
       : super(key: key);
   final dynamic product, controller;
   final double? fontTitle, width;
-  final index,productIndex;
+  final int? index, productIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -314,7 +329,9 @@ class ProductImagesDesktop extends StatelessWidget {
                     controller: controller,
                     fontTitle: fontTitle,
                     product: product,
-                    width: width,productIndex: productIndex,index: index,
+                    width: width,
+                    productIndex: productIndex,
+                    index: index,
                   ),
                   Container(
                     width: 430,
@@ -327,18 +344,25 @@ class ProductImagesDesktop extends StatelessWidget {
                     child: Column(
                       children: [
                         Delivery(width: width),
-                        const SizedBox(
-                          height: 10
-                        ),
+                        const SizedBox(height: 10),
                         SizedBox(
                           height: 30,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children:  [
-                              ChargeButton(title: "Add To Cart",image:product.image,price:product.price,
-                                  stars:product.stars,itemTitle:product.title,width:width,
-                                  itemIndex:index,productItem:productIndex),
-                              ChargeButton(title: "Buy Now",width:width,)
+                            children: [
+                              ChargeButton(
+                                  title: "Add To Cart",
+                                  image: product.image,
+                                  price: product.price,
+                                  stars: product.stars,
+                                  itemTitle: product.title,
+                                  width: width,
+                                  itemIndex: index,
+                                  productItem: productIndex),
+                              ChargeButton(
+                                title: "Buy Now",
+                                width: width,
+                              )
                             ],
                           ),
                         )
@@ -407,8 +431,7 @@ class ProductImages extends StatelessWidget {
                       indicator: null,
                       labelPadding: const EdgeInsets.all(5),
                       unselectedLabelColor: Colors.yellow,
-                      onTap: (indexNum) {
-                      },
+                      onTap: (indexNum) {},
                       tabs: controller.imgaes());
                 })
               ],

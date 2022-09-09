@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/models/speacial_offer.dart';
-import 'package:solo/models/tablet_models.dart';
 import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/close/close.dart';
@@ -56,7 +54,7 @@ class CartBudget extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children:[
-                    controller.items.length> 0?  GetBuilder<Cart>(
+                    controller.items.isNotEmpty?  GetBuilder<Cart>(
                    builder: (context) {
                      return width! >650?  Padding(
                        padding: const EdgeInsets.only(top:120),

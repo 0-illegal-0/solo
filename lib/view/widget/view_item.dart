@@ -8,7 +8,8 @@ import 'package:solo/view/style.dart';
 
 class ViewItem extends StatelessWidget {
   const ViewItem(
-      {this.width,
+      {Key? key,
+      this.width,
       this.height,
       this.title,
       this.itemList,
@@ -17,7 +18,8 @@ class ViewItem extends StatelessWidget {
       this.mainPadding,
       this.aspectRatioNoMobile,
       this.numberOfRows,
-      this.productItem});
+      this.productItem})
+      : super(key: key);
 
   final double? width,
       height,

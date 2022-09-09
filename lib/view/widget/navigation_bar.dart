@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
-import 'package:solo/controllers/navigation-state.dart';
+import 'package:solo/controllers/navigation_state.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/cart/cart.dart';
 import 'package:solo/view/screens/home/home_page.dart';

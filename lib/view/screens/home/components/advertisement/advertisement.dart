@@ -5,7 +5,7 @@ import 'package:solo/models/advertisement_models.dart';
 import 'package:solo/view/screens/home/components/weeklyGift/slider_style1.dart';
 
 class Advertisement extends StatelessWidget {
-  Advertisement({Key? key, this.width, this.title, this.mainPadding})
+  const Advertisement({Key? key, this.width, this.title, this.mainPadding})
       : super(key: key);
 
   final double? width, mainPadding;
@@ -48,7 +48,7 @@ class Advertisement extends StatelessWidget {
                 })),
         const SizedBox(height: 10),
         SizedBox(
-          width: width! / 15 < 70?70:width! / 15,
+          width: width! / 15 < 70 ? 70 : width! / 15,
           child: GetBuilder<Sliders>(builder: (controller) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

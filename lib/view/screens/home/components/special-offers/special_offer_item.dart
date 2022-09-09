@@ -89,7 +89,7 @@ class SpecialOfferItem extends StatelessWidget {
                     height: width / 20,
                     child: CustomPaint(
                       painter: const DiscountChip(
-                          DiscountChipColor: Color.fromRGBO(222, 53, 59, 0.7)),
+                          discountChipColor: Color.fromRGBO(222, 53, 59, 0.7)),
                       child: Center(
                         child: Text(
                           discount!,
@@ -122,12 +122,12 @@ class SpecialOfferItem extends StatelessWidget {
 }
 
 class DiscountChip extends CustomPainter {
-  const DiscountChip({required this.DiscountChipColor});
-  final Color DiscountChipColor;
+  const DiscountChip({required this.discountChipColor});
+  final Color discountChipColor;
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
-    paint.color = DiscountChipColor;
+    paint.color = discountChipColor;
     paint.style = PaintingStyle.fill;
 
     var path = Path();

@@ -1,11 +1,8 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
-
 import '../../../../style.dart';
 
 class Gift extends StatelessWidget {

@@ -34,7 +34,6 @@ class SpecialOfferHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(width);
     return SizedBox(
       width: double.infinity,
       height: width! / 8 < 60 ? 60 : width! / 8,

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 Enum? device;
 getDevice(double? width) {
   if (width! < 650) {

@@ -7,7 +7,7 @@ class SlidersPage extends GetxController {
   static String text = "Text";
   static double? height, moveTo;
   final int contentCount;
-  final width;
+  final double? width;
   final int movementDurationPerMilliseconds;
   final int repetitionDurationPerSecond;
   Color? stage;
@@ -57,16 +57,16 @@ class SlidersPage extends GetxController {
   }
 
   double get mainPadding {
-    return width / 24;
+    return width! / 24;
   }
 
   sizes() {
-    if (width >= 1100) {
-      moveTo = width - (mainPadding * 2);
+    if (width! >= 1100) {
+      moveTo = width! - (mainPadding * 2);
 
       height = 150;
     } else {
-      moveTo = width - (mainPadding * 2);
+      moveTo = width! - (mainPadding * 2);
       height = 110;
     }
   }

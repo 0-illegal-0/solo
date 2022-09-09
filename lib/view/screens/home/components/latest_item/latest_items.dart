@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/latest_item_controller.dart';
-import 'package:solo/models/latest_item_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/view_item.dart';
@@ -26,7 +25,7 @@ class LatestItems extends StatelessWidget {
   int? itemIndex;
   final List? data;
   final int? viewitemCount;
-  @override
+
   double brandGrid(int? countItem) {
     return (width! -
             mainPadding! * 2 -
@@ -78,9 +77,9 @@ class LatestItems extends StatelessWidget {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     getDevice(width);
-    getDataToLatestItems();
     getListvalues();
     MoveSliderMain controller =
         Get.put(MoveSliderMain(itemsList: data!, width: width));

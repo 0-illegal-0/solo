@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:solo/controllers/view_details_controller.dart';
+import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/bottom_sheet.dart';
 import 'package:solo/view/screens/view-details/information_design.dart';
 
 class Details extends StatelessWidget {
   const Details(
-      {Key? key, this.fontTitle, this.controller, this.product, this.width, this.index, this.productIndex})
+      {Key? key,
+      this.fontTitle,
+      this.controller,
+      this.product,
+      this.width,
+      this.index,
+      this.productIndex})
       : super(key: key);
   final double? fontTitle, width;
-  final controller, product;
-  final int? index,productIndex;
+  final ImageSlider? controller;
+  final Products? product;
+  final int? index, productIndex;
 
   Color get detailsColor {
     return device == DeviceType.Desktop
@@ -37,14 +46,14 @@ class Details extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              product.price,
+                              product!.price!,
                               style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17),
                             ),
                             Text(
-                              product.oldPrice,
+                              product!.oldPrice!,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.grey,
@@ -54,7 +63,7 @@ class Details extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          product.discount,
+                          product!.discount!,
                           textAlign: device == DeviceType.Desktop
                               ? TextAlign.left
                               : TextAlign.right,
@@ -79,7 +88,7 @@ class Details extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         Text(
-                          product.productBrands,
+                          product!.productBrands!,
                           textAlign: device == DeviceType.Desktop
                               ? TextAlign.left
                               : TextAlign.right,
@@ -154,12 +163,18 @@ class Details extends StatelessWidget {
                             height: 66,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children:  [
-                                ChargeButton(title: "Add To Cart",image:product.image,price:product.price,
-                                    stars:product.stars,itemTitle:product.title,width:width,
-                                    itemIndex:index,productItem:productIndex),
-                                SizedBox(height: 8),
-                                ChargeButton(title: "Buy Now",width: width)
+                              children: [
+                                ChargeButton(
+                                    title: "Add To Cart",
+                                    image: product!.image,
+                                    price: product!.price,
+                                    stars: product!.stars,
+                                    itemTitle: product!.title,
+                                    width: width,
+                                    itemIndex: index,
+                                    productItem: productIndex),
+                                const SizedBox(height: 8),
+                                ChargeButton(title: "Buy Now", width: width)
                               ],
                             ),
                           )
@@ -201,8 +216,8 @@ class Details extends StatelessWidget {
                   width: width,
                   manualWidth: false,
                   itemWidth: double.infinity,
-                  keys: controller.highlightsKeys,
-                  values: controller.highlightsValues),
+                  keys: controller!.highlightsKeys,
+                  values: controller!.highlightsValues),
               device == DeviceType.Desktop
                   ? const SizedBox()
                   : Center(
@@ -223,8 +238,8 @@ class Details extends StatelessWidget {
                                 sheetWidget: InformationDesign(
                                   width: width,
                                   manualWidth: false,
-                                  keys: controller.specificationsKeys,
-                                  values: controller.specificationsValues,
+                                  keys: controller!.specificationsKeys,
+                                  values: controller!.specificationsValues,
                                 ),
                               );
                             },

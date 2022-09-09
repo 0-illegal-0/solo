@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
-import 'package:solo/view/screens/cart/cart.dart';
-import 'package:solo/view/widget/note.dart';
 
 bottomSheet(context, {dynamic sheetWidget, dynamic title}) {
   return showModalBottomSheet(
@@ -56,10 +54,20 @@ bottomSheet(context, {dynamic sheetWidget, dynamic title}) {
 }
 
 class ChargeButton extends StatelessWidget {
-  const ChargeButton({Key? key, this.title, this.image, this.price, this.stars, this.width, this.itemIndex, this.productItem, this.itemTitle}) : super(key: key);
-  final String? title,image,price,itemTitle;
+  const ChargeButton(
+      {Key? key,
+      this.title,
+      this.image,
+      this.price,
+      this.stars,
+      this.width,
+      this.itemIndex,
+      this.productItem,
+      this.itemTitle})
+      : super(key: key);
+  final String? title, image, price, itemTitle;
   final double? width;
-  final int? itemIndex, productItem,stars;
+  final int? itemIndex, productItem, stars;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,16 +75,19 @@ class ChargeButton extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(8)),
         color: Color(0xFFeb821a),
       ),
-      width: width! < 400?150: 170,
+      width: width! < 400 ? 150 : 170,
       child: TextButton(
-          onPressed: () async{
+          onPressed: () async {
             Cart controller = Get.put(Cart());
-            controller.addToCart(context:context,image: image,price: price,stars: stars,
+            controller.addToCart(
+                context: context,
+                image: image,
+                price: price,
+                stars: stars,
                 title: itemTitle,
                 width: width,
                 itemIndex: itemIndex,
-                productItem: productItem
-            );
+                productItem: productItem);
           },
           child: Text(title!,
               textAlign: TextAlign.center,

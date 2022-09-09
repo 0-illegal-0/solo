@@ -9,20 +9,18 @@ class BrandItems extends StatelessWidget {
       this.title,
       required this.width})
       : super(key: key);
-  final gridWidth;
-  final index;
+  final double? gridWidth;
+  final int? index;
   final double width;
   final String? image;
   final String? title;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        print("Tap");
-      },
+      onTap: () {},
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Container(
-            padding: EdgeInsets.all(3),
+            padding: const EdgeInsets.all(3),
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -34,8 +32,7 @@ class BrandItems extends StatelessWidget {
                       offset: Offset(0, 5))
                 ]),
             width: gridWidth,
-            height: gridWidth / 1.68,
-            constraints: BoxConstraints(/*maxWidth: 100, maxHeight: 69.5*/),
+            height: gridWidth! / 1.68,
             child: Image.asset(
               image!,
             )),

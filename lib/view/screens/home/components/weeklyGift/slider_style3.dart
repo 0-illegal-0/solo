@@ -119,8 +119,9 @@ class SlidersStyle3 extends StatelessWidget {
 
 class SlidersStyle3Painter extends CustomPainter {
   SlidersStyle3Painter({this.color});
-  @override
   final Color? color;
+
+  @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
     paint.color = color!;

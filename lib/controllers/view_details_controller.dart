@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/state_manager.dart';
 
 class ImageSlider extends GetxController {
   late TabController execute;
@@ -22,9 +22,9 @@ class ImageSlider extends GetxController {
     super.onReady();
   }
 
-  void initStates(This) {
-    execute =
-        TabController(length: imagesTab!.length, vsync: This, initialIndex: 0);
+  void initStates(thisTicker) {
+    execute = TabController(
+        length: imagesTab!.length, vsync: thisTicker, initialIndex: 0);
   }
 
   List<Widget> imgaes() {
@@ -87,10 +87,6 @@ class MoveSliderData extends GetxController {
   double moveUnit = 0;
   int? moveCount = 0, wrapCount;
   double? width;
-  //List? itemsList;
-  /*int get wrapCount {
-    return (itemsList!.length / (6 * 2)).ceil();
-  }*/
 
   moveNext() {
     if (moveCount! < wrapCount! - 1) {

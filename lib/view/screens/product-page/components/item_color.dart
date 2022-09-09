@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:solo/models/add_main_data.dart';
 
 class ItemColor extends StatelessWidget {
   const ItemColor(

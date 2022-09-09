@@ -55,7 +55,6 @@ class SearchApp extends SearchDelegate {
       return ListView.builder(
           itemCount: query == "" ? colors.length : filter.length,
           itemBuilder: (context, i) {
-            print(filter.length);
             return Container(
                 alignment: Alignment.center,
                 child: query == ""

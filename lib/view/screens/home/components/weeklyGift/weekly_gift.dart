@@ -18,8 +18,10 @@ class WeeklyGift extends StatelessWidget {
     ];
   }
 
-  final width;
-  final title;
+  final double? width;
+  final String? title;
+
+  @override
   Widget build(BuildContext context) {
     SlidersPage controller = Get.put(SlidersPage(
         width: width,
@@ -32,7 +34,7 @@ class WeeklyGift extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title, style: titleStyle),
+          child: Text(title!, style: titleStyle),
         ),
         Container(
             decoration: const BoxDecoration(
@@ -45,7 +47,7 @@ class WeeklyGift extends StatelessWidget {
               ],
             ),
             width: SlidersPage.moveTo!,
-            height: width * 0.22,
+            height: width! * 0.22,
             constraints: const BoxConstraints(minHeight: 140),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),

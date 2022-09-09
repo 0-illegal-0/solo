@@ -1,16 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:solo/controllers/add_data.dart';
-import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/models/categories_models.dart';
-import 'package:solo/models/hot_deals_models.dart';
-import 'package:solo/models/mobiles_models.dart';
-import 'package:solo/models/most_liked_items_models.dart';
-import 'package:solo/models/recommended_models.dart';
-import 'package:solo/models/speacial_offer.dart';
-import 'package:solo/models/top_sale.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/gift/gift.dart';
 import 'package:solo/view/screens/home/components/latest_item/latest_items.dart';
@@ -35,8 +26,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AllData inst = AllData(context: context);
-    //  Cart controller = Get.put(Cart());
-    print(inst.width);
     return Scaffold(
         backgroundColor: const Color(0xFFe1e1e3),
         body: SafeArea(
@@ -66,7 +55,6 @@ class HomePage extends StatelessWidget {
                           width: inst.width,
                           title: "Hot Deals",
                           data: inst.itemData["hot-deal"],
-                          listhotDealsItemsList: listhotDealsItemsList,
                         ),
                         SizedBox(height: inst.verticalSpace),
                         ViewItem(

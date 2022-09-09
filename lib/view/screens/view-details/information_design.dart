@@ -30,7 +30,6 @@ class InformationDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("$space -----space---------------");
     return Wrap(
       spacing: space,
       children: List.generate(
