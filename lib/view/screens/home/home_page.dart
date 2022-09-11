@@ -180,9 +180,9 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Head(width: inst.width),
+                //  Head(width: inst.width),
                 const BottomRow(),
-                const Important(),
+                // const Important(),
                 StartPages(height: inst.height!, width: inst.width)
               ],
             )));

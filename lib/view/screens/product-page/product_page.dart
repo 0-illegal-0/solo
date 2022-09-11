@@ -57,6 +57,7 @@ class ProductPage extends StatelessWidget {
     FilterController controller =
         Get.put(FilterController(width: width, mainItem: category!.products));
     return Scaffold(
+      backgroundColor: const Color(0xFFe1e1e3),
       body: SafeArea(
         bottom: false,
         child: Stack(

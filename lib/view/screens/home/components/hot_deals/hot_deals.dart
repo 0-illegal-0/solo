@@ -35,7 +35,7 @@ class HotDeals extends StatelessWidget {
         return 4;
       } else {
         widthValue = 5;
-        return 5;
+        return 4;
       }
     } else {
       if (width! > 1200) {
