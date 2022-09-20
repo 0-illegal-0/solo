@@ -230,7 +230,7 @@ class DesktopHead extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Logo(fontSize: 40),
+              const Logo(fontSize: 50),
               SizedBox(width: gap),
               Search(width: width, fieldHeight: 39, iconButtonheight: 40),
               SizedBox(width: gap),
@@ -272,14 +272,9 @@ class Logo extends StatelessWidget {
         child: Text("Solo",
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontFamily: "Lobster",
+                fontFamily: "Roboto",
                 fontSize: fontSize!,
-                color: Colors
-                    .white))); /*Text(
-      "Solo",
-      style: TextStyle(
-          fontFamily: "Lobster", fontSize: fontSize!, color: Colors.white),
-    );*/
+                color: const Color(0xFFba2f35))));
   }
 }
 

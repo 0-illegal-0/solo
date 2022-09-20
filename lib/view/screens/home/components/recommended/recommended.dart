@@ -39,6 +39,8 @@ class Recommended extends StatelessWidget {
         title: title!,
         showCountInRow: 3,
       );
+    } else if (device == DeviceType.Tablet) {
+      return RecommendedForTablet(width: width);
     } else {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -370,5 +372,156 @@ class RecommendedDesktopDesign extends StatelessWidget {
             : const SizedBox()
       ],
     );
+  }
+}
+
+class RecommendedForTablet extends StatelessWidget {
+  const RecommendedForTablet({Key? key, this.width}) : super(key: key);
+  final double? width;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: width! * 0.35,
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              color: const Color(0xff0f8a79),
+            ),
+          ),
+          SizedBox(width: width! / 65),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          color: const Color(0xFFc9963e),
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: CustomPaint(
+                              painter: RecommendedPainter(
+                                color: const Color(
+                                    0xFFc9963e), //0xFFdbb251  // 0xFFc9963e
+                              ),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 20),
+                                  child: Image.asset(
+                                    "assets/advertise/phone-advertise.png",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: width! / 65),
+                      Expanded(
+                          child: Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(left: 0),
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                              Color(0xFF08b1cf),
+                              Color(0xffed1f48),
+                            ])),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Image.asset(
+                              "assets/advertise/phone-advertise33.png",
+                              width: width! * 0.15,
+                              height: width! * 0.14),
+                        ),
+                      )),
+                    ],
+                  ),
+                ),
+                SizedBox(height: width! / 65),
+                Expanded(
+                  flex: 4,
+                  child: Container(
+                      color: const Color(0xFFa89332), //const Color(0xFFb00e5f),
+                      height: width! * 0.12,
+                      alignment: Alignment.bottomCenter,
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: SizedBox(
+                        width: width! * 0.40,
+                        child: Stack(
+                          alignment: AlignmentDirectional.bottomCenter,
+                          children: [
+                            Positioned(
+                                left: 10,
+                                child: Image.asset(
+                                    "assets/advertise/tornado-32-2.png",
+                                    width: width! * 0.07)),
+                            Positioned(
+                                left: 60,
+                                child: Image.asset(
+                                    "assets/advertise/tornado-32.png",
+                                    width: width! * 0.10)),
+                            Positioned(
+                                right: 10,
+                                child: Image.asset(
+                                    "assets/advertise/grow-1.png",
+                                    width: width! * 0.07)),
+                            Positioned(
+                                right: 60,
+                                child: Image.asset("assets/advertise/fish.png",
+                                    width: width! * 0.10)),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Image.asset("assets/advertise/baloon.png",
+                                  width: width! * 0.13),
+                            ),
+                          ],
+                        ),
+                      )),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class RecommendedPainter extends CustomPainter {
+  RecommendedPainter({this.color});
+  final Color? color;
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint();
+    paint.color = color!;
+    paint.style = PaintingStyle.fill;
+
+    var path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(0, size.height);
+    path.lineTo(size.width * 0.35, size.height);
+    path.quadraticBezierTo(size.width * 0.35, size.height * 0.75,
+        size.width * 0.50, size.height * 0.50);
+    path.quadraticBezierTo(
+        size.width * 0.35, size.height * 0.25, size.width * 0.35, 0);
+    path.lineTo(0, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }

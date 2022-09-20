@@ -34,11 +34,14 @@ class HotDeals extends StatelessWidget {
         widthValue = 4.67;
         return 4;
       } else {
-        widthValue = 5;
+        widthValue = 5.5;
         return 4;
       }
     } else {
-      if (width! > 1200) {
+      if (width! < 1200) {
+        widthValue = 5.06;
+        return 5;
+      } else if (width! > 1200) {
         widthValue = 6;
         return 5;
       } else {
@@ -67,7 +70,7 @@ class HotDeals extends StatelessWidget {
                 device: device, desktop: 20, teblet: 15, mobile: 10)),
         HotDealWrap(
             width: width,
-            mainPadding: width! / 50,
+            mainPadding: width! / 24,
             maxItemCount: maxItemCount,
             data: data,
             widthValue: widthValue),

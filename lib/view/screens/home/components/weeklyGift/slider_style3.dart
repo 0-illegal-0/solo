@@ -133,7 +133,6 @@ class SlidersStyle3Painter extends CustomPainter {
     path.lineTo(size.width * 0.20, size.height * 0.50);
     path.lineTo(size.width * 0.125, size.height);
     path.lineTo(0, size.height);
-
     canvas.drawPath(path, paint);
   }
 

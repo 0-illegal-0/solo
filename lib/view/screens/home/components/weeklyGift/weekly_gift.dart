@@ -47,7 +47,7 @@ class WeeklyGift extends StatelessWidget {
               ],
             ),
             width: SlidersPage.moveTo!,
-            height: width! * 0.22,
+            height: width! * 0.26,
             constraints: const BoxConstraints(minHeight: 140),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
@@ -57,7 +57,7 @@ class WeeklyGift extends StatelessWidget {
                 itemBuilder: (context, i) {
                   return styleWidget(width: width, index: i)[i];
                 })),
-        const SizedBox(height: 3),
+        const SizedBox(height: 10),
         Center(
           child: SizedBox(
             width: 80,

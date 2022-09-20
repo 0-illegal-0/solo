@@ -34,7 +34,7 @@ class SlidersStyle2 extends StatelessWidget {
           children: [
             SizedBox(
                 width: double.infinity,
-                height: width * 0.22 < 140 ? 140 : width * 0.22,
+                height: width * 0.26 < 140 ? 140 : width * 0.26,
                 child: CustomPaint(
                     painter: SlidersStyle2Painter(color: Colors.green))),
             Transform.translate(

@@ -81,6 +81,7 @@ flutter:
     - assets/images/login_icons/
     - assets/images/categories_icons/
     - assets/fonts/
+    - assets/advertise/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -119,6 +120,10 @@ flutter:
     - family: Bebas
       fonts:
         - asset: assets/fonts/Bebas_Neue/BebasNeue-Regular.ttf
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf
   #      - asset: fonts/TrajanPro_Bold.ttf
   #        weight: 700
 

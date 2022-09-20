@@ -36,7 +36,7 @@ class Advertisement extends StatelessWidget {
               ],
             ),
             width: Sliders.moveTo!,
-            height: width! * 0.22,
+            height: width! * 0.26,
             constraints: const BoxConstraints(minHeight: 130),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),

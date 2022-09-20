@@ -298,8 +298,8 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
-          "image": "assets/images/laptops/hp-probook-445.png",
+              "Dell Vostro 14 Business Laptop: Core i5-1135G7, 256GB SSD, 8GB RAM,...",
+          "image": "assets/images/laptops/dell-vostro.jpg",
           "special-offer": false,
           "title": "HP Probook 446",
           "price": "25.500.00",
@@ -496,9 +496,9 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
-          "image": "assets/images/laptops/dell-g15.jpg",
-          "title": "HP Probook 445",
+              "2021 Apple MacBook Pro (14-inch, Apple M1 Pro chip with 10‑core CPU and 16‑core GPU...",
+          "image": "assets/images/laptops/macbook-pro.png",
+          "title": "Apple MacBook",
           "special-offer": false,
           "price": "22,500.00",
           "discount": "20%",
@@ -513,9 +513,9 @@ Map<String, dynamic> data = {
           'display-resolution': 1280,
           'graphics-chipsetBrand': "Intel",
           "images": [
-            "assets/images/laptops/dell-g15.jpg",
-            "assets/images/laptops/dell-g15.jpg",
-            "assets/images/laptops/dell-g15.jpg",
+            "assets/images/laptops/macbook-pro.png",
+            "assets/images/laptops/macbook-pro.png",
+            "assets/images/laptops/macbook-pro.png",
           ],
           "informations": {
             "highlights": {
@@ -595,9 +595,9 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
-          "image": "assets/images/laptops/dell-g15.jpg",
-          "title": "HP Probook 445",
+              "Dell Latitude 7490 Intel Core i7-8650U 16GB DDR4 RAM, 512GB SSD 14\" FHD Windows 10 Pro Laptop (Renewed)",
+          "image": "assets/images/laptops/Dell-Latitude-7490.png",
+          "title": "Dell Latitude 7490",
           "price": "27,200.00",
           "special-offer": true,
           "discount": "20%",
@@ -695,8 +695,8 @@ Map<String, dynamic> data = {
         {
           "description":
               "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
-          "image": "assets/images/laptops/dell-g15.jpg",
-          "title": "HP Probook 445",
+          "image": "assets/images/laptops/lenovo-v15.png",
+          "title": "lenovo-v15",
           "special-offer": false,
           "price": "18,500.00",
           "discount": "20%",
@@ -793,9 +793,9 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
-          "image": "assets/images/laptops/hp-probook-445.png",
-          "title": "Asus FX506HEB-B ...",
+              "L340 With 15.6-inch Display, AMD Ryzen 3 3200U Processor/4GB RAM/1TB HDD/AMD...",
+          "image": "assets/images/laptops/lenovo-l340.png",
+          "title": "Asus FX506HEB-B...",
           "special-offer": true,
           "price": "19,000.00",
           "discount": "20%",
@@ -1072,7 +1072,7 @@ Map<String, dynamic> data = {
           "description": "Samsung Galaxy A72, 6.5 inches 32GB/2GB Dual SIM 4G",
           "image": "assets/images/mobiles/samsung_galaxy_a72.png",
           "title": "Samsung Galaxy A72",
-          "special-offer": true,
+          "special-offer": false,
           "price": "6.999",
           "product-brands": "Samsung",
           "camera-resolution": 7.0,
@@ -1165,20 +1165,20 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
-          "image": "assets/images/mobiles/samsung_galaxy_a72.png",
-          "title": "Samsung Galaxy A72",
+              "Samsung Galaxy A21S, Dual SIM 64GB 4GB RAM 4G LTE - Black",
+          "image": "assets/images/mobiles/samsung_galaxy_a21s.jpg",
+          "title": "samsung galaxy a21s",
           "price": "6.000",
           "special-offer": false,
           "product-brands": "Samsung",
           "camera-resolution": 12,
-          "camera-sizes": 6,
+          "camera-sizes": 8,
           'display-size': 6,
           "color": "White",
           "images": [
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
+            "assets/images/mobiles/samsung_galaxy_a21s.jpg",
+            "assets/images/mobiles/samsung_galaxy_a21s.jpg",
+            "assets/images/mobiles/samsung_galaxy_a21s.jpg",
           ],
           "discount": "20%",
           "old-price": "30.500.00 EGP",
@@ -1261,9 +1261,9 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
-          "image": "assets/images/mobiles/samsung_galaxy_a72.png",
-          "title": "Samsung Galaxy A72",
+              "Samsung Galaxy A13 Dual SIM Mobile, 64GB, 4GB RAM - White",
+          "image": "assets/images/mobiles/samsung-galaxy-a13.png",
+          "title": "Samsung Galaxy A13",
           "price": "7.000",
           "product-brands": "Samsung",
           "camera-resolution": 8,
@@ -1273,9 +1273,9 @@ Map<String, dynamic> data = {
           "special-offer": false,
           "warranty": "1 Years",
           "images": [
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
+            "assets/images/mobiles/samsung-galaxy-a13.png",
+            "assets/images/mobiles/samsung-galaxy-a13.png",
+            "assets/images/mobiles/samsung-galaxy-a13.png",
           ],
           "discount": "20%",
           "old-price": "null",
@@ -1453,8 +1453,8 @@ Map<String, dynamic> data = {
         {
           "description":
               "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
-          "image": "assets/images/mobiles/iphone-11.png",
-          "title": "Samsung Galaxy A72",
+          "image": "assets/images/mobiles/galaxy-S22.png",
+          "title": "Samsung Galaxy S22",
           "price": "14.500",
           "special-offer": false,
           "product-brands": "Apple",
@@ -1463,9 +1463,9 @@ Map<String, dynamic> data = {
           'display-size': 6.3,
           "color": "Black",
           "images": [
-            "assets/images/mobiles/iphone-11.png",
-            "assets/images/mobiles/iphone-11.png",
-            "assets/images/mobiles/iphone-11.png",
+            "assets/images/mobiles/galaxy-S22.png",
+            "assets/images/mobiles/galaxy-S22.png",
+            "assets/images/mobiles/galaxy-S22.png",
           ],
           "discount": "20%",
           "old-price": "null",
@@ -1642,9 +1642,9 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
-          "image": "assets/images/mobiles/reno-6-black.png",
-          "title": "Samsung Galaxy A72",
+              "SAMSUNG Galaxy Z Flip 3 5G Cell Phone, Factory Unlocked Android Smartphone",
+          "image": "assets/images/mobiles/galaxy-z.png",
+          "title": "SAMSUNG Galaxy Z",
           "price": "6.700",
           "special-offer": false,
           "product-brands": "Lenovo",
@@ -1653,9 +1653,9 @@ Map<String, dynamic> data = {
           'display-size': 5.8,
           "color": "Black",
           "images": [
-            "assets/images/mobiles/reno-6-black.png",
-            "assets/images/mobiles/reno-6-black.png",
-            "assets/images/mobiles/reno-6-black.png",
+            "assets/images/mobiles/galaxy-z.png",
+            "assets/images/mobiles/galaxy-z.png",
+            "assets/images/mobiles/galaxy-z.png",
           ],
           "discount": "20%",
           "old-price": "null",
@@ -1736,10 +1736,9 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
-          "description":
-              "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
-          "image": "assets/images/mobiles/samsung_galaxy_a72.png",
-          "title": "Samsung Galaxy A72",
+          "description": "Apple iPhone XR, 64GB, Coral - Unlocked (Renewed)",
+          "image": "assets/images/mobiles/apple-iphone-xr.png",
+          "title": "Apple iPhone XR",
           "price": "5.500",
           "special-offer": false,
           "product-brands": "Samsung",
@@ -1748,9 +1747,9 @@ Map<String, dynamic> data = {
           'display-size': 6.3,
           "color": "White",
           "images": [
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
+            "assets/images/mobiles/apple-iphone-xr.png",
+            "assets/images/mobiles/apple-iphone-xr.png",
+            "assets/images/mobiles/apple-iphone-xr.png",
           ],
           "discount": "20%",
           "old-price": "null",
@@ -2116,10 +2115,9 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
-          "description":
-              "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
-          "image": "assets/images/mobiles/samsung_galaxy_a72.png",
-          "title": "Samsung Galaxy A72",
+          "description": "Apple iPhone XR, 64GB, Coral - Unlocked (Renewed)",
+          "image": "assets/images/mobiles/apple-iphone-xr.png",
+          "title": "Apple iPhone XR",
           "price": "6.500",
           "special-offer": false,
           "product-brands": "Samsung",
@@ -2128,9 +2126,9 @@ Map<String, dynamic> data = {
           'display-size': 5.7,
           "color": "White",
           "images": [
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
-            "assets/images/mobiles/samsung_galaxy_a72.png",
+            "assets/images/mobiles/apple-iphone-xr.png",
+            "assets/images/mobiles/apple-iphone-xr.png",
+            "assets/images/mobiles/apple-iphone-xr.png",
           ],
           "discount": "20%",
           "old-price": "null",
@@ -2538,18 +2536,19 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
-          "description": "Lenovo Tab M7 Tablet",
-          "image": "assets/images/tablet/lenovo-tab-m7.png",
+          "description":
+              "Samsung Galaxy Tab S8 Ultra Graphite 16GB RAM 512GB Wifi - Middle East Version",
+          "image": "assets/images/tablet/Samsung-Galaxy-Tab-S8-Ultra-1.png",
           "title": "Lenovo M10",
           "special-offer": false,
           "price": "8,000.00",
-          "product-brands": "Huawei",
+          "product-brands": "Samsung",
           "discount": "20%",
           "old-price": "null",
           "images": [
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
+            "assets/images/tablet/Samsung-Galaxy-Tab-S8-Ultra-1.png",
+            "assets/images/tablet/Samsung-Galaxy-Tab-S8-Ultra-1.png",
+            "assets/images/tablet/Samsung-Galaxy-Tab-S8-Ultra-1.png",
           ],
           "informations": {
             "highlights": {},
@@ -2565,18 +2564,19 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
-          "description": "Lenovo Tab M7 Tablet",
-          "image": "assets/images/tablet/lenovo-tab-m7.png",
-          "title": "Lenovo M10",
+          "description":
+              "iPad Air 2019 3rd Generation 10.5inch, 64GB, Wi-Fi Space Gray With FaceTime",
+          "image": "assets/images/tablet/ipad-air.png",
+          "title": "iPad Air",
           "special-offer": false,
           "price": "6,200.00",
           "product-brands": "Huawei",
           "discount": "20%",
           "old-price": "null",
           "images": [
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
+            "assets/images/tablet/ipad-air.png",
+            "assets/images/tablet/ipad-air.png",
+            "assets/images/tablet/ipad-air.png",
           ],
           "informations": {
             "highlights": {},
@@ -2592,14 +2592,70 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
+          "description":
+              "Samsung Galaxy Tab S8 Single Sim 8GB Ram 128GB Rom 5G Graphite",
+          "image": "assets/images/tablet/Galaxy-Tab-S8.png",
+          "title": "Samsung Galaxy Tab S8",
+          "special-offer": false,
+          "price": "19,640.00",
+          "product-brands": "Samsung",
+          "discount": "20%",
+          "old-price": "1,200.00",
+          "images": [
+            "assets/images/tablet/Galaxy-Tab-S8.png",
+            "assets/images/tablet/Galaxy-Tab-S8.png",
+            "assets/images/tablet/Galaxy-Tab-S8.png",
+          ],
+          "informations": {
+            "highlights": {},
+            "specifications": {},
+          },
+          "reviews": [],
+          "warranty": "1 year",
+          "stars": 5,
+          "recomended": false,
+          "latest-item": true,
+          "liked": false,
+          "top-sale": false,
+          "hot-deal": false
+        },
+        {
+          "description":
+              "Huawei MatePad T10s Tablet - 10.1 Inches, 64 GB, 3 GB RAM - Deepsea Blue",
+          "image": "assets/images/tablet/Huawei_MatePad_T_10s.png",
+          "title": "Lenovo M10",
+          "special-offer": false,
+          "price": "9,000.00",
+          "product-brands": "Huawei",
+          "discount": "20%",
+          "old-price": "1,000.00",
+          "images": [
+            "assets/images/tablet/Huawei_MatePad_T_10s.png",
+            "assets/images/tablet/Huawei_MatePad_T_10s.png",
+            "assets/images/tablet/Huawei_MatePad_T_10s.png",
+          ],
+          "informations": {
+            "highlights": {},
+            "specifications": {},
+          },
+          "reviews": [],
+          "warranty": "1 year",
+          "stars": 3,
+          "recomended": false,
+          "latest-item": true,
+          "liked": false,
+          "top-sale": true,
+          "hot-deal": false
+        },
+        {
           "description": "Lenovo Tab M7 Tablet",
           "image": "assets/images/tablet/lenovo-tab-m7.png",
           "title": "Lenovo M10",
           "special-offer": false,
-          "price": "11,640.00",
+          "price": "9,000.00",
           "product-brands": "Huawei",
           "discount": "20%",
-          "old-price": "1,200.00",
+          "old-price": "null",
           "images": [
             "assets/images/tablet/lenovo-tab-m7.png",
             "assets/images/tablet/lenovo-tab-m7.png",
@@ -2611,7 +2667,7 @@ Map<String, dynamic> data = {
           },
           "reviews": [],
           "warranty": "1 year",
-          "stars": 5,
+          "stars": 3,
           "recomended": false,
           "latest-item": true,
           "liked": false,
@@ -2643,60 +2699,6 @@ Map<String, dynamic> data = {
           "latest-item": true,
           "liked": false,
           "top-sale": true,
-          "hot-deal": false
-        },
-        {
-          "description": "Lenovo Tab M7 Tablet",
-          "image": "assets/images/tablet/lenovo-tab-m7.png",
-          "title": "Lenovo M10",
-          "special-offer": false,
-          "price": "9,000.00",
-          "product-brands": "Huawei",
-          "discount": "20%",
-          "old-price": "1,000.00",
-          "images": [
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
-          ],
-          "informations": {
-            "highlights": {},
-            "specifications": {},
-          },
-          "reviews": [],
-          "warranty": "1 year",
-          "stars": 3,
-          "recomended": false,
-          "latest-item": true,
-          "liked": false,
-          "top-sale": true,
-          "hot-deal": false
-        },
-        {
-          "description": "Lenovo Tab M7 Tablet",
-          "image": "assets/images/tablet/lenovo-tab-m7.png",
-          "title": "Lenovo M10",
-          "special-offer": false,
-          "price": "9,000.00",
-          "product-brands": "Huawei",
-          "discount": "20%",
-          "old-price": "null",
-          "images": [
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
-            "assets/images/tablet/lenovo-tab-m7.png",
-          ],
-          "informations": {
-            "highlights": {},
-            "specifications": {},
-          },
-          "reviews": [],
-          "warranty": "1 year",
-          "stars": 3,
-          "recomended": false,
-          "latest-item": true,
-          "liked": false,
-          "top-sale": false,
           "hot-deal": false
         },
         {
@@ -2988,9 +2990,9 @@ Map<String, dynamic> data = {
           "old-price": "14,500.00 EGP",
           "product-brands": "Huawei",
           "images": [
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
+            "assets/images/tv/led-lg-1.jpg",
+            "assets/images/tv/led-lg-1.jpg",
+            "assets/images/tv/led-lg-1.jpg",
           ],
           "informations": {
             "highlights": {
@@ -3055,18 +3057,18 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Sharp 55 inch 4K Ultra HD LED Smart Android TV with...",
-          "image": "assets/images/tv/led-lg-1.jpg",
+              "LG NanoCell TV 55 Inch NANO84 Series, Cinema Screen Design 4K Active HDR WebOS Smart AI ThinQ Local Dimming...",
+          "image": "assets/images/tv/lg-55.png",
           "title": "Samsung 75",
           "special-offer": false,
-          "price": "8,150.00",
-          "discount": "20%",
+          "price": "16,150.00",
+          "discount": "10%",
           "old-price": "9300",
           "product-brands": "Huawei",
           "images": [
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
+            "assets/images/tv/lg-55.png",
+            "assets/images/tv/lg-55.png",
+            "assets/images/tv/lg-55.png",
           ],
           "informations": {
             "highlights": {
@@ -3130,8 +3132,9 @@ Map<String, dynamic> data = {
           "hot-deal": true
         },
         {
-          "description": "LG 65 inches UHD 4K Smart TV, Active HDR, WebOS...",
-          "image": "assets/images/tv/led-lg-1.jpg",
+          "description":
+              "Sharp 55 inch 4K Ultra HD LED Smart Android TV with Remote Control and Built-in Receiver - 4T-C55DL6EX",
+          "image": "assets/images/tv/sharp-55.png",
           "special-offer": false,
           "title": "Asus FX506HEB-B ...",
           "price": "12,500.00",
@@ -3139,9 +3142,9 @@ Map<String, dynamic> data = {
           "old-price": "null",
           "product-brands": "Huawei",
           "images": [
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
+            "assets/images/tv/sharp-55.png",
+            "assets/images/tv/sharp-55.png",
+            "assets/images/tv/sharp-55.png",
           ],
           "informations": {
             "highlights": {
@@ -3205,18 +3208,19 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
-          "description": "LG 65 inches UHD 4K Smart TV, Active HDR, WebOS...",
-          "image": "assets/images/tv/led-lg-1.jpg",
+          "description":
+              "TORNADO LED TV 32 Inch HD With Built-In Receiver, 2 HDMI and 2 USB Inputs 32ER9300E Black",
+          "image": "assets/images/tv/tornado-32.png",
           "special-offer": false,
-          "title": "Asus FX506HEB-B ...",
-          "price": "8,500.00",
+          "title": "TORNADO LED TV 32",
+          "price": "2799.00",
           "discount": "20%",
           "old-price": "null",
           "product-brands": "Huawei",
           "images": [
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
+            "assets/images/tv/tornado-32.png",
+            "assets/images/tv/tornado-32.png",
+            "assets/images/tv/tornado-32.png",
           ],
           "informations": {
             "highlights": {
@@ -3280,18 +3284,19 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
-          "description": "LG 65 inches UHD 4K Smart TV, Active HDR, WebOS...",
-          "image": "assets/images/tv/led-lg-1.jpg",
+          "description":
+              "Samsung32-inch HD LED TV With Built In Receiver UA32N5000ASXEG Black",
+          "image": "assets/images/tv/samsung-32.png",
           "special-offer": false,
-          "title": "Asus FX506HEB-B ...",
+          "title": "Samsung 32-inch HD LED",
           "price": "8,500.00",
           "discount": "20%",
           "old-price": "28,000.00",
           "product-brands": "Huawei",
           "images": [
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
+            "assets/images/tv/samsung-32.png",
+            "assets/images/tv/samsung-32.png",
+            "assets/images/tv/samsung-32.png",
           ],
           "informations": {
             "highlights": {
@@ -3355,8 +3360,9 @@ Map<String, dynamic> data = {
           "hot-deal": false
         },
         {
-          "description": "LG 65 inches UHD 4K Smart TV, Active HDR, WebOS...",
-          "image": "assets/images/tv/led-lg-1.jpg",
+          "description":
+              "TORNADO LED TV 32 Inch HD With Built-In Receiver, 2 HDMI and 2 USB Inputs 32ER9300E",
+          "image": "assets/images/tv/tornado-32-2.png",
           "special-offer": false,
           "title": "Asus FX506HEB-B ...",
           "price": "9,500.00",
@@ -3364,9 +3370,85 @@ Map<String, dynamic> data = {
           "old-price": "null",
           "product-brands": "Huawei",
           "images": [
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
-            "assets/images/tv/samsung-75-inches.png",
+            "assets/images/tv/tornado-32-2.png",
+            "assets/images/tv/tornado-32-2.png",
+            "assets/images/tv/tornado-32-2.png",
+          ],
+          "informations": {
+            "highlights": {
+              "Resolution ": "3840 x 2160",
+              "Display Resolution": "4K UHD",
+              "Color": " Black",
+              "Screen sizes": "50",
+              "Display type	": " Led",
+              "Connectivity ": "Wifi or Ethernet",
+              "Release year	": "2021",
+              "USB": "1 USB port",
+              "Ethernet": "1 Ethernet port"
+            },
+            "specifications": {
+              "Resolution ": "3840 x 2160",
+              "Display Resolution": "4K UHD",
+              "Color": " Black",
+              "Screen sizes": "50",
+              "Display type	": " Led",
+              "Connectivity ": "Wifi or Ethernet",
+              "Release year	": "2021",
+              "USB": "1 USB port",
+              "Ethernet": "1 Ethernet port"
+            },
+          },
+          "reviews": [
+            {
+              "user-name": "Ahmed Ali",
+              "rate": 4,
+              "comment":
+                  "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                      "There is no one who loves pain itself."
+            },
+            {
+              "user-name": "Ehab El-Masry",
+              "rate": 3,
+              "comment":
+                  "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                      "There is no one who loves pain itself."
+            },
+            {
+              "user-name": "Ibrahim Youssef",
+              "rate": 4,
+              "comment":
+                  "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                      "There is no one who loves pain itself."
+            },
+            {
+              "user-name": "Ibrahim Youssef",
+              "rate": 4,
+              "comment":
+                  "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                      "There is no one who loves pain itself."
+            }
+          ],
+          "recomended": false,
+          "stars": 4,
+          "latest-item": false,
+          "liked": false,
+          "top-sale": false,
+          "hot-deal": false
+        },
+        {
+          "description":
+              "TOSHIBA 4K Smart Frameless LED TV 43 Inch 43U5965EA Black",
+          "image": "assets/images/tv/toshipa-4k.png",
+          "special-offer": false,
+          "title": "Asus FX506HEB-B ...",
+          "price": "9,500.00",
+          "discount": "20%",
+          "old-price": "null",
+          "product-brands": "Huawei",
+          "images": [
+            "assets/images/tv/toshipa-4k.png",
+            "assets/images/tv/toshipa-4k.png",
+            "assets/images/tv/toshipa-4k.png",
           ],
           "informations": {
             "highlights": {
@@ -3695,10 +3777,9 @@ Map<String, dynamic> data = {
           "hot-deal": true
         },
         {
-          "description":
-              "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera Black...",
-          "image": "assets/images/cameras/nikon.jpg",
-          "title": "Sigma Alpha",
+          "description": "Nikon COOLPIX P950 Digital Camera",
+          "image": "assets/images/cameras/nikon-p950y.png",
+          "title": "Nikon COOLPIX P950",
           "special-offer": false,
           "price": "5,699.00",
           "product-brands": "Canon",
@@ -3766,17 +3847,17 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera Black...",
-          "image": "assets/images/cameras/nikon.jpg",
-          "title": "Sigma Alpha",
+              "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera",
+          "image": "assets/images/cameras/Nikon-D850.png",
+          "title": "Nikon D850",
           "special-offer": false,
           "price": "5,699.00",
-          "product-brands": "Canon",
+          "product-brands": "Nikon",
           "discount": "15",
           "images": [
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png"
+            "assets/images/cameras/Nikon-D850.png",
+            "assets/images/cameras/Nikon-D850.png",
+            "assets/images/cameras/Nikon-D850.png"
           ],
           "informations": {
             "highlights": {
@@ -3836,17 +3917,17 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera Black...",
-          "image": "assets/images/cameras/nikon.jpg",
-          "title": "Sigma Alpha",
+              "Nikon Z6 FX-Format Mirrorless Camera Body w/NIKKOR Z 24-70mm f/4 S",
+          "image": "assets/images/cameras/nikon-z6.png",
+          "title": "Nikon Z6",
           "special-offer": false,
           "price": "7,699.00",
-          "product-brands": "Canon",
+          "product-brands": "Nikon",
           "discount": "15",
           "images": [
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png"
+            "assets/images/cameras/nikon-z6.png",
+            "assets/images/cameras/nikon-z6.png",
+            "assets/images/cameras/nikon-z6.png"
           ],
           "informations": {
             "highlights": {
@@ -3906,17 +3987,17 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera Black...",
-          "image": "assets/images/cameras/nikon.jpg",
-          "title": "Sigma Alpha",
+              "Nikon AF-S NIKKOR 14-24mm f/2.8G ED Lens for Nikon SLR Cameras",
+          "image": "assets/images/cameras/Nikon-AF-S-NIKKOR.png",
+          "title": "Nikon AF-S NIKKOR",
           "special-offer": false,
-          "price": "5,699.00",
-          "product-brands": "Canon",
+          "price": "25,699.00",
+          "product-brands": "Nikon",
           "discount": "15",
           "images": [
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png"
+            "assets/images/cameras/Nikon-AF-S-NIKKOR.png",
+            "assets/images/cameras/Nikon-AF-S-NIKKOR.png",
+            "assets/images/cameras/Nikon-AF-S-NIKKOR.png"
           ],
           "informations": {
             "highlights": {
@@ -3976,17 +4057,17 @@ Map<String, dynamic> data = {
         },
         {
           "description":
-              "Nikon Coolpix B600 16 MP 60X Optical Zoom Full HD WIFI Digital Camera Black...",
-          "image": "assets/images/cameras/nikon.jpg",
-          "title": "Sigma Alpha",
+              "Nikon Z7 FX-Format Mirrorless Camera Body w/NIKKOR Z 24-70mm f/4 S",
+          "image": "assets/images/cameras/nikon-z7.png",
+          "title": "Nikon Z7",
           "special-offer": false,
-          "price": "15,699.00",
+          "price": "63,250.00",
           "product-brands": "Canon",
           "discount": "15",
           "images": [
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png",
-            "assets/images/cameras/nikon.png"
+            "assets/images/cameras/nikon-z7.png",
+            "assets/images/cameras/nikon-z7.png",
+            "assets/images/cameras/nikon-z7.png"
           ],
           "informations": {
             "highlights": {

@@ -29,11 +29,14 @@ class SlidersPage extends GetxController {
   List<Widget> initValue() {
     return List.generate(contentCount, (index) {
       return Container(
-        color: index == (offset)
-            ? const Color(0xFFc7143e)
-            : const Color(0xFF999495),
-        width: 15,
-        height: 7,
+        width: 10,
+        height: 10,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: index == (offset)
+              ? const Color(0xFF049cc2)
+              : const Color(0xFF02132b),
+        ),
       );
     });
   }
@@ -46,12 +49,14 @@ class SlidersPage extends GetxController {
   List<Widget> stages() {
     stageIcon = List.generate(contentCount, (index) {
       return Container(
-        color: index == (move2.page!.toInt())
-            ? const Color(0xFFc7143e)
-            : const Color(0xFF999495),
-        width: 15,
-        height: 7,
-      );
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: index == (move2.page!.toInt())
+                ? const Color(0xFF049cc2)
+                : const Color(0xFF02132b),
+          ));
     });
     return stageIcon;
   }
