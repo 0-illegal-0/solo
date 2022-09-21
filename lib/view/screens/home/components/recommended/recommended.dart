@@ -387,6 +387,50 @@ class RecommendedForTablet extends StatelessWidget {
           Expanded(
             child: Container(
               color: const Color(0xff0f8a79),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: width! * 0.24,
+                    height: width! * 0.03,
+                    alignment: Alignment.center,
+                    color: const Color(0xFFffffff),
+                    child: const Text("Best laptops in 2023",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 23,
+                            color: Color(0xFFb3078b),
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  const Text("High Performance",
+                      style: TextStyle(fontSize: 20, color: Color(0xFFffffff))),
+                  SizedBox(
+                    width: width! * 0.30,
+                    child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Positioned(
+                            left: 10,
+                            child: Image.asset(
+                                "assets/advertise/macbook-pro.png",
+                                width: width! * 0.10)),
+                        Positioned(
+                            right: 10,
+                            child: Image.asset(
+                                "assets/advertise/laptop-advertise1.png",
+                                width: width! * 0.10)),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Image.asset("assets/advertise/lenovo-l340.png",
+                              width: width! * 0.13),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Text("Impressive Laptop Power",
+                      style: TextStyle(fontSize: 20, color: Color(0xFFffffff))),
+                ],
+              ),
             ),
           ),
           SizedBox(width: width! / 65),
@@ -405,21 +449,68 @@ class RecommendedForTablet extends StatelessWidget {
                           child: SizedBox(
                             width: double.infinity,
                             height: double.infinity,
-                            child: CustomPaint(
-                              painter: RecommendedPainter(
-                                color: const Color(
-                                    0xFFc9963e), //0xFFdbb251  // 0xFFc9963e
-                              ),
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 20),
-                                  child: Image.asset(
-                                    "assets/advertise/phone-advertise.png",
+                            child: Row(
+                              children: [
+                                Align(
+                                  //  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
+                                    child: Image.asset(
+                                      "assets/advertise/phone-advertise.png",
+                                    ),
                                   ),
                                 ),
-                              ),
+                                const SizedBox(width: 40),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 10),
+                                        child: Text("Super Sale",
+                                            style: TextStyle(
+                                                fontSize: 21,
+                                                color: Color(0xFFb3078b),
+                                                fontWeight: FontWeight.bold)),
+                                      ),
+                                    ),
+                                    const Text("On Mobile Phones",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xFFb3078b),
+                                            fontWeight: FontWeight.bold)),
+                                    const SizedBox(height: 25),
+                                    const Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                          "Up To 70% Off \nOn Latest Mobile",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            color: Color(0xFFffffff),
+                                          )),
+                                    ),
+                                    const SizedBox(height: 33),
+                                    SizedBox(
+                                      width: 80,
+                                      height: 30,
+                                      child: CustomPaint(
+                                        painter: Poster(
+                                            color: const Color(0xFFbd0f40)),
+                                        child: const Text(
+                                          "Harry Up",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              color: Color(0xFFffffff)),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -428,7 +519,6 @@ class RecommendedForTablet extends StatelessWidget {
                       Expanded(
                           child: Container(
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.only(left: 0),
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.topLeft,
@@ -437,12 +527,50 @@ class RecommendedForTablet extends StatelessWidget {
                               Color(0xFF08b1cf),
                               Color(0xffed1f48),
                             ])),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Image.asset(
-                              "assets/advertise/phone-advertise33.png",
-                              width: width! * 0.15,
-                              height: width! * 0.14),
+                        child: Row(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Image.asset(
+                                  "assets/advertise/tablet-advertise33.png",
+                                  width: width! * 0.15,
+                                  height: width! * 0.14),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 28),
+                                  child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: Text(
+                                      "Top 10 best selling\ntablets",
+                                      style: TextStyle(
+                                          color: Color(0xFFd1bc19),
+                                          fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 58),
+                                TextButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                const Color(0xFFdedede)),
+                                        fixedSize: MaterialStateProperty.all(
+                                            const Size(100, 50)),
+                                        textStyle: MaterialStateProperty.all(
+                                            const TextStyle(
+                                                color: Colors.black)),
+                                        padding: MaterialStateProperty.all(
+                                            EdgeInsets.zero)),
+                                    onPressed: () {},
+                                    child: const Text("Shoping",
+                                        style: TextStyle(
+                                            color: Color(0xFF000000)))),
+                              ],
+                            )
+                          ],
                         ),
                       )),
                     ],
@@ -517,6 +645,30 @@ class RecommendedPainter extends CustomPainter {
         size.width * 0.35, size.height * 0.25, size.width * 0.35, 0);
     path.lineTo(0, 0);
 
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
+  }
+}
+
+class Poster extends CustomPainter {
+  Poster({this.color});
+  final Color? color;
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint();
+    paint.color = color!;
+    paint.style = PaintingStyle.fill;
+
+    var path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(0, size.height * 0.70);
+    path.lineTo(size.width * 0.50, size.height);
+    path.lineTo(size.width, size.height * 0.70);
+    path.lineTo(size.width, 0);
     canvas.drawPath(path, paint);
   }
 
