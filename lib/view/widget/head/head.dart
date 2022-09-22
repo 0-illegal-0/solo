@@ -28,7 +28,7 @@ class Head extends StatelessWidget {
       children: [
         Container(
             margin: const EdgeInsets.only(top: 0.8),
-            color: const Color(0xFF078fa3),
+            color: const Color(0xFF168994), // 052650  078fa3
             height: device == DeviceType.Desktop
                 ? 115
                 : device == DeviceType.Tablet
@@ -51,7 +51,7 @@ class Head extends StatelessWidget {
                     ? 18
                     : 13,
             child: CustomPaint(
-                painter: CurvePainter2(color: const Color(0xFF13a7bd)))),
+                painter: CurvePainter2(color: const Color(0xFF168994)))),
       ],
     );
   }
@@ -262,19 +262,37 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        style: ButtonStyle(
-            padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
-        onPressed: () {
-          Get.deleteAll();
-          Get.to(() => const HomePage());
-        },
-        child: Text("Solo",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: "Roboto",
-                fontSize: fontSize!,
-                color: const Color(0xFFba2f35))));
+    return Column(
+      children: [
+        TextButton(
+            style: ButtonStyle(
+                padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
+            onPressed: () {
+              Get.deleteAll();
+              Get.to(() => const HomePage());
+            },
+            child: Text("Solo",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontFamily: "Sansita",
+                    fontSize: fontSize!,
+                    shadows: const <Shadow>[
+                      Shadow(
+                        offset: Offset(2.0, 2.0),
+                        blurRadius: 3.0,
+                        color: Color(0xFFbdbdcd),
+                      ),
+                      Shadow(
+                        offset: Offset(2.0, 2.0),
+                        blurRadius: 8.0,
+                        color: Color(0xFFbdbdcd),
+                      ),
+                    ],
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF700741)))),
+        const SizedBox(height: 13)
+      ],
+    );
   }
 }
 

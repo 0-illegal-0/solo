@@ -54,7 +54,8 @@ class CategoriesHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        color: const Color(0xFF13a7bd),
+        padding: const EdgeInsets.only(top: 3),
+        color: const Color(0xFF168994),
         child: categoriesRow());
   }
 }

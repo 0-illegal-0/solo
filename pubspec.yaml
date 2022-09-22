@@ -124,6 +124,42 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf
+
+    - family: Piedra
+      fonts:
+        - asset: assets/fonts/Piedra/Piedra-Regular.ttf
+
+    - family: Sansita
+      fonts:
+        - asset: assets/fonts/Sansita_Swashed/static/SansitaSwashed-Medium.ttf
+
+    - family: Sail
+      fonts:
+        - asset: assets/fonts/Sail/Sail-Regular.ttf
+
+
+    - family: Shrikhand
+      fonts:
+        - asset: assets/fonts/Shrikhand/Shrikhand-Regular.ttf
+
+
+    - family: Titillium
+      fonts:
+        - asset: assets/fonts/Titillium/TitilliumWeb-SemiBold.ttf
+
+
+    - family: Racing
+      fonts:
+        - asset: assets/fonts/Racing_Sans_One/RacingSansOne-Regular.ttf
+
+    - family: Contrail
+      fonts:
+        - asset: assets/fonts/Contrail_One/ContrailOne-Regular.ttf
+
+
+    - family: Lemon
+      fonts:
+        - asset: assets/fonts/Lemon/Lemon-Regular.ttf
   #      - asset: fonts/TrajanPro_Bold.ttf
   #        weight: 700
 
