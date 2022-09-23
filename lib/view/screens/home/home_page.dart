@@ -45,20 +45,20 @@ class HomePage extends StatelessWidget {
                                 : 140),
                     child: Column(
                       children: [
-                        /*Advertisement(
+                        Advertisement(
                           width: inst.width,
                           title: "",
                           mainPadding: inst.mainPadding!,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
-                        /* HotDeals(
+                        SizedBox(height: inst.verticalSpace),
+                        HotDeals(
                           mainPadding: inst.mainPadding!,
                           width: inst.width,
                           title: "Hot Deals",
                           data: inst.itemData["hot-deal"],
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
-                        /*   ViewItem(
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 0.9,
                           height: inst.width! * 0.60,
                           itemList: solo.product[1].products,
@@ -75,11 +75,9 @@ class HomePage extends StatelessWidget {
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             data: inst.itemData["special-offer"]),
-                        SizedBox(height: inst.verticalSpace),*/
-                        /* WeeklyGift(title: "Weekly Gift", width: inst.width!),
-                        SizedBox(
-                            height: inst
-                                .verticalSpace), */ /*
+                        SizedBox(height: inst.verticalSpace),
+                        WeeklyGift(title: "Weekly Gift", width: inst.width!),
+                        SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 0.9,
                           aspectRatioNoMobile: 0.7,
@@ -92,12 +90,12 @@ class HomePage extends StatelessWidget {
                           i: 1,
                           productItem: 0,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
+                        SizedBox(height: inst.verticalSpace),
                         Recommended(
                             width: inst.width!,
                             title: "Recommended",
                             data: inst.itemData["recomended"]),
-                        /*    SizedBox(height: inst.verticalSpace),
+                        SizedBox(height: inst.verticalSpace),
                         MostLiked(
                           width: inst.width!,
                           mainPadding: inst.mainPadding!,
@@ -178,15 +176,15 @@ class HomePage extends StatelessWidget {
                         Close(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
-                            : const SizedBox()*/
+                            : const SizedBox()
                       ],
                     ),
                   ),
                 ),
                 Head(width: inst.width),
-                const BottomRow(),
-                // const Important(),
-                // StartPages(height: inst.height!, width: inst.width)
+                /*   const BottomRow(),
+                const Important(),
+                StartPages(height: inst.height!, width: inst.width)*/
               ],
             )));
   }

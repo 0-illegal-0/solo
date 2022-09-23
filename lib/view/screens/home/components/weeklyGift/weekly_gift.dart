@@ -13,8 +13,8 @@ class WeeklyGift extends StatelessWidget {
   List<Widget> styleWidget({width, index}) {
     return [
       SlidersStyle1(width: width, index: index),
-      SlidersStyle2(width: width, index: index),
-      SlidersStyle3(width: width, index: index),
+      SlidersStyle1(width: width, index: index),
+      SlidersStyle1(width: width, index: index),
     ];
   }
 
@@ -26,9 +26,9 @@ class WeeklyGift extends StatelessWidget {
     SlidersPage controller = Get.put(SlidersPage(
         width: width,
         offset: 0,
-        movementDurationPerMilliseconds: 400,
-        repetitionDurationPerSecond: 3,
-        contentCount: 3));
+        movementDurationPerMilliseconds: 400000, // 400
+        repetitionDurationPerSecond: 3333, // 3
+        contentCount: 33333)); // 3
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

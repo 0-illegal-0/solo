@@ -51,12 +51,14 @@ class SlidersStyle2 extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                   ),
                   Expanded(
-                    child: Text("HD Smart TV",
+                    child: Text("brighten your life",
                         style: TextStyle(
                             color: const Color(0xff0cb7c9),
+                            fontFamily: "Titillium",
                             fontSize: doubleResponsiveSize(14, 20, 27, width),
                             fontWeight: FontWeight.bold)),
                   ),
+                  const Expanded(child: Text("HD Smart TV"))
                 ],
               ),
             ),

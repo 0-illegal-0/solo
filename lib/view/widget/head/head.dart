@@ -289,7 +289,9 @@ class Logo extends StatelessWidget {
                       ),
                     ],
                     fontWeight: FontWeight.bold,
-                    color: const Color(0xFF700741)))),
+                    decorationStyle: TextDecorationStyle.wavy,
+                    decorationColor: const Color(0XFF806615),
+                    color: const Color(0xFF960740)))), // 0xFF700741
         const SizedBox(height: 13)
       ],
     );

@@ -83,7 +83,8 @@ class Close extends StatelessWidget {
                                           const EdgeInsets.all(0))),
                                   child: Text(
                                     stringFotterList[index]["title"],
-                                    style: const TextStyle(fontSize: 13),
+                                    style: const TextStyle(
+                                        fontSize: 13, color: Color(0xFF000000)),
                                   ),
                                 ))),
                   )

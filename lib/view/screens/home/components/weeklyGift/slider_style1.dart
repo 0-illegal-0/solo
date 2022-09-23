@@ -20,7 +20,7 @@ class SlidersStyle1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFb00b31),
+      color: const Color(0xFF1C7CB5), //0xFFb00b31
       child: InkWell(
         onTap: () {
           Get.to(
@@ -43,7 +43,7 @@ class SlidersStyle1 extends StatelessWidget {
                 child: CustomPaint(
                   painter: SlidersStyle1CircleGradian(
                       color: Colors.white,
-                      gradiantColor: const Color(0xFFb00b31)),
+                      gradiantColor: const Color(0xFF1C7CB5)), //0xFFb00b31
                 ),
               ),
             ),
@@ -74,9 +74,7 @@ class SlidersStyle1 extends StatelessWidget {
                         "assets/images/weekly_gifts/tablet1.jpg",
                       ),
                     ),
-                    SizedBox(
-                      width: width / 48,
-                    ),
+                    SizedBox(width: width / 48),
                     Expanded(
                       flex: 1,
                       child: Image.asset(
@@ -97,7 +95,7 @@ class SlidersStyle1 extends StatelessWidget {
                     shadows: const [
                       Shadow(color: Colors.black, blurRadius: 5),
                     ],
-                    color: const Color(0xFF339cd4),
+                    color: const Color(0xFF339cd4), // 0xFF339cd4
                     fontSize: doubleResponsiveSize(14, 25, 35, width)),
               ),
             ),
@@ -110,21 +108,30 @@ class SlidersStyle1 extends StatelessWidget {
                     TextSpan(
                         text: "5G Mobiles\n",
                         style: TextStyle(
+                            shadows: const [
+                              Shadow(color: Color(0xFF918F90), blurRadius: 5),
+                            ],
                             fontWeight: FontWeight.bold,
-                            color: const Color(0xFFfcba03),
-                            fontSize: doubleResponsiveSize(14, 25, 37, width))),
+                            color: const Color(0xFF9B0C51),
+                            fontSize: doubleResponsiveSize(14, 20, 37, width))),
                     TextSpan(
                         text: "AND",
                         style: TextStyle(
+                          shadows: const [
+                            Shadow(color: Color(0xFF6D6B6C), blurRadius: 5),
+                          ],
                           color: Colors.white,
-                          fontSize: doubleResponsiveSize(14, 25, 37, width),
+                          fontSize: doubleResponsiveSize(14, 20, 37, width),
                         )),
                     TextSpan(
                         text: "\nTeblets",
                         style: TextStyle(
+                          shadows: const [
+                            Shadow(color: Color(0xFF6D6B6C), blurRadius: 5),
+                          ],
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFFfcba03),
-                          fontSize: doubleResponsiveSize(14, 25, 37, width),
+                          color: const Color(0xFF9B0C51),
+                          fontSize: doubleResponsiveSize(14, 20, 37, width),
                         ))
                   ])),
             ),
@@ -166,7 +173,7 @@ class SlidersStyle1Painter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
 
-    paint.color = const Color(0xFFe8335d);
+    paint.color = const Color(0xFF0C669B); // 0xFFe8335d
     paint.style = PaintingStyle.fill;
 
     var path = Path();
