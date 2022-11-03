@@ -206,7 +206,6 @@ class Recommended extends StatelessWidget {
     }
   }
 }
-
 class RecommendedDesktopDesign extends StatelessWidget {
   const RecommendedDesktopDesign(
       {Key? key, this.data, this.width, this.showCountInRow, this.title})

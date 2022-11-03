@@ -12,13 +12,13 @@ class Advertisement extends StatelessWidget {
   final String? title;
   @override
   Widget build(BuildContext context) {
-    Sliders controller = Get.put(Sliders(
+    AdvertiseController controller = Get.put(AdvertiseController(
         width: width,
         mainPadding: mainPadding,
         offset: 0,
         movementDurationPerMilliseconds: 300,
         repetitionDurationPerSecond: 3,
-        contentCount: advertisements.length - 1));
+        contentCount: advertisements.length));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -35,13 +35,13 @@ class Advertisement extends StatelessWidget {
                     offset: Offset(0, 0))
               ],
             ),
-            width: Sliders.moveTo!,
+            width: controller.moveTo!,
             height: width! * 0.26,
             constraints: const BoxConstraints(minHeight: 130),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                controller: Sliders.move,
+                controller: controller.move,
                 itemCount: advertisements.length,
                 itemBuilder: (context, i) {
                   return SlidersStyle1(width: width!, index: i);
@@ -49,7 +49,7 @@ class Advertisement extends StatelessWidget {
         const SizedBox(height: 10),
         SizedBox(
           width: width! / 15 < 70 ? 70 : width! / 15,
-          child: GetBuilder<Sliders>(builder: (controller) {
+          child: GetBuilder<AdvertiseController>(builder: (controller) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: Sliders.stageIcon ?? controller.initValue(),

@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                           title: "",
                           mainPadding: inst.mainPadding!,
                         ),
-                        SizedBox(height: inst.verticalSpace),
+                        /* SizedBox(height: inst.verticalSpace),
                         HotDeals(
                           mainPadding: inst.mainPadding!,
                           width: inst.width,
@@ -75,9 +75,9 @@ class HomePage extends StatelessWidget {
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             data: inst.itemData["special-offer"]),
-                        SizedBox(height: inst.verticalSpace),
-                        WeeklyGift(title: "Weekly Gift", width: inst.width!),
-                        SizedBox(height: inst.verticalSpace),
+                        SizedBox(height: inst.verticalSpace),*/
+                        // WeeklyGift(title: "Weekly Gift", width: inst.width!),
+                        /* SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 0.9,
                           aspectRatioNoMobile: 0.7,
@@ -176,7 +176,7 @@ class HomePage extends StatelessWidget {
                         Close(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
-                            : const SizedBox()
+                            : const SizedBox()*/
                       ],
                     ),
                   ),

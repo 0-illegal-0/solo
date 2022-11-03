@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/controllers/weekly_gift_controller.dart';
-
+import 'package:solo/controllers/advertisement_controller.dart';
 import '../../../../style.dart';
 import 'slider_style1.dart';
-import 'slider_style2.dart';
-import 'slider_style3.dart';
 
 class WeeklyGift extends StatelessWidget {
   const WeeklyGift({Key? key, this.width, this.title}) : super(key: key);
@@ -23,12 +20,13 @@ class WeeklyGift extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SlidersPage controller = Get.put(SlidersPage(
+    WeeklyController controller2 = Get.put(WeeklyController(
         width: width,
         offset: 0,
-        movementDurationPerMilliseconds: 400000, // 400
-        repetitionDurationPerSecond: 3333, // 3
-        contentCount: 33333)); // 3
+        mainPadding: width! / 24,
+        movementDurationPerMilliseconds: 300,
+        repetitionDurationPerSecond: 3,
+        contentCount: styleWidget(width: width, index: 0).length));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -46,13 +44,13 @@ class WeeklyGift extends StatelessWidget {
                     offset: Offset(0, 0))
               ],
             ),
-            width: SlidersPage.moveTo!,
+            width: controller2.moveTo!,
             height: width! * 0.26,
             constraints: const BoxConstraints(minHeight: 140),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                controller: SlidersPage.move2,
+                controller: controller2.move,
                 itemCount: styleWidget(width: width).length,
                 itemBuilder: (context, i) {
                   return styleWidget(width: width, index: i)[i];
@@ -61,10 +59,10 @@ class WeeklyGift extends StatelessWidget {
         Center(
           child: SizedBox(
             width: 80,
-            child: GetBuilder<SlidersPage>(builder: (controller) {
+            child: GetBuilder<WeeklyController>(builder: (controller2) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: SlidersPage.stageIcon ?? controller.initValue(),
+                children: Sliders.stageIcon ?? controller2.initValue(),
               );
             }),
           ),

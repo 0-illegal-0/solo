@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo/models/advertisement_models.dart';
 
 class Sliders extends GetxController {
-  static late PageController move;
+  late PageController move;
   double offset;
   static String text = "Text";
-  static double? moveTo;
+  double? moveTo;
   static double? height;
   final double? mainPadding;
   final int contentCount;
@@ -25,13 +24,14 @@ class Sliders extends GetxController {
       required this.contentCount});
 
   @override
-  onInit() {
-    move = PageController();
-    execute();
-  }
+  /* onInit() {
+    sizes();
+    call();
+    stageListen();
+  }*/
 
   List<Widget> initValue() {
-    return List.generate(advertisements.length, (index) {
+    return List.generate(contentCount, (index) {
       return Container(
         width: 10,
         height: 10,
@@ -48,7 +48,7 @@ class Sliders extends GetxController {
   bool direction = true;
   int pageOffset = 0;
   List<Widget> stages() {
-    stageIcon = List.generate(advertisements.length, (index) {
+    stageIcon = List.generate(contentCount, (index) {
       return Container(
           width: 10,
           height: 10,
@@ -74,7 +74,7 @@ class Sliders extends GetxController {
 
   bool moveState = true;
   bool moveStateVal() {
-    if (move.page!.toInt() == contentCount) {
+    if (move.page!.toInt() == contentCount - 1) {
       moveState = false;
       return moveState;
     } else if (move.page!.toInt() == 0) {
@@ -131,8 +131,67 @@ class Sliders extends GetxController {
     stageListen();
     update();
   }
+}
 
-  execute() {
+class AdvertiseController extends Sliders {
+  late PageController advertiseController;
+
+  final double? mainPadding;
+  final int contentCount;
+  final double? width;
+  final int movementDurationPerMilliseconds;
+  final int repetitionDurationPerSecond;
+  double offset;
+
+  AdvertiseController(
+      {required this.contentCount,
+      required this.movementDurationPerMilliseconds,
+      required this.repetitionDurationPerSecond,
+      this.mainPadding,
+      required this.offset,
+      this.width})
+      : super(
+            contentCount: contentCount,
+            movementDurationPerMilliseconds: movementDurationPerMilliseconds,
+            repetitionDurationPerSecond: repetitionDurationPerSecond,
+            mainPadding: mainPadding,
+            offset: offset,
+            width: width);
+  @override
+  onInit() {
+    move = PageController();
+    sizes();
+    call();
+    stageListen();
+  }
+}
+
+class WeeklyController extends Sliders {
+  late PageController weeklyController;
+  final double? mainPadding;
+  final int contentCount;
+  final double? width;
+  final int movementDurationPerMilliseconds;
+  final int repetitionDurationPerSecond;
+  double offset;
+
+  WeeklyController(
+      {required this.contentCount,
+      required this.movementDurationPerMilliseconds,
+      required this.repetitionDurationPerSecond,
+      this.mainPadding,
+      required this.offset,
+      this.width})
+      : super(
+            contentCount: contentCount,
+            movementDurationPerMilliseconds: movementDurationPerMilliseconds,
+            repetitionDurationPerSecond: repetitionDurationPerSecond,
+            mainPadding: mainPadding,
+            offset: offset,
+            width: width);
+  @override
+  onInit() {
+    move = PageController();
     sizes();
     call();
     stageListen();
