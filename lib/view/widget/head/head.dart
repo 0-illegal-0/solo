@@ -10,7 +10,6 @@ import 'package:solo/view/widget/head/components/curve_painter.dart';
 import 'package:solo/view/widget/head/components/delivery_head.dart';
 import 'package:solo/view/widget/head/components/head_icons.dart';
 import 'package:solo/view/widget/head/components/search.dart';
-
 import '../note.dart';
 
 class Head extends StatelessWidget {
@@ -24,35 +23,65 @@ class Head extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            margin: const EdgeInsets.only(top: 0.8),
-            color: const Color(0xFF168994), // 052650  078fa3
-            height: device == DeviceType.Desktop
-                ? 115
+    return Container(
+      color: Colors.black,
+      height: device == DeviceType.Desktop
+          ? 140
+          : device == DeviceType.Tablet
+              ? 135
+              : 103,
+      child: Stack(
+        children: [
+          Positioned(
+            top: device == DeviceType.Desktop
+                ? 114
                 : device == DeviceType.Tablet
-                    ? 125
-                    : 90,
-            width: double.infinity,
-            child: width! >= 800
-                ? DesktopHead(width: width!, space: 75, controller: controller)
-                : width! < 800 && width! >= 650
-                    ? TabletHead(width: width!, space: 55)
-                    : MobileHead(
-                        space: width! / 10.8,
-                        width: width!,
-                      )),
-        SizedBox(
-            width: double.infinity,
-            height: device == DeviceType.Desktop
-                ? 17
-                : device == DeviceType.Tablet
-                    ? 18
-                    : 13,
-            child: CustomPaint(
-                painter: CurvePainter2(color: const Color(0xFF168994)))),
-      ],
+                    ? 114
+                    : 88,
+            child: SizedBox(
+                //width: double.infinity,
+                width: width,
+                height: device == DeviceType.Desktop
+                    ? 17
+                    : device == DeviceType.Tablet
+                        ? 18
+                        : 13,
+                child: CustomPaint(
+                    painter: CurvePainter2(color: const Color(0xFF168994)))),
+          ),
+          Column(
+            children: [
+              Container(
+                  margin: const EdgeInsets.only(top: 0.8),
+                  color: const Color(0xFF168994),
+                  /*  height: device == DeviceType.Desktop
+                      ? 115
+                      : device == DeviceType.Tablet
+                          ? 125
+                          : 90,*/
+                  width: double.infinity,
+                  child: width! >= 800
+                      ? DesktopHead(
+                          width: width!, space: 75, controller: controller)
+                      : width! < 800 && width! >= 650
+                          ? TabletHead(width: width!, space: 55)
+                          : MobileHead(
+                              space: width! / 10.8,
+                              width: width!,
+                            )),
+              /* SizedBox(
+                  width: double.infinity,
+                  height: device == DeviceType.Desktop
+                      ? 17
+                      : device == DeviceType.Tablet
+                          ? 18
+                          : 13,
+                  child: CustomPaint(
+                      painter: CurvePainter2(color: const Color(0xFF168994)))),*/
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -70,7 +99,6 @@ class MobileHead extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -85,23 +113,18 @@ class MobileHead extends StatelessWidget {
             const SizedBox(width: 10),
           ],
         ),
-        const SizedBox(height: 10),
-        const Spacer(),
-        Container(
-          color: const Color(0xFF13a7bd),
-          width: double.infinity,
-          child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                height: 27,
-                padding: const EdgeInsets.only(left: 10),
-                child: CategoriesHeader(
-                  aspectRatio: aspectRatio,
-                  space: space,
-                  width: width,
-                ).categoriesRow(),
-              )),
-        )
+        const SizedBox(height: 5),
+        //const Spacer(),
+        SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: CategoriesHeader(
+                aspectRatio: aspectRatio,
+                space: space,
+                width: width,
+              ),
+            ))
       ],
     );
   }
@@ -196,15 +219,15 @@ class TabletHead extends StatelessWidget {
             ],
           ),
         ),
-        const Spacer(),
-        Container(
-          color: const Color(0xFF13a7bd),
+        //  const Spacer(),
+        SizedBox(
           child: CategoriesHeader(
             width: width,
             space: space!,
             aspectRatio: aspectRatio,
           ),
         ),
+        // const SizedBox(height: 5)
       ],
     );
   }
@@ -224,7 +247,7 @@ class DesktopHead extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 15),
+        const SizedBox(height: 14),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
@@ -246,7 +269,7 @@ class DesktopHead extends StatelessWidget {
             ],
           ),
         ),
-        const Spacer(),
+        // const Spacer(),
         CategoriesHeader(width: width, space: space!),
       ],
     );

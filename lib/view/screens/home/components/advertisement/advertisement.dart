@@ -52,7 +52,7 @@ class Advertisement extends StatelessWidget {
           child: GetBuilder<AdvertiseController>(builder: (controller) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: Sliders.stageIcon ?? controller.initValue(),
+              children: controller.stageIcon ?? controller.initValue(),
             );
           }),
         )

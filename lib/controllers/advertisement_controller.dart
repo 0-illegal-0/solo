@@ -3,25 +3,25 @@ import 'package:get/get.dart';
 
 class Sliders extends GetxController {
   late PageController move;
-  double offset;
+  double? offset;
   static String text = "Text";
   double? moveTo;
   static double? height;
   final double? mainPadding;
-  final int contentCount;
+  final int? contentCount;
   final double? width;
-  final int movementDurationPerMilliseconds;
-  final int repetitionDurationPerSecond;
+  final int? movementDurationPerMilliseconds;
+  final int? repetitionDurationPerSecond;
   Color? stage;
-  static dynamic stageIcon;
+  dynamic stageIcon;
 
   Sliders(
       {this.width,
       this.mainPadding,
-      required this.offset,
-      required this.movementDurationPerMilliseconds,
-      required this.repetitionDurationPerSecond,
-      required this.contentCount});
+      this.offset,
+      this.movementDurationPerMilliseconds,
+      this.repetitionDurationPerSecond,
+      this.contentCount});
 
   @override
   /* onInit() {
@@ -31,7 +31,7 @@ class Sliders extends GetxController {
   }*/
 
   List<Widget> initValue() {
-    return List.generate(contentCount, (index) {
+    return List.generate(contentCount!, (index) {
       return Container(
         width: 10,
         height: 10,
@@ -48,7 +48,7 @@ class Sliders extends GetxController {
   bool direction = true;
   int pageOffset = 0;
   List<Widget> stages() {
-    stageIcon = List.generate(contentCount, (index) {
+    stageIcon = List.generate(contentCount!, (index) {
       return Container(
           width: 10,
           height: 10,
@@ -74,7 +74,7 @@ class Sliders extends GetxController {
 
   bool moveState = true;
   bool moveStateVal() {
-    if (move.page!.toInt() == contentCount - 1) {
+    if (move.page!.toInt() == contentCount! - 1) {
       moveState = false;
       return moveState;
     } else if (move.page!.toInt() == 0) {
@@ -98,25 +98,25 @@ class Sliders extends GetxController {
   double previous() {
     count = move.page!.toInt() - 1;
     offset = count! * moveTo!;
-    return offset;
+    return offset!;
   }
 
   double next() {
     count = move.page!.toInt() + 1;
     offset = count! * moveTo!;
-    return offset;
+    return offset!;
   }
 
   moveSlide() {
     if (move.hasClients) {
       move.animateTo(moving(),
-          duration: Duration(milliseconds: movementDurationPerMilliseconds),
+          duration: Duration(milliseconds: movementDurationPerMilliseconds!),
           curve: Curves.easeIn);
     }
   }
 
   Future call() async {
-    await Future.delayed(Duration(seconds: repetitionDurationPerSecond),
+    await Future.delayed(Duration(seconds: repetitionDurationPerSecond!),
         () async {
       await moveSlide();
     });
@@ -137,26 +137,20 @@ class AdvertiseController extends Sliders {
   late PageController advertiseController;
 
   final double? mainPadding;
-  final int contentCount;
+  final int? contentCount;
   final double? width;
-  final int movementDurationPerMilliseconds;
-  final int repetitionDurationPerSecond;
-  double offset;
+  final int? movementDurationPerMilliseconds;
+  final int? repetitionDurationPerSecond;
+  double? offset;
 
   AdvertiseController(
-      {required this.contentCount,
-      required this.movementDurationPerMilliseconds,
-      required this.repetitionDurationPerSecond,
+      {this.contentCount,
+      this.offset,
+      this.movementDurationPerMilliseconds,
+      this.repetitionDurationPerSecond,
       this.mainPadding,
-      required this.offset,
-      this.width})
-      : super(
-            contentCount: contentCount,
-            movementDurationPerMilliseconds: movementDurationPerMilliseconds,
-            repetitionDurationPerSecond: repetitionDurationPerSecond,
-            mainPadding: mainPadding,
-            offset: offset,
-            width: width);
+      this.width});
+
   @override
   onInit() {
     move = PageController();
@@ -169,26 +163,19 @@ class AdvertiseController extends Sliders {
 class WeeklyController extends Sliders {
   late PageController weeklyController;
   final double? mainPadding;
-  final int contentCount;
+  final int? contentCount;
   final double? width;
-  final int movementDurationPerMilliseconds;
-  final int repetitionDurationPerSecond;
-  double offset;
+  final int? movementDurationPerMilliseconds;
+  final int? repetitionDurationPerSecond;
+  double? offset;
 
   WeeklyController(
-      {required this.contentCount,
-      required this.movementDurationPerMilliseconds,
-      required this.repetitionDurationPerSecond,
+      {this.contentCount,
+      this.offset,
+      this.movementDurationPerMilliseconds,
+      this.repetitionDurationPerSecond,
       this.mainPadding,
-      required this.offset,
-      this.width})
-      : super(
-            contentCount: contentCount,
-            movementDurationPerMilliseconds: movementDurationPerMilliseconds,
-            repetitionDurationPerSecond: repetitionDurationPerSecond,
-            mainPadding: mainPadding,
-            offset: offset,
-            width: width);
+      this.width});
   @override
   onInit() {
     move = PageController();

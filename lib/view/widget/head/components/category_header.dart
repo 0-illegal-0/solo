@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
 
+import '../../../responsive.dart';
+
 class CategoriesHeader extends StatelessWidget {
   const CategoriesHeader({
     Key? key,
@@ -12,7 +14,8 @@ class CategoriesHeader extends StatelessWidget {
   }) : super(key: key);
   final double? width, space, aspectRatio;
 
-  Widget categoriesRow() {
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,8 +42,13 @@ class CategoriesHeader extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(solo.product[index].productName as String,
-                            style: const TextStyle(
-                                color: Color(0xFFffffff), fontSize: 16)),
+                            style: TextStyle(
+                                color: const Color(0xFFffffff),
+                                fontSize: device == DeviceType.Mobile
+                                    ? 14.5
+                                    : device == DeviceType.Tablet
+                                        ? 16
+                                        : 19)),
                       ],
                     ),
                   ),
@@ -48,14 +56,5 @@ class CategoriesHeader extends StatelessWidget {
                 ],
               )),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        padding: const EdgeInsets.only(top: 3),
-        color: const Color(0xFF168994),
-        child: categoriesRow());
   }
 }

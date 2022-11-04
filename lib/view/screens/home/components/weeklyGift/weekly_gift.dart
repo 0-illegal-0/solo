@@ -62,7 +62,7 @@ class WeeklyGift extends StatelessWidget {
             child: GetBuilder<WeeklyController>(builder: (controller2) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: Sliders.stageIcon ?? controller2.initValue(),
+                children: controller2.stageIcon ?? controller2.initValue(),
               );
             }),
           ),
