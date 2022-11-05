@@ -43,9 +43,11 @@ class CurvePainter2 extends CustomPainter {
 
     path.moveTo(0, 0);
     path.lineTo(0, 0);
-    path.quadraticBezierTo(size.width * 0.20, 0, size.width / 2, size.height);
+    path.quadraticBezierTo(
+        size.width * 0.20, size.height * 0.30, size.width / 2, size.height);
 
-    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 0);
+    path.quadraticBezierTo(
+        size.width * 0.80, size.height * 0.30, size.width, 0);
 
     path.lineTo(size.width, 0);
 

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 class Sliders extends GetxController {
   late PageController move;
   double? offset;
-  static String text = "Text";
   double? moveTo;
   static double? height;
   final double? mainPadding;
@@ -22,13 +21,6 @@ class Sliders extends GetxController {
       this.movementDurationPerMilliseconds,
       this.repetitionDurationPerSecond,
       this.contentCount});
-
-  @override
-  /* onInit() {
-    sizes();
-    call();
-    stageListen();
-  }*/
 
   List<Widget> initValue() {
     return List.generate(contentCount!, (index) {

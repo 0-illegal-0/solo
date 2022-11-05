@@ -11,7 +11,12 @@ import 'package:solo/view/widget/view_item.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage(
-      {Key? key, this.category, this.width, this.aspectRatio, this.height, this.productItem})
+      {Key? key,
+      this.category,
+      this.width,
+      this.aspectRatio,
+      this.height,
+      this.productItem})
       : super(key: key);
   final Product? category;
   final double? width, aspectRatio, height;
@@ -150,7 +155,8 @@ class ProductPage extends StatelessWidget {
                                                               child:
                                                                   ViewItemContent(
                                                                 index: index,
-                                                                productItem: productItem,
+                                                                productItem:
+                                                                    productItem,
                                                                 width: width,
                                                                 aspectRatio:
                                                                     aspectRatio,

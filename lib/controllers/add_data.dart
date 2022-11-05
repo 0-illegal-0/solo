@@ -18,12 +18,12 @@ class AllData {
   };
   List getItemData({dynamic data}) {
     return [
-      {"method": data.specialOffer, "item": "special-offer"},
-      {"method": data.hotDeal, "item": "hot-deal"},
-      {"method": data.latestItem, "item": "latest-item"},
-      {"method": data.liked, "item": "liked"},
-      {"method": data.recomended, "item": "recomended"},
-      {"method": data.topSale, "item": "top-sale"},
+      {"method": data.specialOffer},
+      {"method": data.hotDeal},
+      {"method": data.latestItem},
+      {"method": data.liked},
+      {"method": data.recomended},
+      {"method": data.topSale},
     ];
   }
 

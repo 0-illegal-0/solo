@@ -18,15 +18,20 @@ class Gift extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        print("1:- ${solo.product[4]}");
+        print("2:- ${width}");
+        print("2:- ${solo.product[4].aspectRatio}");
+        print("2:- ${solo.product[4].height}");
         Get.to(
             () => ProductPage(
                   category: solo.product[4],
                   width: width,
                   aspectRatio: solo.product[4].aspectRatio,
                   height: solo.product[4].height,
+                  productItem: 2,
                 ),
             preventDuplicates: false);
-        Get.deleteAll();
+        // Get.deleteAll();
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

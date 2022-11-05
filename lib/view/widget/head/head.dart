@@ -13,39 +13,52 @@ import 'package:solo/view/widget/head/components/search.dart';
 import '../note.dart';
 
 class Head extends StatelessWidget {
-  const Head({
+  Head({
     Key? key,
     this.width,
     this.controller,
-  }) : super(key: key);
+    this.logoName,
+    this.y,
+  }) : super(key: key) {
+    if (Logo.logo == null && logoName != null) {
+      Logo.logo = logoName;
+    }
+    print("Logo --------------------- ${Logo.logo}");
+  }
   final double? width;
   final Cart? controller;
+  final String? logoName;
+  final String? y;
+
+  double heightHead = 108;
+  double topPosition = 88;
+  double heightCurve = 13;
+
+  categoryBar() {
+    if (device == DeviceType.Desktop) {
+      heightHead = 140;
+      topPosition = 115;
+      heightCurve = 17;
+    } else if (device == DeviceType.Tablet) {
+      heightHead = 135;
+      topPosition = width! >= 650 && width! < 800 ? 112 : 115;
+      heightCurve = 18;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      height: device == DeviceType.Desktop
-          ? 140
-          : device == DeviceType.Tablet
-              ? 135
-              : 103,
+    categoryBar();
+
+    return SizedBox(
+      height: heightHead,
       child: Stack(
         children: [
           Positioned(
-            top: device == DeviceType.Desktop
-                ? 114
-                : device == DeviceType.Tablet
-                    ? 114
-                    : 88,
+            top: topPosition,
             child: SizedBox(
-                //width: double.infinity,
                 width: width,
-                height: device == DeviceType.Desktop
-                    ? 17
-                    : device == DeviceType.Tablet
-                        ? 18
-                        : 13,
+                height: 18,
                 child: CustomPaint(
                     painter: CurvePainter2(color: const Color(0xFF168994)))),
           ),
@@ -54,30 +67,20 @@ class Head extends StatelessWidget {
               Container(
                   margin: const EdgeInsets.only(top: 0.8),
                   color: const Color(0xFF168994),
-                  /*  height: device == DeviceType.Desktop
-                      ? 115
-                      : device == DeviceType.Tablet
-                          ? 125
-                          : 90,*/
                   width: double.infinity,
                   child: width! >= 800
                       ? DesktopHead(
-                          width: width!, space: 75, controller: controller)
+                          width: width!,
+                          space: 75,
+                          y: y,
+                          controller: controller,
+                        )
                       : width! < 800 && width! >= 650
                           ? TabletHead(width: width!, space: 55)
                           : MobileHead(
                               space: width! / 10.8,
                               width: width!,
                             )),
-              /* SizedBox(
-                  width: double.infinity,
-                  height: device == DeviceType.Desktop
-                      ? 17
-                      : device == DeviceType.Tablet
-                          ? 18
-                          : 13,
-                  child: CustomPaint(
-                      painter: CurvePainter2(color: const Color(0xFF168994)))),*/
             ],
           ),
         ],
@@ -103,7 +106,7 @@ class MobileHead extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 10),
-            const Logo(fontSize: 35),
+            Logo(fontSize: 35),
             const SizedBox(width: 15),
             Search(
               fieldHeight: 32,
@@ -141,10 +144,16 @@ class MobileHead extends StatelessWidget {
 }
 
 class TabletHead extends StatelessWidget {
-  const TabletHead(
-      {Key? key, this.width, this.space, this.aspectRatio, this.height})
-      : super(key: key);
+  const TabletHead({
+    Key? key,
+    this.width,
+    this.space,
+    this.aspectRatio,
+    this.y,
+    this.height,
+  }) : super(key: key);
   final double? width, space, aspectRatio, height;
+  final String? y;
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +211,7 @@ class TabletHead extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Logo(fontSize: 33),
+              Logo(fontSize: 33, y: y),
               const SizedBox(width: 30),
               Search(width: width, fieldHeight: 32, iconButtonheight: 33),
               const SizedBox(width: 30),
@@ -234,10 +243,11 @@ class TabletHead extends StatelessWidget {
 }
 
 class DesktopHead extends StatelessWidget {
-  const DesktopHead({Key? key, this.width, this.space, this.controller})
+  const DesktopHead({Key? key, this.width, this.space, this.controller, this.y})
       : super(key: key);
   final double? width, space;
   final Cart? controller;
+  final String? y;
 
   double get gap {
     return width! / 36;
@@ -245,6 +255,7 @@ class DesktopHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Tableeeeeeeeeeeeeeeeeeeeeeeet");
     return Column(
       children: [
         const SizedBox(height: 14),
@@ -253,7 +264,7 @@ class DesktopHead extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Logo(fontSize: 50),
+              Logo(fontSize: 50, y: y),
               SizedBox(width: gap),
               Search(width: width, fieldHeight: 39, iconButtonheight: 40),
               SizedBox(width: gap),
@@ -279,9 +290,15 @@ class DesktopHead extends StatelessWidget {
 class Logo extends StatelessWidget {
   const Logo({
     Key? key,
+    this.y,
     this.fontSize,
+    this.logoName,
   }) : super(key: key);
+
   final double? fontSize;
+  final String? logoName;
+  static String? logo;
+  final String? y;
 
   @override
   Widget build(BuildContext context) {
@@ -294,7 +311,7 @@ class Logo extends StatelessWidget {
               Get.deleteAll();
               Get.to(() => const HomePage());
             },
-            child: Text("Solo",
+            child: Text(logo!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: "Sansita",

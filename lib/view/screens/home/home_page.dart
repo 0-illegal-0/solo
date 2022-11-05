@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AllData inst = AllData(context: context);
     print(inst.width);
+
     return Scaffold(
         backgroundColor: const Color(0xFFe1e1e3),
         body: SafeArea(
@@ -45,7 +46,7 @@ class HomePage extends StatelessWidget {
                                 : 140),
                     child: Column(
                       children: [
-                        /* Advertisement(
+                        /*  Advertisement(
                           width: inst.width,
                           title: "",
                           mainPadding: inst.mainPadding!,
@@ -147,9 +148,9 @@ class HomePage extends StatelessWidget {
                           i: 3,
                           productItem: 2,
                         ),
-                        SizedBox(height: inst.verticalSpace),
+                        SizedBox(height: inst.verticalSpace),*/
                         Gift(title: "Get a Gift", width: inst.width!),
-                        SizedBox(height: inst.verticalSpace),
+                        /*    SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 1.1,
                           aspectRatioNoMobile: 0.8,
@@ -181,7 +182,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Head(width: inst.width),
+                Head(width: inst.width, logoName: "Solo"),
                 /*   const BottomRow(),
                 const Important(),
                 StartPages(height: inst.height!, width: inst.width)*/
