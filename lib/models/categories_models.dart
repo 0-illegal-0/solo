@@ -1,8 +1,9 @@
 class Solo {
   String? projectName;
   List<Product>? product;
+  List<String>? imagesGiftDesign;
 
-  Solo({this.projectName, this.product});
+  Solo({this.projectName, this.product, this.imagesGiftDesign});
 
   Solo.fromJson(Map<String, dynamic> json) {
     projectName = json['project-name'];
@@ -10,6 +11,13 @@ class Solo {
       product = <Product>[];
       json['product'].forEach((v) {
         product!.add(Product.fromJson(v));
+      });
+    }
+
+    if (json['images-gift-design'] != null) {
+      imagesGiftDesign = [];
+      json['images-gift-design'].forEach((v) {
+        imagesGiftDesign!.add(v);
       });
     }
   }

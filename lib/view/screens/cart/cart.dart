@@ -19,26 +19,26 @@ class CartBudget extends StatelessWidget {
   double? width;
   //final dynamic controller;
 
-    sizesData (width){
-      space = width! / 30;
-      if (width! < 1000) {
-        itemCount = 6;
-        itemWidth =  width! / 3.7;
-      }
-      else {
-        itemCount = 8;
-        itemWidth= width! / 5.1;
-      }
+  sizesData(width) {
+    space = width! / 30;
+    if (width! < 1000) {
+      itemCount = 6;
+      itemWidth = width! / 3.7;
+    } else {
+      itemCount = 8;
+      itemWidth = width! / 5.1;
+    }
   }
 
-  widthValue(context){
-     width = MediaQuery.of(context).size.width;
+  widthValue(context) {
+    width = MediaQuery.of(context).size.width;
   }
 
-  execute(context){
-     widthValue(context);
-     sizesData(width);
+  execute(context) {
+    widthValue(context);
+    sizesData(width);
   }
+
   @override
   Widget build(BuildContext context) {
     Cart controller = Get.put(Cart());
@@ -53,234 +53,317 @@ class CartBudget extends StatelessWidget {
                   left: width! / 24, right: width! / 24, top: 100),
               child: SingleChildScrollView(
                 child: Column(
-                  children:[
-                    controller.items.isNotEmpty?  GetBuilder<Cart>(
-                   builder: (context) {
-                     return width! >650?  Padding(
-                       padding: const EdgeInsets.only(top:120),
-                       child: Wrap(spacing: space!,runSpacing: 20,
-                           children: List.generate(controller.items.length, (index)
-                           {
-                             return SizedBox(
-                             width: itemWidth,
-                             child: AspectRatio(
-                                 aspectRatio: 0.9,
-                                 child: InkWell(
-                                     child: Container(
-                                       decoration: const BoxDecoration(
-                                           boxShadow: [
-                                             BoxShadow(
-                                                 color: Color(0xFF999797),
-                                                 blurRadius: 10,
-                                                 spreadRadius: 0.5,
-                                                 offset: Offset(0, 0))
-                                           ],
-                                           color: Colors.white,
-                                           borderRadius: BorderRadius.all(
-                                               Radius.circular(5))),
-                                       child: Column(
-                                         mainAxisAlignment: MainAxisAlignment
-                                             .spaceBetween,
-                                         children: [
-                                           Expanded(
-                                             child: Padding(
-                                               padding: EdgeInsets.all(
-                                                   width! / 45 > 20 ? 20 : width! /
-                                                       45),
-                                               child: Image.asset(
-                                                   solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
-                                                       .image!),
-                                             ),
-                                           ),
-                                           Padding(
-                                             padding: const EdgeInsets.symmetric(
-                                                 horizontal: 5),
-                                             child: Text(
-                                               solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
-                                                   .title!,
-                                               maxLines: 2,
-                                               textAlign: TextAlign.center,
-                                             ),
-                                           ),
-                                           const SizedBox(height: 8),
-                                           Padding(
-                                               padding: const EdgeInsets.only(
-                                                   left: 3),
-                                               child: Row(
-                                                   children: List.generate(
-                                                       5,
-                                                           (index2) =>
-                                                           Icon(Icons.star_rate,
-                                                               size: 17,
-                                                               color: index2 <
-                                                                   solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
-                                                                       .stars
-                                                                   ? Colors.orange
-                                                                   : Colors.grey)))),
-                                           const SizedBox(height: 12),
-                                           Row(
-                                             mainAxisAlignment: MainAxisAlignment
-                                                 .spaceBetween,
-                                             children: [
-                                               Expanded(
-                                                 child: Padding(
-                                                   padding: const EdgeInsets.only(
-                                                       left: 5),
-                                                   child: Text(
-                                                     "${solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
-                                                         .price!} EGP ",
-                                                     maxLines: 1,
-                                                   ),
-                                                 ),
-                                               ),
-                                               SizedBox(
-                                                 height: 25,
-                                                 child: Builder(
-                                                   builder: (context) {
-                                                     return IconButton(
-                                                       alignment: Alignment.topRight,
-                                                       padding: const EdgeInsets.only(
-                                                           right: 3, bottom: 3),
-                                                       color: Colors.orange,
-                                                       icon: const Icon(
-                                                           Icons.shopping_cart_outlined),
-                                                       onPressed: () {
-                                                               controller.addToCart(context: context,
-                                                             image: solo.product[int.parse(controller.items[index][0])].
-                                                             products[int.parse(controller.items[index][1])].image!,
-                                                             price: solo.product[int.parse(controller.items[index][0])].
-                                                             products[int.parse(controller.items[index][1])].price!,
-                                                             stars: solo.product[int.parse(controller.items[index][0])].
-                                                             products[int.parse(controller.items[index][1])].stars,
-                                                             title: solo.product[int.parse(controller.items[index][0])].
-                                                             products[int.parse(controller.items[index][1])].title!,
-                                                             width: width,
-                                                             itemIndex: int.parse(controller.items[index][1]),
-                                                             productItem:int.parse(controller.items[index][0])
-                                                         );
-                                                       },
-                                                     );
-                                                   }
-                                                 ),
-                                               )
-                                             ],
-                                           ),
-                                           SizedBox(
-                                             height: 25,
-                                             child: Builder(
-                                                 builder: (context) {
-                                                   return IconButton(
-                                                     alignment: Alignment.topRight,
-                                                     padding: const EdgeInsets.only(
-                                                         right: 3, bottom: 3),
-                                                     color: Colors.black,
-                                                     icon: const Icon(
-                                                       Icons.delete_outlined
-                                                     ),
-                                                     onPressed: () {
-                                                       controller.deletePref(id:controller.itemId[index]);
-                                                     },
-                                                   );
-                                                 }
-                                             ),
-                                           )
-                                         ],
-                                       ),
-                                     ),
-                                     onTap: () {
-
-                                       Get.to(
-                                               () => // aspectRatio
-                                               ViewDetails(
-                                                 width: width,
-                                                 aspectRatio:
-                                                 solo.product[int.parse(controller.items[index][0])].aspectRatio,
-                                                 height: width! *
-                                                     solo.product[int.parse(controller.items[index][0])].height,
-                                                 itemList:
-                                                 solo.product[int.parse(controller.items[index][0])].
-                                                 products,
-                                                 index: int.parse(controller.items[index][1]),
-                                                 numberOfRows: 1,
-                                                 title: "Customer  Viewed",
-                                                 productItem: int.parse(controller.items[index][0]),
-                                               ),
-                                           preventDuplicates: false);
-                                       Get.deleteAll();
-                                     })),
-                           );},)),
-                     ):CartWidgetForMobile(width: width,title: "",controller: controller,);
-                   }
-                 ):
-                    Container(
-                      alignment: Alignment.center,
-                      height: 400,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.remove_shopping_cart_outlined,
-                            size: width! / 14.4 < 70 ? 70 : width! / 14.4,
+                  children: [
+                    controller.items.isNotEmpty
+                        ? GetBuilder<Cart>(builder: (context) {
+                            return width! > 650
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 120),
+                                    child: Wrap(
+                                        spacing: space!,
+                                        runSpacing: 20,
+                                        children: List.generate(
+                                          controller.items.length,
+                                          (index) {
+                                            return SizedBox(
+                                              width: itemWidth,
+                                              child: AspectRatio(
+                                                  aspectRatio: 0.9,
+                                                  child: InkWell(
+                                                      child: Container(
+                                                        decoration: const BoxDecoration(
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                  color: Color(
+                                                                      0xFF999797),
+                                                                  blurRadius:
+                                                                      10,
+                                                                  spreadRadius:
+                                                                      0.5,
+                                                                  offset:
+                                                                      Offset(
+                                                                          0, 0))
+                                                            ],
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5))),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding: EdgeInsets
+                                                                    .all(width! /
+                                                                                45 >
+                                                                            20
+                                                                        ? 20
+                                                                        : width! /
+                                                                            45),
+                                                                child: Image.asset(solo
+                                                                    .product[int.parse(
+                                                                        controller.items[index]
+                                                                            [
+                                                                            0])]
+                                                                    .products[int.parse(
+                                                                        controller.items[index]
+                                                                            [
+                                                                            1])]
+                                                                    .image!),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      5),
+                                                              child: Text(
+                                                                solo
+                                                                    .product[int.parse(
+                                                                        controller.items[index]
+                                                                            [
+                                                                            0])]
+                                                                    .products[int.parse(
+                                                                        controller.items[index]
+                                                                            [
+                                                                            1])]
+                                                                    .title!,
+                                                                maxLines: 2,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 8),
+                                                            Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            3),
+                                                                child: Row(
+                                                                    children: List.generate(
+                                                                        5,
+                                                                        (index2) => Icon(
+                                                                            Icons
+                                                                                .star_rate,
+                                                                            size:
+                                                                                17,
+                                                                            color: index2 < solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].stars
+                                                                                ? Colors.orange
+                                                                                : Colors.grey)))),
+                                                            const SizedBox(
+                                                                height: 12),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Expanded(
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            5),
+                                                                    child: Text(
+                                                                      "${solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].price!} EGP ",
+                                                                      maxLines:
+                                                                          1,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 25,
+                                                                  child: Builder(
+                                                                      builder:
+                                                                          (context) {
+                                                                    return IconButton(
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .topRight,
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          right:
+                                                                              3,
+                                                                          bottom:
+                                                                              3),
+                                                                      color: Colors
+                                                                          .orange,
+                                                                      icon: const Icon(
+                                                                          Icons
+                                                                              .shopping_cart_outlined),
+                                                                      onPressed:
+                                                                          () {
+                                                                        controller.addToCart(
+                                                                            context:
+                                                                                context,
+                                                                            image:
+                                                                                solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].image!,
+                                                                            price: solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].price!,
+                                                                            stars: solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].stars,
+                                                                            title: solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].title!,
+                                                                            width: width,
+                                                                            itemIndex: int.parse(controller.items[index][1]),
+                                                                            productItem: int.parse(controller.items[index][0]));
+                                                                      },
+                                                                    );
+                                                                  }),
+                                                                )
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 25,
+                                                              child: Builder(
+                                                                  builder:
+                                                                      (context) {
+                                                                return IconButton(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topRight,
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      right: 3,
+                                                                      bottom:
+                                                                          3),
+                                                                  color: Colors
+                                                                      .black,
+                                                                  icon: const Icon(
+                                                                      Icons
+                                                                          .delete_outlined),
+                                                                  onPressed:
+                                                                      () {
+                                                                    controller.deletePref(
+                                                                        id: controller
+                                                                            .itemId[index]);
+                                                                  },
+                                                                );
+                                                              }),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      onTap: () {
+                                                        Get.to(
+                                                            () => // aspectRatio
+                                                                ViewDetails(
+                                                                  width: width,
+                                                                  aspectRatio: solo
+                                                                      .product[int.parse(
+                                                                          controller.items[index]
+                                                                              [
+                                                                              0])]
+                                                                      .aspectRatio,
+                                                                  height: width! *
+                                                                      solo
+                                                                          .product[int.parse(controller.items[index]
+                                                                              [
+                                                                              0])]
+                                                                          .height,
+                                                                  itemList: solo
+                                                                      .product[int.parse(
+                                                                          controller.items[index]
+                                                                              [
+                                                                              0])]
+                                                                      .products,
+                                                                  index: int.parse(
+                                                                      controller
+                                                                              .items[
+                                                                          index][1]),
+                                                                  numberOfRows:
+                                                                      1,
+                                                                  title:
+                                                                      "Customer  Viewed",
+                                                                  productItem: int.parse(
+                                                                      controller
+                                                                              .items[
+                                                                          index][0]),
+                                                                ),
+                                                            preventDuplicates:
+                                                                false);
+                                                        Get.deleteAll();
+                                                      })),
+                                            );
+                                          },
+                                        )),
+                                  )
+                                : CartWidgetForMobile(
+                                    width: width,
+                                    title: "",
+                                    controller: controller,
+                                  );
+                          })
+                        : Container(
+                            alignment: Alignment.center,
+                            height: 400,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.remove_shopping_cart_outlined,
+                                  size: width! / 14.4 < 70 ? 70 : width! / 14.4,
+                                ),
+                                const SizedBox(height: 15),
+                                const Text(
+                                  "Your cart is empty",
+                                  style: TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: 15),
+                                ElevatedButton(
+                                    style: ButtonStyle(
+                                        padding: MaterialStateProperty.all(
+                                            const EdgeInsets.only(
+                                                left: 40,
+                                                right: 40,
+                                                top: 15,
+                                                bottom: 15))),
+                                    onPressed: () {
+                                      Get.to(() => const HomePage());
+                                    },
+                                    child: const Text(
+                                      "Continue Shopping",
+                                      style: TextStyle(fontSize: 18),
+                                    )),
+                              ],
+                            ),
                           ),
-                          const SizedBox(height: 15),
-                          const Text(
-                            "Your cart is empty",
-                            style: TextStyle(
-                                fontSize: 19, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 15),
-                          ElevatedButton(
-                              style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
-                                      const EdgeInsets.only(
-                                          left: 40,
-                                          right: 40,
-                                          top: 15,
-                                          bottom: 15))),
-                              onPressed: () {
-                                Get.to(() => const HomePage());
-                              },
-                              child: const Text(
-                                "Continue Shopping",
-                                style: TextStyle(fontSize: 18),
-                              )),
-                        ],
-                      ),
-                    ),
                     const SizedBox(height: 50),
                     device == DeviceType.Desktop
                         ? ViewItem(
-                      aspectRatioMobile: 0.9,
-                      height: width! * 0.60,
-                      itemList: solo.product[1].
-                      products,
-                      mainPadding: width! / 24,
-                      title: "Best Selling Products",
-                      numberOfRows: 1,
-                      aspectRatioNoMobile: 0.8,
-                      width: width,
-                      i: 6,
-                    )
-                    : MobileDesign(
-                      aspectRatio: 1.1,
-                      height: width! * 0.50,
-                      itemCount: solo.product[1].
-                      products.length,
-                      itemList: solo.product[1].
-                      products,
-                      title: "Best Selling Products",
-                      width: width,
-                    ),
+                            aspectRatioMobile: 0.9,
+                            height: width! * 0.60,
+                            itemList: solo.product[1].products,
+                            mainPadding: width! / 24,
+                            title: "Best Selling Products",
+                            numberOfRows: 1,
+                            aspectRatioNoMobile: 0.8,
+                            width: width,
+                            id: 6,
+                          )
+                        : MobileDesign(
+                            aspectRatio: 1.1,
+                            height: width! * 0.50,
+                            itemCount: solo.product[1].products.length,
+                            itemList: solo.product[1].products,
+                            title: "Best Selling Products",
+                            width: width,
+                          ),
                     const SizedBox(height: 50),
                     Close(width: width),
-
                   ],
                 ),
               ),
             ),
-          //  Positioned(child: Container(color: Colors.red, width: 300,height: 100),bottom: 100,),
+            //  Positioned(child: Container(color: Colors.red, width: 300,height: 100),bottom: 100,),
             BottomRow(controller: controller),
-            Head(width: width,controller: controller),
+            Head(width: width, controller: controller),
           ],
         ),
       ),
@@ -288,9 +371,9 @@ class CartBudget extends StatelessWidget {
   }
 }
 
-
 class CartWidgetForMobile extends StatelessWidget {
-  const CartWidgetForMobile({Key? key, this.width, this.title, this.controller}) : super(key: key);
+  const CartWidgetForMobile({Key? key, this.width, this.title, this.controller})
+      : super(key: key);
 
   final double? width;
   final String? title;
@@ -310,43 +393,54 @@ class CartWidgetForMobile extends StatelessWidget {
           child: Text(title!, style: titleStyle),
         ),
         Wrap(
-            alignment:WrapAlignment.center,
-            crossAxisAlignment:WrapCrossAlignment.center,
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
             runSpacing: 15,
             children: List.generate(
               controller.items.length!,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 1),
-                    child: Container(
-                decoration:
-                 const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
-                    BoxShadow(
-                        color: Color(0xFF999797),
-                        blurRadius: 7,
-                        spreadRadius: 0.5,
-                        offset: Offset(0, 0.5))
-                ],),
-
-                width: designWidth,
-                height: designHeight,
-                child: InkWell(
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 1),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFffffff),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color(0xFF999797),
+                          blurRadius: 7,
+                          spreadRadius: 0.5,
+                          offset: Offset(0, 0.5))
+                    ],
+                  ),
+                  width: designWidth,
+                  height: designHeight,
+                  child: InkWell(
                     onTap: () {
                       Get.to(
-                              () => ViewDetails(
-                            width: width!,
-                            aspectRatio: solo.product[int.parse(controller.items[index][0])].aspectRatio,
-                            height:  width! *
-                                solo.product[int.parse(controller.items[index][0])].height,
-                            itemList: solo.product[int.parse(controller.items[index][0])].products,
-                            index: int.parse(controller.items[index][1]),
-                            numberOfRows: 1,
-                            title: "Customer  Viewed",
-                            productItem: int.parse(controller.items[index][0]),
-                          ),
+                          () => ViewDetails(
+                                width: width!,
+                                aspectRatio: solo
+                                    .product[
+                                        int.parse(controller.items[index][0])]
+                                    .aspectRatio,
+                                height: width! *
+                                    solo
+                                        .product[int.parse(
+                                            controller.items[index][0])]
+                                        .height,
+                                itemList: solo
+                                    .product[
+                                        int.parse(controller.items[index][0])]
+                                    .products,
+                                index: int.parse(controller.items[index][1]),
+                                numberOfRows: 1,
+                                title: "Customer  Viewed",
+                                productItem:
+                                    int.parse(controller.items[index][0]),
+                              ),
                           preventDuplicates: false);
                       Get.deleteAll();
                     },
-                 child: Row(
+                    child: Row(
                       children: [
                         Expanded(
                             flex: 1,
@@ -359,15 +453,24 @@ class CartWidgetForMobile extends StatelessWidget {
                                           right: 5, left: 5, top: 5),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Image.asset(
-                                            solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
+                                            solo
+                                                .product[int.parse(
+                                                    controller.items[index][0])]
+                                                .products[int.parse(
+                                                    controller.items[index][1])]
                                                 .image!,
                                             height: designHeight! * 0.50,
                                           ),
                                           Text(
-                                            solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].title,
+                                            solo
+                                                .product[int.parse(
+                                                    controller.items[index][0])]
+                                                .products[int.parse(
+                                                    controller.items[index][1])]
+                                                .title,
                                             softWrap: false,
                                             maxLines: 2,
                                             textAlign: TextAlign.center,
@@ -390,10 +493,17 @@ class CartWidgetForMobile extends StatelessWidget {
                                   child: Row(
                                       children: List.generate(
                                           5,
-                                              (index2) => Icon(Icons.star_rate,
+                                          (index2) => Icon(Icons.star_rate,
                                               size: 17,
-                                              color: index2 < solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])]
-                                                  .stars!
+                                              color: index2 <
+                                                      solo
+                                                          .product[int.parse(
+                                                              controller.items[
+                                                                  index][0])]
+                                                          .products[int.parse(
+                                                              controller.items[
+                                                                  index][1])]
+                                                          .stars!
                                                   ? Colors.orange
                                                   : Colors.grey))),
                                 ),
@@ -409,7 +519,12 @@ class CartWidgetForMobile extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         top: 5, right: 5, left: 5),
                                     child: Text(
-                                        solo.product[int.parse(controller.items[index][0])].products[int.parse(controller.items[index][1])].description,
+                                        solo
+                                            .product[int.parse(
+                                                controller.items[index][0])]
+                                            .products[int.parse(
+                                                controller.items[index][1])]
+                                            .description,
                                         maxLines: 5),
                                   )),
                               const Expanded(
@@ -425,11 +540,12 @@ class CartWidgetForMobile extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                               Expanded(
+                              Expanded(
                                   flex: 2,
                                   child: Center(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         const Text(
                                           "13.000 EGP",
@@ -437,22 +553,21 @@ class CartWidgetForMobile extends StatelessWidget {
                                         ),
                                         SizedBox(
                                           height: 25,
-                                          child: Builder(
-                                              builder: (context) {
-                                                return IconButton(
-                                                  alignment: Alignment.topRight,
-                                                  padding: const EdgeInsets.only(
-                                                      right: 3, bottom: 3),
-                                                  color: Colors.black,
-                                                  icon: const Icon(
-                                                      Icons.delete_outlined
-                                                  ),
-                                                  onPressed: () {
-                                                    controller.deletePref(id:controller.itemId[index]);
-                                                  },
-                                                );
-                                              }
-                                          ),
+                                          child: Builder(builder: (context) {
+                                            return IconButton(
+                                              alignment: Alignment.topRight,
+                                              padding: const EdgeInsets.only(
+                                                  right: 3, bottom: 3),
+                                              color: Colors.black,
+                                              icon: const Icon(
+                                                  Icons.delete_outlined),
+                                              onPressed: () {
+                                                controller.deletePref(
+                                                    id: controller
+                                                        .itemId[index]);
+                                              },
+                                            );
+                                          }),
                                         ),
                                       ],
                                     ),
@@ -462,13 +577,33 @@ class CartWidgetForMobile extends StatelessWidget {
                         )
                       ],
                     ),
+                  ),
                 ),
               ),
-                  ),
             )),
-       // Spacer()
+        // Spacer()
       ],
     );
   }
 }
 
+
+
+/*
+
+     getSizesData () {
+       
+    if (device == DeviceType.Mobile) {
+      brandGrid = width / 2.333;
+      return 2;
+    } else if (device == DeviceType.Tablet) {
+      brandGrid = width / 3.58;
+      return 3;
+    } else {
+      brandGrid = width / 4.885;
+      return 4;
+    }
+  
+  }
+
+*/

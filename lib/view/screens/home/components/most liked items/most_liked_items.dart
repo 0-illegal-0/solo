@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/note.dart';
+import 'package:solo/view/widget/view_all_button.dart';
 
 import '../../../../style.dart';
 
@@ -14,35 +15,29 @@ class MostLiked extends StatelessWidget {
     this.space,
     this.title,
     this.data,
+    this.aspectRatio,
   }) : super(key: key);
   final String? title;
   final double width;
   final List? data;
-  final double? mainPadding, space;
+  final double? mainPadding, space, aspectRatio;
   static const double symmetricPadding = 7;
+  static double? brandGrid;
 
-  int get countItem {
+  containerWidth() {
     if (device == DeviceType.Mobile) {
-      return 2;
+      brandGrid = width / 2.333;
     } else if (device == DeviceType.Tablet) {
-      return 3;
+      brandGrid = width / 3.58;
     } else {
-      return 4;
+      brandGrid = width / 4.885;
     }
-  }
-
-  double get brandGrid {
-    return ((width -
-                (mainPadding! * 2) -
-                space! * 2 -
-                (space! * (countItem - 1))) /
-            countItem) -
-        0.1;
   }
 
   @override
   Widget build(BuildContext context) {
     getDevice(width);
+    containerWidth();
     return Column(
       children: [
         Padding(
@@ -50,6 +45,7 @@ class MostLiked extends StatelessWidget {
           child: Text(title!, style: titleStyle),
         ),
         Container(
+          alignment: Alignment.center,
           decoration: const BoxDecoration(
             color: Color(0xFFffffff),
             boxShadow: [
@@ -94,11 +90,11 @@ class MostLiked extends StatelessWidget {
                             SizedBox(height: width / 25),
                             Image.asset(
                               data![index]["item"].image!,
-                              width: brandGrid * 0.60,
+                              width: brandGrid! * 0.60,
                               height: device == DeviceType.Desktop ||
                                       device == DeviceType.Tablet
-                                  ? 100
-                                  : 70,
+                                  ? 150
+                                  : 90,
                             ),
                             const SizedBox(height: 5),
                             Text(
@@ -126,22 +122,13 @@ class MostLiked extends StatelessWidget {
                     ))),
           ),
         ),
-        data!.length > 6
-            ? Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: TextButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(186, 186, 184, 0.5))),
-                    onPressed: () {
-                      note(context);
-                    },
-                    child: const Text(
-                      "Show all items",
-                      style: TextStyle(fontSize: 17),
-                    )),
-              )
-            : const SizedBox()
+        const SizedBox(height: 20),
+        viewAll(
+            data: data,
+            itemCount: 6,
+            width: width,
+            title: "Most Liked Items",
+            aspectRatio: aspectRatio)
       ],
     );
   }

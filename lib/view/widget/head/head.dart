@@ -18,17 +18,14 @@ class Head extends StatelessWidget {
     this.width,
     this.controller,
     this.logoName,
-    this.y,
   }) : super(key: key) {
     if (Logo.logo == null && logoName != null) {
       Logo.logo = logoName;
     }
-    print("Logo --------------------- ${Logo.logo}");
   }
   final double? width;
   final Cart? controller;
   final String? logoName;
-  final String? y;
 
   double heightHead = 108;
   double topPosition = 88;
@@ -72,7 +69,6 @@ class Head extends StatelessWidget {
                       ? DesktopHead(
                           width: width!,
                           space: 75,
-                          y: y,
                           controller: controller,
                         )
                       : width! < 800 && width! >= 650
@@ -149,11 +145,9 @@ class TabletHead extends StatelessWidget {
     this.width,
     this.space,
     this.aspectRatio,
-    this.y,
     this.height,
   }) : super(key: key);
   final double? width, space, aspectRatio, height;
-  final String? y;
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +205,7 @@ class TabletHead extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Logo(fontSize: 33, y: y),
+              Logo(fontSize: 33),
               const SizedBox(width: 30),
               Search(width: width, fieldHeight: 32, iconButtonheight: 33),
               const SizedBox(width: 30),
@@ -243,11 +237,10 @@ class TabletHead extends StatelessWidget {
 }
 
 class DesktopHead extends StatelessWidget {
-  const DesktopHead({Key? key, this.width, this.space, this.controller, this.y})
+  const DesktopHead({Key? key, this.width, this.space, this.controller})
       : super(key: key);
   final double? width, space;
   final Cart? controller;
-  final String? y;
 
   double get gap {
     return width! / 36;
@@ -255,7 +248,6 @@ class DesktopHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Tableeeeeeeeeeeeeeeeeeeeeeeet");
     return Column(
       children: [
         const SizedBox(height: 14),
@@ -264,7 +256,7 @@ class DesktopHead extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Logo(fontSize: 50, y: y),
+              const Logo(fontSize: 50),
               SizedBox(width: gap),
               Search(width: width, fieldHeight: 39, iconButtonheight: 40),
               SizedBox(width: gap),

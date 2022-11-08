@@ -13,7 +13,7 @@ class ViewItem extends StatelessWidget {
       this.height,
       this.title,
       this.itemList,
-      this.i,
+      this.id,
       this.aspectRatioMobile,
       this.mainPadding,
       this.aspectRatioNoMobile,
@@ -26,7 +26,7 @@ class ViewItem extends StatelessWidget {
       mainPadding,
       aspectRatioMobile,
       aspectRatioNoMobile;
-  final int? numberOfRows, i, productItem;
+  final int? numberOfRows, id, productItem;
   final String? title;
   final List? itemList;
   @override
@@ -53,7 +53,7 @@ class ViewItem extends StatelessWidget {
             title: title,
             width: width,
             height: height,
-            i: i!,
+            id: id!,
             numberOfRows: numberOfRows,
             mainPadding: mainPadding,
             aspectRatio: aspectRatioNoMobile,
@@ -72,14 +72,14 @@ class ArrowWidget extends StatelessWidget {
       {Key? key,
       this.controller,
       this.itemLength,
-      this.i,
+      this.id,
       this.crossAxisCount,
       this.wrapCount})
       : super(key: key);
   dynamic controller;
   final List? itemLength;
 
-  final int? i, crossAxisCount, wrapCount;
+  final int? id, crossAxisCount, wrapCount;
   @override
   Widget build(BuildContext context) {
     return itemLength!.length > crossAxisCount! * 2
@@ -88,14 +88,14 @@ class ArrowWidget extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () {
-                    controller.moveBack(i: i, wrapCount: wrapCount);
+                    controller.moveBack(id: id, wrapCount: wrapCount);
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios_outlined,
                   )),
               IconButton(
                 onPressed: () {
-                  controller.moveNext(i: i, wrapCount: wrapCount);
+                  controller.moveNext(id: id, wrapCount: wrapCount);
                 },
                 icon: const Icon(
                   Icons.arrow_forward_ios_outlined,
@@ -173,7 +173,7 @@ class AnimatedItems extends StatelessWidget {
       this.space,
       this.height,
       this.numberOfRows,
-      this.i,
+      this.id,
       this.title,
       this.stackHeight,
       this.gridWidth,
@@ -187,7 +187,7 @@ class AnimatedItems extends StatelessWidget {
       height,
       stackHeight,
       gridWidth;
-  final int? crossAxisCount, wrapCount, numberOfRows, i, productItem;
+  final int? crossAxisCount, wrapCount, numberOfRows, id, productItem;
   final List? itemList;
   final String? title;
 
@@ -231,8 +231,8 @@ class AnimatedItems extends StatelessWidget {
                 children: List.generate(
                     wrapCount!,
                     (index) => AnimatedPositioned(
-                        left:
-                            width! * index.toDouble() + controller.moveUnit[i!],
+                        left: width! * index.toDouble() +
+                            controller.moveUnit[id!],
                         duration: const Duration(milliseconds: 500),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -280,7 +280,7 @@ class AnimatedItems extends StatelessWidget {
         ArrowWidget(
             controller: controller,
             itemLength: itemList,
-            i: i,
+            id: id,
             crossAxisCount: crossAxisCount,
             wrapCount: wrapCount)
       ],

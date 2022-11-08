@@ -304,7 +304,7 @@ Map<String, dynamic> data = {
           "title": "HP Probook 446",
           "price": "25.500.00",
           "discount": "20%",
-          "old-price": "3,500.00 EGP",
+          "old-price": "3,500.00",
           "product-brands": "Lenovo",
           "cpu": "NVIDIA",
           "hardsize": 1000.0,
@@ -601,7 +601,7 @@ Map<String, dynamic> data = {
           "price": "27,200.00",
           "special-offer": true,
           "discount": "20%",
-          "old-price": "3,500.00 EGP",
+          "old-price": "3,500.00",
           "product-brands": "Lenovo",
           "cpu": "AMD",
           "hardsize": 1500.0,
@@ -700,7 +700,7 @@ Map<String, dynamic> data = {
           "special-offer": false,
           "price": "18,500.00",
           "discount": "20%",
-          "old-price": "30,500.00 EGP",
+          "old-price": "30,500.00",
           "product-brands": "Lenovo",
           "cpu": "VIA",
           "hardsize": 500.0,
@@ -4267,5 +4267,10 @@ Map<String, dynamic> data = {
         }
       ]
     },
+  ],
+  "images-gift-design": [
+    "assets/images/laptops/hp-255-g8.png",
+    "assets/images/cameras/camera1.png",
+    "assets/images/cameras/camera1.png"
   ]
 };

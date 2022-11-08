@@ -11,9 +11,10 @@ import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/view_all_button.dart';
 
 class SpecialOffer extends StatelessWidget {
-  const SpecialOffer({Key? key, this.width, this.mainPadding, this.data})
+  const SpecialOffer(
+      {Key? key, this.width, this.mainPadding, this.data, this.aspectRatio})
       : super(key: key);
-  final double? mainPadding, width;
+  final double? mainPadding, width, aspectRatio;
   final List? data;
 
   double get space {
@@ -120,10 +121,15 @@ class SpecialOffer extends StatelessWidget {
                               );
                       })),
                   const SizedBox(height: 20),
-                  viewAll(data, 5, width)
+                  viewAll(
+                      data: data,
+                      itemCount: 5,
+                      width: width,
+                      aspectRatio: aspectRatio)
                 ],
               )
-            : SpecialOfferNoMobile(data: data, width: width)
+            : SpecialOfferNoMobile(
+                data: data, width: width, aspectRatio: aspectRatio)
       ],
     );
   }
@@ -134,8 +140,9 @@ class SpecialOfferNoMobile extends StatelessWidget {
     Key? key,
     this.width,
     this.data,
+    this.aspectRatio,
   }) : super(key: key);
-  final double? width;
+  final double? width, aspectRatio;
   final List? data;
   double? itemWidth;
   int? itemCount;
@@ -303,7 +310,12 @@ class SpecialOfferNoMobile extends StatelessWidget {
               ),
             )),
         const SizedBox(height: 20),
-        viewAll(data, itemCount, width, title: " Special Offers")
+        viewAll(
+            data: data,
+            itemCount: itemCount,
+            width: width,
+            title: " Special Offers",
+            aspectRatio: aspectRatio)
       ],
     );
   }

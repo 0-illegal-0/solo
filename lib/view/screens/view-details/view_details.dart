@@ -196,7 +196,7 @@ class _ViewDetailsState extends State<ViewDetails>
                             numberOfRows: 1,
                             aspectRatioNoMobile: 0.8,
                             width: widget.width,
-                            i: 7,
+                            id: 7,
                           )
                         : MobileDesign(
                             aspectRatio: widget.aspectRatio,

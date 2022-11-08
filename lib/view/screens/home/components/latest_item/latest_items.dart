@@ -17,35 +17,20 @@ class LatestItems extends StatelessWidget {
       this.aspectRatio,
       this.viewitemCount,
       this.height,
-      this.data})
+      this.data,
+      this.numberOfRows,
+      this.id})
       : super(key: key);
   final double? width;
   final double? mainPadding, space, aspectRatio, height;
   final String? title;
   int? itemIndex;
   final List? data;
-  final int? viewitemCount;
-
-  double brandGrid(int? countItem) {
-    return (width! -
-            mainPadding! * 2 -
-            width! / 72 * 2 -
-            space! * (countItem! - 1)) /
-        countItem;
-  }
+  final int? viewitemCount, numberOfRows, id;
+  static const showMobileItemCount = 5;
 
   int get wrapCount {
     return (data!.length / (viewitemCount!)).ceil();
-  }
-
-  int listIndex(int? index2) {
-    if (index2 == wrapCount - 1 && data!.length > viewitemCount!) {
-      return data!.length % viewitemCount!;
-    } else if (data!.length < viewitemCount!) {
-      return data!.length;
-    } else {
-      return viewitemCount!;
-    }
   }
 
   int listIndex2(index) {
@@ -63,14 +48,15 @@ class LatestItems extends StatelessWidget {
   }
 
   int get widthVal {
-    if (data!.length / 5 <= 1) {
+    if (data!.length / showMobileItemCount <= 1) {
       return 1;
     } else {
-      return (data!.length / 5).ceil();
+      return (data!.length / showMobileItemCount).ceil();
     }
   }
 
   List? values = [];
+
   getListvalues() {
     for (var item in data!) {
       values!.add(item["item"]);
@@ -86,10 +72,6 @@ class LatestItems extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        /*  Text(
-          title!,
-          style: titleStyle,
-        ),*/
         device == DeviceType.Mobile
             ? Column(
                 children: [
@@ -156,8 +138,9 @@ class LatestItems extends StatelessWidget {
                                                 Get.deleteAll();
                                               },
                                               child: Container(
-                                                width: brandGrid(
-                                                    index > 1 ? 3 : 2),
+                                                width: index < 2
+                                                    ? width! / 2.29
+                                                    : width! / 3.42,
                                                 height: 140,
                                                 decoration: const BoxDecoration(
                                                     boxShadow: [
@@ -203,9 +186,7 @@ class LatestItems extends StatelessWidget {
                                                           const EdgeInsets.only(
                                                               top: 15),
                                                       child: Text(
-                                                        data![itemIndex!]
-                                                                ["item"]
-                                                            .price!,
+                                                        "${data![itemIndex!]["item"].price!} EGP",
                                                         maxLines: 1,
                                                       ),
                                                     )
@@ -223,7 +204,7 @@ class LatestItems extends StatelessWidget {
                   ArrowWidget(
                       controller: controller,
                       itemLength: values,
-                      i: 8,
+                      id: id,
                       crossAxisCount: 2.5.ceil(),
                       wrapCount: wrapCount)
                 ],
@@ -233,10 +214,10 @@ class LatestItems extends StatelessWidget {
                 itemList: values,
                 mainPadding: mainPadding!,
                 title: title!,
-                numberOfRows: 2,
+                numberOfRows: numberOfRows,
                 aspectRatioNoMobile: aspectRatio,
                 width: width!,
-                i: 5,
+                id: id,
                 aspectRatioMobile: aspectRatio,
               ),
       ],

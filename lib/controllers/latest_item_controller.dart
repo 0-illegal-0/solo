@@ -1,32 +1,5 @@
 import 'package:get/get.dart';
 
-class MoveSlider extends GetxController {
-  MoveSlider({this.itemsList, this.width});
-  double moveUnit = 0;
-  int moveCount = 0;
-  double? width;
-  List? itemsList;
-  int get wrapCount {
-    return (itemsList!.length / (5)).ceil();
-  }
-
-  moveNext() {
-    if (moveCount < wrapCount - 1) {
-      moveUnit = moveUnit - width!;
-      moveCount = moveCount + 1;
-    }
-    update();
-  }
-
-  moveBack() {
-    if (moveCount > 0) {
-      moveUnit = moveUnit + width!;
-      moveCount = moveCount - 1;
-    }
-    update();
-  }
-}
-
 class MoveSliderMain extends GetxController {
   MoveSliderMain(
       {this.crossAxisCount, this.numberOfRows, this.itemsList, this.width});
@@ -47,18 +20,20 @@ class MoveSliderMain extends GetxController {
   double? width;
   List? itemsList;
 
-  moveNext({int? i, int? wrapCount}) {
-    if (moveCount[i!] < wrapCount! - 1) {
-      moveUnit[i] = moveUnit[i] - width!;
-      moveCount[i] = moveCount[i] + 1;
+  moveNext({int? id, int? wrapCount}) {
+    if (moveCount[id!] < wrapCount! - 1) {
+      print(
+          "+++++++++++++++  ${moveCount[id]} ++++++++++++++ ${wrapCount - 1}");
+      moveUnit[id] = moveUnit[id] - width!;
+      moveCount[id] = moveCount[id] + 1;
     }
     update();
   }
 
-  moveBack({int? i, int? wrapCount}) {
-    if (moveCount[i!] > 0) {
-      moveUnit[i] = moveUnit[i] + width!;
-      moveCount[i] = moveCount[i] - 1;
+  moveBack({int? id, int? wrapCount}) {
+    if (moveCount[id!] > 0) {
+      moveUnit[id] = moveUnit[id] + width!;
+      moveCount[id] = moveCount[id] - 1;
     }
     update();
   }

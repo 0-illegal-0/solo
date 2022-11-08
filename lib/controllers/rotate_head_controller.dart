@@ -6,8 +6,7 @@ class RotateHeadController extends GetxController {
   double val = 0;
   Color style = Colors.black;
   RotateHeadController(
-      {required this.targetTimeYear,
-      required this.targetTimeDayes,
+      {required this.targetTimeDayes,
       required this.targetTimeHours,
       required this.targetTimeMonth});
 
@@ -15,12 +14,10 @@ class RotateHeadController extends GetxController {
 
   rotateBox() {
     val = pi;
-    update();
   }
 
   resetRotateBox() {
     val = 0;
-    update();
   }
 
   Future call() async {
@@ -50,19 +47,16 @@ class RotateHeadController extends GetxController {
     changeColor();
   }
 
-  final int targetTimeYear, targetTimeDayes, targetTimeMonth, targetTimeHours;
+  final int targetTimeDayes, targetTimeMonth, targetTimeHours;
   DateTime date = DateTime.now();
-  DateTime timeNow = DateTime.now();
   DateTime get targetTime {
-    return DateTime(
-        targetTimeYear, targetTimeMonth, targetTimeDayes, targetTimeHours);
+    return DateTime(targetTimeMonth, targetTimeDayes, targetTimeHours);
   }
 
   String stopWatch = "Loading";
 
   fun() {
     Future.delayed(const Duration(milliseconds: 900), () async {
-      await dateNow();
       fun();
     });
   }
@@ -82,7 +76,7 @@ class RotateHeadController extends GetxController {
     if (targetTime.hour >= DateTime.now().hour) {
       return targetTime.hour - DateTime.now().hour - 1;
     } else {
-      return (maxHour - DateTime.now().hour) + targetTime.hour;
+      return ((maxHour - DateTime.now().hour) + targetTime.hour);
     }
   }
 
@@ -91,24 +85,13 @@ class RotateHeadController extends GetxController {
     return (maxDays - DateTime.now().day) + targetTime.day;
   }
 
-  dateNow() {
-    date = DateTime.now();
-    stopWatch = "$days:$hour:$minute:$second";
-    update();
-  }
-
-  var selectedDate = DateTime.now().obs;
-  var selectedTime = TimeOfDay.now().obs;
-  dateNow2() async {
-    final pickedDate = await showDatePicker(
-      context: Get.context!,
-      initialDate: selectedDate.value,
-      firstDate: DateTime(2018),
-      lastDate: DateTime(2025),
-    );
-    if (pickedDate != null && pickedDate != selectedDate.value) {
-      selectedDate.value = pickedDate;
-    }
+  List<Map<String, dynamic>> get theRemainingTime {
+    return [
+      {"title": "Day", "date": targetTime.day},
+      {"title": "Hour", "date": hour},
+      {"title": "Minute", "date": minute},
+      {"title": "Second", "date": second}
+    ];
   }
 
   @override

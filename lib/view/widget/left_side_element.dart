@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo/controllers/cart.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
+import 'package:solo/view/style.dart';
 
-import '../../../../style.dart';
-
-class TopSale extends StatelessWidget {
-  TopSale(
+class LeftSideElement extends StatelessWidget {
+  LeftSideElement(
       {Key? key,
       this.width,
       this.mainPadding,
@@ -160,12 +160,47 @@ class TopSale extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const Expanded(
+                            Expanded(
                                 flex: 2,
                                 child: Center(
-                                  child: Text(
-                                    "13.000 EGP",
-                                    maxLines: 1,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        data![index]["item"].price!,
+                                        maxLines: 1,
+                                      ),
+                                      SizedBox(
+                                        height: 25,
+                                        child: IconButton(
+                                          alignment: Alignment.topRight,
+                                          padding: const EdgeInsets.only(
+                                              right: 3, bottom: 3),
+                                          color: Colors.green,
+                                          icon: const Icon(
+                                              Icons.shopping_cart_outlined),
+                                          onPressed: () {
+                                            Cart controller = Get.put(Cart());
+                                            controller.addToCart(
+                                                context: context,
+                                                image:
+                                                    data![index]["item"].image!,
+                                                price:
+                                                    data![index]["item"].price!,
+                                                stars:
+                                                    data![index]["item"].stars!,
+                                                title:
+                                                    data![index]["item"].title!,
+                                                width: width,
+                                                productItem: data![index]
+                                                    ["product-index"],
+                                                itemIndex: data![index]
+                                                    ["index"]);
+                                          },
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 )),
                           ],

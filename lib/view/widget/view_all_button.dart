@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/view/widget/show_item_wrap.dart';
 
-Widget viewAll(data, itemCount, width, {String? title}) {
+Widget viewAll({data, itemCount, width,aspectRatio, String? title}) {
   return data!.length > itemCount!
       ? TextButton(
           onPressed: () {
-            Get.deleteAll();
-            Get.to(() => ShowItemWrap(data: data, title: title));
+            // Get.deleteAll();
+            Get.to(() => ShowItemWrap(data: data, title: title,aspectRatio: aspectRatio,));
           },
           child: Text("See All",
               style: TextStyle(

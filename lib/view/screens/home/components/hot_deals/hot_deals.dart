@@ -14,38 +14,36 @@ class HotDeals extends StatelessWidget {
     this.mainPadding,
     this.title,
     this.data,
+    this.targetTimeDayes,
+    this.targetTimeHours,
+    this.targetTimeMonth,
+    this.aspectRatio,
   }) : super(key: key);
-  final double? width;
+  final double? width, aspectRatio;
   final double? mainPadding;
   final String? title;
   final List? data;
   double? widthValue = 0.0;
+
+  final int? targetTimeDayes, targetTimeHours, targetTimeMonth;
 
   int get maxItemCount {
     return crossAxisCount * 2;
   }
 
   int get crossAxisCount {
-    if (device == DeviceType.Mobile) {
-      widthValue = 3.44;
+    if (width! < 901) {
+      widthValue = 3.65;
       return 3;
-    } else if (device == DeviceType.Tablet) {
-      if (width! < 901) {
-        widthValue = 4.67;
-        return 4;
-      } else {
-        widthValue = 5.5;
-        return 4;
-      }
+    } else if (width! < 1200) {
+      widthValue = 5.06;
+      return 4;
     } else {
-      if (width! < 1200) {
-        widthValue = 5.06;
-        return 5;
-      } else if (width! > 1200) {
-        widthValue = 6;
+      if (width! <= 1600) {
+        widthValue = 6.67;
         return 5;
       } else {
-        widthValue = 7.4;
+        widthValue = 8.5;
         return 6;
       }
     }
@@ -54,16 +52,19 @@ class HotDeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RotateHeadController controller = Get.put(RotateHeadController(
-        targetTimeDayes: 17,
-        targetTimeHours: 5,
-        targetTimeMonth: 4,
-        targetTimeYear: 2022));
+      targetTimeDayes: targetTimeDayes!,
+      targetTimeHours: targetTimeHours!,
+      targetTimeMonth: targetTimeMonth!,
+    ));
+
+    print(" ....... ${controller.date}");
 
     return Column(
       children: [
         RotateHead(
           title: title!,
           width: width,
+          controller: controller,
         ),
         SizedBox(
             height: sizesResponsive(
@@ -74,8 +75,13 @@ class HotDeals extends StatelessWidget {
             maxItemCount: maxItemCount,
             data: data,
             widthValue: widthValue),
-        const SizedBox(height: 15),
-        viewAll(data, maxItemCount, width, title: title)
+        SizedBox(height: width! < 450 ? 15 : 25),
+        viewAll(
+            data: data,
+            itemCount: maxItemCount,
+            width: width,
+            title: title,
+            aspectRatio: aspectRatio),
       ],
     );
   }

@@ -6,22 +6,17 @@ import 'package:solo/view/screens/product-page/product_page.dart';
 import '../../../../style.dart';
 
 class Gift extends StatelessWidget {
-  const Gift({Key? key, this.title, this.width}) : super(key: key);
-  final String? title;
+  const Gift(
+      {Key? key, this.title, this.width, this.imageList, this.textBanner})
+      : super(key: key);
+  final String? title, textBanner;
   final double? width;
-  static const List<String> images = [
-    "assets/images/laptops/hp-255-g8.png",
-    "assets/images/cameras/camera1.png",
-    "assets/images/cameras/camera1.png"
-  ];
+  final List<String>? imageList;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("1:- ${solo.product[4]}");
-        print("2:- ${width}");
-        print("2:- ${solo.product[4].aspectRatio}");
-        print("2:- ${solo.product[4].height}");
         Get.to(
             () => ProductPage(
                   category: solo.product[4],
@@ -31,7 +26,7 @@ class Gift extends StatelessWidget {
                   productItem: 2,
                 ),
             preventDuplicates: false);
-        // Get.deleteAll();
+        Get.deleteAll();
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +62,7 @@ class Gift extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Center(
                         child: Text(
-                          "Buy More Than 25.000 EGP and Get OFF 50% Dicount",
+                          textBanner!,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
@@ -91,7 +86,7 @@ class Gift extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: List.generate(
-                        images.length,
+                        imageList!.length,
                         (index) => Transform.rotate(
                           angle: pi / 4,
                           child: Container(
@@ -99,13 +94,13 @@ class Gift extends StatelessWidget {
                             height: width! / 5.5 > 150 ? 150 : width! / 5.5,
                             padding: EdgeInsets.all(width! / 65.8),
                             decoration: BoxDecoration(
-                                color: const Color(0xFFa8a7a5), //0xFF53524f
+                                color: const Color(0xFFa8a7a5),
                                 border: Border.all(
                                     color: const Color(0xFFffffff),
                                     width: 3.0)),
                             child: Transform.rotate(
                               angle: -pi / 4,
-                              child: Image.asset(images[index]),
+                              child: Image.asset(imageList![index]),
                             ),
                           ),
                         ),
