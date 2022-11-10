@@ -23,7 +23,8 @@ class LeftSideElement extends StatelessWidget {
   double? designHeight, designWidth;
 
   responsiveSizes() {
-    if (width! < 850) {
+    if (width! < 750) {
+      // old val is 850
       designHeight = width! / 2.57 > 160 ? 160 : width! / 2.57;
       designWidth = width;
     } else if (width! < 1300) {

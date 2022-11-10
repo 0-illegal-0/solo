@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:solo/controllers/add_data.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/screens/home/components/deal_festival/deal_festival.dart';
 import 'package:solo/view/screens/home/components/gift/gift.dart';
 import 'package:solo/view/screens/home/components/latest_item/latest_items.dart';
-import 'package:solo/view/screens/home/components/recommended/recommended.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer.dart';
 import 'package:solo/view/screens/home/components/weeklyGift/weekly_gift.dart';
 import 'package:solo/view/widget/close/close.dart';
@@ -97,11 +97,29 @@ class HomePage extends StatelessWidget {
                           productItem: 0,
                         ),
                         SizedBox(height: inst.verticalSpace),*/
-                        Recommended(
-                            width: inst.width!,
-                            title: "Recommended",
-                            padding: inst.mainPadding!,
-                            data: inst.itemData["recomended"]),
+                        DealFestival(
+                          width: inst.width!,
+                          title: "Deal Festival",
+                          padding: inst.mainPadding!,
+                          data: inst.itemData["recomended"],
+                          tabletImage:
+                              "assets/advertise/tablet-advertise33.png",
+                          mobileImage: "assets/advertise/phone-advertise.png",
+                          textLabelForMobile: "Harry up",
+                          festivalTitleForMobile:
+                              "Super Sale \non mobile phone",
+                          festivalTitleForTablet:
+                              "Top 10 best selling\ntablets",
+                          tvImageCollection: const [
+                            "assets/advertise/tornado-32-2.png",
+                            "assets/advertise/tornado-32.png",
+                            "assets/advertise/grow-1.png",
+                            "assets/advertise/fish.png",
+                            "assets/advertise/baloon.png"
+                          ],
+                          tvLabel: "Super\nSale",
+                          tvTitle: "Every Day New Discount Product",
+                        ),
 
                         /*  SizedBox(height: inst.verticalSpace),
 
