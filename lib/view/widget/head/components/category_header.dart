@@ -23,33 +23,36 @@ class CategoriesHeader extends StatelessWidget {
           solo.product.length,
           (index) => Row(
                 children: [
-                  TextButton(
-                    style: ButtonStyle(
-                        padding:
-                            MaterialStateProperty.all(const EdgeInsets.all(0))),
-                    onPressed: () {
-                      Get.to(
-                          () => ProductPage(
-                                category: solo.product[index],
-                                width: width,
-                                productItem: index,
-                                aspectRatio: solo.product[index].aspectRatio,
-                                height: solo.product[index].height,
-                              ),
-                          preventDuplicates: false);
-                      Get.deleteAll();
-                    },
-                    child: Row(
-                      children: [
-                        Text(solo.product[index].productName as String,
-                            style: TextStyle(
-                                color: const Color(0xFFffffff),
-                                fontSize: device == DeviceType.Mobile
-                                    ? 14.5
-                                    : device == DeviceType.Tablet
-                                        ? 16
-                                        : 19)),
-                      ],
+                  SizedBox(
+                    height: width! < 650
+                        ? 25
+                        : width! < 1100
+                            ? 35
+                            : 30,
+                    child: TextButton(
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(0))),
+                      onPressed: () {
+                        Get.to(
+                            () => ProductPage(
+                                  category: solo.product[index],
+                                  width: width,
+                                  productItem: index,
+                                  aspectRatio: solo.product[index].aspectRatio,
+                                  height: solo.product[index].height,
+                                ),
+                            preventDuplicates: false);
+                        Get.deleteAll();
+                      },
+                      child: Text(solo.product[index].productName as String,
+                          style: TextStyle(
+                              color: const Color(0xFFffffff),
+                              fontSize: device == DeviceType.Mobile
+                                  ? 14.5
+                                  : device == DeviceType.Tablet
+                                      ? 16
+                                      : 19)),
                     ),
                   ),
                   SizedBox(width: index == solo.product.length - 1 ? 0 : space)

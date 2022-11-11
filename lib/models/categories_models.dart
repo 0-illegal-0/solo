@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
+
 class Solo {
   String? projectName;
   List<Product>? product;
   List<String>? imagesGiftDesign;
-
+  Map? dealFestival;
   Solo({this.projectName, this.product, this.imagesGiftDesign});
 
   Solo.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,10 @@ class Solo {
       json['images-gift-design'].forEach((v) {
         imagesGiftDesign!.add(v);
       });
+    }
+
+    if (json['deal-festival'] != null) {
+      dealFestival = json['deal-festival'];
     }
   }
 }

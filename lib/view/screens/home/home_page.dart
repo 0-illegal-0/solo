@@ -98,28 +98,11 @@ class HomePage extends StatelessWidget {
                         ),
                         SizedBox(height: inst.verticalSpace),*/
                         DealFestival(
-                          width: inst.width!,
-                          title: "Deal Festival",
-                          padding: inst.mainPadding!,
-                          data: inst.itemData["recomended"],
-                          tabletImage:
-                              "assets/advertise/tablet-advertise33.png",
-                          mobileImage: "assets/advertise/phone-advertise.png",
-                          textLabelForMobile: "Harry up",
-                          festivalTitleForMobile:
-                              "Super Sale \non mobile phone",
-                          festivalTitleForTablet:
-                              "Top 10 best selling\ntablets",
-                          tvImageCollection: const [
-                            "assets/advertise/tornado-32-2.png",
-                            "assets/advertise/tornado-32.png",
-                            "assets/advertise/grow-1.png",
-                            "assets/advertise/fish.png",
-                            "assets/advertise/baloon.png"
-                          ],
-                          tvLabel: "Super\nSale",
-                          tvTitle: "Every Day New Discount Product",
-                        ),
+                            width: inst.width!,
+                            title: "Deal Festival",
+                            padding: inst.mainPadding!,
+                            data: inst.itemData["recomended"],
+                            mainData: solo.dealFestival),
 
                         /*  SizedBox(height: inst.verticalSpace),
 

@@ -4272,5 +4272,24 @@ Map<String, dynamic> data = {
     "assets/images/laptops/hp-255-g8.png",
     "assets/images/cameras/camera1.png",
     "assets/images/cameras/camera1.png"
-  ]
+  ],
+  "deal-festival": {
+    "mobile-image": "assets/advertise/phone-advertise.png",
+    "tablet-image": "assets/advertise/tablet-advertise33.png",
+    "tv-image-collection": [
+      "assets/advertise/tornado-32-2.png",
+      "assets/advertise/tornado-32.png",
+      "assets/advertise/grow-1.png",
+      "assets/advertise/fish.png",
+      "assets/advertise/baloon.png"
+    ],
+    "laptop-image-collection": [
+      "assets/advertise/macbook-pro.png",
+      "assets/advertise/laptop-advertise1.png",
+      "assets/advertise/lenovo-l340.png"
+    ]
+  }
 };
+
+
+//print("This is Map ${solo.lapImageCollection}");

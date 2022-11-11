@@ -9,32 +9,21 @@ import 'package:solo/view/widget/left_side_element.dart';
 import '../../../../style.dart';
 
 class DealFestival extends StatelessWidget {
-  DealFestival(
-      {Key? key,
-      this.width,
-      this.title,
-      this.data,
-      this.padding,
-      this.tabletImage,
-      this.mobileImage,
-      this.textLabelForMobile,
-      this.festivalTitleForMobile,
-      this.festivalTitleForTablet,
-      this.tvTitle,
-      this.tvImageCollection,
-      this.tvLabel})
-      : super(key: key);
+  DealFestival({
+    Key? key,
+    this.width,
+    this.title,
+    this.data,
+    this.padding,
+    this.mainData,
+  }) : super(key: key) {
+    responsiveSizes();
+    festivalData ??= mainData;
+  }
+
   final double? width, padding;
   final String? title;
   final List? data;
-  final List<String>? tvImageCollection;
-  final String? tabletImage,
-      mobileImage,
-      textLabelForMobile,
-      festivalTitleForMobile,
-      festivalTitleForTablet,
-      tvTitle,
-      tvLabel;
 
   double get itemWidth {
     if (width! < 500) {
@@ -43,6 +32,9 @@ class DealFestival extends StatelessWidget {
       return 500;
     }
   }
+
+  static Map? festivalData;
+  final Map? mainData;
 
   double? designHeight, designWidth;
   responsiveSizes() {
@@ -57,38 +49,25 @@ class DealFestival extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    responsiveSizes();
     if (device == DeviceType.Desktop) {
-      return RecommendedDesktopDesign(
+      return RecommendedForTablet(
+        width: width,
+        title: title,
+      ); /* RecommendedDesktopDesign(
         data: data!,
         width: width,
         title: title!,
         showCountInRow: 3,
-      );
+      );*/
     } else if (device == DeviceType.Tablet) {
       return RecommendedForTablet(
-          width: width,
-          title: title,
-          festivalTitleForMobile: festivalTitleForMobile,
-          festivalTitleForTablet: festivalTitleForTablet,
-          mobileImage: mobileImage,
-          tabletImage: tabletImage,
-          textLabelForMobile: textLabelForMobile,
-          tvImageCollection: tvImageCollection,
-          tvLabel: tvLabel,
-          tvTitle: tvTitle);
+        width: width,
+        title: title,
+      );
     } else {
       return RecommendedForMobile(
         width: width,
         title: title,
-        festivalTitleForMobile: festivalTitleForMobile,
-        festivalTitleForTablet: festivalTitleForTablet,
-        mobileImage: mobileImage,
-        tabletImage: tabletImage,
-        textLabelForMobile: textLabelForMobile,
-        tvImageCollection: tvImageCollection,
-        tvLabel: tvLabel,
-        tvTitle: tvTitle,
       );
     }
   }
@@ -265,29 +244,10 @@ class RecommendedDesktopDesign extends StatelessWidget {
 }
 
 class RecommendedForMobile extends StatelessWidget {
-  const RecommendedForMobile(
-      {Key? key,
-      this.width,
-      this.tabletImage,
-      this.mobileImage,
-      this.textLabelForMobile,
-      this.festivalTitleForMobile,
-      this.festivalTitleForTablet,
-      this.title,
-      this.tvImageCollection,
-      this.tvTitle,
-      this.tvLabel})
+  const RecommendedForMobile({Key? key, this.width, this.title})
       : super(key: key);
   final double? width;
-  final List<String>? tvImageCollection;
-  final String? title,
-      tabletImage,
-      mobileImage,
-      textLabelForMobile,
-      festivalTitleForMobile,
-      festivalTitleForTablet,
-      tvTitle,
-      tvLabel;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -305,32 +265,27 @@ class RecommendedForMobile extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 10, crossAxisCount: 1),
             children: [
-              LapAdvertise(width: width),
+              LaptopAdvertise(
+                width: width,
+              ),
               Column(children: [
                 Expanded(
-                    child: TabletAdvertise(
+                    child: TabletAndMobileAdvertise(
                   width: width,
                   fontColor: const Color(0xFF045187),
-                  image: mobileImage,
                   textNote: true,
-                  note: textLabelForMobile,
-                  title: festivalTitleForMobile,
                 )),
                 const SizedBox(height: 5),
                 Expanded(
-                    child: TabletAdvertise(
+                    child: TabletAndMobileAdvertise(
                   width: width,
                   fontColor: const Color(0xFFd1bc19),
-                  image: tabletImage,
-                  title: festivalTitleForTablet,
                   textNote: false,
                 )),
               ]),
               TvAdvertise(
-                  width: width,
-                  tvImageCollection: tvImageCollection,
-                  tvLabel: tvLabel,
-                  tvTitle: tvTitle)
+                width: width,
+              )
             ],
           ),
         ),
@@ -340,29 +295,10 @@ class RecommendedForMobile extends StatelessWidget {
 }
 
 class RecommendedForTablet extends StatelessWidget {
-  const RecommendedForTablet(
-      {Key? key,
-      this.width,
-      this.tabletImage,
-      this.mobileImage,
-      this.textLabelForMobile,
-      this.festivalTitleForMobile,
-      this.festivalTitleForTablet,
-      this.title,
-      this.tvImageCollection,
-      this.tvLabel,
-      this.tvTitle})
+  const RecommendedForTablet({Key? key, this.width, this.title})
       : super(key: key);
   final double? width;
-  final List<String>? tvImageCollection;
-  final String? title,
-      tabletImage,
-      mobileImage,
-      textLabelForMobile,
-      festivalTitleForMobile,
-      festivalTitleForTablet,
-      tvLabel,
-      tvTitle;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -377,7 +313,10 @@ class RecommendedForTablet extends StatelessWidget {
           height: width! * 0.35,
           child: Row(
             children: [
-              Expanded(child: LapAdvertise(width: width)),
+              Expanded(
+                  child: LaptopAdvertise(
+                width: width,
+              )),
               SizedBox(width: width! / 65),
               Expanded(
                 flex: 2,
@@ -388,22 +327,17 @@ class RecommendedForTablet extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: TabletAdvertise(
+                            child: TabletAndMobileAdvertise(
                               width: width,
                               fontColor: const Color(0xFF045187),
-                              image: mobileImage,
                               textNote: true,
-                              note: textLabelForMobile,
-                              title: festivalTitleForMobile,
                             ),
                           ),
                           SizedBox(width: width! / 65),
                           Expanded(
-                              child: TabletAdvertise(
+                              child: TabletAndMobileAdvertise(
                             width: width,
                             fontColor: const Color(0xFFd1bc19),
-                            image: tabletImage,
-                            title: festivalTitleForTablet,
                             textNote: false,
                           )),
                         ],
@@ -414,9 +348,6 @@ class RecommendedForTablet extends StatelessWidget {
                       flex: 4,
                       child: TvAdvertise(
                         width: width,
-                        tvImageCollection: tvImageCollection!,
-                        tvLabel: tvLabel,
-                        tvTitle: tvTitle,
                       ),
                     ),
                   ],
@@ -434,18 +365,14 @@ class TvAdvertise extends StatelessWidget {
   TvAdvertise({
     Key? key,
     required this.width,
-    this.tvTitle,
-    this.tvLabel,
-    this.tvImageCollection,
   }) : super(key: key);
 
   final double? width;
-  final String? tvTitle, tvLabel;
 
   Widget superSale() {
-    return Text(tvLabel!, //  "Super\nSale",
+    return const Text("Super\nSale",
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 15,
           height: 0.9,
           color: Color(0xFFf7e9f7),
@@ -462,7 +389,6 @@ class TvAdvertise extends StatelessWidget {
   double imagePosition = 0, minImageWidth = 0;
   double imageWidth = 0;
 
-  final List<String>? tvImageCollection;
   executeTvImageList(index) {
     if (index == 0 || index == 2) {
       imagePosition = width! < 650 ? 20 : width! / 11;
@@ -478,22 +404,30 @@ class TvAdvertise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: const Color(0xFFd4c2f2), //const Color(0xFFb00e5f),
+        color: const Color(0xFFd4c2f2),
         height: width! * 0.12,
         padding: EdgeInsets.only(bottom: width! < 650 ? 5 : 0),
         child: Column(
           children: [
             SizedBox(
               width: double.infinity,
-              height: width! > 649 && width! < 851 ? 22 : 30,
+              height: width! > 649 && width! < 851
+                  ? 22
+                  : width! < 650
+                      ? 30
+                      : width! / 32,
               child: CustomPaint(
                 painter: LapHeadDesign(color: const Color(0xFF5e135e)),
                 child: Center(
-                  child: Text(tvTitle!, //"Every Day New Discount Product",
+                  child: Text("Every Day New Discount Product",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: const Color(0xFFc5c3c7),
-                          fontSize: width! > 850 ? 19 : 15,
+                          fontSize: width! > 1100
+                              ? 22
+                              : width! > 850
+                                  ? 17
+                                  : 15,
                           fontFamily: "Contrail",
                           shadows: const [
                             Shadow(
@@ -516,8 +450,9 @@ class TvAdvertise extends StatelessWidget {
                   children: [
                     Stack(
                         alignment: AlignmentDirectional.center,
-                        children:
-                            List.generate(tvImageCollection!.length, (index) {
+                        children: List.generate(
+                            DealFestival.festivalData!["tv-image-collection"]
+                                .length, (index) {
                           executeTvImageList(index);
                           return index < 2
                               ? Positioned(
@@ -526,7 +461,8 @@ class TvAdvertise extends StatelessWidget {
                                     constraints:
                                         BoxConstraints(minWidth: minImageWidth),
                                     child: Image.asset(
-                                        tvImageCollection![index],
+                                        DealFestival.festivalData![
+                                            "tv-image-collection"][index],
                                         width: imageWidth),
                                   ))
                               : index < 4
@@ -536,7 +472,8 @@ class TvAdvertise extends StatelessWidget {
                                         constraints: BoxConstraints(
                                             minWidth: minImageWidth),
                                         child: Image.asset(
-                                            tvImageCollection![index],
+                                            DealFestival.festivalData![
+                                                "tv-image-collection"][index],
                                             width: imageWidth),
                                       ))
                                   : Align(
@@ -544,7 +481,8 @@ class TvAdvertise extends StatelessWidget {
                                         constraints:
                                             const BoxConstraints(minWidth: 90),
                                         child: Image.asset(
-                                            tvImageCollection![index],
+                                            DealFestival.festivalData![
+                                                "tv-image-collection"][index],
                                             width: width! * 0.13),
                                       ),
                                     );
@@ -562,21 +500,13 @@ class TvAdvertise extends StatelessWidget {
   }
 }
 
-class TabletAdvertise extends StatelessWidget {
-  TabletAdvertise(
-      {Key? key,
-      required this.width,
-      this.textNote = false,
-      this.image,
-      this.note,
-      this.title,
-      this.fontColor})
+class TabletAndMobileAdvertise extends StatelessWidget {
+  TabletAndMobileAdvertise(
+      {Key? key, required this.width, this.textNote = false, this.fontColor})
       : super(key: key);
 
   final double? width;
-  final String? image, title;
   bool textNote;
-  final String? note;
   final Color? fontColor;
 
   @override
@@ -584,7 +514,7 @@ class TabletAdvertise extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.only(
-          bottom: width! > 850 ? 15 : 5, top: 10, left: 5, right: 5),
+          bottom: width! > 850 ? 15 : 5, top: 10, left: 5, right: 10),
       decoration: textNote == false
           ? const BoxDecoration(
               gradient: LinearGradient(
@@ -604,8 +534,12 @@ class TabletAdvertise extends StatelessWidget {
               constraints: BoxConstraints(
                   minHeight: 110,
                   maxWidth: width! >= 650 && width! < 800 ? 70 : 250),
-              child: Image.asset(image!,
-                  alignment: Alignment.center, height: width! * 0.14),
+              child: Image.asset(
+                  textNote == true
+                      ? DealFestival.festivalData!["mobile-image"]
+                      : DealFestival.festivalData!["tablet-image"],
+                  alignment: Alignment.center,
+                  height: width! * 0.14),
             ),
           ),
           const Spacer(),
@@ -613,15 +547,21 @@ class TabletAdvertise extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                title!,
+                textNote == true
+                    ? "Super Sale \non mobile phone"
+                    : "Top 10 best\nselling tablets",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: fontColor!,
-                    fontSize: width! > 850 ? 16 : 13.5,
+                    fontSize: width! > 1100
+                        ? 20
+                        : width! > 850
+                            ? 15
+                            : 11.5,
                     shadows: const [
                       Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 3.0,
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 2.0,
                         color: Color(0xFF242226),
                       ),
                     ],
@@ -631,51 +571,79 @@ class TabletAdvertise extends StatelessWidget {
               textNote == false
                   ? Align(
                       alignment: Alignment.bottomRight,
-                      child: TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  const Color(0xFFdedede)),
-                              fixedSize: MaterialStateProperty.all(
-                                  Size(width! < 851 ? 65 : 85, 28)),
-                              textStyle: MaterialStateProperty.all(
-                                  const TextStyle(color: Colors.black)),
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.zero)),
-                          onPressed: () {
-                            Get.to(
-                                () => ProductPage(
-                                      category: solo.product[2],
-                                      width: width,
-                                      productItem: 2,
-                                      aspectRatio: solo.product[2].aspectRatio,
-                                      height: solo.product[2].height,
+                      child: SizedBox(
+                        width: responsive(
+                            device: width,
+                            smallestWidth: 700,
+                            smallestElement: 50,
+                            mediumWidth: 1100,
+                            meduimElement: 60,
+                            largeElement: 70),
+                        height: responsive(
+                            device: width,
+                            smallestWidth: 700,
+                            smallestElement: 20,
+                            mediumWidth: 1100,
+                            meduimElement: 27,
+                            largeElement: 30),
+                        child: TextButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color(0xFFdedede)),
+                                textStyle: MaterialStateProperty.all(
+                                    const TextStyle(color: Colors.black)),
+                                padding:
+                                    MaterialStateProperty.all(EdgeInsets.zero)),
+                            onPressed: () {
+                              Get.to(
+                                  () => ProductPage(
+                                        category: solo.product[2],
+                                        width: width,
+                                        productItem: 2,
+                                        aspectRatio:
+                                            solo.product[2].aspectRatio,
+                                        height: solo.product[2].height,
+                                      ),
+                                  preventDuplicates: false);
+                              Get.deleteAll();
+                            },
+                            child: Text(
+                              "Shoping",
+                              style: TextStyle(
+                                  fontSize: width! < 700 ? 11.5 : 13.5,
+                                  shadows: const [
+                                    Shadow(
+                                      offset: Offset(0.5, 0.5),
+                                      blurRadius: 1.5,
+                                      color: Color(0xFF605d5f),
                                     ),
-                                preventDuplicates: false);
-                            Get.deleteAll();
-                          },
-                          child: const Text(
-                            "Shoping",
-                            style: TextStyle(shadows: [
-                              Shadow(
-                                offset: Offset(2.0, 2.0),
-                                blurRadius: 3.0,
-                                color: Color(0xFF605d5f),
-                              ),
-                            ], color: Color(0xFF000000)),
-                          )),
+                                  ],
+                                  color: Color(0xFF000000)),
+                            )),
+                      ),
                     )
                   : SizedBox(
-                      width: 50,
+                      width: width! > 1100
+                          ? 65
+                          : width! > 850
+                              ? 60
+                              : 39, //50,
                       height: 25,
                       child: CustomPaint(
                         painter: Poster(color: const Color(0xFFbd0f40)),
-                        child: const Padding(
-                          padding: EdgeInsets.only(top: 3),
-                          child: Text(
-                            "Harry Up",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 13, color: Color(0xFFffffff)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              /*   top: width! > 850 ? 3 : 0, left: 2,*/ bottom:
+                                  4),
+                          child: Center(
+                            child: Text(
+                              "Harry Up",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  // height: 1,
+                                  fontSize: width! > 850 ? 13 : 10,
+                                  color: const Color(0xFFffffff)),
+                            ),
                           ),
                         ),
                       ),
@@ -688,8 +656,8 @@ class TabletAdvertise extends StatelessWidget {
   }
 }
 
-class LapAdvertise extends StatelessWidget {
-  const LapAdvertise({Key? key, this.width}) : super(key: key);
+class LaptopAdvertise extends StatelessWidget {
+  LaptopAdvertise({Key? key, this.width}) : super(key: key);
   final double? width;
   double get respnseveFont {
     return width! < 750 ? 17 : 20;
@@ -736,7 +704,9 @@ class LapAdvertise extends StatelessWidget {
                     left: 10,
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(minWidth: 80),
-                      child: Image.asset("assets/advertise/macbook-pro.png",
+                      child: Image.asset(
+                          DealFestival.festivalData!["laptop-image-collection"]
+                              [0],
                           width: width! * 0.10),
                     )),
                 Positioned(
@@ -744,7 +714,8 @@ class LapAdvertise extends StatelessWidget {
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(minWidth: 80),
                       child: Image.asset(
-                          "assets/advertise/laptop-advertise1.png",
+                          DealFestival.festivalData!["laptop-image-collection"]
+                              [1],
                           width: width! * 0.10),
                     )),
                 Align(
@@ -752,7 +723,9 @@ class LapAdvertise extends StatelessWidget {
                   child: Center(
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(minWidth: 120),
-                      child: Image.asset("assets/advertise/lenovo-l340.png",
+                      child: Image.asset(
+                          DealFestival.festivalData!["laptop-image-collection"]
+                              [2],
                           width: width! * 0.13),
                     ),
                   ),

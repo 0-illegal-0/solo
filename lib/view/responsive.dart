@@ -35,3 +35,24 @@ double sizesResponsive(
     return desktop!;
   }
 }
+
+double responsive(
+    {Map test = const {},
+    double? smallestElement,
+    double? smallestWidth,
+    double? meduimElement,
+    double? mediumWidth,
+    double? largeElement,
+    double? largeWidth,
+    double? device}) {
+  /* if (test["red"] == "red") {
+    print(test);
+  }*/
+  if (device! < smallestWidth!) {
+    return smallestElement!;
+  } else if (device < mediumWidth!) {
+    return meduimElement!;
+  } else {
+    return largeElement!;
+  }
+}

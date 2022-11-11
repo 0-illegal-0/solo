@@ -27,8 +27,8 @@ class Head extends StatelessWidget {
   final Cart? controller;
   final String? logoName;
 
-  double heightHead = 108;
-  double topPosition = 88;
+  double heightHead = 110;
+  double topPosition = 86;
   double heightCurve = 13;
 
   categoryBar() {
@@ -46,7 +46,6 @@ class Head extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     categoryBar();
-
     return SizedBox(
       height: heightHead,
       child: Stack(
@@ -102,7 +101,7 @@ class MobileHead extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 10),
-            Logo(fontSize: 35),
+            const Logo(fontSize: 35),
             const SizedBox(width: 15),
             Search(
               fieldHeight: 32,
@@ -112,18 +111,19 @@ class MobileHead extends StatelessWidget {
             const SizedBox(width: 10),
           ],
         ),
-        const SizedBox(height: 5),
-        //const Spacer(),
-        SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: CategoriesHeader(
-                aspectRatio: aspectRatio,
-                space: space,
-                width: width,
-              ),
-            ))
+        Container(
+          //  color: Colors.black,
+          child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: CategoriesHeader(
+                  aspectRatio: aspectRatio,
+                  space: space,
+                  width: width,
+                ),
+              )),
+        )
       ],
     );
   }
@@ -282,7 +282,6 @@ class DesktopHead extends StatelessWidget {
 class Logo extends StatelessWidget {
   const Logo({
     Key? key,
-    this.y,
     this.fontSize,
     this.logoName,
   }) : super(key: key);
@@ -290,7 +289,6 @@ class Logo extends StatelessWidget {
   final double? fontSize;
   final String? logoName;
   static String? logo;
-  final String? y;
 
   @override
   Widget build(BuildContext context) {
