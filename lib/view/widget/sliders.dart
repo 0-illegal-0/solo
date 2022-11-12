@@ -3,27 +3,30 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/advertisement_controller.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
-import '../../../../style.dart';
-import 'slider_style1.dart';
 
-class WeeklyGift extends StatelessWidget {
-  const WeeklyGift({Key? key, this.width, this.title, this.slidersList})
+class SlidersAdvertise extends StatelessWidget {
+  const SlidersAdvertise(
+      {Key? key,
+      this.width,
+      this.title,
+      this.mainPadding,
+      this.slidersList,
+      this.controllerState})
       : super(key: key);
 
-  List<Widget> styleWidget({width, index}) {
-    return [
-      SlidersStyle1(width: width, index: index),
-      SlidersStyle1(width: width, index: index),
-      SlidersStyle1(width: width, index: index),
-    ];
-  }
-
-  final double? width;
+  final double? width, mainPadding;
   final String? title;
   final List? slidersList;
-
+  final int? controllerState;
   @override
   Widget build(BuildContext context) {
+    AdvertiseController controller1 = Get.put(AdvertiseController(
+        width: width,
+        mainPadding: mainPadding,
+        offset: 0,
+        movementDurationPerMilliseconds: 300,
+        repetitionDurationPerSecond: 3,
+        contentCount: slidersList!.length));
     WeeklyController controller2 = Get.put(WeeklyController(
         width: width,
         offset: 0,
@@ -32,14 +35,13 @@ class WeeklyGift extends StatelessWidget {
         repetitionDurationPerSecond: 3,
         contentCount: slidersList!.length));
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(title!, style: titleStyle),
-        ),
+        Text(title!,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 0)),
         Container(
             decoration: const BoxDecoration(
+              color: Colors.amber,
               boxShadow: [
                 BoxShadow(
                     color: Color(0xFF8a9296),
@@ -48,13 +50,15 @@ class WeeklyGift extends StatelessWidget {
                     offset: Offset(0, 0))
               ],
             ),
-            width: controller2.moveTo!,
+            width:
+                controllerState == 1 ? controller1.moveTo! : controller2.moveTo,
             height: width! * 0.26,
-            constraints: const BoxConstraints(minHeight: 140),
+            constraints: const BoxConstraints(minHeight: 130),
             child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                controller: controller2.move,
+                controller:
+                    controllerState == 1 ? controller1.move : controller2.move,
                 itemCount: slidersList!.length,
                 itemBuilder: (context, i) {
                   return Container(
@@ -73,20 +77,25 @@ class WeeklyGift extends StatelessWidget {
                       },
                       child: slidersList![i],
                     ),
-                  ); //styleWidget(width: width, index: i)[i];
+                  );
                 })),
         const SizedBox(height: 10),
-        Center(
-          child: SizedBox(
-            width: 80,
-            child: GetBuilder<WeeklyController>(builder: (controller2) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: controller2.stageIcon ?? controller2.initValue(),
-              );
-            }),
-          ),
-        ),
+        SizedBox(
+          width: width! / 15 < 70 ? 70 : width! / 15,
+          child: controllerState == 1
+              ? GetBuilder<AdvertiseController>(builder: (context) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: controller1.stageIcon ?? controller1.initValue(),
+                  );
+                })
+              : GetBuilder<WeeklyController>(builder: (context) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: controller2.stageIcon ?? controller2.initValue(),
+                  );
+                }),
+        )
       ],
     );
   }

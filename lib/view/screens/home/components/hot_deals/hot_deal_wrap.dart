@@ -4,14 +4,16 @@ import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 
 class HotDealWrap extends StatelessWidget {
-  const HotDealWrap({
+  HotDealWrap({
     Key? key,
     this.mainPadding,
     this.width,
     this.widthValue,
     this.data,
     this.maxItemCount,
-  }) : super(key: key);
+  }) : super(key: key) {
+    getDevice(width);
+  }
 
   final double? mainPadding;
   final double? width, widthValue;
@@ -32,7 +34,6 @@ class HotDealWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getDevice(width);
     return Align(
       alignment: Alignment.topLeft,
       child: Wrap(

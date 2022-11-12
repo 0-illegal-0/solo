@@ -15,7 +15,10 @@ class LeftSideElement extends StatelessWidget {
       this.itemCountForTablet,
       this.itemCountForDesktop,
       this.data})
-      : super(key: key);
+      : super(key: key) {
+    getDevice(width);
+    responsiveSizes();
+  }
   final double? width, mainPadding, space;
   final String? title;
   final List? data;
@@ -24,26 +27,19 @@ class LeftSideElement extends StatelessWidget {
 
   responsiveSizes() {
     if (width! < 750) {
-      // old val is 850
       designHeight = width! / 2.57 > 160 ? 160 : width! / 2.57;
       designWidth = width;
     } else if (width! < 1300) {
       designHeight = 160;
-      designWidth =
-          (width! - mainPadding! * 2 - space! * (itemCountForTablet! - 1)) /
-              itemCountForTablet!;
+      designWidth = width! / 2.22;
     } else {
       designHeight = 160;
-      designWidth =
-          (width! - mainPadding! * 2 - space! * (itemCountForDesktop! - 1)) /
-              itemCountForDesktop!;
+      designWidth = width! / 3.33;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    getDevice(width);
-    responsiveSizes();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -54,9 +50,8 @@ class LeftSideElement extends StatelessWidget {
         Wrap(
             spacing: space!,
             runSpacing: space!,
-            children: List.generate(
-              data!.length,
-              (index) => Container(
+            children: List.generate(data!.length, (index) {
+              return Container(
                 decoration:
                     const BoxDecoration(color: Color(0xFFffffff), boxShadow: [
                   BoxShadow(
@@ -169,7 +164,7 @@ class LeftSideElement extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        data![index]["item"].price!,
+                                        "${data![index]["item"].price!} EGP",
                                         maxLines: 1,
                                       ),
                                       SizedBox(
@@ -210,8 +205,8 @@ class LeftSideElement extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            )),
+              );
+            })),
       ],
     );
   }

@@ -4,6 +4,7 @@ class Solo {
   String? projectName;
   List<Product>? product;
   List<String>? imagesGiftDesign;
+  List<String>? topBrandImage;
   Map? dealFestival;
   Solo({this.projectName, this.product, this.imagesGiftDesign});
 
@@ -20,6 +21,13 @@ class Solo {
       imagesGiftDesign = [];
       json['images-gift-design'].forEach((v) {
         imagesGiftDesign!.add(v);
+      });
+    }
+
+    if (json['top-brand-image'] != null) {
+      topBrandImage = [];
+      json['top-brand-image'].forEach((v) {
+        topBrandImage!.add(v);
       });
     }
 

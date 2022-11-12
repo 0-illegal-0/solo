@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:solo/models/top_brand_models.dart';
 import 'package:solo/view/responsive.dart';
-import 'package:solo/view/screens/home/components/top-brands/brands_items.dart';
 
 import '../../../../style.dart';
 
 class TopBrand extends StatelessWidget {
-  const TopBrand(
+  TopBrand(
       {Key? key,
       this.width,
-      //  this.countItem,
       this.title,
       this.spacing,
       this.mainPadding,
-      this.runSpacing})
+      this.runSpacing,
+      this.imagesList})
       : super(key: key);
 
   final double? width;
@@ -21,20 +19,17 @@ class TopBrand extends StatelessWidget {
   final double? spacing;
   final double? mainPadding;
   final double? runSpacing;
-  int get countItem {
-    if (device! == DeviceType.Tablet) {
-      return 6;
-    } else if (device! == DeviceType.Desktop) {
-      return 8;
-    } else {
-      return 4;
-    }
-  }
+  final List? imagesList;
+  double? itemWidth;
 
   double get gridWidth {
-    return ((width! - mainPadding! * 2 - spacing! * (countItem - 1)) /
-            countItem) -
-        0.05;
+    if (device! == DeviceType.Tablet) {
+      return width! / 9.4;
+    } else if (device! == DeviceType.Desktop) {
+      return width! / 15.2;
+    } else {
+      return width! / 5.34;
+    }
   }
 
   @override
@@ -49,13 +44,29 @@ class TopBrand extends StatelessWidget {
             spacing: spacing!,
             runSpacing: spacing!,
             children: List.generate(
-                topBrands.length,
-                (index) => BrandItems(
-                      width: width!,
-                      gridWidth: gridWidth,
-                      index: index,
-                      image: topBrands[index].image,
-                      title: "",
+                imagesList!.length,
+                (index) => InkWell(
+                      onTap: () {},
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                                padding: const EdgeInsets.all(3),
+                                decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color(0xFFc2c2c2),
+                                          blurRadius: 10,
+                                          spreadRadius: 0.1,
+                                          offset: Offset(0, 5))
+                                    ]),
+                                width: gridWidth,
+                                height: gridWidth / 1.68,
+                                child: Image.asset(imagesList![index])),
+                          ]),
                     ))),
       ],
     );

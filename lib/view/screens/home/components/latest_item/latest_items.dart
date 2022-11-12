@@ -20,7 +20,11 @@ class LatestItems extends StatelessWidget {
       this.data,
       this.numberOfRows,
       this.id})
-      : super(key: key);
+      : super(key: key) {
+    getDevice(width);
+    getListvalues();
+  }
+
   final double? width;
   final double? mainPadding, space, aspectRatio, height;
   final String? title;
@@ -65,8 +69,6 @@ class LatestItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getDevice(width);
-    getListvalues();
     MoveSliderMain controller =
         Get.put(MoveSliderMain(itemsList: data!, width: width));
     return Column(

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/advertisement_controller.dart';
-import 'package:solo/models/advertisement_models.dart';
+import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/screens/home/components/weeklyGift/slider_style1.dart';
+import 'package:solo/view/screens/product-page/product_page.dart';
 
 class Advertisement extends StatelessWidget {
-  const Advertisement({Key? key, this.width, this.title, this.mainPadding})
+  const Advertisement(
+      {Key? key, this.width, this.title, this.mainPadding, this.slidersList})
       : super(key: key);
 
   final double? width, mainPadding;
   final String? title;
+  final List? slidersList;
   @override
   Widget build(BuildContext context) {
     AdvertiseController controller = Get.put(AdvertiseController(
@@ -18,7 +21,7 @@ class Advertisement extends StatelessWidget {
         offset: 0,
         movementDurationPerMilliseconds: 300,
         repetitionDurationPerSecond: 3,
-        contentCount: advertisements.length));
+        contentCount: slidersList!.length));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -26,7 +29,6 @@ class Advertisement extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 0)),
         Container(
             decoration: const BoxDecoration(
-              color: Colors.amber,
               boxShadow: [
                 BoxShadow(
                     color: Color(0xFF8a9296),
@@ -42,9 +44,25 @@ class Advertisement extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 controller: controller.move,
-                itemCount: advertisements.length,
+                itemCount: slidersList!.length,
                 itemBuilder: (context, i) {
-                  return SlidersStyle1(width: width!, index: i);
+                  return Container(
+                    color: const Color(0xFF1C7CB5),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(
+                            () => ProductPage(
+                                  category: solo.product[i],
+                                  width: width,
+                                  aspectRatio: solo.product[i].aspectRatio,
+                                  height: solo.product[i].height,
+                                ),
+                            preventDuplicates: false);
+                        Get.deleteAll();
+                      },
+                      child: slidersList![i],
+                    ),
+                  );
                 })),
         const SizedBox(height: 10),
         SizedBox(

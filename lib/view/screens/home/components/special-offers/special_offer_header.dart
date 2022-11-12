@@ -84,7 +84,7 @@ class SpecialOfferHeader extends StatelessWidget {
                       ],
                       letterSpacing: 0.5,
                       fontSize: titleFontSize,
-                      color: const Color(0xFFfcba03))),
+                      color: const Color(0xFFffffff))),
             ),
           ),
           Positioned(

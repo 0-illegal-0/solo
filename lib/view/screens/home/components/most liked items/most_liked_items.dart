@@ -8,7 +8,7 @@ import 'package:solo/view/widget/view_all_button.dart';
 import '../../../../style.dart';
 
 class MostLiked extends StatelessWidget {
-  const MostLiked({
+  MostLiked({
     Key? key,
     required this.width,
     this.mainPadding,
@@ -16,7 +16,10 @@ class MostLiked extends StatelessWidget {
     this.title,
     this.data,
     this.aspectRatio,
-  }) : super(key: key);
+  }) : super(key: key) {
+    getDevice(width);
+    containerWidth();
+  }
   final String? title;
   final double width;
   final List? data;
@@ -36,8 +39,6 @@ class MostLiked extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getDevice(width);
-    containerWidth();
     return Column(
       children: [
         Padding(
@@ -105,7 +106,7 @@ class MostLiked extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 9, bottom: 5),
                               child: Text(
-                                data![index]["item"].price!,
+                                "${data![index]["item"].price!} EGP",
                                 maxLines: 1,
                                 style: const TextStyle(shadows: [
                                   BoxShadow(

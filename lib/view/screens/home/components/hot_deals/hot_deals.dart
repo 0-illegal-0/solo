@@ -57,8 +57,6 @@ class HotDeals extends StatelessWidget {
       targetTimeMonth: targetTimeMonth!,
     ));
 
-    print(" ....... ${controller.date}");
-
     return Column(
       children: [
         RotateHead(

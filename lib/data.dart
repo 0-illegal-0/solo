@@ -598,10 +598,10 @@ Map<String, dynamic> data = {
               "Dell Latitude 7490 Intel Core i7-8650U 16GB DDR4 RAM, 512GB SSD 14\" FHD Windows 10 Pro Laptop (Renewed)",
           "image": "assets/images/laptops/Dell-Latitude-7490.png",
           "title": "Dell Latitude 7490",
-          "price": "27,200.00",
+          "price": "8,200.00",
           "special-offer": true,
-          "discount": "20%",
-          "old-price": "3,500.00",
+          "discount": "15%",
+          "old-price": "9,500.00",
           "product-brands": "Lenovo",
           "cpu": "AMD",
           "hardsize": 1500.0,
@@ -797,9 +797,9 @@ Map<String, dynamic> data = {
           "image": "assets/images/laptops/lenovo-l340.png",
           "title": "Asus FX506HEB-B...",
           "special-offer": true,
-          "price": "19,000.00",
-          "discount": "20%",
-          "old-price": "14,500.00 EGP",
+          "price": "16,000.00",
+          "discount": "18%",
+          "old-price": "19,500.00",
           "product-brands": "Lenovo",
           "cpu": "VIA",
           "hardsize": 500.0,
@@ -897,8 +897,8 @@ Map<String, dynamic> data = {
           "title": "DELL Vostro 3510 ...",
           "special-offer": true,
           "price": "23,500",
-          "discount": "20%",
-          "old-price": "26100",
+          "discount": "10%",
+          "old-price": "26,100",
           "product-brands": "Apple",
           "cpu": "Intel",
           "hardsize": 2000.0,
@@ -1834,7 +1834,7 @@ Map<String, dynamic> data = {
               "Samsung Galaxy A72 Dual SIM - 6.7 Inches, 8 GB RAM, 128 GB - Violet",
           "image": "assets/images/mobiles/samsung_galaxy_a72.png",
           "title": "Samsung Galaxy A72",
-          "price": "4.500",
+          "price": "4,500",
           "special-offer": true,
           "product-brands": "Samsung",
           "camera-resolution": 12.0,
@@ -1846,8 +1846,8 @@ Map<String, dynamic> data = {
             "assets/images/mobiles/samsung_galaxy_a72.png",
             "assets/images/mobiles/samsung_galaxy_a72.png",
           ],
-          "discount": "20%",
-          "old-price": "null",
+          "discount": "18%",
+          "old-price": "5,500",
           "informations": {
             "highlights": {
               "Color": "Black",
@@ -2431,10 +2431,10 @@ Map<String, dynamic> data = {
           "image": "assets/images/tablet/huawei-matepad-10.4.png",
           "title": "Lenovo M10",
           "special-offer": true,
-          "price": "10,150.00",
+          "price": "8,150.00",
           "product-brands": "Huawei",
-          "discount": "20%",
-          "old-price": "8,000,00",
+          "discount": "19%",
+          "old-price": "10,000,00",
           "images": [
             "assets/images/tablet/huawei-matepad-10.4.png",
             "assets/images/tablet/huawei-matepad-10.4.png",
@@ -2986,8 +2986,8 @@ Map<String, dynamic> data = {
           "special-offer": true,
           "title": "Asus FX506HEB-B ...",
           "price": "10,150.00",
-          "discount": "20%",
-          "old-price": "14,500.00 EGP",
+          "discount": "30%",
+          "old-price": "14,500.00",
           "product-brands": "Huawei",
           "images": [
             "assets/images/tv/led-lg-1.jpg",
@@ -3714,7 +3714,7 @@ Map<String, dynamic> data = {
           "price": "12,399.00",
           "special-offer": true,
           "product-brands": "Canon",
-          "discount": "15",
+          "discount": "13%",
           "images": [
             "assets/images/cameras/Sigma Alpha.jpg",
             "assets/images/cameras/Sigma Alpha.jpg",
@@ -4133,7 +4133,7 @@ Map<String, dynamic> data = {
           "special-offer": true,
           "price": "15,699.00",
           "product-brands": "Canon",
-          "discount": "15",
+          "discount": "18%",
           "images": [
             "assets/images/cameras/nikon.png",
             "assets/images/cameras/nikon.png",
@@ -4156,7 +4156,7 @@ Map<String, dynamic> data = {
               "Manufacturer": "Canon USA",
             },
           },
-          "old-price": "null",
+          "old-price": "19.000",
           "reviews": [
             {
               "user-name": "Ahmed Ali",
@@ -4288,7 +4288,17 @@ Map<String, dynamic> data = {
       "assets/advertise/laptop-advertise1.png",
       "assets/advertise/lenovo-l340.png"
     ]
-  }
+  },
+  "top-brand-image": [
+    'assets/images/brands/apple.png',
+    'assets/images/brands/hp.png',
+    'assets/images/brands/huawei.png',
+    'assets/images/brands/lg.jpg',
+    'assets/images/brands/dell.png',
+    'assets/images/brands/nikon.png',
+    'assets/images/brands/Samsung.jpg',
+    'assets/images/brands/sony.png'
+  ],
 };
 
 

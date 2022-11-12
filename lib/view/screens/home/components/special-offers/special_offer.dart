@@ -141,7 +141,10 @@ class SpecialOfferNoMobile extends StatelessWidget {
     this.width,
     this.data,
     this.aspectRatio,
-  }) : super(key: key);
+  }) : super(key: key) {
+    getDevice(width);
+    getItemWidth();
+  }
   final double? width, aspectRatio;
   final List? data;
   double? itemWidth;
@@ -163,8 +166,6 @@ class SpecialOfferNoMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getDevice(width);
-    getItemWidth();
     return Column(
       children: [
         Wrap(
@@ -235,12 +236,12 @@ class SpecialOfferNoMobile extends StatelessWidget {
                                           decoration:
                                               TextDecoration.lineThrough),
                                     ),
-                                    const Expanded(
+                                    Expanded(
                                       child: Text(
-                                        " 25% off",
+                                        data![index]["item"].discount,
                                         maxLines: 1,
                                         textAlign: TextAlign.right,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Color(0xFF32a852),
                                             fontWeight: FontWeight.bold,
                                             fontSize: 13),

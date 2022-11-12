@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solo/controllers/add_data.dart';
 import 'package:solo/models/add_main_data.dart';
+import 'package:solo/models/sliders.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/components/deal_festival/deal_festival.dart';
 import 'package:solo/view/screens/home/components/gift/gift.dart';
@@ -27,7 +28,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AllData inst = AllData(context: context);
-    print("This is width ${inst.width}");
     return Scaffold(
         backgroundColor: const Color(0xFFe1e1e3),
         body: SafeArea(
@@ -46,9 +46,10 @@ class HomePage extends StatelessWidget {
                                 : 140),
                     child: Column(
                       children: [
-                        /*  Advertisement(
+                        Advertisement(
                           width: inst.width,
                           title: "",
+                          slidersList: advertise(width: inst.width),
                           mainPadding: inst.mainPadding!,
                         ),
                         SizedBox(height: inst.verticalSpace),
@@ -56,13 +57,13 @@ class HomePage extends StatelessWidget {
                           mainPadding: inst.mainPadding!,
                           width: inst.width,
                           title: "Hot Deals",
-                          aspectRatio: 0.7
+                          aspectRatio: 0.7,
                           data: inst.itemData["hot-deal"],
                           targetTimeDayes: 2,
                           targetTimeHours: 22,
                           targetTimeMonth: 3,
-                        ),*/
-                        /*  SizedBox(height: inst.verticalSpace),
+                        ),
+                        SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 0.9,
                           height: inst.width! * 0.60,
@@ -74,15 +75,17 @@ class HomePage extends StatelessWidget {
                           width: inst.width!,
                           id: 0,
                           productItem: 1,
-                        ),*/
-                        /*
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         SpecialOffer(
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             data: inst.itemData["special-offer"]),
                         SizedBox(height: inst.verticalSpace),
-                        WeeklyGift(title: "Weekly Gift", width: inst.width!),
+                        WeeklyGift(
+                            title: "",
+                            width: inst.width!,
+                            slidersList: weeklyGift(width: inst.width!)),
                         SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 0.9,
@@ -96,16 +99,14 @@ class HomePage extends StatelessWidget {
                           id: 1,
                           productItem: 0,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
+                        SizedBox(height: inst.verticalSpace),
                         DealFestival(
                             width: inst.width!,
                             title: "Deal Festival",
                             padding: inst.mainPadding!,
                             data: inst.itemData["recomended"],
                             mainData: solo.dealFestival),
-
-                        /*  SizedBox(height: inst.verticalSpace),
-
+                        SizedBox(height: inst.verticalSpace),
                         MostLiked(
                           width: inst.width!,
                           mainPadding: inst.mainPadding!,
@@ -113,8 +114,7 @@ class HomePage extends StatelessWidget {
                           title: "Most Liked Items",
                           data: inst.itemData["liked"],
                           aspectRatio: 0.7,
-                        ),*/
-                        /*
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 1.2,
@@ -140,14 +140,14 @@ class HomePage extends StatelessWidget {
                           data: inst.itemData["latest-item"],
                           id: 8,
                           numberOfRows: 2,
-                        ),*/
-                        /*
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         TopBrand(
                             mainPadding: inst.mainPadding!,
                             spacing: inst.width! / 18,
                             runSpacing: inst.width! / 18,
                             width: inst.width!,
+                            imagesList: solo.topBrandImage,
                             title: "Top Brands"),
                         SizedBox(height: inst.verticalSpace),
                         ViewItem(
@@ -162,15 +162,15 @@ class HomePage extends StatelessWidget {
                           id: 3,
                           productItem: 2,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
-                        /*   Gift(
+                        SizedBox(height: inst.verticalSpace),
+                        Gift(
                             title: "Get a Gift",
                             width: inst.width!,
                             textBanner:
                                 "Buy More Than 25.000 EGP and Get OFF 50% Dicount",
-                            imageList: solo.imagesGiftDesign),*/
-                        /*    SizedBox(height: inst.verticalSpace),*/
-                        /* ViewItem(
+                            imageList: solo.imagesGiftDesign),
+                        SizedBox(height: inst.verticalSpace),
+                        ViewItem(
                           aspectRatioMobile: 1.1,
                           aspectRatioNoMobile: 0.8,
                           height: inst.width! * 0.50,
@@ -181,9 +181,9 @@ class HomePage extends StatelessWidget {
                           id: 6,
                           numberOfRows: 2,
                           productItem: 4,
-                        ),*/
-                        /*   SizedBox(height: inst.verticalSpace),*/
-                        /* LeftSideElement(
+                        ),
+                        SizedBox(height: inst.verticalSpace),
+                        LeftSideElement(
                           title: "Top Sale",
                           width: inst.width!,
                           itemCountForTablet: 2,
@@ -191,20 +191,20 @@ class HomePage extends StatelessWidget {
                           itemCountForDesktop: 3,
                           space: 10,
                           data: inst.itemData["latest-item"],
-                        ),*/ /*
+                        ),
                         SizedBox(height: inst.verticalSpace),
                         Close(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
-                            : const SizedBox()*/
+                            : const SizedBox()
                       ],
                     ),
                   ),
                 ),
                 Head(width: inst.width, logoName: "Solo"),
                 const BottomRow(),
-                const Important(), /*
-                StartPages(height: inst.height!, width: inst.width)*/
+                const Important(),
+                StartPages(height: inst.height!, width: inst.width)
               ],
             )));
   }
