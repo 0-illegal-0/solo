@@ -34,14 +34,8 @@ class CategoriesHeader extends StatelessWidget {
                           padding: MaterialStateProperty.all(
                               const EdgeInsets.all(0))),
                       onPressed: () {
-                        Get.to(
-                            () => ProductPage(
-                                  category: solo.product[index],
-                                  width: width,
-                                  productItem: index,
-                                  aspectRatio: solo.product[index].aspectRatio,
-                                  height: solo.product[index].height,
-                                ),
+                        Get.toNamed("/product-page",
+                            arguments: {"index": index, "width": width},
                             preventDuplicates: false);
                         Get.deleteAll();
                       },

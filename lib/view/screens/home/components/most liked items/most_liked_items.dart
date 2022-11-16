@@ -71,17 +71,15 @@ class MostLiked extends StatelessWidget {
                       painter: MostLikedPainter(),
                       child: InkWell(
                         onTap: () {
-                          Get.to(
-                              () => ViewDetails(
-                                    width: width,
-                                    aspectRatio: data![index]["aspectRatio"],
-                                    height: data![index]["height"],
-                                    itemList: data![index]["item-list"],
-                                    index: data![index]["index"],
-                                    numberOfRows: 1,
-                                    title: "Customer  Viewed",
-                                    productItem: data![index]["product-index"],
-                                  ),
+                          Get.toNamed('/view-details',
+                              arguments: {
+                                "width": width,
+                                "data-list": data![index]["item-list"],
+                                "index": data![index]["index"],
+                                "product-index": data![index]["product-index"],
+                                "aspect-ratio": data![index]["aspectRatio"],
+                                "height": data![index]["height"]
+                              },
                               preventDuplicates: false);
                           Get.deleteAll();
                         },

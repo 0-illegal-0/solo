@@ -7,24 +7,24 @@ import '../../../../style.dart';
 
 class Gift extends StatelessWidget {
   const Gift(
-      {Key? key, this.title, this.width, this.imageList, this.textBanner})
+      {Key? key,
+      this.title,
+      this.width,
+      this.imageList,
+      this.textBanner,
+      this.productIndex})
       : super(key: key);
   final String? title, textBanner;
   final double? width;
   final List<String>? imageList;
+  final int? productIndex;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(
-            () => ProductPage(
-                  category: solo.product[4],
-                  width: width,
-                  aspectRatio: solo.product[4].aspectRatio,
-                  height: solo.product[4].height,
-                  productItem: 2,
-                ),
+        Get.toNamed("/product-page",
+            arguments: {"index": productIndex, "width": width},
             preventDuplicates: false);
         Get.deleteAll();
       },

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../navigation_bar.dart' as pro;
-
 class Close extends StatelessWidget {
   Close({Key? key, this.width}) : super(key: key);
   final double? width;
@@ -16,12 +14,12 @@ class Close extends StatelessWidget {
   }
 
   List<Map<String, dynamic>> stringFotterList = [
-    {"title": "Careers", "page": const pro.Progress()},
-    {"title": "Warranty Policy", "page": const pro.Progress()},
-    {"title": "Sell with us", "page": const pro.Progress()},
-    {"title": "Terms of Use", "page": const pro.Progress()},
-    {"title": "Terms of Sale", "page": const pro.Progress()},
-    {"title": "Privacy Policy", "page": const pro.Progress()},
+    {"title": "Careers", "page": "/privacy-policy"},
+    {"title": "Warranty Policy", "page": "/privacy-policy"},
+    {"title": "Sell with us", "page": "/privacy-policy"},
+    {"title": "Terms of Use", "page": "/privacy-policy"},
+    {"title": "Terms of Sale", "page": "/privacy-policy"},
+    {"title": "Privacy Policy", "page": "/privacy-policy"},
   ];
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/models/add_main_data.dart';
+import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/close/close.dart';
@@ -249,41 +250,32 @@ class CartBudget extends StatelessWidget {
                                                         ),
                                                       ),
                                                       onTap: () {
-                                                        Get.to(
-                                                            () => // aspectRatio
-                                                                ViewDetails(
-                                                                  width: width,
-                                                                  aspectRatio: solo
-                                                                      .product[int.parse(
-                                                                          controller.items[index]
-                                                                              [
-                                                                              0])]
-                                                                      .aspectRatio,
-                                                                  height: width! *
-                                                                      solo
-                                                                          .product[int.parse(controller.items[index]
-                                                                              [
-                                                                              0])]
-                                                                          .height,
-                                                                  itemList: solo
-                                                                      .product[int.parse(
-                                                                          controller.items[index]
-                                                                              [
-                                                                              0])]
+                                                        Product product = solo
+                                                                .product[
+                                                            int.parse(controller
+                                                                    .items[
+                                                                index][0])];
+                                                        Get.toNamed(
+                                                            '/view-details',
+                                                            arguments: {
+                                                              "width": width,
+                                                              "data-list":
+                                                                  product
                                                                       .products,
-                                                                  index: int.parse(
-                                                                      controller
-                                                                              .items[
-                                                                          index][1]),
-                                                                  numberOfRows:
-                                                                      1,
-                                                                  title:
-                                                                      "Customer  Viewed",
-                                                                  productItem: int.parse(
-                                                                      controller
-                                                                              .items[
-                                                                          index][0]),
-                                                                ),
+                                                              "index": int.parse(
+                                                                  controller
+                                                                          .items[
+                                                                      index][1]),
+                                                              "product-index": int
+                                                                  .parse(controller
+                                                                          .items[
+                                                                      index][0]),
+                                                              "aspect-ratio":
+                                                                  product
+                                                                      .aspectRatio,
+                                                              "height":
+                                                                  product.height
+                                                            },
                                                             preventDuplicates:
                                                                 false);
                                                         Get.deleteAll();
@@ -361,7 +353,6 @@ class CartBudget extends StatelessWidget {
                 ),
               ),
             ),
-            //  Positioned(child: Container(color: Colors.red, width: 300,height: 100),bottom: 100,),
             BottomRow(controller: controller),
             Head(width: width, controller: controller),
           ],
@@ -415,28 +406,18 @@ class CartWidgetForMobile extends StatelessWidget {
                   height: designHeight,
                   child: InkWell(
                     onTap: () {
-                      Get.to(
-                          () => ViewDetails(
-                                width: width!,
-                                aspectRatio: solo
-                                    .product[
-                                        int.parse(controller.items[index][0])]
-                                    .aspectRatio,
-                                height: width! *
-                                    solo
-                                        .product[int.parse(
-                                            controller.items[index][0])]
-                                        .height,
-                                itemList: solo
-                                    .product[
-                                        int.parse(controller.items[index][0])]
-                                    .products,
-                                index: int.parse(controller.items[index][1]),
-                                numberOfRows: 1,
-                                title: "Customer  Viewed",
-                                productItem:
-                                    int.parse(controller.items[index][0]),
-                              ),
+                      Product product =
+                          solo.product[int.parse(controller.items[index][0])];
+                      Get.toNamed('/view-details',
+                          arguments: {
+                            "width": width,
+                            "data-list": product.products,
+                            "index": int.parse(controller.items[index][1]),
+                            "product-index":
+                                int.parse(controller.items[index][0]),
+                            "aspect-ratio": product.aspectRatio,
+                            "height": product.height
+                          },
                           preventDuplicates: false);
                       Get.deleteAll();
                     },

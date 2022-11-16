@@ -294,18 +294,16 @@ class SpecialOfferNoMobile extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          Get.to(
-                            () => ViewDetails(
-                              width: width!,
-                              aspectRatio: data![index]["aspectRatio"],
-                              height: width! * data![index]["height"],
-                              itemList: data![index]["item-list"],
-                              productItem: data![index]['product-index'],
-                              index: data![index]["index"],
-                              numberOfRows: 1,
-                              title: "Customer  Viewed",
-                            ), /* preventDuplicates: false*/
-                          );
+                          Get.toNamed('/view-details',
+                              arguments: {
+                                "width": width,
+                                "data-list": data![index]["item-list"],
+                                "index": data![index]["index"],
+                                "product-index": data![index]["product-index"],
+                                "aspect-ratio": data![index]["aspectRatio"],
+                                "height": width! * data![index]["height"]
+                              },
+                              preventDuplicates: false);
                           Get.deleteAll();
                         })),
               ),

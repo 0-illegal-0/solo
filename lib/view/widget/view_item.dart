@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/controllers/latest_item_controller.dart';
+import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/style.dart';
@@ -371,17 +372,15 @@ class ViewItemContent extends StatelessWidget {
           ],
         ),
         onTap: () {
-          Get.to(
-              () => ViewDetails(
-                    width: width!,
-                    aspectRatio: aspectRatio,
-                    height: height,
-                    itemList: itemList,
-                    index: index,
-                    numberOfRows: 1,
-                    title: "Customer  Viewed",
-                    productItem: productItem,
-                  ),
+          Get.toNamed('/view-details',
+              arguments: {
+                "width": width,
+                "data-list": itemList,
+                "index": index,
+                "product-index": productItem,
+                "aspect-ratio": aspectRatio,
+                "height": height
+              },
               preventDuplicates: false);
           Get.deleteAll();
         });

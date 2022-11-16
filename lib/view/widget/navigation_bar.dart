@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
 import 'package:solo/controllers/navigation_state.dart';
 import 'package:solo/view/responsive.dart';
-import 'package:solo/view/screens/cart/cart.dart';
+import 'package:solo/view/screens/cart/cart_budget.dart';
 import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/login_register/login.dart';
 import 'package:solo/view/screens/privacy/privacy_policy.dart';
@@ -35,7 +35,8 @@ class NavigationBar extends StatelessWidget {
             } else if (bottomNavDetails[val]["title"] == "Categories") {
               note(context);
             } else {
-              Get.to(bottomNavDetails[val]["page"], preventDuplicates: false);
+              Get.toNamed(bottomNavDetails[val]["page"],
+                  preventDuplicates: false);
               Get.deleteAll();
             }
           },
@@ -103,7 +104,7 @@ class More extends StatelessWidget {
             bottomNavDetails[3]["drop-menu"].length,
             (index) => TextButton(
               onPressed: () {
-                Get.to(bottomNavDetails[3]["drop-menu"][index]["page"]);
+                Get.toNamed(bottomNavDetails[3]["drop-menu"][index]["page"]);
                 Get.deleteAll();
               },
               child: Text(
@@ -124,17 +125,17 @@ List<Map<String, dynamic>> bottomNavDetails = [
   {
     "title": "Home",
     "icon": const Icon(Icons.home_outlined),
-    "page": const HomePage()
+    "page": "/",
   },
   {
     "title": "Important",
     "icon": const ImportantButton(),
-    "page": const HomePage()
+    "page": "/",
   },
   {
     "title": "Cart",
     "icon": const Icon(Icons.shopping_cart_outlined),
-    "page": CartBudget()
+    "page": "/cart"
   },
   {
     "title": "More",
@@ -142,17 +143,17 @@ List<Map<String, dynamic>> bottomNavDetails = [
       Icons.more_outlined,
     ),
     "drop-menu": [
-      {"title": "Log In", "page": const Login()},
-      {"title": "Help", "page": const Progress()},
-      {"title": "Contact Us", "page": const Progress()},
-      {"title": "About Us", "page": const Progress()},
-      {"title": "Privacy Policy", "page": const PrivacyPolicy()}
+      {"title": "Log In", "page": "/login"},
+      {"title": "Help", "page": "/help"},
+      {"title": "Contact Us", "page": "/contact-us"},
+      {"title": "About Us", "page": "/about-us"},
+      {"title": "Privacy Policy", "page": "/privacy-policy"}
     ]
   },
 ];
 
-class Progress extends StatelessWidget {
-  const Progress({Key? key}) : super(key: key);
+class InProgress extends StatelessWidget {
+  const InProgress({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -230,9 +231,8 @@ class BottomRow extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    return device == DeviceType.Desktop
-        ? const SizedBox()
-        : Align(
+    return device == DeviceType.Mobile
+        ? Align(
             alignment: Alignment.bottomCenter,
             child: Container(
               width: double.infinity,
@@ -263,12 +263,12 @@ class BottomRow extends StatelessWidget {
                                 "Cart") {
                               Cart controller = Get.put(Cart());
                               await controller.showItem();
-                              Get.to(CartBudget());
+                              Get.toNamed("/cart");
                             } else if (bottomNavDetails[index]["title"] ==
                                 "Categories") {
                               note(context);
                             } else {
-                              Get.to(bottomNavDetails[index]["page"],
+                              Get.toNamed(bottomNavDetails[index]["page"],
                                   preventDuplicates: false);
                               Get.deleteAll();
                             }
@@ -276,7 +276,8 @@ class BottomRow extends StatelessWidget {
                         )),
               ),
             ),
-          );
+          )
+        : const SizedBox();
   }
 
   bottomSheet(context, width) {

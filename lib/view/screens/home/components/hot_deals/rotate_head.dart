@@ -38,16 +38,14 @@ class RotateHead extends StatelessWidget {
           SizedBox(
               height: sizesResponsive(
                   device: device, desktop: 20, teblet: 15, mobile: 7)),
-          GetBuilder<RotateHeadController>(builder: (context) {
-            return Row(
-                mainAxisAlignment: device == DeviceType.Mobile
-                    ? MainAxisAlignment.spaceEvenly
-                    : MainAxisAlignment.center,
-                children: List.generate(
-                    controller!.theRemainingTime.length,
-                    (index) => DatEvent(
-                        controller: controller, index: index, width: width)));
-          }),
+          Row(
+              mainAxisAlignment: device == DeviceType.Mobile
+                  ? MainAxisAlignment.spaceEvenly
+                  : MainAxisAlignment.center,
+              children: List.generate(
+                  controller!.theRemainingTime.length,
+                  (index) => DatEvent(
+                      controller: controller, index: index, width: width)))
         ],
       );
     });

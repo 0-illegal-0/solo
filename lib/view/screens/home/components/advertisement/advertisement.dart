@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/advertisement_controller.dart';
 import 'package:solo/models/add_main_data.dart';
-import 'package:solo/view/screens/home/components/weeklyGift/slider_style1.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
 
 class Advertisement extends StatelessWidget {
@@ -50,15 +49,9 @@ class Advertisement extends StatelessWidget {
                     color: const Color(0xFF1C7CB5),
                     child: InkWell(
                       onTap: () {
-                        Get.to(
-                            () => ProductPage(
-                                  category: solo.product[i],
-                                  width: width,
-                                  aspectRatio: solo.product[i].aspectRatio,
-                                  height: solo.product[i].height,
-                                ),
+                        Get.toNamed("/product-page",
+                            arguments: {"index": i, "width": width},
                             preventDuplicates: false);
-                        Get.deleteAll();
                       },
                       child: slidersList![i],
                     ),

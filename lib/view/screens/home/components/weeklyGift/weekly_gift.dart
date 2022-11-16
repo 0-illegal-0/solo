@@ -4,19 +4,10 @@ import 'package:solo/controllers/advertisement_controller.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/view/screens/product-page/product_page.dart';
 import '../../../../style.dart';
-import 'slider_style1.dart';
 
 class WeeklyGift extends StatelessWidget {
   const WeeklyGift({Key? key, this.width, this.title, this.slidersList})
       : super(key: key);
-
-  List<Widget> styleWidget({width, index}) {
-    return [
-      SlidersStyle1(width: width, index: index),
-      SlidersStyle1(width: width, index: index),
-      SlidersStyle1(width: width, index: index),
-    ];
-  }
 
   final double? width;
   final String? title;
@@ -61,13 +52,8 @@ class WeeklyGift extends StatelessWidget {
                     color: const Color(0xFF1C7CB5),
                     child: InkWell(
                       onTap: () {
-                        Get.to(
-                            () => ProductPage(
-                                  category: solo.product[i],
-                                  width: width,
-                                  aspectRatio: solo.product[i].aspectRatio,
-                                  height: solo.product[i].height,
-                                ),
+                        Get.toNamed("/product-page",
+                            arguments: {"index": i, "width": width},
                             preventDuplicates: false);
                         Get.deleteAll();
                       },

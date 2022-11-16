@@ -14,13 +14,13 @@ class ShowItemWrap extends StatelessWidget {
   ShowItemWrap({
     Key? key,
     this.data,
-    this.title,
-    this.aspectRatio,
-  }) : super(key: key);
+  }) {
+    argumentData = Get.arguments;
+    data = argumentData!["data"];
+  }
 
-  final List? data;
-  final String? title;
-  final double? aspectRatio;
+  Map? argumentData;
+  List? data;
   double? widthValue;
   int? itemCount;
 
@@ -71,7 +71,7 @@ class ShowItemWrap extends StatelessWidget {
                               : 140),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
-                    child: Text(title!, style: titleStyle),
+                    child: Text(argumentData!["title"], style: titleStyle),
                   ),
                   device != DeviceType.Mobile
                       ? Wrap(
@@ -95,11 +95,11 @@ class ShowItemWrap extends StatelessWidget {
                                   minHeight: SizesData.minHeight),
                               width: width / widthValue!,
                               child: AspectRatio(
-                                  aspectRatio: aspectRatio!,
+                                  aspectRatio: argumentData!["aspectRatio"],
                                   child: ViewItemContent(
                                     index: index,
                                     itemList: finalData,
-                                    aspectRatio: aspectRatio,
+                                    aspectRatio: argumentData!["aspectRatio"],
                                     width: width,
                                     height: width * 0.50,
                                     productItem: data![index]["product-index"],
@@ -110,7 +110,7 @@ class ShowItemWrap extends StatelessWidget {
                       : Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: LeftSideElement(
-                            title: title,
+                            title: argumentData!["title"],
                             width: width,
                             itemCountForTablet: 2,
                             mainPadding: width / 24,

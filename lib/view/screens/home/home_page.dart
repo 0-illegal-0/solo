@@ -4,11 +4,17 @@ import 'package:solo/controllers/add_data.dart';
 import 'package:solo/models/add_main_data.dart';
 import 'package:solo/models/sliders.dart';
 import 'package:solo/view/responsive.dart';
+import 'package:solo/view/screens/cart/cart_budget.dart';
 import 'package:solo/view/screens/home/components/deal_festival/deal_festival.dart';
 import 'package:solo/view/screens/home/components/gift/gift.dart';
 import 'package:solo/view/screens/home/components/latest_item/latest_items.dart';
 import 'package:solo/view/screens/home/components/special-offers/special_offer.dart';
 import 'package:solo/view/screens/home/components/weeklyGift/weekly_gift.dart';
+import 'package:solo/view/screens/login_register/login.dart';
+import 'package:solo/view/screens/privacy/privacy_policy.dart';
+import 'package:solo/view/screens/product-page/product_page.dart';
+import 'package:solo/view/screens/view-details/view_details.dart';
+//import 'package:solo/view/screens/view-details/view_details.dart';
 import 'package:solo/view/widget/close/close.dart';
 import 'package:solo/view/widget/head/head.dart';
 import 'package:solo/view/widget/important.dart';
@@ -28,6 +34,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AllData inst = AllData(context: context);
+    print("This is Width ${inst.width}");
     return Scaffold(
         backgroundColor: const Color(0xFFe1e1e3),
         body: SafeArea(
@@ -128,8 +135,8 @@ class HomePage extends StatelessWidget {
                           numberOfRows: 2,
                           productItem: 3,
                         ),
-                        SizedBox(height: inst.verticalSpace),
-                        LatestItems(
+                        /*    SizedBox(height: inst.verticalSpace),*/
+                        /* LatestItems(
                           width: inst.width!,
                           space: 5,
                           mainPadding: inst.mainPadding!,
@@ -141,7 +148,7 @@ class HomePage extends StatelessWidget {
                           id: 8,
                           numberOfRows: 2,
                         ),
-                        SizedBox(height: inst.verticalSpace),
+                           SizedBox(height: inst.verticalSpace),*/
                         TopBrand(
                             mainPadding: inst.mainPadding!,
                             spacing: inst.width! / 18,
@@ -166,6 +173,7 @@ class HomePage extends StatelessWidget {
                         Gift(
                             title: "Get a Gift",
                             width: inst.width!,
+                            productIndex: 4,
                             textBanner:
                                 "Buy More Than 25.000 EGP and Get OFF 50% Dicount",
                             imageList: solo.imagesGiftDesign),
@@ -190,7 +198,7 @@ class HomePage extends StatelessWidget {
                           mainPadding: inst.mainPadding!,
                           itemCountForDesktop: 3,
                           space: 10,
-                          data: inst.itemData["latest-item"],
+                          data: inst.itemData["top-sale"],
                         ),
                         SizedBox(height: inst.verticalSpace),
                         Close(width: inst.width!),
@@ -204,7 +212,7 @@ class HomePage extends StatelessWidget {
                 Head(width: inst.width, logoName: "Solo"),
                 const BottomRow(),
                 const Important(),
-                StartPages(height: inst.height!, width: inst.width)
+                //  StartPages(height: inst.height!, width: inst.width)
               ],
             )));
   }

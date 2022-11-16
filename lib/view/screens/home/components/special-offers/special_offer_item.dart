@@ -59,17 +59,15 @@ class SpecialOfferItem extends StatelessWidget {
     sizes(loopIndex);
     return InkWell(
       onTap: () {
-        Get.to(
-            () => ViewDetails(
-                  width: width,
-                  aspectRatio: aspectRatio,
-                  height: height,
-                  itemList: itemList,
-                  index: index,
-                  numberOfRows: 1,
-                  title: "Customer  Viewed",
-                  productItem: productItem,
-                ),
+        Get.toNamed('/view-details',
+            arguments: {
+              "width": width,
+              "data-list": itemList,
+              "index": index,
+              "product-index": productItem,
+              "aspect-ratio": aspectRatio,
+              "height": height
+            },
             preventDuplicates: false);
         Get.deleteAll();
       },

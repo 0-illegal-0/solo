@@ -695,7 +695,7 @@ Map<String, dynamic> data = {
         {
           "description":
               "DELL G15 5511 Gaming Laptop - Intel Core I7-11800H -...",
-          "image": "assets/images/laptops/lenovo-v15.png",
+          "image": "assets/images/laptops/dell-g15.jpg",
           "title": "lenovo-v15",
           "special-offer": false,
           "price": "18,500.00",
@@ -4269,9 +4269,9 @@ Map<String, dynamic> data = {
     },
   ],
   "images-gift-design": [
-    "assets/images/laptops/hp-255-g8.png",
     "assets/images/cameras/camera1.png",
-    "assets/images/cameras/camera1.png"
+    "assets/images/cameras/nikon-z7.png",
+    "assets/images/cameras/Nikon-AF-S-NIKKOR.png"
   ],
   "deal-festival": {
     "mobile-image": "assets/advertise/phone-advertise.png",

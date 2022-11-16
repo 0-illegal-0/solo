@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/filter_controller.dart';
+import 'package:solo/models/add_main_data.dart';
 import 'package:solo/models/categories_models.dart';
 import 'package:solo/view/screens/product-page/components/filter_property.dart';
 import 'package:solo/view/screens/product-page/components/price_range.dart';
@@ -15,11 +16,15 @@ class ProductPage extends StatelessWidget {
       this.category,
       this.width,
       this.aspectRatio,
-      this.height,
-      this.productItem})
-      : super(key: key);
-  final Product? category;
-  final double? width, aspectRatio, height;
+      //  this.height,
+      this.productItem}) {
+    Map argumentData = Get.arguments;
+    category = solo.product[argumentData["index"]];
+    width = argumentData["width"];
+    responsiveSizes();
+  }
+  Product? category;
+  double? width, aspectRatio;
   final int? productItem;
   double? filterWidth, itemCount, rowSpace;
   double get mainPadding {
@@ -58,7 +63,6 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    responsiveSizes();
     FilterController controller =
         Get.put(FilterController(width: width, mainItem: category!.products));
     return Scaffold(
@@ -150,8 +154,8 @@ class ProductPage extends StatelessWidget {
                                                                     .minHeight),
                                                             width: gridWidth!,
                                                             child: AspectRatio(
-                                                              aspectRatio:
-                                                                  aspectRatio!,
+                                                              aspectRatio: category!
+                                                                  .aspectRatio!,
                                                               child:
                                                                   ViewItemContent(
                                                                 index: index,
@@ -159,8 +163,11 @@ class ProductPage extends StatelessWidget {
                                                                     productItem,
                                                                 width: width,
                                                                 aspectRatio:
-                                                                    aspectRatio,
-                                                                height: height,
+                                                                    category!
+                                                                        .aspectRatio!,
+                                                                height:
+                                                                    category!
+                                                                        .height,
                                                                 itemList: controller
                                                                             .afterfilter.isEmpty &&
                                                                         controller.click ==

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo/controllers/cart.dart';
-import 'package:solo/view/screens/cart/cart.dart';
+import 'package:solo/view/screens/cart/cart_budget.dart';
 import 'package:solo/view/responsive.dart';
 import 'package:solo/view/screens/home/home_page.dart';
 import 'package:solo/view/screens/login_register/login.dart';
@@ -165,7 +165,7 @@ class TabletHead extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         onPressed: () {
                           Get.deleteAll();
-                          Get.to(() => const Login(), preventDuplicates: false);
+                          Get.toNamed("/login", preventDuplicates: false);
                         },
                         icon: Row(
                           children: const [
@@ -205,7 +205,7 @@ class TabletHead extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Logo(fontSize: 33),
+              const Logo(fontSize: 33),
               const SizedBox(width: 30),
               Search(width: width, fieldHeight: 32, iconButtonheight: 33),
               const SizedBox(width: 30),
@@ -218,7 +218,7 @@ class TabletHead extends StatelessWidget {
                       rowWidth: 170,
                       textIconSize: 13)
                   .iconBar("Cart", Icons.shopping_cart_outlined,
-                      page: CartBudget(), pageState: "CART")
+                      page: "/cart", pageState: "CART")
             ],
           ),
         ),
@@ -299,7 +299,7 @@ class Logo extends StatelessWidget {
                 padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
             onPressed: () {
               Get.deleteAll();
-              Get.to(() => const HomePage());
+              Get.toNamed("/");
             },
             child: Text(logo!,
                 textAlign: TextAlign.center,

@@ -16,21 +16,17 @@ import 'package:solo/view/widget/navigation_bar.dart';
 import 'package:solo/view/widget/view_item.dart';
 
 class ViewDetails extends StatefulWidget {
-  const ViewDetails(
-      {Key? key,
-      this.title,
-      this.height,
-      this.aspectRatio,
-      this.width,
-      this.itemList,
-      this.index,
-      this.numberOfRows,
-      this.productItem})
-      : super(key: key);
-  final String? title;
-  final double? height, aspectRatio, width;
-  final int? index, numberOfRows, productItem;
-  final List? itemList;
+  ViewDetails({
+    Key? key,
+  }) {
+    argumentData = Get.arguments;
+    width = argumentData!["width"];
+    itemList = argumentData!["data-list"];
+  }
+  Map? argumentData;
+  double? width;
+  bool? mainProductsList;
+  List? itemList;
   @override
   State<ViewDetails> createState() => _ViewDetailsState();
 }
@@ -38,7 +34,7 @@ class ViewDetails extends StatefulWidget {
 class _ViewDetailsState extends State<ViewDetails>
     with TickerProviderStateMixin {
   get product {
-    return widget.itemList![widget.index!];
+    return widget.itemList![widget.argumentData!["index"]];
   }
 
   double get fontTitle {
@@ -49,6 +45,8 @@ class _ViewDetailsState extends State<ViewDetails>
   Widget build(BuildContext context) {
     ImageSlider controller =
         Get.put(ImageSlider(imagesTab: product.images, product: product));
+
+    // print("This is item List ${widget.itemList!}");
     controller.initStates(this);
     return Scaffold(
       backgroundColor: const Color(0xFFe1e1e3),
@@ -73,9 +71,9 @@ class _ViewDetailsState extends State<ViewDetails>
                         ? ProductImagesDesktop(
                             controller: controller,
                             fontTitle: fontTitle,
-                            index: widget.index,
+                            index: widget.argumentData!["index"],
                             product: product,
-                            productIndex: widget.productItem,
+                            productIndex: widget.argumentData!["product-index"],
                             width: widget.width)
                         : ProductImages(
                             controller: controller,
@@ -121,11 +119,11 @@ class _ViewDetailsState extends State<ViewDetails>
                             fontTitle: fontTitle,
                             product: product,
                             width: widget.width,
-                            index: widget.index,
-                            productIndex: widget.productItem,
+                            index: widget.argumentData!["index"],
+                            productIndex: widget.argumentData!["product-index"],
                           ),
                     const SizedBox(height: 20),
-                    widget.itemList![widget.index!].reviews.isNotEmpty == true
+                    product.reviews.isNotEmpty == true
                         ? Container(
                             padding: const EdgeInsets.all(5),
                             width: double.infinity,
@@ -199,11 +197,13 @@ class _ViewDetailsState extends State<ViewDetails>
                             id: 7,
                           )
                         : MobileDesign(
-                            aspectRatio: widget.aspectRatio,
-                            height: widget.width! * widget.height!,
+                            aspectRatio: widget.argumentData!["aspect-ratio"],
+                            height:
+                                widget.width! * widget.argumentData!["height"],
                             itemCount: widget.itemList!.length,
                             itemList: widget.itemList,
-                            title: widget.title,
+                            title: "Customer  Viewed",
+                            productItem: widget.argumentData!["product-index"],
                             width: widget.width,
                           ),
                     const SizedBox(height: 15),
@@ -245,13 +245,15 @@ class _ViewDetailsState extends State<ViewDetails>
                                       children: [
                                         ChargeButton(
                                             title: "Add To Cart",
-                                            productItem: widget.productItem,
+                                            productItem: widget
+                                                .argumentData!["product-index"],
                                             width: widget.width,
                                             stars: product.stars,
                                             price: product.price,
                                             image: product.image,
                                             itemTitle: product.title,
-                                            itemIndex: widget.index),
+                                            itemIndex:
+                                                widget.argumentData!["index"]),
                                         const SizedBox(width: 20),
                                         ChargeButton(
                                             title: "Buy Now",

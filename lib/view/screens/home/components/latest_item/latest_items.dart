@@ -109,34 +109,34 @@ class LatestItems extends StatelessWidget {
                                                 index + index1 * viewitemCount!;
                                             return InkWell(
                                               onTap: () {
-                                                Get.to(
-                                                    () => ViewDetails(
-                                                          width: width!,
-                                                          aspectRatio: data![index +
-                                                                  index1 *
-                                                                      viewitemCount!]
-                                                              ["aspectRatio"],
-                                                          height: data![index +
-                                                                  index1 *
-                                                                      viewitemCount!]
-                                                              ["height"],
-                                                          itemList: data![index +
-                                                                  index1 *
-                                                                      viewitemCount!]
+                                                int? finalFndex = index +
+                                                    index1 * viewitemCount!;
+                                                Get.toNamed('/view-details',
+                                                    arguments: {
+                                                      "width": width,
+                                                      "data-list":
+                                                          data![finalFndex]
                                                               ["item-list"],
-                                                          index: data![index +
-                                                                  index1 *
-                                                                      viewitemCount!]
-                                                              ["index"],
-                                                          numberOfRows: 1,
-                                                          title:
-                                                              "Customer  Viewed",
-                                                          productItem: data![index +
-                                                                  index1 *
-                                                                      viewitemCount!]
+                                                      "index": data![finalFndex]
+                                                          ["index"],
+                                                      "product-index":
+                                                          data![finalFndex]
                                                               ["product-index"],
-                                                        ),
+                                                      "aspect-ratio":
+                                                          data![finalFndex]
+                                                              ["aspectRatio"],
+                                                      "height":
+                                                          data![finalFndex]
+                                                              ["height"]
+                                                    },
                                                     preventDuplicates: false);
+                                                print(data![finalFndex]
+                                                    ["item-list"]);
+                                                print(data![finalFndex]["index"]
+                                                    .runtimeType);
+                                                print(data![finalFndex]
+                                                        ["product-index"]
+                                                    .runtimeType);
                                                 Get.deleteAll();
                                               },
                                               child: Container(
