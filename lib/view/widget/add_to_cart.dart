@@ -15,16 +15,13 @@ class Item extends StatelessWidget {
       width: width! / 3,
       height: width! / 5 < 200 ? 200 : width! / 5,
       decoration: const BoxDecoration(
-          color: Color(0xFFd4d3d2),
+          //color: Color(0xFFd4d3d2),
           borderRadius: BorderRadius.all(Radius.circular(5))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: Image.asset(image!),
-            ),
+            child: Image.asset(image!),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),

@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                                 : 140),
                     child: Column(
                       children: [
-                        Advertisement(
+                    /*   Advertisement(
                           width: inst.width,
                           title: "",
                           slidersList: advertise(width: inst.width),
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                           targetTimeHours: 22,
                           targetTimeMonth: 3,
                         ),
-                        SizedBox(height: inst.verticalSpace),
+                        SizedBox(height: inst.verticalSpace),*/
                         ViewItem(
                           aspectRatioMobile: 0.9,
                           height: inst.width! * 0.60,
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                           id: 0,
                           productItem: 1,
                         ),
-                        SizedBox(height: inst.verticalSpace),
+                       /* SizedBox(height: inst.verticalSpace),
                         SpecialOffer(
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
@@ -204,7 +204,7 @@ class HomePage extends StatelessWidget {
                         Close(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
-                            : const SizedBox()
+                            : const SizedBox()*/
                       ],
                     ),
                   ),

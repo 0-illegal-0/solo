@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:solo/view/widget/add_item_to_cart.dart';
 import 'package:solo/view/widget/add_to_cart.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class Cart extends GetxController {
   int count = 1;
@@ -75,94 +77,43 @@ class Cart extends GetxController {
       int? stars,
       int? productItem,
       int? itemIndex}) {
-    showDialog(
-      barrierColor: Colors.white70,
-      barrierDismissible: true,
-      context: (context!),
-      builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFFd4d3d2),
-        content: Item(
-            width: width,
-            image: image!,
-            price: price!,
-            stars: stars!,
-            title: title!),
-        titleTextStyle: const TextStyle(color: Colors.green),
-        contentTextStyle: const TextStyle(color: Colors.black, fontSize: 35),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 150,
-                height: 100,
-                child: GetBuilder<Cart>(builder: (context) {
-                  return Column(
-                    children: [
-                      const SizedBox(height: 23),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: count.toString(),
-                          filled: false,
-                          fillColor: Colors.black,
-                          enabled: true,
-                          focusedBorder: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                        ),
-                        onChanged: (value) {},
-                      ),
-                    ],
-                  );
-                }),
-              ),
-              const SizedBox(height: 10),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        onClick(1);
-                      },
-                      icon: const Icon(
-                        Icons.expand_less_outlined,
-                      )),
-                  IconButton(
-                    onPressed: () {
-                      onClick(2);
-                    },
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down_outlined,
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MaterialButton(
-                  onPressed: () async {
-                    await shared(
-                        productItem: productItem, itemIndex: itemIndex);
-                  },
-                  child: const Text('Add')),
-              MaterialButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Cancel')),
-            ],
-          ),
-        ],
-      ),
-    );
+    AwesomeDialog(
+            context: context!,
+            dialogType: DialogType.noHeader,
+            width: width! < 400 ? 360 : 400,
+            buttonsBorderRadius: const BorderRadius.all(
+              Radius.circular(2),
+            ),
+            dismissOnTouchOutside: true,
+            dismissOnBackKeyPress: true,
+            btnOkText: "ADD",
+            onDismissCallback: (type) {
+              String textSnackBar = "";
+              print(type == DismissType.btnOk);
+              if (type == DismissType.btnOk) {
+                textSnackBar = "The item has been added successfully";
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(textSnackBar),
+                  ),
+                );
+              }
+            },
+            headerAnimationLoop: false,
+            animType: AnimType.topSlide,
+            showCloseIcon: true,
+            btnCancelOnPress: () {},
+            autoDismiss: true,
+            btnOkOnPress: () async {
+              await shared(productItem: productItem, itemIndex: itemIndex);
+            },
+            body: AddItemToCart(
+                image: image,
+                price: price,
+                stars: stars,
+                title: title,
+                width: width))
+        .show();
   }
 }
