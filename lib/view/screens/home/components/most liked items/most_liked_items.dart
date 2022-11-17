@@ -67,56 +67,52 @@ class MostLiked extends StatelessWidget {
                 data!.length > 6 ? 6 : data!.length,
                 (index) => SizedBox(
                     width: brandGrid,
-                    child: CustomPaint(
-                      painter: MostLikedPainter(),
-                      child: InkWell(
-                        onTap: () {
-                          Get.toNamed('/view-details',
-                              arguments: {
-                                "width": width,
-                                "data-list": data![index]["item-list"],
-                                "index": data![index]["index"],
-                                "product-index": data![index]["product-index"],
-                                "aspect-ratio": data![index]["aspectRatio"],
-                                "height": data![index]["height"]
-                              },
-                              preventDuplicates: false);
-                          Get.deleteAll();
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: width / 25),
-                            Image.asset(
-                              data![index]["item"].image!,
-                              width: brandGrid! * 0.60,
-                              height: device == DeviceType.Desktop ||
-                                      device == DeviceType.Tablet
-                                  ? 150
-                                  : 90,
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed('/view-details',
+                            arguments: {
+                              "width": width,
+                              "data-list": data![index]["item-list"],
+                              "index": data![index]["index"],
+                              "product-index": data![index]["product-index"],
+                              "aspect-ratio": data![index]["aspectRatio"],
+                              "height": data![index]["height"]
+                            },
+                            preventDuplicates: false);
+                        Get.deleteAll();
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: width / 25),
+                          Image.asset(
+                            data![index]["item"].image!,
+                            width: brandGrid! * 0.60,
+                            height: device == DeviceType.Desktop ||
+                                    device == DeviceType.Tablet
+                                ? 150
+                                : 90,
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            data![index]["item"].title!,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 9, bottom: 5),
+                            child: Text(
+                              "${data![index]["item"].price!} EGP",
+                              maxLines: 1,
+                              style: const TextStyle(shadows: [
+                                BoxShadow(
+                                    color: Colors.red,
+                                    spreadRadius: 10,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 10)
+                              ]),
                             ),
-                            const SizedBox(height: 5),
-                            Text(
-                              data![index]["item"].title!,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 9, bottom: 5),
-                              child: Text(
-                                "${data![index]["item"].price!} EGP",
-                                maxLines: 1,
-                                style: const TextStyle(shadows: [
-                                  BoxShadow(
-                                      color: Colors.red,
-                                      spreadRadius: 10,
-                                      offset: Offset(0, 0),
-                                      blurRadius: 10)
-                                ]),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ))),
           ),

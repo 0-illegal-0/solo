@@ -211,7 +211,7 @@ class FotterItems extends StatelessWidget {
             alignment: Alignment.center,
             margin: const EdgeInsets.only(top: 20),
             padding:
-                const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 20),
+                const EdgeInsets.only(left: 4, right: 4, bottom: 10, top: 20),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey, width: 1.0),
             ),
@@ -243,7 +243,7 @@ class FotterItems extends StatelessWidget {
           Positioned(
             top: 11,
             child: Container(
-              color: Colors.white,
+              color: const Color(0xFFe9e9f0),
               alignment: Alignment.center,
               width: titleWidth!,
               child: Text(

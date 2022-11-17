@@ -34,8 +34,6 @@ class HotDealWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(data![0]["item"].runtimeType);
-    print(data![0]["item-list"].runtimeType);
     return Align(
       alignment: Alignment.topLeft,
       child: Wrap(

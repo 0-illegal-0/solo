@@ -130,13 +130,6 @@ class LatestItems extends StatelessWidget {
                                                               ["height"]
                                                     },
                                                     preventDuplicates: false);
-                                                print(data![finalFndex]
-                                                    ["item-list"]);
-                                                print(data![finalFndex]["index"]
-                                                    .runtimeType);
-                                                print(data![finalFndex]
-                                                        ["product-index"]
-                                                    .runtimeType);
                                                 Get.deleteAll();
                                               },
                                               child: Container(

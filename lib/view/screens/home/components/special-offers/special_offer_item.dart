@@ -109,7 +109,7 @@ class SpecialOfferItem extends StatelessWidget {
               Text(specialOfferTitle!, maxLines: 1),
               Padding(
                   padding: EdgeInsets.all(width / 120),
-                  child: Text(afterDicount!,
+                  child: Text("$afterDicount! EGP",
                       maxLines: 1,
                       style:
                           const TextStyle(color: Colors.blue, fontSize: 13.5))),

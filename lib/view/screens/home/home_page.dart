@@ -34,9 +34,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AllData inst = AllData(context: context);
-    print("This is Width ${inst.width}");
+
     return Scaffold(
-        backgroundColor: const Color(0xFFe1e1e3),
+        backgroundColor: const Color(0xFFe9e9f0),
         body: SafeArea(
             bottom: false,
             child: Stack(
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                                 : 140),
                     child: Column(
                       children: [
-                    /*   Advertisement(
+                        Advertisement(
                           width: inst.width,
                           title: "",
                           slidersList: advertise(width: inst.width),
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                           targetTimeHours: 22,
                           targetTimeMonth: 3,
                         ),
-                        SizedBox(height: inst.verticalSpace),*/
+                        SizedBox(height: inst.verticalSpace),
                         ViewItem(
                           aspectRatioMobile: 0.9,
                           height: inst.width! * 0.60,
@@ -83,14 +83,14 @@ class HomePage extends StatelessWidget {
                           id: 0,
                           productItem: 1,
                         ),
-                       /* SizedBox(height: inst.verticalSpace),
+                        SizedBox(height: inst.verticalSpace),
                         SpecialOffer(
                             width: inst.width!,
                             mainPadding: inst.mainPadding!,
                             data: inst.itemData["special-offer"]),
                         SizedBox(height: inst.verticalSpace),
                         WeeklyGift(
-                            title: "",
+                            title: "Weekly Gift",
                             width: inst.width!,
                             slidersList: weeklyGift(width: inst.width!)),
                         SizedBox(height: inst.verticalSpace),
@@ -135,8 +135,8 @@ class HomePage extends StatelessWidget {
                           numberOfRows: 2,
                           productItem: 3,
                         ),
-                        /*    SizedBox(height: inst.verticalSpace),*/
-                        /* LatestItems(
+                        SizedBox(height: inst.verticalSpace),
+                        LatestItems(
                           width: inst.width!,
                           space: 5,
                           mainPadding: inst.mainPadding!,
@@ -148,7 +148,7 @@ class HomePage extends StatelessWidget {
                           id: 8,
                           numberOfRows: 2,
                         ),
-                           SizedBox(height: inst.verticalSpace),*/
+                        SizedBox(height: inst.verticalSpace),
                         TopBrand(
                             mainPadding: inst.mainPadding!,
                             spacing: inst.width! / 18,
@@ -204,7 +204,9 @@ class HomePage extends StatelessWidget {
                         Close(width: inst.width!),
                         device == DeviceType.Tablet
                             ? const SizedBox(height: 120)
-                            : const SizedBox()*/
+                            : device == DeviceType.Mobile
+                                ? const SizedBox(height: 50)
+                                : const SizedBox()
                       ],
                     ),
                   ),
@@ -212,7 +214,7 @@ class HomePage extends StatelessWidget {
                 Head(width: inst.width, logoName: "Solo"),
                 const BottomRow(),
                 const Important(),
-                //  StartPages(height: inst.height!, width: inst.width)
+                StartPages(height: inst.height!, width: inst.width)
               ],
             )));
   }

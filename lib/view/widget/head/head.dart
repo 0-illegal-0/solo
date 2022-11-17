@@ -37,8 +37,8 @@ class Head extends StatelessWidget {
       topPosition = 115;
       heightCurve = 17;
     } else if (device == DeviceType.Tablet) {
-      heightHead = 135;
-      topPosition = width! >= 650 && width! < 800 ? 112 : 115;
+      heightHead = 148;
+      topPosition = width! >= 650 && width! < 800 ? 128 : 115;
       heightCurve = 18;
     }
   }
@@ -61,7 +61,6 @@ class Head extends StatelessWidget {
           Column(
             children: [
               Container(
-                  margin: const EdgeInsets.only(top: 0.8),
                   color: const Color(0xFF168994),
                   width: double.infinity,
                   child: width! >= 800
